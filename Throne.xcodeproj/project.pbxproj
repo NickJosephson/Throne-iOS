@@ -1,0 +1,616 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E176AEC023E38B2A00EF8D15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEBF23E38B2A00EF8D15 /* AppDelegate.swift */; };
+		E176AEC223E38B2A00EF8D15 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEC123E38B2A00EF8D15 /* SceneDelegate.swift */; };
+		E176AEC523E38B2A00EF8D15 /* Throne.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E176AEC323E38B2A00EF8D15 /* Throne.xcdatamodeld */; };
+		E176AEC723E38B2A00EF8D15 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEC623E38B2A00EF8D15 /* ContentView.swift */; };
+		E176AEC923E38B2B00EF8D15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E176AEC823E38B2B00EF8D15 /* Assets.xcassets */; };
+		E176AECC23E38B2B00EF8D15 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E176AECB23E38B2B00EF8D15 /* Preview Assets.xcassets */; };
+		E176AECF23E38B2B00EF8D15 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E176AECD23E38B2B00EF8D15 /* LaunchScreen.storyboard */; };
+		E176AEDA23E38B2C00EF8D15 /* ThroneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AED923E38B2C00EF8D15 /* ThroneTests.swift */; };
+		E176AEE523E38B2C00EF8D15 /* ThroneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEE423E38B2C00EF8D15 /* ThroneUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E176AED623E38B2C00EF8D15 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E176AEB423E38B2A00EF8D15 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E176AEBB23E38B2A00EF8D15;
+			remoteInfo = Throne;
+		};
+		E176AEE123E38B2C00EF8D15 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E176AEB423E38B2A00EF8D15 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E176AEBB23E38B2A00EF8D15;
+			remoteInfo = Throne;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E176AEBC23E38B2A00EF8D15 /* Throne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Throne.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E176AEBF23E38B2A00EF8D15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E176AEC123E38B2A00EF8D15 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		E176AEC423E38B2A00EF8D15 /* Throne.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Throne.xcdatamodel; sourceTree = "<group>"; };
+		E176AEC623E38B2A00EF8D15 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E176AEC823E38B2B00EF8D15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E176AECB23E38B2B00EF8D15 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E176AECE23E38B2B00EF8D15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E176AED023E38B2B00EF8D15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E176AED523E38B2C00EF8D15 /* ThroneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThroneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E176AED923E38B2C00EF8D15 /* ThroneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThroneTests.swift; sourceTree = "<group>"; };
+		E176AEDB23E38B2C00EF8D15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E176AEE023E38B2C00EF8D15 /* ThroneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThroneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E176AEE423E38B2C00EF8D15 /* ThroneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThroneUITests.swift; sourceTree = "<group>"; };
+		E176AEE623E38B2C00EF8D15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E176AEB923E38B2A00EF8D15 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E176AED223E38B2C00EF8D15 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E176AEDD23E38B2C00EF8D15 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E176AEB323E38B2A00EF8D15 = {
+			isa = PBXGroup;
+			children = (
+				E176AEBE23E38B2A00EF8D15 /* Throne */,
+				E176AED823E38B2C00EF8D15 /* ThroneTests */,
+				E176AEE323E38B2C00EF8D15 /* ThroneUITests */,
+				E176AEBD23E38B2A00EF8D15 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E176AEBD23E38B2A00EF8D15 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E176AEBC23E38B2A00EF8D15 /* Throne.app */,
+				E176AED523E38B2C00EF8D15 /* ThroneTests.xctest */,
+				E176AEE023E38B2C00EF8D15 /* ThroneUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E176AEBE23E38B2A00EF8D15 /* Throne */ = {
+			isa = PBXGroup;
+			children = (
+				E176AEBF23E38B2A00EF8D15 /* AppDelegate.swift */,
+				E176AEC123E38B2A00EF8D15 /* SceneDelegate.swift */,
+				E176AEC623E38B2A00EF8D15 /* ContentView.swift */,
+				E176AEC823E38B2B00EF8D15 /* Assets.xcassets */,
+				E176AECD23E38B2B00EF8D15 /* LaunchScreen.storyboard */,
+				E176AED023E38B2B00EF8D15 /* Info.plist */,
+				E176AEC323E38B2A00EF8D15 /* Throne.xcdatamodeld */,
+				E176AECA23E38B2B00EF8D15 /* Preview Content */,
+			);
+			path = Throne;
+			sourceTree = "<group>";
+		};
+		E176AECA23E38B2B00EF8D15 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				E176AECB23E38B2B00EF8D15 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E176AED823E38B2C00EF8D15 /* ThroneTests */ = {
+			isa = PBXGroup;
+			children = (
+				E176AED923E38B2C00EF8D15 /* ThroneTests.swift */,
+				E176AEDB23E38B2C00EF8D15 /* Info.plist */,
+			);
+			path = ThroneTests;
+			sourceTree = "<group>";
+		};
+		E176AEE323E38B2C00EF8D15 /* ThroneUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E176AEE423E38B2C00EF8D15 /* ThroneUITests.swift */,
+				E176AEE623E38B2C00EF8D15 /* Info.plist */,
+			);
+			path = ThroneUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E176AEBB23E38B2A00EF8D15 /* Throne */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E176AEE923E38B2C00EF8D15 /* Build configuration list for PBXNativeTarget "Throne" */;
+			buildPhases = (
+				E176AEB823E38B2A00EF8D15 /* Sources */,
+				E176AEB923E38B2A00EF8D15 /* Frameworks */,
+				E176AEBA23E38B2A00EF8D15 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Throne;
+			productName = Throne;
+			productReference = E176AEBC23E38B2A00EF8D15 /* Throne.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E176AED423E38B2C00EF8D15 /* ThroneTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E176AEEC23E38B2C00EF8D15 /* Build configuration list for PBXNativeTarget "ThroneTests" */;
+			buildPhases = (
+				E176AED123E38B2C00EF8D15 /* Sources */,
+				E176AED223E38B2C00EF8D15 /* Frameworks */,
+				E176AED323E38B2C00EF8D15 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E176AED723E38B2C00EF8D15 /* PBXTargetDependency */,
+			);
+			name = ThroneTests;
+			productName = ThroneTests;
+			productReference = E176AED523E38B2C00EF8D15 /* ThroneTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E176AEDF23E38B2C00EF8D15 /* ThroneUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E176AEEF23E38B2C00EF8D15 /* Build configuration list for PBXNativeTarget "ThroneUITests" */;
+			buildPhases = (
+				E176AEDC23E38B2C00EF8D15 /* Sources */,
+				E176AEDD23E38B2C00EF8D15 /* Frameworks */,
+				E176AEDE23E38B2C00EF8D15 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E176AEE223E38B2C00EF8D15 /* PBXTargetDependency */,
+			);
+			name = ThroneUITests;
+			productName = ThroneUITests;
+			productReference = E176AEE023E38B2C00EF8D15 /* ThroneUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E176AEB423E38B2A00EF8D15 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = Throne;
+				TargetAttributes = {
+					E176AEBB23E38B2A00EF8D15 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+					E176AED423E38B2C00EF8D15 = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = E176AEBB23E38B2A00EF8D15;
+					};
+					E176AEDF23E38B2C00EF8D15 = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = E176AEBB23E38B2A00EF8D15;
+					};
+				};
+			};
+			buildConfigurationList = E176AEB723E38B2A00EF8D15 /* Build configuration list for PBXProject "Throne" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E176AEB323E38B2A00EF8D15;
+			productRefGroup = E176AEBD23E38B2A00EF8D15 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E176AEBB23E38B2A00EF8D15 /* Throne */,
+				E176AED423E38B2C00EF8D15 /* ThroneTests */,
+				E176AEDF23E38B2C00EF8D15 /* ThroneUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E176AEBA23E38B2A00EF8D15 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E176AECF23E38B2B00EF8D15 /* LaunchScreen.storyboard in Resources */,
+				E176AECC23E38B2B00EF8D15 /* Preview Assets.xcassets in Resources */,
+				E176AEC923E38B2B00EF8D15 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E176AED323E38B2C00EF8D15 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E176AEDE23E38B2C00EF8D15 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E176AEB823E38B2A00EF8D15 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E176AEC523E38B2A00EF8D15 /* Throne.xcdatamodeld in Sources */,
+				E176AEC023E38B2A00EF8D15 /* AppDelegate.swift in Sources */,
+				E176AEC723E38B2A00EF8D15 /* ContentView.swift in Sources */,
+				E176AEC223E38B2A00EF8D15 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E176AED123E38B2C00EF8D15 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E176AEDA23E38B2C00EF8D15 /* ThroneTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E176AEDC23E38B2C00EF8D15 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E176AEE523E38B2C00EF8D15 /* ThroneUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E176AED723E38B2C00EF8D15 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E176AEBB23E38B2A00EF8D15 /* Throne */;
+			targetProxy = E176AED623E38B2C00EF8D15 /* PBXContainerItemProxy */;
+		};
+		E176AEE223E38B2C00EF8D15 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E176AEBB23E38B2A00EF8D15 /* Throne */;
+			targetProxy = E176AEE123E38B2C00EF8D15 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E176AECD23E38B2B00EF8D15 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E176AECE23E38B2B00EF8D15 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E176AEE723E38B2C00EF8D15 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E176AEE823E38B2C00EF8D15 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E176AEEA23E38B2C00EF8D15 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Throne/Preview Content\"";
+				DEVELOPMENT_TEAM = DNH2Q695HA;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Throne/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.findmythrone.Throne;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E176AEEB23E38B2C00EF8D15 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Throne/Preview Content\"";
+				DEVELOPMENT_TEAM = DNH2Q695HA;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Throne/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.findmythrone.Throne;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E176AEED23E38B2C00EF8D15 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DNH2Q695HA;
+				INFOPLIST_FILE = ThroneTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.findmythrone.ThroneTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Throne.app/Throne";
+			};
+			name = Debug;
+		};
+		E176AEEE23E38B2C00EF8D15 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DNH2Q695HA;
+				INFOPLIST_FILE = ThroneTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.findmythrone.ThroneTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Throne.app/Throne";
+			};
+			name = Release;
+		};
+		E176AEF023E38B2C00EF8D15 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DNH2Q695HA;
+				INFOPLIST_FILE = ThroneUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.findmythrone.ThroneUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Throne;
+			};
+			name = Debug;
+		};
+		E176AEF123E38B2C00EF8D15 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DNH2Q695HA;
+				INFOPLIST_FILE = ThroneUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.findmythrone.ThroneUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Throne;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E176AEB723E38B2A00EF8D15 /* Build configuration list for PBXProject "Throne" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E176AEE723E38B2C00EF8D15 /* Debug */,
+				E176AEE823E38B2C00EF8D15 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E176AEE923E38B2C00EF8D15 /* Build configuration list for PBXNativeTarget "Throne" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E176AEEA23E38B2C00EF8D15 /* Debug */,
+				E176AEEB23E38B2C00EF8D15 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E176AEEC23E38B2C00EF8D15 /* Build configuration list for PBXNativeTarget "ThroneTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E176AEED23E38B2C00EF8D15 /* Debug */,
+				E176AEEE23E38B2C00EF8D15 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E176AEEF23E38B2C00EF8D15 /* Build configuration list for PBXNativeTarget "ThroneUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E176AEF023E38B2C00EF8D15 /* Debug */,
+				E176AEF123E38B2C00EF8D15 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E176AEC323E38B2A00EF8D15 /* Throne.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E176AEC423E38B2A00EF8D15 /* Throne.xcdatamodel */,
+			);
+			currentVersion = E176AEC423E38B2A00EF8D15 /* Throne.xcdatamodel */;
+			path = Throne.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = E176AEB423E38B2A00EF8D15 /* Project object */;
+}
