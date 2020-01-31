@@ -1,3 +1,11 @@
+Master
+
+![Swift](https://github.com/NickJosephson/Throne-iOS/workflows/Swift/badge.svg?branch=master)
+
+Develop
+
+![Swift](https://github.com/NickJosephson/Throne-iOS/workflows/Swift/badge.svg?branch=develop)
+
 # Throne for iOS
 
 This repository contains the Throne iOS application.
