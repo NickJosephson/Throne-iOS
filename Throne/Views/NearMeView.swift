@@ -9,11 +9,13 @@
 import SwiftUI
 
 struct NearMeView: View {
+    @ObservedObject var settings = UserSettings()
+
     var body: some View {
         NavigationView {
             RoomsListView()
             .navigationBarTitle(Text("Near Me"))
-            Text("No Washroom Selected")
+            Text("No \(settings.preferredTerm.capitalized) Selected")
         }
         .navigationViewStyle(DoubleColumnNavigationViewStyle())
     }

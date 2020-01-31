@@ -9,14 +9,14 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @State var selectedTerm = 4
+    @ObservedObject var settings = UserSettings()
     
     var body: some View {
         Form {
-            Picker(selection: $selectedTerm, label: Text("Preferred Terminology")) {
-                ForEach(roomNames, id: \.self) { name in
+            Picker(selection: $settings.preferredTerm, label: Text("Preferred Terminology")) {
+                ForEach(preferredTermOptions, id: \.self) { name in
                     Text(name)
-                        .tag(roomNames.firstIndex(of: name)! + 1)
+                        .tag(name)
                 }
             }
         }
@@ -31,21 +31,4 @@ struct SettingsView_Previews: PreviewProvider {
     }
 }
 
-var roomNames = [
-    "john",
-    "crapper",
-    "Eric's House",
-    "latrine",
-    "epic gamer room",
-    "washroom",
-    "bathroom",
-    "toilet",
-    "restroom",
-    "lavatory",
-    "powder room",
-    "comfort station",
-    "water closet",
-    "privy",
-    "loo",
-    "can"
-]
+

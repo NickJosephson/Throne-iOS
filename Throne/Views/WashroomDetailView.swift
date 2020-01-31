@@ -22,7 +22,7 @@ struct WashroomDetailView: View {
                 HStack {
                     Text("🤚 Privacy")
                     Spacer()
-                    Text("Excelent").foregroundColor(.secondary)
+                    Text("Excellent").foregroundColor(.secondary)
                 }
                 HStack {
                     Text("🧻 Paper Quality")
