@@ -12,26 +12,33 @@ struct ContentView: View {
     @State private var selection = 0
  
     var body: some View {
-        TabView(selection: $selection){
-            Text("First View")
-                .font(.title)
+        TabView(selection: $selection) {
+            NearMeView()
                 .tabItem {
                     VStack {
-                        Image("first")
-                        Text("First")
+                        Image(systemName: "mappin.and.ellipse")
+                        Text("Near Me")
                     }
                 }
                 .tag(0)
-            Text("Second View")
-                .font(.title)
+            MapView()
                 .tabItem {
                     VStack {
-                        Image("second")
-                        Text("Second")
+                        Image(systemName: "map")
+                        Text("Map")
                     }
                 }
                 .tag(1)
+            ProfileView()
+                .tabItem {
+                    VStack {
+                        Image(systemName: "person.circle")
+                        Text("Me")
+                    }
+                }
+                .tag(2)
         }
+        .edgesIgnoringSafeArea(.top)
     }
 }
 
