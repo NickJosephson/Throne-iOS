@@ -10,4 +10,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build and Test
-      run: xcodebuild build test -destination ‘name=iPhone 11’ -scheme 'Throne’
+      run: xcodebuild test -scheme "Throne" -destination "name=iPhone 11"
