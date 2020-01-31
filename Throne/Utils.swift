@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import Combine
+import SwiftUI
 
 /// Fetch Data using a given URL
 /// - Parameters:
@@ -32,3 +34,40 @@ func fetch(url: URL, completionHandler: @escaping (Data) -> Void) {
     
     task.resume()
 }
+
+//struct Washroom: Codable {
+//    let title: String
+//    let rating: int
+//}
+
+typealias Washroom = String
+
+
+func getAllWashrooms(completionHandler: @escaping ([Washroom]) -> Void) {
+    let url = URL(string: "https://enaanlu8q0.execute-api.us-east-1.amazonaws.com/dev/")
+    fetch(url: url!) { data in
+        if let washrooms = try? JSONDecoder().decode([Washroom].self, from: data) {
+            completionHandler(washrooms)
+        }
+    }
+}
+
+
+final class ListViewModel: ObservableObject {
+//    let objectWillChange = PassthroughSubject<ListViewModel, Never>()
+    
+    init() {
+        fetchWashrooms()
+    }
+    
+    @Published var washrooms = [Washroom]()
+    
+    private func fetchWashrooms() {
+        getAllWashrooms() { allWashrooms in
+            DispatchQueue.main.async {
+                self.washrooms = allWashrooms
+            }
+        }
+    }
+}
+

@@ -20,23 +20,28 @@ struct NearMeView: View {
 }
 
 struct RoomsListView: View {
+    @ObservedObject var model = ListViewModel()
+    
     var body: some View {
         List {
-            ForEach(rooms, id: \.title) { room in
-                NavigationLink(destination: WashroomDetailView(room: room)) {
-                    VStack(alignment: .leading) {
-                        Text(room.title)
-                        HStack {
-                            ForEach(room.amenities, id: \.self) { amenity in
-                                Text(amenity).font(.subheadline).foregroundColor(.secondary)
-                            }
-                        }
-                    }
-                    .layoutPriority(1)
-                    Spacer()
-                    Text(room.rating).font(.largeTitle)
-                }
+            ForEach(model.washrooms, id: \.self) { washroom in
+                Text(washroom)
             }
+//            ForEach(rooms, id: \.title) { room in
+//                NavigationLink(destination: WashroomDetailView(room: room)) {
+//                    VStack(alignment: .leading) {
+//                        Text(room.title)
+//                        HStack {
+//                            ForEach(room.amenities, id: \.self) { amenity in
+//                                Text(amenity).font(.subheadline).foregroundColor(.secondary)
+//                            }
+//                        }
+//                    }
+//                    .layoutPriority(1)
+//                    Spacer()
+//                    Text(room.rating).font(.largeTitle)
+//                }
+//            }
         }
     }
 }
