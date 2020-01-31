@@ -21,6 +21,7 @@
 		E176AEF823E3A62D00EF8D15 /* WashroomDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEF723E3A62D00EF8D15 /* WashroomDetailView.swift */; };
 		E176AEFA23E3A88E00EF8D15 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEF923E3A88E00EF8D15 /* ProfileView.swift */; };
 		E176AEFC23E3AA3500EF8D15 /* NearMeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEFB23E3AA3500EF8D15 /* NearMeView.swift */; };
+		E176AEFE23E3ACE400EF8D15 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEFD23E3ACE400EF8D15 /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		E176AEF723E3A62D00EF8D15 /* WashroomDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashroomDetailView.swift; sourceTree = "<group>"; };
 		E176AEF923E3A88E00EF8D15 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		E176AEFB23E3AA3500EF8D15 /* NearMeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearMeView.swift; sourceTree = "<group>"; };
+		E176AEFD23E3ACE400EF8D15 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 			children = (
 				E176AEBF23E38B2A00EF8D15 /* AppDelegate.swift */,
 				E176AEC123E38B2A00EF8D15 /* SceneDelegate.swift */,
+				E176AEFD23E3ACE400EF8D15 /* Utils.swift */,
 				E176AEF223E3987900EF8D15 /* Views */,
 				E176AEC823E38B2B00EF8D15 /* Assets.xcassets */,
 				E176AECD23E38B2B00EF8D15 /* LaunchScreen.storyboard */,
@@ -298,6 +301,7 @@
 				E176AEC023E38B2A00EF8D15 /* AppDelegate.swift in Sources */,
 				E176AEF423E39CC900EF8D15 /* MapView.swift in Sources */,
 				E176AEF623E39CFD00EF8D15 /* SettingsView.swift in Sources */,
+				E176AEFE23E3ACE400EF8D15 /* Utils.swift in Sources */,
 				E176AEFC23E3AA3500EF8D15 /* NearMeView.swift in Sources */,
 				E176AEC723E38B2A00EF8D15 /* ContentView.swift in Sources */,
 				E176AEF823E3A62D00EF8D15 /* WashroomDetailView.swift in Sources */,
