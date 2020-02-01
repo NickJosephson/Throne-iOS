@@ -9,8 +9,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject private var loginManager = LoginManager.sharedInstance
+    
+    var body: some View {
+        MainTabView()
+            .disabled(loginManager.isLoggedOut)
+            .opacity(loginManager.isLoggedOut ? 0.5 : 1.0)
+            .sheet(isPresented: $loginManager.showWelcomeScreen) {
+                WelcomeView()
+            }
+    }
+}
+
+struct MainTabView: View {
     @State private var selection = 0
- 
+    
     var body: some View {
         TabView(selection: $selection) {
             NearMeView()
@@ -41,6 +54,7 @@ struct ContentView: View {
         .edgesIgnoringSafeArea(.top)
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

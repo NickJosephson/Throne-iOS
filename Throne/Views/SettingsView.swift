@@ -15,8 +15,12 @@ struct SettingsView: View {
         Form {
             Picker(selection: $settings.preferredTerm, label: Text("Preferred Terminology")) {
                 ForEach(preferredTermOptions.sorted(), id: \.self) { name in
-                    Text(name)
-                        .tag(name)
+                    Text(name).tag(name)
+                }
+            }
+            Section {
+                Button(action: { LoginManager.sharedInstance.logout() }) {
+                    Text("Log Out")
                 }
             }
         }
