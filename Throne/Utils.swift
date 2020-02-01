@@ -44,7 +44,7 @@ typealias Washroom = String
 
 
 func getAllWashrooms(completionHandler: @escaping ([Washroom]) -> Void) {
-    let url = URL(string: "https://enaanlu8q0.execute-api.us-east-1.amazonaws.com/dev/")
+    let url = URL(string: "https://vbwvkq4zud.execute-api.us-east-1.amazonaws.com/dev/")
     fetch(url: url!) { data in
         if let washrooms = try? JSONDecoder().decode([Washroom].self, from: data) {
             completionHandler(washrooms)
