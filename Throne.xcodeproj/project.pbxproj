@@ -24,6 +24,13 @@
 		E176AEFE23E3ACE400EF8D15 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEFD23E3ACE400EF8D15 /* Utils.swift */; };
 		E1CDA0B523E3B39F007ADA73 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDA0B423E3B39F007ADA73 /* Model.swift */; };
 		E1CDA0B823E404A6007ADA73 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDA0B723E404A6007ADA73 /* UserSettings.swift */; };
+		E1E0737C23E545E300D4AE5E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0737B23E545E300D4AE5E /* LoginView.swift */; };
+		E1E0737F23E5476E00D4AE5E /* LoginUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0737D23E5476E00D4AE5E /* LoginUIViewController.swift */; };
+		E1E0738023E5476E00D4AE5E /* LoginUIViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1E0737E23E5476E00D4AE5E /* LoginUIViewController.xib */; };
+		E1E0738223E54E3A00D4AE5E /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738123E54E3A00D4AE5E /* WelcomeView.swift */; };
+		E1E0738423E5612400D4AE5E /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738323E5612400D4AE5E /* LoginManager.swift */; };
+		E1E0738623E561BB00D4AE5E /* NearMeListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738523E561BB00D4AE5E /* NearMeListModel.swift */; };
+		E1E0738823E561DD00D4AE5E /* Washroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738723E561DD00D4AE5E /* Washroom.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +74,14 @@
 		E176AEFD23E3ACE400EF8D15 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		E1CDA0B423E3B39F007ADA73 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		E1CDA0B723E404A6007ADA73 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		E1E0737A23E5452B00D4AE5E /* Throne.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Throne.entitlements; sourceTree = "<group>"; };
+		E1E0737B23E545E300D4AE5E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		E1E0737D23E5476E00D4AE5E /* LoginUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUIViewController.swift; sourceTree = "<group>"; };
+		E1E0737E23E5476E00D4AE5E /* LoginUIViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginUIViewController.xib; sourceTree = "<group>"; };
+		E1E0738123E54E3A00D4AE5E /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		E1E0738323E5612400D4AE5E /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		E1E0738523E561BB00D4AE5E /* NearMeListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearMeListModel.swift; sourceTree = "<group>"; };
+		E1E0738723E561DD00D4AE5E /* Washroom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Washroom.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +132,7 @@
 		E176AEBE23E38B2A00EF8D15 /* Throne */ = {
 			isa = PBXGroup;
 			children = (
+				E1E0737A23E5452B00D4AE5E /* Throne.entitlements */,
 				E176AEBF23E38B2A00EF8D15 /* AppDelegate.swift */,
 				E176AEC123E38B2A00EF8D15 /* SceneDelegate.swift */,
 				E176AEFD23E3ACE400EF8D15 /* Utils.swift */,
@@ -166,6 +182,10 @@
 				E176AEF323E39CC900EF8D15 /* MapView.swift */,
 				E176AEF923E3A88E00EF8D15 /* ProfileView.swift */,
 				E176AEF523E39CFD00EF8D15 /* SettingsView.swift */,
+				E1E0737B23E545E300D4AE5E /* LoginView.swift */,
+				E1E0737D23E5476E00D4AE5E /* LoginUIViewController.swift */,
+				E1E0737E23E5476E00D4AE5E /* LoginUIViewController.xib */,
+				E1E0738123E54E3A00D4AE5E /* WelcomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -175,6 +195,9 @@
 			children = (
 				E1CDA0B423E3B39F007ADA73 /* Model.swift */,
 				E1CDA0B723E404A6007ADA73 /* UserSettings.swift */,
+				E1E0738323E5612400D4AE5E /* LoginManager.swift */,
+				E1E0738523E561BB00D4AE5E /* NearMeListModel.swift */,
+				E1E0738723E561DD00D4AE5E /* Washroom.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -283,6 +306,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1E0738023E5476E00D4AE5E /* LoginUIViewController.xib in Resources */,
 				E176AECF23E38B2B00EF8D15 /* LaunchScreen.storyboard in Resources */,
 				E176AECC23E38B2B00EF8D15 /* Preview Assets.xcassets in Resources */,
 				E176AEC923E38B2B00EF8D15 /* Assets.xcassets in Resources */,
@@ -311,17 +335,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				E176AEFA23E3A88E00EF8D15 /* ProfileView.swift in Sources */,
+				E1E0738423E5612400D4AE5E /* LoginManager.swift in Sources */,
 				E1CDA0B823E404A6007ADA73 /* UserSettings.swift in Sources */,
+				E1E0738623E561BB00D4AE5E /* NearMeListModel.swift in Sources */,
 				E176AEC523E38B2A00EF8D15 /* Throne.xcdatamodeld in Sources */,
 				E176AEC023E38B2A00EF8D15 /* AppDelegate.swift in Sources */,
 				E176AEF423E39CC900EF8D15 /* MapView.swift in Sources */,
 				E176AEF623E39CFD00EF8D15 /* SettingsView.swift in Sources */,
 				E176AEFE23E3ACE400EF8D15 /* Utils.swift in Sources */,
 				E176AEFC23E3AA3500EF8D15 /* NearMeView.swift in Sources */,
+				E1E0737C23E545E300D4AE5E /* LoginView.swift in Sources */,
 				E176AEC723E38B2A00EF8D15 /* ContentView.swift in Sources */,
+				E1E0738223E54E3A00D4AE5E /* WelcomeView.swift in Sources */,
+				E1E0737F23E5476E00D4AE5E /* LoginUIViewController.swift in Sources */,
 				E1CDA0B523E3B39F007ADA73 /* Model.swift in Sources */,
 				E176AEF823E3A62D00EF8D15 /* WashroomDetailView.swift in Sources */,
 				E176AEC223E38B2A00EF8D15 /* SceneDelegate.swift in Sources */,
+				E1E0738823E561DD00D4AE5E /* Washroom.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +516,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Throne/Throne.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Throne/Preview Content\"";
 				DEVELOPMENT_TEAM = DNH2Q695HA;
@@ -506,6 +537,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Throne/Throne.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Throne/Preview Content\"";
 				DEVELOPMENT_TEAM = DNH2Q695HA;
