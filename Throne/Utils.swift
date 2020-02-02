@@ -36,7 +36,7 @@ func fetch(url: URL, completionHandler: @escaping (Data) -> Void) {
 }
 
 func getAllWashrooms(completionHandler: @escaping ([Washroom]) -> Void) {
-    let url = URL(string: "https://vbwvkq4zud.execute-api.us-east-1.amazonaws.com/dev/")
+    let url = URL(string: "https://api-prod.findmythrone.com/")
     fetch(url: url!) { data in
         if let washrooms = try? JSONDecoder().decode([Washroom].self, from: data) {
             completionHandler(washrooms)

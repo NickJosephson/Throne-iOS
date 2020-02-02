@@ -132,7 +132,6 @@
 		E176AEBE23E38B2A00EF8D15 /* Throne */ = {
 			isa = PBXGroup;
 			children = (
-				E1E0737A23E5452B00D4AE5E /* Throne.entitlements */,
 				E176AEBF23E38B2A00EF8D15 /* AppDelegate.swift */,
 				E176AEC123E38B2A00EF8D15 /* SceneDelegate.swift */,
 				E176AEFD23E3ACE400EF8D15 /* Utils.swift */,
@@ -142,6 +141,7 @@
 				E176AECD23E38B2B00EF8D15 /* LaunchScreen.storyboard */,
 				E176AED023E38B2B00EF8D15 /* Info.plist */,
 				E176AEC323E38B2A00EF8D15 /* Throne.xcdatamodeld */,
+				E1E0737A23E5452B00D4AE5E /* Throne.entitlements */,
 				E176AECA23E38B2B00EF8D15 /* Preview Content */,
 			);
 			path = Throne;
