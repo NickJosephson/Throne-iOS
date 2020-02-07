@@ -15,7 +15,7 @@ Throne is a web and mobile application which allows users to find nearby washroo
 Throne Component | Reposistory | Project Board
 ------------ | ------------- | ------------
 All Components | - | [User Stories](https://github.com/DiljotSG/Throne-Backend/projects/1)
-Backend | [Throne-Backend](https://github.com/DiljotSG/Throne-Backend) | [Backend Tasks](https://github.com/DiljotSG/Throne-Backend/projects/1)
+Backend | [Throne-Backend](https://github.com/DiljotSG/Throne-Backend) | [Backend Tasks](https://github.com/DiljotSG/Throne-Backend/projects/2)
 Web | [Throne-Web](https://github.com/DiljotSG/Throne-Web) | [Web Tasks](https://github.com/DiljotSG/Throne-Web/projects/1)
 **iOS** | [Throne-iOS](https://github.com/NickJosephson/Throne-iOS) | [iOS Tasks](https://github.com/NickJosephson/Throne-iOS/projects/1)
 Android | [Throne-Android](https://github.com/NickJosephson/Throne-Android) | [Android Tasks](https://github.com/NickJosephson/Throne-Android/projects/1)
