@@ -13,8 +13,8 @@ final class LoginManager: ObservableObject {
     static var sharedInstance = LoginManager()
     
     init() {
-        isLoggedOut = true
-        showWelcomeScreen = true
+        isLoggedOut = false
+        showWelcomeScreen = false
     }
     
     @Published var isLoggedOut: Bool {

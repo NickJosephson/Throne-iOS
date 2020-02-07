@@ -22,7 +22,6 @@
 		E176AEFA23E3A88E00EF8D15 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEF923E3A88E00EF8D15 /* ProfileView.swift */; };
 		E176AEFC23E3AA3500EF8D15 /* NearMeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEFB23E3AA3500EF8D15 /* NearMeView.swift */; };
 		E176AEFE23E3ACE400EF8D15 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEFD23E3ACE400EF8D15 /* Utils.swift */; };
-		E1CDA0B523E3B39F007ADA73 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDA0B423E3B39F007ADA73 /* Model.swift */; };
 		E1CDA0B823E404A6007ADA73 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDA0B723E404A6007ADA73 /* UserSettings.swift */; };
 		E1E0737C23E545E300D4AE5E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0737B23E545E300D4AE5E /* LoginView.swift */; };
 		E1E0737F23E5476E00D4AE5E /* LoginUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0737D23E5476E00D4AE5E /* LoginUIViewController.swift */; };
@@ -72,7 +71,6 @@
 		E176AEF923E3A88E00EF8D15 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		E176AEFB23E3AA3500EF8D15 /* NearMeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearMeView.swift; sourceTree = "<group>"; };
 		E176AEFD23E3ACE400EF8D15 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		E1CDA0B423E3B39F007ADA73 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		E1CDA0B723E404A6007ADA73 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		E1E0737A23E5452B00D4AE5E /* Throne.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Throne.entitlements; sourceTree = "<group>"; };
 		E1E0737B23E545E300D4AE5E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -193,7 +191,6 @@
 		E1CDA0B623E3B3AB007ADA73 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E1CDA0B423E3B39F007ADA73 /* Model.swift */,
 				E1CDA0B723E404A6007ADA73 /* UserSettings.swift */,
 				E1E0738323E5612400D4AE5E /* LoginManager.swift */,
 				E1E0738523E561BB00D4AE5E /* NearMeListModel.swift */,
@@ -348,7 +345,6 @@
 				E176AEC723E38B2A00EF8D15 /* ContentView.swift in Sources */,
 				E1E0738223E54E3A00D4AE5E /* WelcomeView.swift in Sources */,
 				E1E0737F23E5476E00D4AE5E /* LoginUIViewController.swift in Sources */,
-				E1CDA0B523E3B39F007ADA73 /* Model.swift in Sources */,
 				E176AEF823E3A62D00EF8D15 /* WashroomDetailView.swift in Sources */,
 				E176AEC223E38B2A00EF8D15 /* SceneDelegate.swift in Sources */,
 				E1E0738823E561DD00D4AE5E /* Washroom.swift in Sources */,
