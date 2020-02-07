@@ -9,8 +9,3 @@
 import Foundation
 
 typealias Washroom = String
-
-//struct Washroom: Codable {
-//    let title: String
-//    let rating: int
-//}
