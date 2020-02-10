@@ -11,7 +11,7 @@ import Foundation
 struct User: Codable {
     let id: Int
     let createdAt: Date
-    let profilePicture: URL
+    let profilePicture: URL?
     let settings: User.Settings
     let preferences: User.Preferences
     

@@ -15,7 +15,7 @@ struct Review: Codable {
     let createdAt: Date
     let upvoteCount: Int
     let ratings: [String: Int]
-    let comment: String
+    let comment: String?
     
     private enum CodingKeys: String, CodingKey {
         case id
