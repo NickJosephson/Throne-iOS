@@ -35,11 +35,15 @@ func fetch(url: URL, completionHandler: @escaping (Data) -> Void) {
     task.resume()
 }
 
-func getAllWashrooms(completionHandler: @escaping ([Washroom]) -> Void) {
-    let url = URL(string: "https://api-prod.findmythrone.com/")
-    fetch(url: url!) { data in
-        if let washrooms = try? JSONDecoder().decode([Washroom].self, from: data) {
-            completionHandler(washrooms)
+
+/// Convenience function to get a list of strings at a given URL
+/// - Parameters:
+///   - url: URL to GET json list from
+///   - completionHandler: Function to handle Strings Array once received
+func getAllStrings(at url: URL, completionHandler: @escaping ([String]) -> Void) {
+    fetch(url: url) { data in
+        if let strings = try? JSONDecoder().decode([String].self, from: data) {
+            completionHandler(strings)
         }
     }
 }

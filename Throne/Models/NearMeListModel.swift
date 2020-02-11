@@ -9,6 +9,8 @@
 import Foundation
 
 final class NearMeListModel: ObservableObject {    
+    private let url = URL(string: "https://api-dev.findmythrone.com/washrooms/")
+    
     init() {
         fetchWashrooms()
     }
@@ -16,9 +18,11 @@ final class NearMeListModel: ObservableObject {
     @Published var washrooms = [Washroom]()
     
     private func fetchWashrooms() {
-        getAllWashrooms() { allWashrooms in
+        getAllStrings(at: url!) { allWashrooms in
             DispatchQueue.main.async {
-                self.washrooms = allWashrooms
+                self.washrooms = allWashrooms.map {
+                    return Washroom(id: 0, title: $0, location: Location(latitude: 0, longitude: 0), gender: .all, floor: 0, buildingID: 0, createdAt: Date(), overallRating: 0, averageRatings: [:], amenities: [])
+                }
             }
         }
     }

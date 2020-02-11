@@ -9,51 +9,33 @@
 import SwiftUI
 
 struct WashroomDetailView: View {
-    var room: Room
+    var washroom: Washroom
     
     var body: some View {
         List {
             Section(header: Text("Overview")) {
-                HStack {
-                    Text("✨ Cleanliness")
-                    Spacer()
-                    Text("Good").foregroundColor(.secondary)
-                }
-                HStack {
-                    Text("🤚 Privacy")
-                    Spacer()
-                    Text("Excellent").foregroundColor(.secondary)
-                }
-                HStack {
-                    Text("🧻 Paper Quality")
-                    Spacer()
-                    Text("Poor").foregroundColor(.secondary)
-                }
-                HStack {
-                    Text("👃 Smell")
-                    Spacer()
-                    Text("Fair").foregroundColor(.secondary)
-                }
-                HStack {
-                    Text("🦽 Accessibility")
-                    Spacer()
-                    Text("Good").foregroundColor(.secondary)
+                ForEach([String](self.washroom.averageRatings.keys), id: \.self) { key in
+                    HStack {
+                        Text(key)
+                        Spacer()
+                        Text("\(self.washroom.averageRatings[key]!)").foregroundColor(.secondary)
+                    }
                 }
             }
             Section() {
-                NavigationLink(destination: Text("Test")) {
+                NavigationLink(destination: Text("Amenities")) {
                     Text("Amenities")
                     Spacer()
-                    ForEach(room.amenities, id: \.self) { amenity in
+                    ForEach(washroom.amenities, id: \.self) { amenity in
                         Text(amenity)
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }
                 }
-                NavigationLink(destination: Text("Test")) {
+                NavigationLink(destination: Text("Reviews")) {
                     Text("Reviews")
                     Spacer()
-                    Text("10")
+                    Text("0")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
@@ -67,13 +49,13 @@ struct WashroomDetailView: View {
             }
         }
         .listStyle(GroupedListStyle())
-        .navigationBarTitle(room.title)
-        .navigationBarItems(trailing: Text(room.rating).font(.largeTitle) )
+        .navigationBarTitle(washroom.title)
+        .navigationBarItems(trailing: Text("\(washroom.overallRating, specifier:"%.1f")").font(.largeTitle) )
     }
 }
 
 struct WashroomDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        WashroomDetailView(room: Room(title: "Test Room", amenities: [], rating: ""))
+        WashroomDetailView(washroom:  Washroom(id: 0, title: "test", location: Location(latitude: 0, longitude: 0), gender: .all, floor: 0, buildingID: 0, createdAt: Date(), overallRating: 0, averageRatings: [:], amenities: []))
     }
 }
