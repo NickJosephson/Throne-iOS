@@ -1,3 +1,5 @@
+# Please review our MASTER BRANCH when taking a snapshot!
+
 Master
 
 ![Swift](https://github.com/NickJosephson/Throne-iOS/workflows/Swift/badge.svg?branch=master)
