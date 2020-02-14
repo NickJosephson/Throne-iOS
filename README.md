@@ -1,10 +1,8 @@
-# Please review our MASTER BRANCH when taking a snapshot!
-
-Master
+Master - **Stable release branch for snapshot review.**
 
 ![Swift](https://github.com/NickJosephson/Throne-iOS/workflows/Swift/badge.svg?branch=master)
 
-Develop
+Develop - **Unstable development branch for convergence of new features.**
 
 ![Swift](https://github.com/NickJosephson/Throne-iOS/workflows/Swift/badge.svg?branch=develop)
 
