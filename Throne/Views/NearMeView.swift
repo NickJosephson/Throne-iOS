@@ -26,24 +26,22 @@ struct RoomsListView: View {
     
     var body: some View {
         List {
-            ForEach(model.washrooms, id: \.self) { washroom in
-                Text(washroom)
+            ForEach(model.washrooms, id: \.title) { washroom in
+                NavigationLink(destination: WashroomDetailView(washroom: washroom)) {
+                    VStack(alignment: .leading) {
+                        Text(washroom.title)
+                        HStack {
+                            ForEach(washroom.amenities, id: \.self) { amenity in
+                                Text(amenity).font(.subheadline).foregroundColor(.secondary)
+                            }
+                        }
+                    }
+                    .layoutPriority(1)
+                    Spacer()
+                    Text("\(washroom.overallRating, specifier:"%.1f")").font(.largeTitle)
+                    .layoutPriority(2)
+                }
             }
-//            ForEach(rooms, id: \.title) { room in
-//                NavigationLink(destination: WashroomDetailView(room: room)) {
-//                    VStack(alignment: .leading) {
-//                        Text(room.title)
-//                        HStack {
-//                            ForEach(room.amenities, id: \.self) { amenity in
-//                                Text(amenity).font(.subheadline).foregroundColor(.secondary)
-//                            }
-//                        }
-//                    }
-//                    .layoutPriority(1)
-//                    Spacer()
-//                    Text(room.rating).font(.largeTitle)
-//                }
-//            }
         }
     }
 }
