@@ -8,29 +8,45 @@
 
 import Foundation
 import Combine
-import SwiftUI
 
 /// Fetch Data using a given URL
 /// - Parameters:
 ///   - url: URL it post GET request to
 ///   - completionHandler: Function to handle Data once received.
 func fetch(url: URL, completionHandler: @escaping (Data) -> Void) {
-    let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+    var request = URLRequest(url: url)
+
+    if let accessToken = UserSettings().accessToken {
+        request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+    }
+
+    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
         if let error = error {
             print("Error with fetching: \(error)")
             return
         }
         
-        guard let httpResponse = response as? HTTPURLResponse,
-            (200...299).contains(httpResponse.statusCode) else {
-                print("Error with the response, unexpected status code: \(String(describing: response))")
-                return
+        if let httpResponse = response as? HTTPURLResponse {
+            if httpResponse.statusCode == 401 {
+                print("Unauthorized")
+                if LoginManager.sharedInstance.isLoggedIn {
+                    LoginManager.sharedInstance.logout()
+                    return
+                } else {
+                    return
+                }
+            }
+        }
+        
+        guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+            print("Error with the response, unexpected status code: \(String(describing: response))")
+            return
         }
         
         if let data = data {
             completionHandler(data)
         }
-    })
+    }
     
     task.resume()
 }
@@ -38,7 +54,7 @@ func fetch(url: URL, completionHandler: @escaping (Data) -> Void) {
 
 /// Convenience function to get a list of strings at a given URL
 /// - Parameters:
-///   - url: URL to GET json list from
+///   - url: URL to GET json list of strings from
 ///   - completionHandler: Function to handle Strings Array once received
 func getAllStrings(at url: URL, completionHandler: @escaping ([String]) -> Void) {
     fetch(url: url) { data in

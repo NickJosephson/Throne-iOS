@@ -19,7 +19,7 @@ struct LoginView: UIViewRepresentable {
     }
 }
 
-struct LoginVIew_Previews: PreviewProvider {
+struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView(controller: LoginUIViewController())
     }

@@ -10,7 +10,16 @@ import Foundation
 import Combine
 
 final class UserSettings: ObservableObject {
-
+    private let isLoggedInKey = "is-logged-in"
+    var isLoggedIn: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: isLoggedInKey)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: isLoggedInKey)
+        }
+    }
+    
     private let preferredTermKey = "preferred-term"
     var preferredTerm: String {
         get {
@@ -18,6 +27,26 @@ final class UserSettings: ObservableObject {
         }
         set {
             UserDefaults.standard.set(newValue, forKey: preferredTermKey)
+        }
+    }
+    
+    private let idTokenKey = "id-token"
+    var idToken: String? {
+        get {
+            return UserDefaults.standard.string(forKey: idTokenKey)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: idTokenKey)
+        }
+    }
+    
+    private let accessTokenKey = "access-token"
+    var accessToken: String? {
+        get {
+            return UserDefaults.standard.string(forKey: accessTokenKey)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: accessTokenKey)
         }
     }
     

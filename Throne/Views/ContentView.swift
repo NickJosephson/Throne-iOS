@@ -13,8 +13,8 @@ struct ContentView: View {
     
     var body: some View {
         MainTabView()
-            .disabled(loginManager.isLoggedOut)
-            .opacity(loginManager.isLoggedOut ? 0.5 : 1.0)
+            .disabled(!loginManager.isLoggedIn)
+            .opacity(!loginManager.isLoggedIn ? 0.5 : 1.0)
             .sheet(isPresented: $loginManager.showWelcomeScreen) {
                 WelcomeView()
             }

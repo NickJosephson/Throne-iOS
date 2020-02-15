@@ -13,32 +13,35 @@ final class LoginManager: ObservableObject {
     static var sharedInstance = LoginManager()
     
     init() {
-        isLoggedOut = false
-        showWelcomeScreen = false
+        let storedIsLoggedIn = UserSettings().isLoggedIn
+        isLoggedIn = storedIsLoggedIn
+        showWelcomeScreen = !storedIsLoggedIn
     }
     
-    @Published var isLoggedOut: Bool {
+    @Published var isLoggedIn: Bool {
         didSet {
-            if showWelcomeScreen != isLoggedOut {
-                showWelcomeScreen = isLoggedOut
+            UserSettings().isLoggedIn = isLoggedIn
+            
+            if showWelcomeScreen == isLoggedIn {
+                showWelcomeScreen = !isLoggedIn
             }
         }
     }
     
     @Published var showWelcomeScreen: Bool {
         didSet {
-            if showWelcomeScreen != isLoggedOut {
-                showWelcomeScreen = isLoggedOut
+            if showWelcomeScreen == isLoggedIn {
+                showWelcomeScreen = !isLoggedIn
             }
         }
     }
     
     func login() {
-        isLoggedOut = false
+        isLoggedIn = true
     }
     
     func logout() {
-        isLoggedOut = true
+        isLoggedIn = false
     }
 }
 

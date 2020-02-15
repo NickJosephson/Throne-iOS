@@ -15,7 +15,7 @@ final class NearMeListModel: ObservableObject {
         fetchWashrooms()
     }
     
-    @Published var washrooms = [Washroom]()
+    @Published var washrooms: [Washroom] = []
     
     private func fetchWashrooms() {
         getAllStrings(at: url!) { allWashrooms in

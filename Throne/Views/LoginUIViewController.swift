@@ -10,44 +10,74 @@ import UIKit
 import AuthenticationServices
 
 class LoginUIViewController: UIViewController, ASWebAuthenticationPresentationContextProviding {
+    private var session: ASWebAuthenticationSession!
+    private var settings = UserSettings()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
     
     func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
         return view.window!
     }
 
-    @IBAction func pressStart(_ sender: UIButton) {
-        session.start()
+    func startLogin() {
+        var authURL = URLComponents()
+        authURL.host = "login.findmythrone.com"
+        authURL.scheme = "https"
+        authURL.path = "/login"
+        authURL.queryItems = [
+            URLQueryItem(name: "client_id",     value: "7of5m2ips5c281ocb35neum748"),
+            URLQueryItem(name: "response_type", value: "token"),
+            URLQueryItem(name: "scope",         value: "email+openid"),
+            URLQueryItem(name: "redirect_uri",  value: "throne://")
+        ]
+        
+        startSession(at: authURL.url!)
     }
     
-    var session: ASWebAuthenticationSession!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func startSignup() {
+        var authURL = URLComponents()
+        authURL.host = "login.findmythrone.com"
+        authURL.scheme = "https"
+        authURL.path = "/signup"
+        authURL.queryItems = [
+            URLQueryItem(name: "client_id",     value: "7of5m2ips5c281ocb35neum748"),
+            URLQueryItem(name: "response_type", value: "token"),
+            URLQueryItem(name: "scope",         value: "email+openid"),
+            URLQueryItem(name: "redirect_uri",  value: "throne://")
+        ]
+        
+        startSession(at: authURL.url!)
+    }
 
-        // Do any additional setup after loading the view.
-        // Use the URL and callback scheme specified by the authorization provider.
-        guard let authURL = URL(string: "https://findmythrone.com") else { return }
-        let scheme = "exampleauth"
+    private func startSession(at url: URL) {
+        let scheme = "throne"
+        
+        if let currentSession = session {
+            currentSession.cancel()
+        }
+        
+        session = ASWebAuthenticationSession(url: url, callbackURLScheme: scheme) { callbackURL, error in
+            if callbackURL != nil {                
+                if let fragment = callbackURL!.fragment {
+                    let split = fragment.components(separatedBy: .init(charactersIn: "&="))
 
-        // Initialize the session.
-        session = ASWebAuthenticationSession(url: authURL, callbackURLScheme: scheme)
-        { callbackURL, error in
-            // Handle the callback.
-            LoginManager.sharedInstance.login()
+                    if let idTokenIndex = split.firstIndex(of: "id_token"), split.count > idTokenIndex {
+                        self.settings.idToken = split[idTokenIndex + 1]
+                    }
+
+                    if let accessTokenIndex = split.firstIndex(of: "access_token"), split.count > accessTokenIndex {
+                        self.settings.accessToken = split[accessTokenIndex + 1]
+                    }
+                    
+                    LoginManager.sharedInstance.login()
+                }
+            }
         }
         
         session.presentationContextProvider = self
+        session.start()
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }
