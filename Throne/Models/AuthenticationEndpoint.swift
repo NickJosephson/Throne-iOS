@@ -10,7 +10,6 @@ import Foundation
 
 /// Provides interaction with the AWS Cognito OAuth2 authentication interface for Throne
 class AuthenticationEndpoint {
-    private static let settings = PersistentSettings()
     private static let host = URL(string: "https://login.findmythrone.com")!
     private static let clientID = "7of5m2ips5c281ocb35neum748"
     private static let scope = "email+openid"
