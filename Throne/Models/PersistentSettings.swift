@@ -9,6 +9,7 @@
 import Foundation
 import Combine
 
+/// Observable Key-Value storage for persistence of key application settings.
 final class PersistentSettings: ObservableObject {
     private let isLoggedInKey = "is-logged-in"
     var isLoggedIn: Bool {

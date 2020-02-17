@@ -9,19 +9,17 @@
 import Foundation
 import Combine
 
+/// Manage the state of user authentication and credentials.
 final class LoginManager: ObservableObject {
-    static var shared = LoginManager()
-    
+    static var shared = LoginManager() // Shared instance to use across application
+
     private let settings = PersistentSettings()
-    private var refreshAttempted = false
-    
-    init() {
-        let storedIsLoggedIn = PersistentSettings().isLoggedIn
-        isLoggedIn = storedIsLoggedIn
-        showWelcomeScreen = !storedIsLoggedIn
-    }
-    
-    @Published var isLoggedIn: Bool {
+    private var refreshAttempted = false // Only attempt token refresh once
+
+    /// Whether the user is currently logged in.
+    ///
+    /// Logged in means the refresh token is currently believed to be valid.
+    @Published private(set) var isLoggedIn: Bool {
         didSet {
             PersistentSettings().isLoggedIn = isLoggedIn
             
@@ -31,6 +29,9 @@ final class LoginManager: ObservableObject {
         }
     }
     
+    /// Always reflects the opposite of isLoggedIn, even if set other wise.
+    ///
+    /// This is a workaround for the fact that SwiftUI sheets do not currently allow restricting the user from closing them.
     @Published var showWelcomeScreen: Bool {
         didSet {
             if showWelcomeScreen == isLoggedIn {
@@ -39,12 +40,21 @@ final class LoginManager: ObservableObject {
         }
     }
     
+    init() {
+        // Restore login state
+        let storedIsLoggedIn = PersistentSettings().isLoggedIn
+        isLoggedIn = storedIsLoggedIn
+        showWelcomeScreen = !storedIsLoggedIn
+    }
+    
     func logout() {
         if self.isLoggedIn {
             self.isLoggedIn = false
             self.settings.idToken = nil
             self.settings.accessToken = nil
             self.settings.refreshToken = nil
+            
+            print("Log out completed.")
         }
     }
     
@@ -54,21 +64,31 @@ final class LoginManager: ObservableObject {
                 self.settings.idToken = tokens.idToken
                 self.settings.accessToken = tokens.accessToken
                 self.settings.refreshToken = tokens.refreshToken
-                self.verifyLogin()
+                
+                if self.verifyLogin() {
+                    self.refreshAttempted = false
+                    self.isLoggedIn = true
+                    
+                    print("Login completed.")
+                } else {
+                    print("Login error: Failed to verify access token.")
+                }
             }
         }
     }
     
-    private func verifyLogin() {
-        //verify credentials
-        
-        self.refreshAttempted = false
-        self.isLoggedIn = true
+    /// - Todo: Verify access token works with Throne API
+    private func verifyLogin() -> Bool {
+        return true
     }
     
+    /// Refresh the access token.
+    ///
+    /// This is needed if the access token has expired (usually after 60 minutes).
+    /// If a refresh has already been attempted, a log out is performed.
     func refreshLogin() {
         if refreshAttempted {
-            print("Already attempted login refresh, logging out.")
+            print("Login refresh error: Already attempted, logging out.")
             logout()
             return
         }
@@ -80,15 +100,22 @@ final class LoginManager: ObservableObject {
                 DispatchQueue.main.async {
                     self.settings.idToken = tokens.idToken
                     self.settings.accessToken = tokens.accessToken
-                    self.verifyLogin()
+                    
+                    if self.verifyLogin() {
+                        self.refreshAttempted = false
+                        self.isLoggedIn = true
+                        
+                        print("Access token refreshed.")
+                    } else {
+                        print("Login refresh error: Failed to verify new access token, logging out.")
+                        self.logout()
+                    }
                 }
             }
         } else {
-            print("No refresh token found, logging out.")
+            print("Login refresh error: No refresh token found, logging out.")
             logout()
         }
     }
-    
 
 }
-
