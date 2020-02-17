@@ -9,7 +9,6 @@
 import SwiftUI
 import AuthenticationServices
 
-
 /// SwiftUI containter for LoginViewController
 struct LoginView: UIViewRepresentable {
     var controller: LoginViewController
@@ -21,7 +20,6 @@ struct LoginView: UIViewRepresentable {
     func updateUIView(_ uiView: UIView, context: Context) {
     }
 }
-
 
 /// A view to host a ASWebAuthenticationSession for allowing the user to log in
 class LoginViewController: UIViewController, ASWebAuthenticationPresentationContextProviding {

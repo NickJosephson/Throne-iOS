@@ -1,5 +1,5 @@
 //
-//  Utils.swift
+//  ServiceUtilities.swift
 //  Throne
 //
 //  Created by Nicholas Josephson on 2020-01-30.
@@ -9,12 +9,11 @@
 import Foundation
 import Combine
 
-
-/// Convenience function to get a list of strings at a given URL
+/// Fetch a list of strings at a given URL.
 /// - Parameters:
-///   - url: URL to GET json list of strings from
-///   - completionHandler: Function to handle Strings Array once received
-func getAllStrings(at url: URL, completionHandler: @escaping ([String]) -> Void) {
+///   - url: URL to GET json list of strings from.
+///   - completionHandler: Function to handle Strings Array once received.
+func fetchStrings(at url: URL, completionHandler: @escaping ([String]) -> Void) {
     fetch(url: url) { data in
         if let strings = try? JSONDecoder().decode([String].self, from: data) {
             completionHandler(strings)
@@ -22,10 +21,11 @@ func getAllStrings(at url: URL, completionHandler: @escaping ([String]) -> Void)
     }
 }
 
-
-/// Fetch Data using a given URL
+/// Fetch Data at a given URL.
+///
+/// If an accessToken is set it will be used for authentication.
 /// - Parameters:
-///   - url: URL it post GET request to
+///   - url: URL to send GET request to.
 ///   - completionHandler: Function to handle Data once received.
 func fetch(url: URL, completionHandler: @escaping (Data) -> Void) {
     var request = URLRequest(url: url)
@@ -37,24 +37,27 @@ func fetch(url: URL, completionHandler: @escaping (Data) -> Void) {
     performRequest(with: request, completionHandler: completionHandler)
 }
 
-
+/// Perform a URLRequest with error handling.
+/// - Parameters:
+///   - request: URLRequest to perform.
+///   - completionHandler: Function to handle Data once received.
 func performRequest(with request: URLRequest, completionHandler: @escaping (Data) -> Void) {
     let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
         if let error = error {
-            print("Error with fetching: \(error)")
+            print("Fetching error: \(error)")
             return
         }
 
         if let httpResponse = response as? HTTPURLResponse {
             if httpResponse.statusCode == 401 {
-                print("Unauthorized, attempting login refresh.")
+                print("Fetching error: Unauthorized, attempting login refresh.")
                 LoginManager.shared.refreshLogin()
                 return
             }
         }
 
         guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
-            print("Error with the response, unexpected status code: \(String(describing: response))")
+            print("Fetching error: Unexpected status code: \(String(describing: response))")
             return
         }
 
