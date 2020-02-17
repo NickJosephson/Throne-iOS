@@ -21,3 +21,10 @@ Backend | [Throne-Backend](https://github.com/DiljotSG/Throne-Backend) | [Backen
 Web | [Throne-Web](https://github.com/DiljotSG/Throne-Web) | [Web Tasks](https://github.com/DiljotSG/Throne-Web/projects/1)
 **iOS** | [Throne-iOS](https://github.com/NickJosephson/Throne-iOS) | [iOS Tasks](https://github.com/NickJosephson/Throne-iOS/projects/1)
 Android | [Throne-Android](https://github.com/NickJosephson/Throne-Android) | [Android Tasks](https://github.com/NickJosephson/Throne-Android/projects/1)
+
+# Setup
+
+1. Install Xcode from the App Store.
+2. Open the project in Xcode by opening `Throne.xcodeproj` found in the root directory.
+3. Install Xcode Developer Tools if prompted.
+4. Select your desired device to simulate then select `Product > Run` or `Command + R` to build and run the app.
