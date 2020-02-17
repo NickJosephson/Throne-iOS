@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct WelcomeView: View {
-    var loginController = LoginUIViewController()
+    var loginController = LoginViewController()
     
     var body: some View {
         VStack() {
@@ -21,7 +21,7 @@ struct WelcomeView: View {
                     .font(.largeTitle)
             }
             Spacer()
-            Button(action: { self.loginController.session.start() }) {
+            Button(action: { self.loginController.startLogin() }) {
                 Text("Login").font(.title)
             }
                 .padding()
@@ -29,7 +29,7 @@ struct WelcomeView: View {
                 .background(Color.red)
                 .cornerRadius(20)
                 .padding()
-            Button(action: { LoginManager.sharedInstance.login() }) {
+            Button(action: { self.loginController.startSignup() }) {
                 Text("Sign Up").font(.title)
             }
                 .padding()

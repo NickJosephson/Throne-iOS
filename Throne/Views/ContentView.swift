@@ -9,12 +9,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject private var loginManager = LoginManager.sharedInstance
+    @ObservedObject private var loginManager = LoginManager.shared
     
     var body: some View {
         MainTabView()
-            .disabled(loginManager.isLoggedOut)
-            .opacity(loginManager.isLoggedOut ? 0.5 : 1.0)
+            .disabled(!loginManager.isLoggedIn)
+            .opacity(!loginManager.isLoggedIn ? 0.5 : 1.0)
             .sheet(isPresented: $loginManager.showWelcomeScreen) {
                 WelcomeView()
             }

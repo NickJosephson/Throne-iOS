@@ -11,9 +11,9 @@
 		E11C9BEB23F1DBB60045663B /* Building.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C9BEA23F1DBB60045663B /* Building.swift */; };
 		E11C9BED23F1DD850045663B /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C9BEC23F1DD850045663B /* Review.swift */; };
 		E11C9BEF23F1DF6D0045663B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C9BEE23F1DF6D0045663B /* User.swift */; };
+		E1580F2D23F768E20087DE0B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1580F2C23F768E10087DE0B /* LoginView.swift */; };
 		E176AEC023E38B2A00EF8D15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEBF23E38B2A00EF8D15 /* AppDelegate.swift */; };
 		E176AEC223E38B2A00EF8D15 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEC123E38B2A00EF8D15 /* SceneDelegate.swift */; };
-		E176AEC523E38B2A00EF8D15 /* Throne.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E176AEC323E38B2A00EF8D15 /* Throne.xcdatamodeld */; };
 		E176AEC723E38B2A00EF8D15 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEC623E38B2A00EF8D15 /* ContentView.swift */; };
 		E176AEC923E38B2B00EF8D15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E176AEC823E38B2B00EF8D15 /* Assets.xcassets */; };
 		E176AECC23E38B2B00EF8D15 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E176AECB23E38B2B00EF8D15 /* Preview Assets.xcassets */; };
@@ -25,14 +25,17 @@
 		E176AEF823E3A62D00EF8D15 /* WashroomDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEF723E3A62D00EF8D15 /* WashroomDetailView.swift */; };
 		E176AEFA23E3A88E00EF8D15 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEF923E3A88E00EF8D15 /* ProfileView.swift */; };
 		E176AEFC23E3AA3500EF8D15 /* NearMeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEFB23E3AA3500EF8D15 /* NearMeView.swift */; };
-		E176AEFE23E3ACE400EF8D15 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEFD23E3ACE400EF8D15 /* Utils.swift */; };
-		E1CDA0B823E404A6007ADA73 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDA0B723E404A6007ADA73 /* UserSettings.swift */; };
-		E1E0737C23E545E300D4AE5E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0737B23E545E300D4AE5E /* LoginView.swift */; };
-		E1E0737F23E5476E00D4AE5E /* LoginUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0737D23E5476E00D4AE5E /* LoginUIViewController.swift */; };
-		E1E0738023E5476E00D4AE5E /* LoginUIViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1E0737E23E5476E00D4AE5E /* LoginUIViewController.xib */; };
+		E176AEFE23E3ACE400EF8D15 /* ServiceUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEFD23E3ACE400EF8D15 /* ServiceUtilities.swift */; };
+		E17ABBF723FAA45F004451C2 /* LoginManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17ABBF623FAA45F004451C2 /* LoginManagerTests.swift */; };
+		E17ABBF823FAA4E4004451C2 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738323E5612400D4AE5E /* LoginManager.swift */; };
+		E17ABBF923FAA648004451C2 /* PersistentSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDA0B723E404A6007ADA73 /* PersistentSettings.swift */; };
+		E17ABBFA23FAA648004451C2 /* AuthenticationEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CFDE6723FA4FBF007423FD /* AuthenticationEndpoint.swift */; };
+		E17ABBFB23FAA65F004451C2 /* ServiceUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEFD23E3ACE400EF8D15 /* ServiceUtilities.swift */; };
+		E1CDA0B823E404A6007ADA73 /* PersistentSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDA0B723E404A6007ADA73 /* PersistentSettings.swift */; };
+		E1CFDE6823FA4FBF007423FD /* AuthenticationEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CFDE6723FA4FBF007423FD /* AuthenticationEndpoint.swift */; };
 		E1E0738223E54E3A00D4AE5E /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738123E54E3A00D4AE5E /* WelcomeView.swift */; };
 		E1E0738423E5612400D4AE5E /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738323E5612400D4AE5E /* LoginManager.swift */; };
-		E1E0738623E561BB00D4AE5E /* NearMeListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738523E561BB00D4AE5E /* NearMeListModel.swift */; };
+		E1E0738623E561BB00D4AE5E /* NearMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738523E561BB00D4AE5E /* NearMe.swift */; };
 		E1E0738823E561DD00D4AE5E /* Washroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738723E561DD00D4AE5E /* Washroom.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,10 +61,10 @@
 		E11C9BEA23F1DBB60045663B /* Building.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Building.swift; sourceTree = "<group>"; };
 		E11C9BEC23F1DD850045663B /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		E11C9BEE23F1DF6D0045663B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E1580F2C23F768E10087DE0B /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E176AEBC23E38B2A00EF8D15 /* Throne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Throne.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E176AEBF23E38B2A00EF8D15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E176AEC123E38B2A00EF8D15 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E176AEC423E38B2A00EF8D15 /* Throne.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Throne.xcdatamodel; sourceTree = "<group>"; };
 		E176AEC623E38B2A00EF8D15 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E176AEC823E38B2B00EF8D15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E176AECB23E38B2B00EF8D15 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -78,15 +81,14 @@
 		E176AEF723E3A62D00EF8D15 /* WashroomDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashroomDetailView.swift; sourceTree = "<group>"; };
 		E176AEF923E3A88E00EF8D15 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		E176AEFB23E3AA3500EF8D15 /* NearMeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearMeView.swift; sourceTree = "<group>"; };
-		E176AEFD23E3ACE400EF8D15 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		E1CDA0B723E404A6007ADA73 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		E176AEFD23E3ACE400EF8D15 /* ServiceUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceUtilities.swift; sourceTree = "<group>"; };
+		E17ABBF623FAA45F004451C2 /* LoginManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManagerTests.swift; sourceTree = "<group>"; };
+		E1CDA0B723E404A6007ADA73 /* PersistentSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentSettings.swift; sourceTree = "<group>"; };
+		E1CFDE6723FA4FBF007423FD /* AuthenticationEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationEndpoint.swift; sourceTree = "<group>"; };
 		E1E0737A23E5452B00D4AE5E /* Throne.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Throne.entitlements; sourceTree = "<group>"; };
-		E1E0737B23E545E300D4AE5E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		E1E0737D23E5476E00D4AE5E /* LoginUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUIViewController.swift; sourceTree = "<group>"; };
-		E1E0737E23E5476E00D4AE5E /* LoginUIViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginUIViewController.xib; sourceTree = "<group>"; };
 		E1E0738123E54E3A00D4AE5E /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		E1E0738323E5612400D4AE5E /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
-		E1E0738523E561BB00D4AE5E /* NearMeListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearMeListModel.swift; sourceTree = "<group>"; };
+		E1E0738523E561BB00D4AE5E /* NearMe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearMe.swift; sourceTree = "<group>"; };
 		E1E0738723E561DD00D4AE5E /* Washroom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Washroom.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,13 +142,12 @@
 			children = (
 				E176AEBF23E38B2A00EF8D15 /* AppDelegate.swift */,
 				E176AEC123E38B2A00EF8D15 /* SceneDelegate.swift */,
-				E176AEFD23E3ACE400EF8D15 /* Utils.swift */,
+				E176AEFD23E3ACE400EF8D15 /* ServiceUtilities.swift */,
 				E1CDA0B623E3B3AB007ADA73 /* Models */,
 				E176AEF223E3987900EF8D15 /* Views */,
 				E176AEC823E38B2B00EF8D15 /* Assets.xcassets */,
 				E176AECD23E38B2B00EF8D15 /* LaunchScreen.storyboard */,
 				E176AED023E38B2B00EF8D15 /* Info.plist */,
-				E176AEC323E38B2A00EF8D15 /* Throne.xcdatamodeld */,
 				E1E0737A23E5452B00D4AE5E /* Throne.entitlements */,
 				E176AECA23E38B2B00EF8D15 /* Preview Content */,
 			);
@@ -165,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				E176AED923E38B2C00EF8D15 /* ThroneTests.swift */,
+				E17ABBF623FAA45F004451C2 /* LoginManagerTests.swift */,
 				E176AEDB23E38B2C00EF8D15 /* Info.plist */,
 			);
 			path = ThroneTests;
@@ -188,10 +190,8 @@
 				E176AEF323E39CC900EF8D15 /* MapView.swift */,
 				E176AEF923E3A88E00EF8D15 /* ProfileView.swift */,
 				E176AEF523E39CFD00EF8D15 /* SettingsView.swift */,
-				E1E0737B23E545E300D4AE5E /* LoginView.swift */,
-				E1E0737D23E5476E00D4AE5E /* LoginUIViewController.swift */,
-				E1E0737E23E5476E00D4AE5E /* LoginUIViewController.xib */,
 				E1E0738123E54E3A00D4AE5E /* WelcomeView.swift */,
+				E1580F2C23F768E10087DE0B /* LoginView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -199,14 +199,15 @@
 		E1CDA0B623E3B3AB007ADA73 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E1CDA0B723E404A6007ADA73 /* UserSettings.swift */,
-				E1E0738323E5612400D4AE5E /* LoginManager.swift */,
-				E1E0738523E561BB00D4AE5E /* NearMeListModel.swift */,
 				E1E0738723E561DD00D4AE5E /* Washroom.swift */,
-				E11C9BE823F1DB3A0045663B /* Location.swift */,
 				E11C9BEA23F1DBB60045663B /* Building.swift */,
+				E11C9BE823F1DB3A0045663B /* Location.swift */,
 				E11C9BEC23F1DD850045663B /* Review.swift */,
 				E11C9BEE23F1DF6D0045663B /* User.swift */,
+				E1E0738523E561BB00D4AE5E /* NearMe.swift */,
+				E1CDA0B723E404A6007ADA73 /* PersistentSettings.swift */,
+				E1E0738323E5612400D4AE5E /* LoginManager.swift */,
+				E1CFDE6723FA4FBF007423FD /* AuthenticationEndpoint.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -315,7 +316,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1E0738023E5476E00D4AE5E /* LoginUIViewController.xib in Resources */,
 				E176AECF23E38B2B00EF8D15 /* LaunchScreen.storyboard in Resources */,
 				E176AECC23E38B2B00EF8D15 /* Preview Assets.xcassets in Resources */,
 				E176AEC923E38B2B00EF8D15 /* Assets.xcassets in Resources */,
@@ -345,21 +345,20 @@
 			files = (
 				E176AEFA23E3A88E00EF8D15 /* ProfileView.swift in Sources */,
 				E1E0738423E5612400D4AE5E /* LoginManager.swift in Sources */,
-				E1CDA0B823E404A6007ADA73 /* UserSettings.swift in Sources */,
-				E1E0738623E561BB00D4AE5E /* NearMeListModel.swift in Sources */,
+				E1CDA0B823E404A6007ADA73 /* PersistentSettings.swift in Sources */,
+				E1E0738623E561BB00D4AE5E /* NearMe.swift in Sources */,
 				E11C9BE923F1DB3A0045663B /* Location.swift in Sources */,
 				E11C9BED23F1DD850045663B /* Review.swift in Sources */,
-				E176AEC523E38B2A00EF8D15 /* Throne.xcdatamodeld in Sources */,
 				E176AEC023E38B2A00EF8D15 /* AppDelegate.swift in Sources */,
+				E1CFDE6823FA4FBF007423FD /* AuthenticationEndpoint.swift in Sources */,
 				E176AEF423E39CC900EF8D15 /* MapView.swift in Sources */,
 				E11C9BEB23F1DBB60045663B /* Building.swift in Sources */,
 				E176AEF623E39CFD00EF8D15 /* SettingsView.swift in Sources */,
-				E176AEFE23E3ACE400EF8D15 /* Utils.swift in Sources */,
+				E176AEFE23E3ACE400EF8D15 /* ServiceUtilities.swift in Sources */,
 				E176AEFC23E3AA3500EF8D15 /* NearMeView.swift in Sources */,
-				E1E0737C23E545E300D4AE5E /* LoginView.swift in Sources */,
 				E176AEC723E38B2A00EF8D15 /* ContentView.swift in Sources */,
 				E1E0738223E54E3A00D4AE5E /* WelcomeView.swift in Sources */,
-				E1E0737F23E5476E00D4AE5E /* LoginUIViewController.swift in Sources */,
+				E1580F2D23F768E20087DE0B /* LoginView.swift in Sources */,
 				E176AEF823E3A62D00EF8D15 /* WashroomDetailView.swift in Sources */,
 				E176AEC223E38B2A00EF8D15 /* SceneDelegate.swift in Sources */,
 				E1E0738823E561DD00D4AE5E /* Washroom.swift in Sources */,
@@ -371,7 +370,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E17ABBFB23FAA65F004451C2 /* ServiceUtilities.swift in Sources */,
+				E17ABBF923FAA648004451C2 /* PersistentSettings.swift in Sources */,
+				E17ABBFA23FAA648004451C2 /* AuthenticationEndpoint.swift in Sources */,
+				E17ABBF823FAA4E4004451C2 /* LoginManager.swift in Sources */,
 				E176AEDA23E38B2C00EF8D15 /* ThroneTests.swift in Sources */,
+				E17ABBF723FAA45F004451C2 /* LoginManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -690,19 +694,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		E176AEC323E38B2A00EF8D15 /* Throne.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				E176AEC423E38B2A00EF8D15 /* Throne.xcdatamodel */,
-			);
-			currentVersion = E176AEC423E38B2A00EF8D15 /* Throne.xcdatamodel */;
-			path = Throne.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = E176AEB423E38B2A00EF8D15 /* Project object */;
 }
