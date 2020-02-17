@@ -19,7 +19,7 @@ struct SettingsView: View {
                 }
             }
             Section {
-                Button(action: { LoginManager.sharedInstance.logout() }) {
+                Button(action: { LoginManager.shared.logout() }) {
                     Text("Log Out")
                 }
             }

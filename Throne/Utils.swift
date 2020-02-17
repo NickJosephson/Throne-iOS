@@ -48,7 +48,7 @@ func performRequest(with request: URLRequest, completionHandler: @escaping (Data
         if let httpResponse = response as? HTTPURLResponse {
             if httpResponse.statusCode == 401 {
                 print("Unauthorized, attempting login refresh.")
-                LoginManager.sharedInstance.refreshLogin()
+                LoginManager.shared.refreshLogin()
                 return
             }
         }

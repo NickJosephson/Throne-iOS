@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct WelcomeView: View {
-    var loginController = LoginUIViewController()
+    var loginController = LoginViewController()
     
     var body: some View {
         VStack() {

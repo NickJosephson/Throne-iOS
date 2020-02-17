@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject private var loginManager = LoginManager.sharedInstance
+    @ObservedObject private var loginManager = LoginManager.shared
     
     var body: some View {
         MainTabView()

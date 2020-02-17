@@ -9,53 +9,77 @@
 import Foundation
 
 class AuthenticationEndpoint {
-    private let settings = PersistentSettings()
+    private static let settings = PersistentSettings()
+    private static let host = URL(string: "https://login.findmythrone.com")!
+    private static let clientID = "7of5m2ips5c281ocb35neum748"
+    private static let scope = "email+openid"
+    private static let redirect = "throne://"
     
-    func fetchTokens(authorizedWith code: String, completionHandler: @escaping (TokensResponse) -> Void) {
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "https"
-        urlComponents.host = "login.findmythrone.com"
+    class var loginAddress: URL {
+        get {
+            var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
+            urlComponents.path = "/login"
+            urlComponents.queryItems = [
+                URLQueryItem(name: "client_id",     value: clientID),
+                URLQueryItem(name: "response_type", value: "code"),
+                URLQueryItem(name: "scope",         value: scope),
+                URLQueryItem(name: "redirect_uri",  value: redirect)
+            ]
+            return urlComponents.url!
+        }
+    }
+    
+    class var signupAddress: URL {
+        get {
+            var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
+            urlComponents.path = "/signup"
+            urlComponents.queryItems = [
+                URLQueryItem(name: "client_id",     value: clientID),
+                URLQueryItem(name: "response_type", value: "code"),
+                URLQueryItem(name: "scope",         value: scope),
+                URLQueryItem(name: "redirect_uri",  value: redirect)
+            ]
+            return urlComponents.url!
+        }
+    }
+    
+    class func fetchTokens(authorizedWith code: String, completionHandler: @escaping (TokensResponse) -> Void) {
+        var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/oauth2/token"
         urlComponents.queryItems = [
             URLQueryItem(name: "grant_type", value: "authorization_code"),
-            URLQueryItem(name: "client_id", value: "7of5m2ips5c281ocb35neum748"),
+            URLQueryItem(name: "client_id", value: clientID),
             URLQueryItem(name: "code", value: code),
-            URLQueryItem(name: "redirect_uri", value: "throne://")
+            URLQueryItem(name: "redirect_uri", value: redirect)
         ]
 
-        if let url = urlComponents.url {
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-            
-            performRequest(with: request) { data in
-                if let tokensResponse = try? JSONDecoder().decode(TokensResponse.self, from: data) {
-                    completionHandler(tokensResponse)
-                }
+        var request = URLRequest(url: urlComponents.url!)
+        request.httpMethod = "POST"
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        
+        performRequest(with: request) { data in
+            if let tokensResponse = try? JSONDecoder().decode(TokensResponse.self, from: data) {
+                completionHandler(tokensResponse)
             }
         }
     }
     
-    func refreshTokens(authorizedWith refreshToken: String, completionHandler: @escaping (TokensResponse) -> Void) {
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "https"
-        urlComponents.host = "login.findmythrone.com"
+    class func refreshTokens(authorizedWith refreshToken: String, completionHandler: @escaping (TokensResponse) -> Void) {
+        var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/oauth2/token"
         urlComponents.queryItems = [
             URLQueryItem(name: "grant_type", value: "refresh_token"),
-            URLQueryItem(name: "client_id", value: "7of5m2ips5c281ocb35neum748"),
+            URLQueryItem(name: "client_id", value: clientID),
             URLQueryItem(name: "refresh_token", value: refreshToken),
         ]
 
-        if let url = urlComponents.url {
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-                        
-            performRequest(with: request) { data in
-                if let tokensResponse = try? JSONDecoder().decode(TokensResponse.self, from: data) {
-                    completionHandler(tokensResponse)
-                }
+        var request = URLRequest(url: urlComponents.url!)
+        request.httpMethod = "POST"
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+                    
+        performRequest(with: request) { data in
+            if let tokensResponse = try? JSONDecoder().decode(TokensResponse.self, from: data) {
+                completionHandler(tokensResponse)
             }
         }
     }

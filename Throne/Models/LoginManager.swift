@@ -10,10 +10,9 @@ import Foundation
 import Combine
 
 final class LoginManager: ObservableObject {
-    static var sharedInstance = LoginManager()
+    static var shared = LoginManager()
     
     private let settings = PersistentSettings()
-    private let authenticator = AuthenticationEndpoint()
     private var refreshAttempted = false
     
     init() {
@@ -50,7 +49,7 @@ final class LoginManager: ObservableObject {
     }
     
     func attemptLogin(with code: String) {
-        authenticator.fetchTokens(authorizedWith: code) { tokens in
+        AuthenticationEndpoint.fetchTokens(authorizedWith: code) { tokens in
             DispatchQueue.main.async {
                 self.settings.idToken = tokens.idToken
                 self.settings.accessToken = tokens.accessToken
@@ -77,7 +76,7 @@ final class LoginManager: ObservableObject {
         if let refreshToken = settings.refreshToken {
             refreshAttempted = true
 
-            authenticator.refreshTokens(authorizedWith: refreshToken) { tokens in
+            AuthenticationEndpoint.refreshTokens(authorizedWith: refreshToken) { tokens in
                 DispatchQueue.main.async {
                     self.settings.idToken = tokens.idToken
                     self.settings.accessToken = tokens.accessToken
