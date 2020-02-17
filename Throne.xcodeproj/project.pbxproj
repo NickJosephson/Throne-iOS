@@ -14,7 +14,6 @@
 		E1580F2D23F768E20087DE0B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1580F2C23F768E10087DE0B /* LoginView.swift */; };
 		E176AEC023E38B2A00EF8D15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEBF23E38B2A00EF8D15 /* AppDelegate.swift */; };
 		E176AEC223E38B2A00EF8D15 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEC123E38B2A00EF8D15 /* SceneDelegate.swift */; };
-		E176AEC523E38B2A00EF8D15 /* Throne.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E176AEC323E38B2A00EF8D15 /* Throne.xcdatamodeld */; };
 		E176AEC723E38B2A00EF8D15 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEC623E38B2A00EF8D15 /* ContentView.swift */; };
 		E176AEC923E38B2B00EF8D15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E176AEC823E38B2B00EF8D15 /* Assets.xcassets */; };
 		E176AECC23E38B2B00EF8D15 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E176AECB23E38B2B00EF8D15 /* Preview Assets.xcassets */; };
@@ -66,7 +65,6 @@
 		E176AEBC23E38B2A00EF8D15 /* Throne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Throne.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E176AEBF23E38B2A00EF8D15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E176AEC123E38B2A00EF8D15 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E176AEC423E38B2A00EF8D15 /* Throne.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Throne.xcdatamodel; sourceTree = "<group>"; };
 		E176AEC623E38B2A00EF8D15 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E176AEC823E38B2B00EF8D15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E176AECB23E38B2B00EF8D15 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -150,7 +148,6 @@
 				E176AEC823E38B2B00EF8D15 /* Assets.xcassets */,
 				E176AECD23E38B2B00EF8D15 /* LaunchScreen.storyboard */,
 				E176AED023E38B2B00EF8D15 /* Info.plist */,
-				E176AEC323E38B2A00EF8D15 /* Throne.xcdatamodeld */,
 				E1E0737A23E5452B00D4AE5E /* Throne.entitlements */,
 				E176AECA23E38B2B00EF8D15 /* Preview Content */,
 			);
@@ -352,7 +349,6 @@
 				E1E0738623E561BB00D4AE5E /* NearMeListModel.swift in Sources */,
 				E11C9BE923F1DB3A0045663B /* Location.swift in Sources */,
 				E11C9BED23F1DD850045663B /* Review.swift in Sources */,
-				E176AEC523E38B2A00EF8D15 /* Throne.xcdatamodeld in Sources */,
 				E176AEC023E38B2A00EF8D15 /* AppDelegate.swift in Sources */,
 				E1CFDE6823FA4FBF007423FD /* AuthenticationEndpoint.swift in Sources */,
 				E176AEF423E39CC900EF8D15 /* MapView.swift in Sources */,
@@ -698,19 +694,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		E176AEC323E38B2A00EF8D15 /* Throne.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				E176AEC423E38B2A00EF8D15 /* Throne.xcdatamodel */,
-			);
-			currentVersion = E176AEC423E38B2A00EF8D15 /* Throne.xcdatamodel */;
-			path = Throne.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = E176AEB423E38B2A00EF8D15 /* Project object */;
 }
