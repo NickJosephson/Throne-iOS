@@ -1,5 +1,5 @@
 //
-//  UserSettings.swift
+//  PersistentSettings.swift
 //  Throne
 //
 //  Created by Nicholas Josephson on 2020-01-31.

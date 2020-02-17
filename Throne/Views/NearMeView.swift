@@ -51,19 +51,3 @@ struct NearMeView_Previews: PreviewProvider {
         NearMeView()
     }
 }
-
-
-struct Room {
-    var title: String
-    var amenities: [String]
-    var rating: String
-}
-
-var rooms = [
-    Room(title: "Tache Hall", amenities: ["🚽","🧻","🧴"], rating: "🤩"),
-    Room(title: "6th Floor E2", amenities: ["🚽","🧻","🧴"], rating: "💩"),
-    Room(title: "Aaron's House", amenities: ["🚽","🛀","🚻"], rating: "👍"),
-    Room(title: "151 Research", amenities: ["🚽","🧻","🧴"], rating: "💤"),
-    Room(title: "University Center", amenities: ["🚽","🧻","🧴"], rating: "🤮")
-]
-

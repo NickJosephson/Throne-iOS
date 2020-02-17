@@ -1,5 +1,5 @@
 //
-//  LoginVIew.swift
+//  LoginView.swift
 //  Throne
 //
 //  Created by Nicholas Josephson on 2020-01-31.
@@ -9,7 +9,7 @@
 import SwiftUI
 import AuthenticationServices
 
-/// SwiftUI containter for LoginViewController
+/// SwiftUI container for LoginViewController
 struct LoginView: UIViewRepresentable {
     var controller: LoginViewController
     
@@ -47,9 +47,9 @@ class LoginViewController: UIViewController, ASWebAuthenticationPresentationCont
 
     /// Start a ASWebAuthenticationSession at the specified URL to login to Throne
     ///
-    /// The authentication code that is returned by the session is used to initiat a login with the LoginManager
+    /// The authentication code that is returned by the session is used to initiate a login with the LoginManager
     private func startSession(at url: URL) {
-        let scheme = "throne" // A ridirect to "throne://" will exit the session
+        let scheme = "throne" // A redirect to "throne://" will exit the session
         
         if let currentSession = session {
             currentSession.cancel()
