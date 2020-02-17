@@ -22,7 +22,7 @@ struct NearMeView: View {
 }
 
 struct RoomsListView: View {
-    @ObservedObject var model = NearMeListModel()
+    @ObservedObject var model = NearMe()
     
     var body: some View {
         List {

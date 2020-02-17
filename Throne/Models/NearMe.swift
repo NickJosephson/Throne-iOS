@@ -1,5 +1,5 @@
 //
-//  NearMeListModel.swift
+//  NearMe.swift
 //  Throne
 //
 //  Created by Nicholas Josephson on 2020-02-01.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class NearMeListModel: ObservableObject {    
+final class NearMe: ObservableObject {    
     private let url = URL(string: "https://api-dev.findmythrone.com/washrooms/")!
     
     init() {

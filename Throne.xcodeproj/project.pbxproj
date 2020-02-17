@@ -35,7 +35,7 @@
 		E1CFDE6823FA4FBF007423FD /* AuthenticationEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CFDE6723FA4FBF007423FD /* AuthenticationEndpoint.swift */; };
 		E1E0738223E54E3A00D4AE5E /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738123E54E3A00D4AE5E /* WelcomeView.swift */; };
 		E1E0738423E5612400D4AE5E /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738323E5612400D4AE5E /* LoginManager.swift */; };
-		E1E0738623E561BB00D4AE5E /* NearMeListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738523E561BB00D4AE5E /* NearMeListModel.swift */; };
+		E1E0738623E561BB00D4AE5E /* NearMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738523E561BB00D4AE5E /* NearMe.swift */; };
 		E1E0738823E561DD00D4AE5E /* Washroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738723E561DD00D4AE5E /* Washroom.swift */; };
 /* End PBXBuildFile section */
 
@@ -88,7 +88,7 @@
 		E1E0737A23E5452B00D4AE5E /* Throne.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Throne.entitlements; sourceTree = "<group>"; };
 		E1E0738123E54E3A00D4AE5E /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		E1E0738323E5612400D4AE5E /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
-		E1E0738523E561BB00D4AE5E /* NearMeListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearMeListModel.swift; sourceTree = "<group>"; };
+		E1E0738523E561BB00D4AE5E /* NearMe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearMe.swift; sourceTree = "<group>"; };
 		E1E0738723E561DD00D4AE5E /* Washroom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Washroom.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -204,7 +204,7 @@
 				E11C9BE823F1DB3A0045663B /* Location.swift */,
 				E11C9BEC23F1DD850045663B /* Review.swift */,
 				E11C9BEE23F1DF6D0045663B /* User.swift */,
-				E1E0738523E561BB00D4AE5E /* NearMeListModel.swift */,
+				E1E0738523E561BB00D4AE5E /* NearMe.swift */,
 				E1CDA0B723E404A6007ADA73 /* PersistentSettings.swift */,
 				E1E0738323E5612400D4AE5E /* LoginManager.swift */,
 				E1CFDE6723FA4FBF007423FD /* AuthenticationEndpoint.swift */,
@@ -346,7 +346,7 @@
 				E176AEFA23E3A88E00EF8D15 /* ProfileView.swift in Sources */,
 				E1E0738423E5612400D4AE5E /* LoginManager.swift in Sources */,
 				E1CDA0B823E404A6007ADA73 /* PersistentSettings.swift in Sources */,
-				E1E0738623E561BB00D4AE5E /* NearMeListModel.swift in Sources */,
+				E1E0738623E561BB00D4AE5E /* NearMe.swift in Sources */,
 				E11C9BE923F1DB3A0045663B /* Location.swift in Sources */,
 				E11C9BED23F1DD850045663B /* Review.swift in Sources */,
 				E176AEC023E38B2A00EF8D15 /* AppDelegate.swift in Sources */,
