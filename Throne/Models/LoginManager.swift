@@ -14,6 +14,7 @@ final class LoginManager: ObservableObject {
     
     private let settings = PersistentSettings()
     private let authenticator = AuthenticationEndpoint()
+    private var refreshAttempted = false
     
     init() {
         let storedIsLoggedIn = PersistentSettings().isLoggedIn
@@ -39,19 +40,56 @@ final class LoginManager: ObservableObject {
         }
     }
     
+    func logout() {
+        if self.isLoggedIn {
+            self.isLoggedIn = false
+            self.settings.idToken = nil
+            self.settings.accessToken = nil
+            self.settings.refreshToken = nil
+        }
+    }
+    
     func attemptLogin(with code: String) {
         authenticator.fetchTokens(authorizedWith: code) { tokens in
             DispatchQueue.main.async {
                 self.settings.idToken = tokens.idToken
                 self.settings.accessToken = tokens.accessToken
                 self.settings.refreshToken = tokens.refreshToken
-                self.isLoggedIn = true
+                self.verifyLogin()
             }
         }
     }
     
-    func logout() {
-        self.isLoggedIn = false
+    private func verifyLogin() {
+        //verify credentials
+        
+        self.refreshAttempted = false
+        self.isLoggedIn = true
     }
+    
+    func refreshLogin() {
+        if refreshAttempted {
+            print("Already attempted login refresh, logging out.")
+            logout()
+            return
+        }
+        
+        if let refreshToken = settings.refreshToken {
+            refreshAttempted = true
+
+            authenticator.refreshTokens(authorizedWith: refreshToken) { tokens in
+                DispatchQueue.main.async {
+                    self.settings.idToken = tokens.idToken
+                    self.settings.accessToken = tokens.accessToken
+                    self.verifyLogin()
+                }
+            }
+        } else {
+            print("No refresh token found, logging out.")
+            logout()
+        }
+    }
+    
+
 }
 

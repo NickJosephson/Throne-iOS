@@ -9,6 +9,20 @@
 import Foundation
 import Combine
 
+
+/// Convenience function to get a list of strings at a given URL
+/// - Parameters:
+///   - url: URL to GET json list of strings from
+///   - completionHandler: Function to handle Strings Array once received
+func getAllStrings(at url: URL, completionHandler: @escaping ([String]) -> Void) {
+    fetch(url: url) { data in
+        if let strings = try? JSONDecoder().decode([String].self, from: data) {
+            completionHandler(strings)
+        }
+    }
+}
+
+
 /// Fetch Data using a given URL
 /// - Parameters:
 ///   - url: URL it post GET request to
@@ -24,19 +38,6 @@ func fetch(url: URL, completionHandler: @escaping (Data) -> Void) {
 }
 
 
-/// Convenience function to get a list of strings at a given URL
-/// - Parameters:
-///   - url: URL to GET json list of strings from
-///   - completionHandler: Function to handle Strings Array once received
-func getAllStrings(at url: URL, completionHandler: @escaping ([String]) -> Void) {
-    fetch(url: url) { data in
-        if let strings = try? JSONDecoder().decode([String].self, from: data) {
-            completionHandler(strings)
-        }
-    }
-}
-
-
 func performRequest(with request: URLRequest, completionHandler: @escaping (Data) -> Void) {
     let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
         if let error = error {
@@ -46,13 +47,9 @@ func performRequest(with request: URLRequest, completionHandler: @escaping (Data
 
         if let httpResponse = response as? HTTPURLResponse {
             if httpResponse.statusCode == 401 {
-                print("Unauthorized")
-                if LoginManager.sharedInstance.isLoggedIn {
-                    LoginManager.sharedInstance.logout()
-                    return
-                } else {
-                    return
-                }
+                print("Unauthorized, attempting login refresh.")
+                LoginManager.sharedInstance.refreshLogin()
+                return
             }
         }
 
