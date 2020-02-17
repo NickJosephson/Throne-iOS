@@ -16,8 +16,10 @@ struct MapView: View {
 }
 
 struct MapUIView: UIViewRepresentable {
+    let mapView = MKMapView()
+    
     func makeUIView(context: Context) -> MKMapView {
-        MKMapView()
+        mapView
     }
 
     func updateUIView(_ uiView: MKMapView, context: Context) {

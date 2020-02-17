@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct NearMeView: View {
-    @ObservedObject var settings = UserSettings()
+    @ObservedObject var settings = PersistentSettings()
 
     var body: some View {
         NavigationView {
@@ -22,7 +22,7 @@ struct NearMeView: View {
 }
 
 struct RoomsListView: View {
-    @ObservedObject var model = NearMeListModel()
+    @ObservedObject var model = NearMe()
     
     var body: some View {
         List {
@@ -51,19 +51,3 @@ struct NearMeView_Previews: PreviewProvider {
         NearMeView()
     }
 }
-
-
-struct Room {
-    var title: String
-    var amenities: [String]
-    var rating: String
-}
-
-var rooms = [
-    Room(title: "Tache Hall", amenities: ["🚽","🧻","🧴"], rating: "🤩"),
-    Room(title: "6th Floor E2", amenities: ["🚽","🧻","🧴"], rating: "💩"),
-    Room(title: "Aaron's House", amenities: ["🚽","🛀","🚻"], rating: "👍"),
-    Room(title: "151 Research", amenities: ["🚽","🧻","🧴"], rating: "💤"),
-    Room(title: "University Center", amenities: ["🚽","🧻","🧴"], rating: "🤮")
-]
-
