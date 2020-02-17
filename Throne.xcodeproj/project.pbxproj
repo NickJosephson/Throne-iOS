@@ -27,6 +27,11 @@
 		E176AEFA23E3A88E00EF8D15 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEF923E3A88E00EF8D15 /* ProfileView.swift */; };
 		E176AEFC23E3AA3500EF8D15 /* NearMeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEFB23E3AA3500EF8D15 /* NearMeView.swift */; };
 		E176AEFE23E3ACE400EF8D15 /* ServiceUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEFD23E3ACE400EF8D15 /* ServiceUtilities.swift */; };
+		E17ABBF723FAA45F004451C2 /* LoginManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17ABBF623FAA45F004451C2 /* LoginManagerTests.swift */; };
+		E17ABBF823FAA4E4004451C2 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738323E5612400D4AE5E /* LoginManager.swift */; };
+		E17ABBF923FAA648004451C2 /* PersistentSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDA0B723E404A6007ADA73 /* PersistentSettings.swift */; };
+		E17ABBFA23FAA648004451C2 /* AuthenticationEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CFDE6723FA4FBF007423FD /* AuthenticationEndpoint.swift */; };
+		E17ABBFB23FAA65F004451C2 /* ServiceUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEFD23E3ACE400EF8D15 /* ServiceUtilities.swift */; };
 		E1CDA0B823E404A6007ADA73 /* PersistentSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDA0B723E404A6007ADA73 /* PersistentSettings.swift */; };
 		E1CFDE6823FA4FBF007423FD /* AuthenticationEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CFDE6723FA4FBF007423FD /* AuthenticationEndpoint.swift */; };
 		E1E0738223E54E3A00D4AE5E /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738123E54E3A00D4AE5E /* WelcomeView.swift */; };
@@ -79,6 +84,7 @@
 		E176AEF923E3A88E00EF8D15 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		E176AEFB23E3AA3500EF8D15 /* NearMeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearMeView.swift; sourceTree = "<group>"; };
 		E176AEFD23E3ACE400EF8D15 /* ServiceUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceUtilities.swift; sourceTree = "<group>"; };
+		E17ABBF623FAA45F004451C2 /* LoginManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManagerTests.swift; sourceTree = "<group>"; };
 		E1CDA0B723E404A6007ADA73 /* PersistentSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentSettings.swift; sourceTree = "<group>"; };
 		E1CFDE6723FA4FBF007423FD /* AuthenticationEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationEndpoint.swift; sourceTree = "<group>"; };
 		E1E0737A23E5452B00D4AE5E /* Throne.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Throne.entitlements; sourceTree = "<group>"; };
@@ -163,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				E176AED923E38B2C00EF8D15 /* ThroneTests.swift */,
+				E17ABBF623FAA45F004451C2 /* LoginManagerTests.swift */,
 				E176AEDB23E38B2C00EF8D15 /* Info.plist */,
 			);
 			path = ThroneTests;
@@ -367,7 +374,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E17ABBFB23FAA65F004451C2 /* ServiceUtilities.swift in Sources */,
+				E17ABBF923FAA648004451C2 /* PersistentSettings.swift in Sources */,
+				E17ABBFA23FAA648004451C2 /* AuthenticationEndpoint.swift in Sources */,
+				E17ABBF823FAA4E4004451C2 /* LoginManager.swift in Sources */,
 				E176AEDA23E38B2C00EF8D15 /* ThroneTests.swift in Sources */,
+				E17ABBF723FAA45F004451C2 /* LoginManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
