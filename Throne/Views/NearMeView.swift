@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct NearMeView: View {
-    @ObservedObject var settings = UserSettings()
+    @ObservedObject var settings = PersistentSettings()
 
     var body: some View {
         NavigationView {

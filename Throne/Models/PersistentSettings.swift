@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-final class UserSettings: ObservableObject {
+final class PersistentSettings: ObservableObject {
     private let isLoggedInKey = "is-logged-in"
     var isLoggedIn: Bool {
         get {
@@ -47,6 +47,16 @@ final class UserSettings: ObservableObject {
         }
         set {
             UserDefaults.standard.set(newValue, forKey: accessTokenKey)
+        }
+    }
+    
+    private let refreshTokenKey = "refresh-token"
+    var refreshToken: String? {
+        get {
+            return UserDefaults.standard.string(forKey: refreshTokenKey)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: refreshTokenKey)
         }
     }
     

@@ -16,39 +16,11 @@ import Combine
 func fetch(url: URL, completionHandler: @escaping (Data) -> Void) {
     var request = URLRequest(url: url)
 
-    if let accessToken = UserSettings().accessToken {
+    if let accessToken = PersistentSettings().accessToken {
         request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
     }
 
-    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-        if let error = error {
-            print("Error with fetching: \(error)")
-            return
-        }
-        
-        if let httpResponse = response as? HTTPURLResponse {
-            if httpResponse.statusCode == 401 {
-                print("Unauthorized")
-                if LoginManager.sharedInstance.isLoggedIn {
-                    LoginManager.sharedInstance.logout()
-                    return
-                } else {
-                    return
-                }
-            }
-        }
-        
-        guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
-            print("Error with the response, unexpected status code: \(String(describing: response))")
-            return
-        }
-        
-        if let data = data {
-            completionHandler(data)
-        }
-    }
-    
-    task.resume()
+    performRequest(with: request, completionHandler: completionHandler)
 }
 
 
@@ -62,4 +34,37 @@ func getAllStrings(at url: URL, completionHandler: @escaping ([String]) -> Void)
             completionHandler(strings)
         }
     }
+}
+
+
+func performRequest(with request: URLRequest, completionHandler: @escaping (Data) -> Void) {
+    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        if let error = error {
+            print("Error with fetching: \(error)")
+            return
+        }
+
+        if let httpResponse = response as? HTTPURLResponse {
+            if httpResponse.statusCode == 401 {
+                print("Unauthorized")
+                if LoginManager.sharedInstance.isLoggedIn {
+                    LoginManager.sharedInstance.logout()
+                    return
+                } else {
+                    return
+                }
+            }
+        }
+
+        guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+            print("Error with the response, unexpected status code: \(String(describing: response))")
+            return
+        }
+
+        if let data = data {
+            completionHandler(data)
+        }
+    }
+
+    task.resume()
 }

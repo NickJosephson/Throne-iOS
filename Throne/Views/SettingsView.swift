@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @ObservedObject var settings = UserSettings()
+    @ObservedObject var settings = PersistentSettings()
     
     var body: some View {
         Form {

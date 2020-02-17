@@ -11,7 +11,7 @@ import AuthenticationServices
 
 class LoginUIViewController: UIViewController, ASWebAuthenticationPresentationContextProviding {
     private var session: ASWebAuthenticationSession!
-    private var settings = UserSettings()
+    private var settings = PersistentSettings()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ class LoginUIViewController: UIViewController, ASWebAuthenticationPresentationCo
         authURL.path = "/login"
         authURL.queryItems = [
             URLQueryItem(name: "client_id",     value: "7of5m2ips5c281ocb35neum748"),
-            URLQueryItem(name: "response_type", value: "token"),
+            URLQueryItem(name: "response_type", value: "code"),
             URLQueryItem(name: "scope",         value: "email+openid"),
             URLQueryItem(name: "redirect_uri",  value: "throne://")
         ]
@@ -43,7 +43,7 @@ class LoginUIViewController: UIViewController, ASWebAuthenticationPresentationCo
         authURL.path = "/signup"
         authURL.queryItems = [
             URLQueryItem(name: "client_id",     value: "7of5m2ips5c281ocb35neum748"),
-            URLQueryItem(name: "response_type", value: "token"),
+            URLQueryItem(name: "response_type", value: "code"),
             URLQueryItem(name: "scope",         value: "email+openid"),
             URLQueryItem(name: "redirect_uri",  value: "throne://")
         ]
@@ -59,19 +59,15 @@ class LoginUIViewController: UIViewController, ASWebAuthenticationPresentationCo
         }
         
         session = ASWebAuthenticationSession(url: url, callbackURLScheme: scheme) { callbackURL, error in
-            if callbackURL != nil {                
-                if let fragment = callbackURL!.fragment {
-                    let split = fragment.components(separatedBy: .init(charactersIn: "&="))
+            if let query = callbackURL?.query {
+                let split = query.components(separatedBy: .init(charactersIn: "="))
 
-                    if let idTokenIndex = split.firstIndex(of: "id_token"), split.count > idTokenIndex {
-                        self.settings.idToken = split[idTokenIndex + 1]
-                    }
-
-                    if let accessTokenIndex = split.firstIndex(of: "access_token"), split.count > accessTokenIndex {
-                        self.settings.accessToken = split[accessTokenIndex + 1]
-                    }
+                if let codeIndex = split.firstIndex(of: "code"), split.count > codeIndex {
+                    let authenticationCode = split[codeIndex + 1]
                     
-                    LoginManager.sharedInstance.login()
+                    DispatchQueue.main.async {
+                        LoginManager.sharedInstance.attemptLogin(with: authenticationCode)
+                    }
                 }
             }
         }

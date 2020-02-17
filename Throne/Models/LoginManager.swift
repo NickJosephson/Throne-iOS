@@ -12,15 +12,18 @@ import Combine
 final class LoginManager: ObservableObject {
     static var sharedInstance = LoginManager()
     
+    private let settings = PersistentSettings()
+    private let authenticator = AuthenticationEndpoint()
+    
     init() {
-        let storedIsLoggedIn = UserSettings().isLoggedIn
+        let storedIsLoggedIn = PersistentSettings().isLoggedIn
         isLoggedIn = storedIsLoggedIn
         showWelcomeScreen = !storedIsLoggedIn
     }
     
     @Published var isLoggedIn: Bool {
         didSet {
-            UserSettings().isLoggedIn = isLoggedIn
+            PersistentSettings().isLoggedIn = isLoggedIn
             
             if showWelcomeScreen == isLoggedIn {
                 showWelcomeScreen = !isLoggedIn
@@ -36,12 +39,19 @@ final class LoginManager: ObservableObject {
         }
     }
     
-    func login() {
-        isLoggedIn = true
+    func attemptLogin(with code: String) {
+        authenticator.fetchTokens(authorizedWith: code) { tokens in
+            DispatchQueue.main.async {
+                self.settings.idToken = tokens.idToken
+                self.settings.accessToken = tokens.accessToken
+                self.settings.refreshToken = tokens.refreshToken
+                self.isLoggedIn = true
+            }
+        }
     }
     
     func logout() {
-        isLoggedIn = false
+        self.isLoggedIn = false
     }
 }
 
