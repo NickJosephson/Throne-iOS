@@ -23,13 +23,7 @@ class ThroneEndpoint {
         ]
 
         print("Fetching washrooms near \(location).")
-        fetch(url: urlComponents.url!) { data in
-            if let washrooms = try? JSONDecoder().decode([Washroom].self, from: data) {
-                completionHandler(washrooms)
-            } else {
-                print("Error decoding washrooms response.")
-            }
-        }
+        fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
     class func fetchWashrooms(in building: Building, completionHandler: @escaping ([Washroom]) -> Void) {
@@ -37,13 +31,7 @@ class ThroneEndpoint {
         urlComponents.path = "/buildings/\(building.id)/washrooms/"
 
         print("Fetching washrooms in \(building.title).")
-        fetch(url: urlComponents.url!) { data in
-            if let washrooms = try? JSONDecoder().decode([Washroom].self, from: data) {
-                completionHandler(washrooms)
-            } else {
-                print("Error decoding washrooms response.")
-            }
-        }
+        fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
     class func fetchWashrooms(favoritedBy user: User, completionHandler: @escaping ([Washroom]) -> Void) {
@@ -51,13 +39,7 @@ class ThroneEndpoint {
         urlComponents.path = "/users/\(user.id)/favorites/"
 
         print("Fetching washrooms favorited by \(user.username).")
-        fetch(url: urlComponents.url!) { data in
-            if let washrooms = try? JSONDecoder().decode([Washroom].self, from: data) {
-                completionHandler(washrooms)
-            } else {
-                print("Error decoding washrooms response.")
-            }
-        }
+        fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
     class func fetchWashroom(matching id: Int, completionHandler: @escaping (Washroom) -> Void) {
@@ -65,13 +47,7 @@ class ThroneEndpoint {
         urlComponents.path = "/washrooms/\(id)/"
 
         print("Fetching washroom matching \(id).")
-        fetch(url: urlComponents.url!) { data in
-            if let washroom = try? JSONDecoder().decode(Washroom.self, from: data) {
-                completionHandler(washroom)
-            } else {
-                print("Error decoding washroom response.")
-            }
-        }
+        fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
 
     class func fetchBuildings(near location: Location, completionHandler: @escaping ([Building]) -> Void) {
@@ -85,13 +61,7 @@ class ThroneEndpoint {
         ]
 
         print("Fetching Buildings near \(location).")
-        fetch(url: urlComponents.url!) { data in
-            if let buildings = try? JSONDecoder().decode([Building].self, from: data) {
-                completionHandler(buildings)
-            } else {
-                print("Error decoding buildings response.")
-            }
-        }
+        fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
     class func fetchBuilding(matching id: Int, completionHandler: @escaping (Building) -> Void) {
@@ -99,13 +69,7 @@ class ThroneEndpoint {
         urlComponents.path = "/buildings/\(id)/"
 
         print("Fetching building matching \(id).")
-        fetch(url: urlComponents.url!) { data in
-            if let building = try? JSONDecoder().decode(Building.self, from: data) {
-                completionHandler(building)
-            } else {
-                print("Error decoding building response.")
-            }
-        }
+        fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
     class func fetchReviews(for washroom: Washroom, completionHandler: @escaping ([Review]) -> Void) {
@@ -113,13 +77,7 @@ class ThroneEndpoint {
         urlComponents.path = "/washrooms/\(washroom.id)/reviews/"
 
         print("Fetching reviews for \(washroom.title).")
-        fetch(url: urlComponents.url!) { data in
-            if let reviews = try? JSONDecoder().decode([Review].self, from: data) {
-                completionHandler(reviews)
-            } else {
-                print("Error decoding reviews response.")
-            }
-        }
+        fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
     class func fetchReviews(madeBy user: User, completionHandler: @escaping ([Review]) -> Void) {
@@ -127,13 +85,7 @@ class ThroneEndpoint {
         urlComponents.path = "/users/\(user.id)/reviews/"
 
         print("Fetching reviews made by \(user.username).")
-        fetch(url: urlComponents.url!) { data in
-            if let reviews = try? JSONDecoder().decode([Review].self, from: data) {
-                completionHandler(reviews)
-            } else {
-                print("Error decoding reviews response.")
-            }
-        }
+        fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
     class func fetchReview(matching id: Int, completionHandler: @escaping (Review) -> Void) {
@@ -141,13 +93,7 @@ class ThroneEndpoint {
         urlComponents.path = "/reviews/\(id)/"
 
         print("Fetching review matching \(id).")
-        fetch(url: urlComponents.url!) { data in
-            if let review = try? JSONDecoder().decode(Review.self, from: data) {
-                completionHandler(review)
-            } else {
-                print("Error decoding review response.")
-            }
-        }
+        fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
     class func fetchUser(matching id: Int, completionHandler: @escaping (User) -> Void) {
@@ -155,13 +101,7 @@ class ThroneEndpoint {
         urlComponents.path = "/users/\(id)/"
 
         print("Fetching user matching \(id).")
-        fetch(url: urlComponents.url!) { data in
-            if let user = try? JSONDecoder().decode(User.self, from: data) {
-                completionHandler(user)
-            } else {
-                print("Error decoding user response.")
-            }
-        }
+        fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
     class func fetchCurrentUser(completionHandler: @escaping (User) -> Void) {
@@ -169,11 +109,15 @@ class ThroneEndpoint {
         urlComponents.path = "/user/"
 
         print("Fetching current user.")
-        fetch(url: urlComponents.url!) { data in
-            if let user = try? JSONDecoder().decode(User.self, from: data) {
-                completionHandler(user)
+        fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
+    }
+    
+    private class func fetchAndDecode<T: Decodable>(url: URL, completionHandler: @escaping (T) -> Void) {
+        fetch(url: url) { data in
+            if let decoded = try? JSONDecoder().decode(T.self, from: data) {
+                completionHandler(decoded)
             } else {
-                print("Error decoding user response.")
+                print("Error decoding response.")
             }
         }
     }
