@@ -16,7 +16,7 @@ class ThroneEndpoint {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/washrooms/"
         urlComponents.queryItems = [
-            URLQueryItem(name: "maxWashrooms", value: "\(maxResults)"),
+            URLQueryItem(name: "max_results", value: "\(maxResults)"),
             URLQueryItem(name: "latitude", value: "\(location.latitude)"),
             URLQueryItem(name: "longitude", value: "\(location.longitude)"),
             URLQueryItem(name: "radius", value: "\(location.radius)")
@@ -54,7 +54,7 @@ class ThroneEndpoint {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/buildings/"
         urlComponents.queryItems = [
-            URLQueryItem(name: "maxWashrooms", value: "\(maxResults)"),
+            URLQueryItem(name: "max_results", value: "\(maxResults)"),
             URLQueryItem(name: "latitude", value: "\(location.latitude)"),
             URLQueryItem(name: "longitude", value: "\(location.longitude)"),
             URLQueryItem(name: "radius", value: "\(location.radius)")
