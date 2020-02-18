@@ -8,23 +8,19 @@
 
 import Foundation
 
-final class NearMe: ObservableObject {    
-    private let url = URL(string: "https://api-dev.findmythrone.com/washrooms/")!
-    
+final class NearMe: ObservableObject {
+    @Published var washrooms: [Washroom] = []
+
     init() {
         fetchWashrooms()
     }
     
-    @Published var washrooms: [Washroom] = []
-    
     private func fetchWashrooms() {
-        print("Fetching washrooms.")
-        fetchStrings(at: url) { allWashrooms in
+        let location = Location(latitude: 0, longitude: 0)
+        
+        ThroneEndpoint.fetchWashrooms(near: location) { washrooms in
             DispatchQueue.main.async {
-                print("Setting washrooms.")
-                self.washrooms = allWashrooms.map {
-                    return Washroom(id: 0, title: $0, location: Location(latitude: 0, longitude: 0), gender: .all, floor: 0, buildingID: 0, createdAt: Date(), overallRating: 0, averageRatings: [:], amenities: [])
-                }
+                self.washrooms = washrooms
             }
         }
     }
