@@ -14,7 +14,7 @@ class ThroneEndpoint {
     
     class func fetchWashrooms(near location: Location, completionHandler: @escaping ([Washroom]) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
-        urlComponents.path = "/washrooms"
+        urlComponents.path = "/washrooms/"
         urlComponents.queryItems = [
             URLQueryItem(name: "maxWashrooms", value: "\(100)"),
             URLQueryItem(name: "latitude", value: "\(location.latitude)"),
@@ -34,7 +34,7 @@ class ThroneEndpoint {
     
     class func fetchWashrooms(in building: Building, completionHandler: @escaping ([Washroom]) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
-        urlComponents.path = "/buildings/\(building.id)/washrooms"
+        urlComponents.path = "/buildings/\(building.id)/washrooms/"
 
         print("Fetching washrooms in \(building.title).")
         fetch(url: urlComponents.url!) { data in
@@ -48,7 +48,7 @@ class ThroneEndpoint {
     
     class func fetchWashrooms(favoritedBy user: User, completionHandler: @escaping ([Washroom]) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
-        urlComponents.path = "/users/\(user.id)/favorites"
+        urlComponents.path = "/users/\(user.id)/favorites/"
 
         print("Fetching washrooms favorited by \(user.username).")
         fetch(url: urlComponents.url!) { data in
@@ -62,7 +62,7 @@ class ThroneEndpoint {
     
     class func fetchWashroom(matching id: Int, completionHandler: @escaping (Washroom) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
-        urlComponents.path = "/washrooms/\(id)"
+        urlComponents.path = "/washrooms/\(id)/"
 
         print("Fetching washroom matching \(id).")
         fetch(url: urlComponents.url!) { data in
@@ -76,7 +76,7 @@ class ThroneEndpoint {
 
     class func fetchBuildings(near location: Location, completionHandler: @escaping ([Building]) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
-        urlComponents.path = "/buildings"
+        urlComponents.path = "/buildings/"
         urlComponents.queryItems = [
             URLQueryItem(name: "maxWashrooms", value: "\(100)"),
             URLQueryItem(name: "latitude", value: "\(location.latitude)"),
@@ -96,7 +96,7 @@ class ThroneEndpoint {
     
     class func fetchBuilding(matching id: Int, completionHandler: @escaping (Building) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
-        urlComponents.path = "/buildings/\(id)"
+        urlComponents.path = "/buildings/\(id)/"
 
         print("Fetching building matching \(id).")
         fetch(url: urlComponents.url!) { data in
@@ -110,7 +110,7 @@ class ThroneEndpoint {
     
     class func fetchReviews(for washroom: Washroom, completionHandler: @escaping ([Review]) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
-        urlComponents.path = "/washrooms/\(washroom.id)/reviews"
+        urlComponents.path = "/washrooms/\(washroom.id)/reviews/"
 
         print("Fetching reviews for \(washroom.title).")
         fetch(url: urlComponents.url!) { data in
@@ -124,7 +124,7 @@ class ThroneEndpoint {
     
     class func fetchReviews(madeBy user: User, completionHandler: @escaping ([Review]) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
-        urlComponents.path = "/users/\(user.id)/reviews"
+        urlComponents.path = "/users/\(user.id)/reviews/"
 
         print("Fetching reviews made by \(user.username).")
         fetch(url: urlComponents.url!) { data in
@@ -138,7 +138,7 @@ class ThroneEndpoint {
     
     class func fetchReview(matching id: Int, completionHandler: @escaping (Review) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
-        urlComponents.path = "/reviews/\(id)"
+        urlComponents.path = "/reviews/\(id)/"
 
         print("Fetching review matching \(id).")
         fetch(url: urlComponents.url!) { data in
@@ -152,7 +152,7 @@ class ThroneEndpoint {
     
     class func fetchUser(matching id: Int, completionHandler: @escaping (User) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
-        urlComponents.path = "/users/\(id)"
+        urlComponents.path = "/users/\(id)/"
 
         print("Fetching user matching \(id).")
         fetch(url: urlComponents.url!) { data in
@@ -166,7 +166,7 @@ class ThroneEndpoint {
     
     class func fetchCurrentUser(completionHandler: @escaping (User) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
-        urlComponents.path = "/user"
+        urlComponents.path = "/user/"
 
         print("Fetching current user.")
         fetch(url: urlComponents.url!) { data in
