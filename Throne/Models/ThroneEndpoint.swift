@@ -21,7 +21,7 @@ class ThroneEndpoint {
             URLQueryItem(name: "longitude", value: "\(location.longitude)"),
             URLQueryItem(name: "radius", value: "\(location.radius)")
         ]
-        print(urlComponents.url!)
+
         print("Fetching washrooms near \(location).")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
