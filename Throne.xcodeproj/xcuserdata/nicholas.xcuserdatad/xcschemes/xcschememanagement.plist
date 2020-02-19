@@ -3,11 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>SchemeUserState</key>
+	<dict/>
+	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>Throne.xcscheme_^#shared#^_</key>
+		<key>E176AEBB23E38B2A00EF8D15</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>0</integer>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E176AED423E38B2C00EF8D15</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E176AEDF23E38B2C00EF8D15</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

@@ -12,6 +12,7 @@
 		E11C9BED23F1DD850045663B /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C9BEC23F1DD850045663B /* Review.swift */; };
 		E11C9BEF23F1DF6D0045663B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C9BEE23F1DF6D0045663B /* User.swift */; };
 		E12211D523FB4E18006C99D2 /* ThroneEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12211D423FB4E18006C99D2 /* ThroneEndpoint.swift */; };
+		E13C489723FDFC38003B20A0 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1768D4D23FDEE2B00A9F098 /* AppConfiguration.swift */; };
 		E1580F2D23F768E20087DE0B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1580F2C23F768E10087DE0B /* LoginView.swift */; };
 		E1768D4E23FDEE2B00A9F098 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1768D4D23FDEE2B00A9F098 /* AppConfiguration.swift */; };
 		E176AEC023E38B2A00EF8D15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEBF23E38B2A00EF8D15 /* AppDelegate.swift */; };
@@ -378,6 +379,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E13C489723FDFC38003B20A0 /* AppConfiguration.swift in Sources */,
 				E17ABBFB23FAA65F004451C2 /* ServiceUtilities.swift in Sources */,
 				E17ABBF923FAA648004451C2 /* PersistentSettings.swift in Sources */,
 				E17ABBFA23FAA648004451C2 /* AuthenticationEndpoint.swift in Sources */,
