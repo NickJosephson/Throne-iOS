@@ -10,7 +10,7 @@ import Foundation
 
 /// Provides interaction with the API interface for Throne
 class ThroneEndpoint {
-    private static let host = URL(string: "https://api-dev.findmythrone.com")!
+    private static let host = AppConfiguration.apiAddress
     
     class func fetchWashrooms(near location: Location, maxResults: Int = 100,completionHandler: @escaping ([Washroom]) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
@@ -21,7 +21,7 @@ class ThroneEndpoint {
             URLQueryItem(name: "longitude", value: "\(location.longitude)"),
             URLQueryItem(name: "radius", value: "\(location.radius)")
         ]
-
+        print(urlComponents.url!)
         print("Fetching washrooms near \(location).")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
