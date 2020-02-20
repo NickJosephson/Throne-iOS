@@ -57,17 +57,17 @@ class LoginViewController: UIViewController, ASWebAuthenticationPresentationCont
         
         session = ASWebAuthenticationSession(url: url, callbackURLScheme: scheme) { callbackURL, error in
             guard error == nil, let callbackURL = callbackURL else {
-                print("ASWebAuthenticationSession failed: \(error.debugDescription)")
+                NSLog("ASWebAuthenticationSession failed: \(error.debugDescription)")
                 return
             }
             
             guard let queryItems = URLComponents(url: callbackURL, resolvingAgainstBaseURL: false)?.queryItems else {
-                print("ASWebAuthenticationSession failed: No query items in callback URL.")
+                NSLog("ASWebAuthenticationSession failed: No query items in callback URL.")
                 return
             }
             
             guard let authenticationCode = queryItems.filter({ $0.name == "code" }).first?.value else {
-                print("ASWebAuthenticationSession failed: No authentication code in callback URL.")
+                NSLog("ASWebAuthenticationSession failed: No authentication code in callback URL.")
                 return
             }
             

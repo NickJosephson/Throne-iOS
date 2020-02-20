@@ -22,7 +22,7 @@ class ThroneEndpoint {
             URLQueryItem(name: "radius", value: "\(location.radius)")
         ]
 
-        print("Fetching washrooms near \(location).")
+        NSLog("Fetching washrooms near \(location).")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
@@ -30,7 +30,7 @@ class ThroneEndpoint {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/buildings/\(building.id)/washrooms/"
 
-        print("Fetching washrooms in \(building.title).")
+        NSLog("Fetching washrooms in \(building.title).")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
@@ -38,7 +38,7 @@ class ThroneEndpoint {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/users/\(user.id)/favorites/"
 
-        print("Fetching washrooms favorited by \(user.username).")
+        NSLog("Fetching washrooms favorited by \(user.username).")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
@@ -46,7 +46,7 @@ class ThroneEndpoint {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/washrooms/\(id)/"
 
-        print("Fetching washroom matching \(id).")
+        NSLog("Fetching washroom matching \(id).")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
 
@@ -60,7 +60,7 @@ class ThroneEndpoint {
             URLQueryItem(name: "radius", value: "\(location.radius)")
         ]
 
-        print("Fetching Buildings near \(location).")
+        NSLog("Fetching Buildings near \(location).")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
@@ -68,7 +68,7 @@ class ThroneEndpoint {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/buildings/\(id)/"
 
-        print("Fetching building matching \(id).")
+        NSLog("Fetching building matching \(id).")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
@@ -76,7 +76,7 @@ class ThroneEndpoint {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/washrooms/\(washroom.id)/reviews/"
 
-        print("Fetching reviews for \(washroom.title).")
+        NSLog("Fetching reviews for \(washroom.title).")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
@@ -84,7 +84,7 @@ class ThroneEndpoint {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/users/\(user.id)/reviews/"
 
-        print("Fetching reviews made by \(user.username).")
+        NSLog("Fetching reviews made by \(user.username).")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
@@ -92,7 +92,7 @@ class ThroneEndpoint {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/reviews/\(id)/"
 
-        print("Fetching review matching \(id).")
+        NSLog("Fetching review matching \(id).")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
@@ -100,7 +100,7 @@ class ThroneEndpoint {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/users/\(id)/"
 
-        print("Fetching user matching \(id).")
+        NSLog("Fetching user matching \(id).")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
@@ -108,7 +108,7 @@ class ThroneEndpoint {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/user/"
 
-        print("Fetching current user.")
+        NSLog("Fetching current user.")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
@@ -123,15 +123,15 @@ class ThroneEndpoint {
                 
                 completionHandler(decoded)
             } catch DecodingError.dataCorrupted {
-                print("Error decoding response: Data is corrupted or invalid.")
+                NSLog("Error decoding response: Data is corrupted or invalid.")
             } catch let DecodingError.keyNotFound(key, _) {
-                print("Error decoding response: Key '\(key)' not found.")
+                NSLog("Error decoding response: Key '\(key)' not found.")
             } catch let DecodingError.valueNotFound(value, _) {
-                print("Error decoding response: Value '\(value)' not found.")
+                NSLog("Error decoding response: Value '\(value)' not found.")
             } catch let DecodingError.typeMismatch(type, _)  {
-                print("Error decoding response: Type '\(type)' mismatch.")
+                NSLog("Error decoding response: Type '\(type)' mismatch.")
             } catch {
-                print("Error decoding response.")
+                NSLog("Error decoding response.")
             }
         }
     }

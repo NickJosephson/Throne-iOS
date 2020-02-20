@@ -70,7 +70,7 @@ class AuthenticationEndpoint {
             if let tokensResponse = try? JSONDecoder().decode(TokensResponse.self, from: data) {
                 completionHandler(tokensResponse)
             } else {
-                print("Error decoding fetch tokens response.")
+                NSLog("Error decoding fetch tokens response.")
             }
         }
     }
@@ -96,7 +96,7 @@ class AuthenticationEndpoint {
             if let tokensResponse = try? JSONDecoder().decode(TokensResponse.self, from: data) {
                 completionHandler(tokensResponse)
             } else {
-                print("Error decoding refresh tokens response.")
+                NSLog("Error decoding refresh tokens response.")
             }
         }
     }

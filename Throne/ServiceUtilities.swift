@@ -43,20 +43,20 @@ func fetch(url: URL, completionHandler: @escaping (Data) -> Void) {
 func performRequest(with request: URLRequest, completionHandler: @escaping (Data) -> Void) {
     let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
         if let error = error {
-            print("Fetching error: \(error)")
+            NSLog("Fetching error: \(error)")
             return
         }
 
         if let httpResponse = response as? HTTPURLResponse {
             if httpResponse.statusCode == 401 {
-                print("Fetching error: Unauthorized, attempting login refresh.")
+                NSLog("Fetching error: Unauthorized, attempting login refresh.")
                 LoginManager.shared.refreshLogin()
                 return
             }
         }
 
         guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
-            print("Fetching error: Unexpected status code: \(String(describing: response))")
+            NSLog("Fetching error: Unexpected status code: \(String(describing: response))")
             return
         }
 
