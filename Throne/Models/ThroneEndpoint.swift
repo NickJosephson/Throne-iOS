@@ -114,9 +114,23 @@ class ThroneEndpoint {
     
     private class func fetchAndDecode<T: Decodable>(url: URL, completionHandler: @escaping (T) -> Void) {
         fetch(url: url) { data in
-            if let decoded = try? JSONDecoder().decode(T.self, from: data) {
+            do {
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = JSONDecoder.DateDecodingStrategy.iso8601
+                let decoded: T
+                
+                try decoded = decoder.decode(T.self, from: data)
+                
                 completionHandler(decoded)
-            } else {
+            } catch DecodingError.dataCorrupted {
+                print("Error decoding response: Data is corrupted or invalid.")
+            } catch let DecodingError.keyNotFound(key, _) {
+                print("Error decoding response: Key '\(key)' not found.")
+            } catch let DecodingError.valueNotFound(value, _) {
+                print("Error decoding response: Value '\(value)' not found.")
+            } catch let DecodingError.typeMismatch(type, _)  {
+                print("Error decoding response: Type '\(type)' mismatch.")
+            } catch {
                 print("Error decoding response.")
             }
         }
