@@ -32,7 +32,7 @@ struct Washroom: Codable {
         case location
         case gender
         case floor
-        case buildingID = "building_ID"
+        case buildingID = "building_id"
         case createdAt = "created_at"
         case overallRating = "overall_rating"
         case averageRatings = "average_ratings"

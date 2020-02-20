@@ -19,8 +19,8 @@ struct Review: Codable {
     
     private enum CodingKeys: String, CodingKey {
         case id
-        case washroomID = "washroom_ID"
-        case userID = "user_ID"
+        case washroomID = "washroom_id"
+        case userID = "user_id"
         case createdAt = "created_at"
         case upvoteCount = "upvote_count"
         case ratings
