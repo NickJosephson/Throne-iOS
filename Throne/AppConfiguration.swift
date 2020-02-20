@@ -15,7 +15,7 @@ class AppConfiguration {
     static let authenticationScope = "email+openid"
     
     #if LOCAL
-        static let apiAddress = URL(string: "https://localhost:5000")!
+        static let apiAddress = URL(string: "http://localhost:5000")!
     #elseif DEBUG
         static let apiAddress = URL(string: "https://api-dev.findmythrone.com")!
     #else
