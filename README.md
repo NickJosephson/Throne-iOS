@@ -22,4 +22,4 @@ Android | [Throne-Android](https://github.com/NickJosephson/Throne-Android) | [A
 
 ## Documentation
 
-* [Setup](SETUP.md)
+* [Setup](docs/SETUP.md)
