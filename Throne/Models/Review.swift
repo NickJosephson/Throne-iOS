@@ -14,7 +14,7 @@ struct Review: Codable {
     let userID: Int
     let createdAt: Date
     let upvoteCount: Int
-    let ratings: [String: Int]
+    let ratings: Washroom.Ratings
     let comment: String?
     
     private enum CodingKeys: String, CodingKey {
@@ -25,5 +25,13 @@ struct Review: Codable {
         case upvoteCount = "upvote_count"
         case ratings
         case comment
+    }
+    
+    func getRelativeDateDescription() -> String {
+        let df = DateFormatter()
+        df.doesRelativeDateFormatting = true
+        df.dateStyle = .short
+        df.timeStyle = .short
+        return df.string(from: self.createdAt)
     }
 }

@@ -31,8 +31,8 @@ struct RoomsListView: View {
                     VStack(alignment: .leading) {
                         Text(washroom.title)
                         HStack {
-                            ForEach(washroom.amenities, id: \.self) { amenity in
-                                Text(amenity).font(.subheadline).foregroundColor(.secondary)
+                            ForEach(washroom.amenities.filter { $0.emoji != nil } , id: \.self) { amenity in
+                                Text(amenity.emoji!).font(.subheadline).foregroundColor(.secondary)
                             }
                         }
                     }

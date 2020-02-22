@@ -13,6 +13,9 @@
 		E11C9BEF23F1DF6D0045663B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C9BEE23F1DF6D0045663B /* User.swift */; };
 		E12211D523FB4E18006C99D2 /* ThroneEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12211D423FB4E18006C99D2 /* ThroneEndpoint.swift */; };
 		E13C489723FDFC38003B20A0 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1768D4D23FDEE2B00A9F098 /* AppConfiguration.swift */; };
+		E146A6DE2400A1F400F73A0B /* AmenitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E146A6DD2400A1F400F73A0B /* AmenitiesView.swift */; };
+		E146A6E02400A21E00F73A0B /* ReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E146A6DF2400A21E00F73A0B /* ReviewsView.swift */; };
+		E146A6E22400A28E00F73A0B /* Reviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = E146A6E12400A28E00F73A0B /* Reviews.swift */; };
 		E1580F2D23F768E20087DE0B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1580F2C23F768E10087DE0B /* LoginView.swift */; };
 		E1768D4E23FDEE2B00A9F098 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1768D4D23FDEE2B00A9F098 /* AppConfiguration.swift */; };
 		E176AEC023E38B2A00EF8D15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEBF23E38B2A00EF8D15 /* AppDelegate.swift */; };
@@ -65,6 +68,9 @@
 		E11C9BEC23F1DD850045663B /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		E11C9BEE23F1DF6D0045663B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E12211D423FB4E18006C99D2 /* ThroneEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThroneEndpoint.swift; sourceTree = "<group>"; };
+		E146A6DD2400A1F400F73A0B /* AmenitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenitiesView.swift; sourceTree = "<group>"; };
+		E146A6DF2400A21E00F73A0B /* ReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsView.swift; sourceTree = "<group>"; };
+		E146A6E12400A28E00F73A0B /* Reviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reviews.swift; sourceTree = "<group>"; };
 		E1580F2C23F768E10087DE0B /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E1768D4D23FDEE2B00A9F098 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		E176AEBC23E38B2A00EF8D15 /* Throne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Throne.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -193,6 +199,8 @@
 				E176AEC623E38B2A00EF8D15 /* ContentView.swift */,
 				E176AEFB23E3AA3500EF8D15 /* NearMeView.swift */,
 				E176AEF723E3A62D00EF8D15 /* WashroomDetailView.swift */,
+				E146A6DD2400A1F400F73A0B /* AmenitiesView.swift */,
+				E146A6DF2400A21E00F73A0B /* ReviewsView.swift */,
 				E176AEF323E39CC900EF8D15 /* MapView.swift */,
 				E176AEF923E3A88E00EF8D15 /* ProfileView.swift */,
 				E176AEF523E39CFD00EF8D15 /* SettingsView.swift */,
@@ -211,6 +219,7 @@
 				E11C9BEC23F1DD850045663B /* Review.swift */,
 				E11C9BEE23F1DF6D0045663B /* User.swift */,
 				E1E0738523E561BB00D4AE5E /* NearMe.swift */,
+				E146A6E12400A28E00F73A0B /* Reviews.swift */,
 				E1CDA0B723E404A6007ADA73 /* PersistentSettings.swift */,
 				E1E0738323E5612400D4AE5E /* LoginManager.swift */,
 				E1CFDE6723FA4FBF007423FD /* AuthenticationEndpoint.swift */,
@@ -351,6 +360,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E176AEFA23E3A88E00EF8D15 /* ProfileView.swift in Sources */,
+				E146A6E22400A28E00F73A0B /* Reviews.swift in Sources */,
 				E1E0738423E5612400D4AE5E /* LoginManager.swift in Sources */,
 				E1CDA0B823E404A6007ADA73 /* PersistentSettings.swift in Sources */,
 				E12211D523FB4E18006C99D2 /* ThroneEndpoint.swift in Sources */,
@@ -362,6 +372,7 @@
 				E176AEF423E39CC900EF8D15 /* MapView.swift in Sources */,
 				E11C9BEB23F1DBB60045663B /* Building.swift in Sources */,
 				E176AEF623E39CFD00EF8D15 /* SettingsView.swift in Sources */,
+				E146A6E02400A21E00F73A0B /* ReviewsView.swift in Sources */,
 				E176AEFE23E3ACE400EF8D15 /* ServiceUtilities.swift in Sources */,
 				E176AEFC23E3AA3500EF8D15 /* NearMeView.swift in Sources */,
 				E176AEC723E38B2A00EF8D15 /* ContentView.swift in Sources */,
@@ -372,6 +383,7 @@
 				E176AEC223E38B2A00EF8D15 /* SceneDelegate.swift in Sources */,
 				E1E0738823E561DD00D4AE5E /* Washroom.swift in Sources */,
 				E11C9BEF23F1DF6D0045663B /* User.swift in Sources */,
+				E146A6DE2400A1F400F73A0B /* AmenitiesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
