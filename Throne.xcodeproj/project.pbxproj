@@ -492,14 +492,14 @@
 				CODE_SIGN_ENTITLEMENTS = Throne/Throne.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Throne/Preview Content\"";
-				DEVELOPMENT_TEAM = 2TC4R33FG5;
+				DEVELOPMENT_TEAM = DNH2Q695HA;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Throne/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.diljotsg.Throne;
+				PRODUCT_BUNDLE_IDENTIFIER = com.findmythrone.Throne;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -669,14 +669,14 @@
 				CODE_SIGN_ENTITLEMENTS = Throne/Throne.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Throne/Preview Content\"";
-				DEVELOPMENT_TEAM = 2TC4R33FG5;
+				DEVELOPMENT_TEAM = DNH2Q695HA;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Throne/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.diljotsg.Throne;
+				PRODUCT_BUNDLE_IDENTIFIER = com.findmythrone.Throne;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -690,14 +690,14 @@
 				CODE_SIGN_ENTITLEMENTS = Throne/Throne.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Throne/Preview Content\"";
-				DEVELOPMENT_TEAM = 2TC4R33FG5;
+				DEVELOPMENT_TEAM = DNH2Q695HA;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Throne/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.diljotsg.Throne;
+				PRODUCT_BUNDLE_IDENTIFIER = com.findmythrone.Throne;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
