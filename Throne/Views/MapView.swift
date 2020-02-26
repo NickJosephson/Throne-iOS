@@ -16,6 +16,7 @@ struct MapView: View {
             MapUIView()
             .edgesIgnoringSafeArea(.all)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
