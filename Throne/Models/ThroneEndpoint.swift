@@ -12,17 +12,21 @@ import Foundation
 class ThroneEndpoint {
     private static let host = URL(string: "https://api-dev.findmythrone.com")!
     
-    class func fetchWashrooms(near location: Location, completionHandler: @escaping ([Washroom]) -> Void) {
+    class func fetchWashrooms(near location: Location?, completionHandler: @escaping ([Washroom]) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/washrooms/"
         urlComponents.queryItems = [
             URLQueryItem(name: "maxWashrooms", value: "\(100)"),
-            URLQueryItem(name: "latitude", value: "\(location.latitude)"),
-            URLQueryItem(name: "longitude", value: "\(location.longitude)"),
-            URLQueryItem(name: "radius", value: "\(100)")
         ]
+        if location != nil {
+            urlComponents.queryItems!.append(contentsOf: [
+                URLQueryItem(name: "latitude", value: "\(location!.latitude)"),
+                URLQueryItem(name: "longitude", value: "\(location!.longitude)"),
+                URLQueryItem(name: "radius", value: "\(1000)")
+            ])
+        }
 
-        print("Fetching washrooms near \(location).")
+        print("Fetching washrooms near \(String(describing: location)).")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     

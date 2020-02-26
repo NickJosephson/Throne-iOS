@@ -8,14 +8,16 @@
 
 import Foundation
 import Combine
+import CoreLocation
 
 /// Manage the state of user authentication and credentials.
 final class LoginManager: ObservableObject {
     static var shared = LoginManager() // Shared instance to use across application
 
+    private let locationManager = CLLocationManager()
     private let settings = PersistentSettings()
     private var refreshAttempted = false // Only attempt token refresh once
-
+    
     /// Whether the user is currently logged in.
     ///
     /// Logged in means the refresh token is currently believed to be valid.
@@ -70,6 +72,7 @@ final class LoginManager: ObservableObject {
                     self.isLoggedIn = true
                     
                     print("Login completed.")
+                    self.locationManager.requestWhenInUseAuthorization()
                 } else {
                     print("Login error: Failed to verify access token.")
                 }

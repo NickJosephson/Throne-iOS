@@ -7,8 +7,18 @@
 //
 
 import Foundation
+import CoreLocation
 
 struct Location: Codable {
     let latitude: Double
     let longitude: Double
+    
+    static func currentLocation() -> Location? {
+        let manager = CLLocationManager()
+        if let currLocation = manager.location {
+            return Location(latitude: currLocation.coordinate.latitude.binade, longitude: currLocation.coordinate.longitude.binade)
+        } else {
+            return nil
+        }
+    }
 }

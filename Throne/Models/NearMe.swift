@@ -7,18 +7,31 @@
 //
 
 import Foundation
+import CoreLocation
 
-final class NearMe: ObservableObject {
+final class NearMe: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var washrooms: [Washroom] = []
-
-    init() {
+    
+    private let locationManager = CLLocationManager()
+    private var currentLocation = Location.currentLocation()
+    
+    override init() {
+        super.init()
+        
+        fetchWashrooms()
+        locationManager.delegate = self
+        locationManager.startMonitoringSignificantLocationChanges()
+    }
+    
+    func locationManager(_ manager: CLLocationManager,  didUpdateLocations locations: [CLLocation]) {
+        NSLog("User location updated, start washrooms update.")
+        let lastLocation = locations.last!
+        currentLocation = Location(latitude: lastLocation.coordinate.latitude.binade, longitude: lastLocation.coordinate.longitude.binade)
         fetchWashrooms()
     }
     
     private func fetchWashrooms() {
-        let location = Location(latitude: 0, longitude: 0)
-        
-        ThroneEndpoint.fetchWashrooms(near: location) { washrooms in
+        ThroneEndpoint.fetchWashrooms(near: currentLocation) { washrooms in
             DispatchQueue.main.async {
                 self.washrooms = washrooms
             }
