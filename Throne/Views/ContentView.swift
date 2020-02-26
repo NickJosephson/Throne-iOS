@@ -34,7 +34,7 @@ struct MainTabView: View {
                     }
                 }
                 .tag(0)
-            MapView(startLocation: nil)
+            MapView()
                 .tabItem {
                     VStack {
                         Image(systemName: "map")

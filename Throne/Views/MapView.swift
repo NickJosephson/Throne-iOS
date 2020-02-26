@@ -11,19 +11,16 @@ import MapKit
 import CoreLocation
 
 struct MapView: View {
-    @ObservedObject var model = NearMe()
-    let startLocation: Location?
-    
     var body: some View {
         NavigationView {
             MapUIView()
-                .edgesIgnoringSafeArea(.all)
+            .edgesIgnoringSafeArea(.all)
         }
     }
 }
 
 struct MapPreviewView: View {
-    let startLocation: Location?
+    let startLocation: Location
     
     var body: some View {
         MapUIView(startLocation: startLocation, interactive: false)
@@ -31,14 +28,14 @@ struct MapPreviewView: View {
 }
 
 struct MapDetailView: View {
-    let startLocation: Location?
+    let startLocation: Location
     
     var body: some View {
         MapUIView(startLocation: startLocation)
             .edgesIgnoringSafeArea(.all)
             .navigationBarTitle("Location", displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {
-                let item = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(self.startLocation!)))
+                let item = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(self.startLocation)))
                 item.openInMaps(launchOptions: nil)
             } , label: { Text("Open in Maps") }))
     }
@@ -56,16 +53,17 @@ struct MapUIView: UIViewRepresentable {
         mapView.showsCompass = false
         mapView.isUserInteractionEnabled = interactive
         mapView.showsBuildings = true
-//        mapView.mapType = .hybrid
+        mapView.mapType = .standard
+        
         if startLocation != nil {
-//            mapView.setCenter(CLLocationCoordinate2D(latitude: startLocation!.latitude, longitude: startLocation!.longitude), animated: false)
             mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: startLocation!.latitude, longitude: startLocation!.longitude), span: MKCoordinateSpan(latitudeDelta: 0.0025, longitudeDelta: 0.0025)), animated: false)
             let marker = MKPointAnnotation()
-            marker.title = "Washroom"
+//            marker.title = "Washroom"
             marker.coordinate = CLLocationCoordinate2D(latitude: startLocation!.latitude, longitude: startLocation!.longitude)
             mapView.addAnnotation(marker)
             mapView.selectAnnotation(marker, animated: true)
         }
+        
         return mapView
     }
 
@@ -75,6 +73,6 @@ struct MapUIView: UIViewRepresentable {
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView(startLocation: nil)
+        MapView()
     }
 }

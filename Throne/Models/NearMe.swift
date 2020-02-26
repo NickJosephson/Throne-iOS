@@ -36,7 +36,12 @@ final class NearMe: NSObject, ObservableObject, CLLocationManagerDelegate {
         fetchWashrooms()
     }
     
-    private func fetchWashrooms() {        
+    private func fetchWashrooms() {
+        if currentLocation == nil {
+            NSLog("Cancelling washroom fetch: No user location.")
+            return
+        }
+        
         ThroneEndpoint.fetchWashrooms(near: currentLocation) { washrooms in
             DispatchQueue.main.async {
                 self.washrooms = washrooms
