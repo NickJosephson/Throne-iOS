@@ -11,34 +11,32 @@ import MapKit
 import CoreLocation
 
 struct MapView: View {
+    let startLocation: Location?
+    
     var body: some View {
-        ZStack(alignment: .topTrailing) {
-            MapUIView().edgesIgnoringSafeArea(.all)
-            Button(action: {}) {
-                Image(systemName: "location.fill")
-                    .font(.headline)
-            }
-            .padding()
-            .background(Color(UIColor.systemBackground))
-            .cornerRadius(10)
-            .shadow(radius: 5)
-            .padding()
-            
-        }
-        
-            
+        MapUIView(startLocation: startLocation).edgesIgnoringSafeArea(.all)
     }
 }
 
 struct MapUIView: UIViewRepresentable {
     let mapView = MKMapView()
     let location = CLLocationManager()
-    
+    let startLocation: Location?
+
     func makeUIView(context: Context) -> MKMapView {
         location.requestWhenInUseAuthorization()
         mapView.showsUserLocation = true
         mapView.showsCompass = false
         mapView.showsBuildings = true
+//        mapView.mapType = .hybrid
+        if startLocation != nil {
+//            mapView.setCenter(CLLocationCoordinate2D(latitude: startLocation!.latitude, longitude: startLocation!.longitude), animated: false)
+            mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: startLocation!.latitude, longitude: startLocation!.longitude), span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)), animated: false)
+            let marker = MKPointAnnotation()
+            marker.title = "Washroom"
+            marker.coordinate = CLLocationCoordinate2D(latitude: startLocation!.latitude, longitude: startLocation!.longitude)
+            mapView.addAnnotation(marker)
+        }
         return mapView
     }
 
@@ -48,20 +46,6 @@ struct MapUIView: UIViewRepresentable {
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView()
+        MapView(startLocation: nil)
     }
 }
-//
-//class MapViewController: UIViewController {
-//    let mapView = MKMapView()
-//    let location = CLLocationManager()
-//
-//    override func viewDidLoad() {
-//         location.requestWhenInUseAuthorization()
-//         mapView.showsUserLocation = true
-//         mapView.showsCompass = true
-//         mapView.showsBuildings = true
-//         let buttonItem = MKUserTrackingBarButtonItem(mapView: mapView)
-//         mapView.navigationItem.rightBarButtonItem = buttonItem
-//    }
-//}
