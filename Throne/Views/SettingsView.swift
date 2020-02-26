@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @ObservedObject var settings = UserSettings()
+    @ObservedObject var settings = PersistentSettings()
     
     var body: some View {
         Form {
@@ -19,7 +19,7 @@ struct SettingsView: View {
                 }
             }
             Section {
-                Button(action: { LoginManager.sharedInstance.logout() }) {
+                Button(action: { LoginManager.shared.logout() }) {
                     Text("Log Out")
                 }
             }

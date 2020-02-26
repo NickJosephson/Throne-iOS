@@ -7,8 +7,26 @@
 //
 
 import Foundation
+import CoreLocation
 
 struct Location: Codable {
     let latitude: Double
     let longitude: Double
+    let radius: Int = 1000 // Km
+
+    init(latitude: Double, longitude: Double) {
+        self.latitude = latitude
+        self.longitude = longitude
+    }
+    
+    init(_ coordinate: CLLocationCoordinate2D) {
+        self.latitude = coordinate.latitude
+        self.longitude = coordinate.longitude
+    }
+}
+
+extension CLLocationCoordinate2D {
+    init(_ location: Location) {
+        self.init(latitude: location.latitude, longitude: location.longitude)
+    }
 }

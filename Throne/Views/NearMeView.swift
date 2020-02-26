@@ -9,30 +9,50 @@
 import SwiftUI
 
 struct NearMeView: View {
-    @ObservedObject var settings = UserSettings()
+    @ObservedObject var settings = PersistentSettings()
+    @ObservedObject var model = NearMe()
 
     var body: some View {
         NavigationView {
-            RoomsListView()
-            .navigationBarTitle(Text("Near Me"))
+            if model.currentLocation == nil {
+                Button(action: {
+                    UIApplication.shared.open(URL(string:UIApplication.openSettingsURLString)!)
+                }, label: { Text("Enable Location") })
+                .padding()
+                .foregroundColor(.white)
+                .background(Color.green)
+                .cornerRadius(10)
+                .padding()
+                .navigationBarTitle(Text("Near Me"))
+            } else {
+                RoomsListView(model: model)
+                .navigationBarTitle(Text("Near Me"))
+            }
             Text("No \(settings.preferredTerm.capitalized) Selected")
+            .foregroundColor(.secondary)
         }
         .navigationViewStyle(DoubleColumnNavigationViewStyle())
     }
 }
 
 struct RoomsListView: View {
-    @ObservedObject var model = NearMeListModel()
+    @ObservedObject var settings = PersistentSettings()
+    @ObservedObject var model: NearMe
     
     var body: some View {
         List {
+            if model.washrooms.count == 0 {
+                Text("No \(settings.preferredTerm.capitalized) Near You")
+                .foregroundColor(.secondary)
+                .navigationBarTitle(Text("Near Me"))
+            }
             ForEach(model.washrooms, id: \.title) { washroom in
                 NavigationLink(destination: WashroomDetailView(washroom: washroom)) {
                     VStack(alignment: .leading) {
                         Text(washroom.title)
                         HStack {
-                            ForEach(washroom.amenities, id: \.self) { amenity in
-                                Text(amenity).font(.subheadline).foregroundColor(.secondary)
+                            ForEach(washroom.amenities.filter { $0.emoji != nil } , id: \.self) { amenity in
+                                Text(amenity.emoji!).font(.subheadline).foregroundColor(.secondary)
                             }
                         }
                     }
@@ -51,19 +71,3 @@ struct NearMeView_Previews: PreviewProvider {
         NearMeView()
     }
 }
-
-
-struct Room {
-    var title: String
-    var amenities: [String]
-    var rating: String
-}
-
-var rooms = [
-    Room(title: "Tache Hall", amenities: ["🚽","🧻","🧴"], rating: "🤩"),
-    Room(title: "6th Floor E2", amenities: ["🚽","🧻","🧴"], rating: "💩"),
-    Room(title: "Aaron's House", amenities: ["🚽","🛀","🚻"], rating: "👍"),
-    Room(title: "151 Research", amenities: ["🚽","🧻","🧴"], rating: "💤"),
-    Room(title: "University Center", amenities: ["🚽","🧻","🧴"], rating: "🤮")
-]
-
