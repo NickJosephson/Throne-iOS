@@ -16,7 +16,7 @@ final class NearMe: ObservableObject {
     }
     
     private func fetchWashrooms() {
-        let location = Location(latitude: 200, longitude: 200)
+        let location = Location(latitude: 49.810, longitude: -97.133)
         
         ThroneEndpoint.fetchWashrooms(near: location) { washrooms in
             DispatchQueue.main.async {

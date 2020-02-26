@@ -22,7 +22,7 @@ struct ReviewsView: View {
                     VStack(alignment: .leading) {
                         HStack {
                             Image(systemName: "person.circle")
-                            Text("User \(review.userID)")
+                            Text("\(review.user.username)")
                             Spacer()
                             Text("\(review.getRelativeDateDescription())")
                         }
