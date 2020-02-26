@@ -14,7 +14,22 @@ struct MapView: View {
     let startLocation: Location?
     
     var body: some View {
-        MapUIView(startLocation: startLocation).edgesIgnoringSafeArea(.all)
+        MapUIView(startLocation: startLocation)
+            .edgesIgnoringSafeArea(.all)
+    }
+}
+
+struct MapDetailView: View {
+    let startLocation: Location?
+    
+    var body: some View {
+        MapUIView(startLocation: startLocation)
+            .edgesIgnoringSafeArea(.vertical)
+            .navigationBarTitle("Location", displayMode: .inline)
+            .navigationBarItems(trailing: Button(action: {
+                let item = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(self.startLocation!)))
+                item.openInMaps(launchOptions: nil)
+            } , label: { Text("Open in Maps") }))
     }
 }
 
@@ -31,7 +46,7 @@ struct MapUIView: UIViewRepresentable {
 //        mapView.mapType = .hybrid
         if startLocation != nil {
 //            mapView.setCenter(CLLocationCoordinate2D(latitude: startLocation!.latitude, longitude: startLocation!.longitude), animated: false)
-            mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: startLocation!.latitude, longitude: startLocation!.longitude), span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)), animated: false)
+            mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: startLocation!.latitude, longitude: startLocation!.longitude), span: MKCoordinateSpan(latitudeDelta: 0.0025, longitudeDelta: 0.0025)), animated: false)
             let marker = MKPointAnnotation()
             marker.title = "Washroom"
             marker.coordinate = CLLocationCoordinate2D(latitude: startLocation!.latitude, longitude: startLocation!.longitude)

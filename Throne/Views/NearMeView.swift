@@ -10,22 +10,42 @@ import SwiftUI
 
 struct NearMeView: View {
     @ObservedObject var settings = PersistentSettings()
+    @ObservedObject var model = NearMe()
 
     var body: some View {
         NavigationView {
-            RoomsListView()
-            .navigationBarTitle(Text("Near Me"))
+            if model.currentLocation == nil {
+                Button(action: {
+                    UIApplication.shared.open(URL(string:UIApplication.openSettingsURLString)!)
+                }, label: { Text("Enable Location") })
+                .padding()
+                .foregroundColor(.white)
+                .background(Color.green)
+                .cornerRadius(10)
+                .padding()
+                .navigationBarTitle(Text("Near Me"))
+            } else {
+                RoomsListView(model: model)
+                .navigationBarTitle(Text("Near Me"))
+            }
             Text("No \(settings.preferredTerm.capitalized) Selected")
+            .foregroundColor(.secondary)
         }
         .navigationViewStyle(DoubleColumnNavigationViewStyle())
     }
 }
 
 struct RoomsListView: View {
-    @ObservedObject var model = NearMe()
+    @ObservedObject var settings = PersistentSettings()
+    @ObservedObject var model: NearMe
     
     var body: some View {
         List {
+            if model.washrooms.count == 0 {
+                Text("No \(settings.preferredTerm.capitalized) Near You")
+                .foregroundColor(.secondary)
+                .navigationBarTitle(Text("Near Me"))
+            }
             ForEach(model.washrooms, id: \.title) { washroom in
                 NavigationLink(destination: WashroomDetailView(washroom: washroom)) {
                     VStack(alignment: .leading) {

@@ -14,12 +14,19 @@ struct Location: Codable {
     let longitude: Double
     let radius: Int = 1000 // meters
 
-    static func currentLocation() -> Location? {
-        let manager = CLLocationManager()
-        if let currLocation = manager.location {
-            return Location(latitude: currLocation.coordinate.latitude.binade, longitude: currLocation.coordinate.longitude.binade)
-        } else {
-            return nil
-        }
+    init(latitude: Double, longitude: Double) {
+        self.latitude = latitude
+        self.longitude = longitude
+    }
+    
+    init(_ coordinate: CLLocationCoordinate2D) {
+        self.latitude = coordinate.latitude
+        self.longitude = coordinate.longitude
+    }
+}
+
+extension CLLocationCoordinate2D {
+    init(_ location: Location) {
+        self.init(latitude: location.latitude, longitude: location.longitude)
     }
 }
