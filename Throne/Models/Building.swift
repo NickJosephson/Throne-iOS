@@ -14,9 +14,9 @@ struct Building: Codable {
     let location: Location
     let createdAt: Date
     let overallRating: Double
-    let bestRatings: [String: Double]
-    let amenities: [String]
-        
+    let bestRatings: Washroom.Ratings
+    let amenities: [Washroom.Amenity]
+     
     private enum CodingKeys: String, CodingKey {
         case id
         case title
