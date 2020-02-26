@@ -10,10 +10,10 @@ import Foundation
 
 /// Provides interaction with the AWS Cognito OAuth2 authentication interface for Throne
 class AuthenticationEndpoint {
-    private static let host = URL(string: "https://login.findmythrone.com")!
-    private static let clientID = "7of5m2ips5c281ocb35neum748"
-    private static let scope = "email+openid"
-    private static let redirect = "throne://"
+    private static let host = AppConfiguration.authenticationLoginAddress
+    private static let clientID = AppConfiguration.authenticationClientID
+    private static let scope = AppConfiguration.authenticationScope
+    private static let redirect = AppConfiguration.authenticationLoginRedirect
     
     /// URL of the AWS Cognito hosted login webpage
     class var loginAddress: URL {
@@ -70,7 +70,7 @@ class AuthenticationEndpoint {
             if let tokensResponse = try? JSONDecoder().decode(TokensResponse.self, from: data) {
                 completionHandler(tokensResponse)
             } else {
-                print("Error decoding fetch tokens response.")
+                NSLog("Error decoding fetch tokens response.")
             }
         }
     }
@@ -96,7 +96,7 @@ class AuthenticationEndpoint {
             if let tokensResponse = try? JSONDecoder().decode(TokensResponse.self, from: data) {
                 completionHandler(tokensResponse)
             } else {
-                print("Error decoding refresh tokens response.")
+                NSLog("Error decoding refresh tokens response.")
             }
         }
     }

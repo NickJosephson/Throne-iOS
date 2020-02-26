@@ -56,7 +56,7 @@ final class LoginManager: ObservableObject {
             self.settings.accessToken = nil
             self.settings.refreshToken = nil
             
-            print("Log out completed.")
+            NSLog("Log out completed.")
         }
     }
     
@@ -71,10 +71,10 @@ final class LoginManager: ObservableObject {
                     self.refreshAttempted = false
                     self.isLoggedIn = true
                     
-                    print("Login completed.")
                     self.locationManager.requestWhenInUseAuthorization()
+                    NSLog("Login completed.")
                 } else {
-                    print("Login error: Failed to verify access token.")
+                    NSLog("Login error: Failed to verify access token.")
                 }
             }
         }
@@ -91,7 +91,7 @@ final class LoginManager: ObservableObject {
     /// If a refresh has already been attempted, a log out is performed.
     func refreshLogin() {
         if refreshAttempted {
-            print("Login refresh error: Already attempted, logging out.")
+            NSLog("Login refresh error: Already attempted, logging out.")
             logout()
             return
         }
@@ -108,15 +108,15 @@ final class LoginManager: ObservableObject {
                         self.refreshAttempted = false
                         self.isLoggedIn = true
                         
-                        print("Access token refreshed.")
+                        NSLog("Access token refreshed.")
                     } else {
-                        print("Login refresh error: Failed to verify new access token, logging out.")
+                        NSLog("Login refresh error: Failed to verify new access token, logging out.")
                         self.logout()
                     }
                 }
             }
         } else {
-            print("Login refresh error: No refresh token found, logging out.")
+            NSLog("Login refresh error: No refresh token found, logging out.")
             logout()
         }
     }

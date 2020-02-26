@@ -10,23 +10,23 @@ import Foundation
 
 /// Provides interaction with the API interface for Throne
 class ThroneEndpoint {
-    private static let host = URL(string: "https://api-dev.findmythrone.com")!
+    private static let host = AppConfiguration.apiAddress
     
-    class func fetchWashrooms(near location: Location?, completionHandler: @escaping ([Washroom]) -> Void) {
+    class func fetchWashrooms(near location: Location?, maxResults: Int = 100, completionHandler: @escaping ([Washroom]) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/washrooms/"
         urlComponents.queryItems = [
-            URLQueryItem(name: "maxWashrooms", value: "\(100)"),
+            URLQueryItem(name: "max_results", value: "\(maxResults)"),
         ]
         if location != nil {
             urlComponents.queryItems!.append(contentsOf: [
                 URLQueryItem(name: "latitude", value: "\(location!.latitude)"),
                 URLQueryItem(name: "longitude", value: "\(location!.longitude)"),
-                URLQueryItem(name: "radius", value: "\(1000)")
+                URLQueryItem(name: "radius", value: "\(location!.radius)")
             ])
         }
 
-        print("Fetching washrooms near \(String(describing: location)).")
+        NSLog("Fetching washrooms near \(location).")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
@@ -34,7 +34,7 @@ class ThroneEndpoint {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/buildings/\(building.id)/washrooms/"
 
-        print("Fetching washrooms in \(building.title).")
+        NSLog("Fetching washrooms in \(building.title).")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
@@ -42,7 +42,7 @@ class ThroneEndpoint {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/users/\(user.id)/favorites/"
 
-        print("Fetching washrooms favorited by \(user.username).")
+        NSLog("Fetching washrooms favorited by \(user.username).")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
@@ -50,21 +50,21 @@ class ThroneEndpoint {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/washrooms/\(id)/"
 
-        print("Fetching washroom matching \(id).")
+        NSLog("Fetching washroom matching \(id).")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
 
-    class func fetchBuildings(near location: Location, completionHandler: @escaping ([Building]) -> Void) {
+    class func fetchBuildings(near location: Location, maxResults: Int = 100, completionHandler: @escaping ([Building]) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/buildings/"
         urlComponents.queryItems = [
-            URLQueryItem(name: "maxWashrooms", value: "\(100)"),
+            URLQueryItem(name: "max_results", value: "\(maxResults)"),
             URLQueryItem(name: "latitude", value: "\(location.latitude)"),
             URLQueryItem(name: "longitude", value: "\(location.longitude)"),
-            URLQueryItem(name: "radius", value: "\(100)")
+            URLQueryItem(name: "radius", value: "\(location.radius)")
         ]
 
-        print("Fetching Buildings near \(location).")
+        NSLog("Fetching Buildings near \(location).")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
@@ -72,7 +72,7 @@ class ThroneEndpoint {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/buildings/\(id)/"
 
-        print("Fetching building matching \(id).")
+        NSLog("Fetching building matching \(id).")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
@@ -80,7 +80,7 @@ class ThroneEndpoint {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/washrooms/\(washroom.id)/reviews/"
 
-        print("Fetching reviews for \(washroom.title).")
+        NSLog("Fetching reviews for \(washroom.title).")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
@@ -88,7 +88,7 @@ class ThroneEndpoint {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/users/\(user.id)/reviews/"
 
-        print("Fetching reviews made by \(user.username).")
+        NSLog("Fetching reviews made by \(user.username).")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
@@ -96,7 +96,7 @@ class ThroneEndpoint {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/reviews/\(id)/"
 
-        print("Fetching review matching \(id).")
+        NSLog("Fetching review matching \(id).")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
@@ -104,7 +104,7 @@ class ThroneEndpoint {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/users/\(id)/"
 
-        print("Fetching user matching \(id).")
+        NSLog("Fetching user matching \(id).")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
@@ -112,16 +112,30 @@ class ThroneEndpoint {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/user/"
 
-        print("Fetching current user.")
+        NSLog("Fetching current user.")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
     private class func fetchAndDecode<T: Decodable>(url: URL, completionHandler: @escaping (T) -> Void) {
         fetch(url: url) { data in
-            if let decoded = try? JSONDecoder().decode(T.self, from: data) {
+            do {
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = JSONDecoder.DateDecodingStrategy.iso8601
+                let decoded: T
+                
+                try decoded = decoder.decode(T.self, from: data)
+                
                 completionHandler(decoded)
-            } else {
-                print("Error decoding response.")
+            } catch DecodingError.dataCorrupted {
+                NSLog("Error decoding response: Data is corrupted or invalid.")
+            } catch let DecodingError.keyNotFound(key, _) {
+                NSLog("Error decoding response: Key '\(key)' not found.")
+            } catch let DecodingError.valueNotFound(value, _) {
+                NSLog("Error decoding response: Value '\(value)' not found.")
+            } catch let DecodingError.typeMismatch(type, _)  {
+                NSLog("Error decoding response: Type '\(type)' mismatch.")
+            } catch {
+                NSLog("Error decoding response.")
             }
         }
     }

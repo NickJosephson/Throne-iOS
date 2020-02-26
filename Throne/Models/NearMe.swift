@@ -31,6 +31,8 @@ final class NearMe: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     private func fetchWashrooms() {
+        // let location = Location(latitude: 49.810, longitude: -97.133)
+        
         ThroneEndpoint.fetchWashrooms(near: currentLocation) { washrooms in
             DispatchQueue.main.async {
                 self.washrooms = washrooms

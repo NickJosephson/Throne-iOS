@@ -14,30 +14,45 @@ struct WashroomDetailView: View {
     var body: some View {
         List {
             Section(header: Text("Overview")) {
-                ForEach([String](self.washroom.averageRatings.keys), id: \.self) { key in
-                    HStack {
-                        Text(key)
-                        Spacer()
-                        Text("\(self.washroom.averageRatings[key]!)").foregroundColor(.secondary)
-                    }
+                HStack {
+                    Text("✨ Cleanliness")
+                    Spacer()
+                    Text("\(washroom.averageRatings.cleanliness, specifier:"%.1f")").foregroundColor(.secondary)
+                }
+                HStack {
+                    Text("🤚 Privacy")
+                    Spacer()
+                    Text("\(washroom.averageRatings.privacy, specifier:"%.1f")").foregroundColor(.secondary)
+                }
+                HStack {
+                    Text("🧻 Paper Quality")
+                    Spacer()
+                    Text("\(washroom.averageRatings.toiletPaperQuality, specifier:"%.1f")").foregroundColor(.secondary)
+                }
+                HStack {
+                    Text("👃 Smell")
+                    Spacer()
+                    Text("\(washroom.averageRatings.smell, specifier:"%.1f")").foregroundColor(.secondary)
                 }
             }
             Section() {
-                NavigationLink(destination: Text("Amenities")) {
+                NavigationLink(destination: AmenitiesView(washroom: washroom)) {
                     Text("Amenities")
                     Spacer()
-                    ForEach(washroom.amenities, id: \.self) { amenity in
-                        Text(amenity)
+                    ForEach(washroom.amenities.filter { $0.emoji != nil }, id: \.self) { amenity in
+                        Text(amenity.emoji!)
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }
                 }
-                NavigationLink(destination: Text("Reviews")) {
+                NavigationLink(destination: ReviewsView(washroom: washroom)) {
                     Text("Reviews")
                     Spacer()
-                    Text("0")
+                    if washroom.reviewsCount != nil {
+                        Text("\(washroom.reviewsCount!)")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
+                    }
                 }
             }
             Section(header: Text("Location")) {
@@ -56,6 +71,11 @@ struct WashroomDetailView: View {
 
 struct WashroomDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        WashroomDetailView(washroom:  Washroom(id: 0, title: "test", location: Location(latitude: 0, longitude: 0), gender: .all, floor: 0, buildingID: 0, createdAt: Date(), overallRating: 0, averageRatings: [:], amenities: []))
+        let amenities = [Washroom.Amenity]()
+        let ratings = Washroom.Ratings(privacy: 4, toiletPaperQuality: 4, smell: 4, cleanliness: 4)
+        let location = Location(latitude: 0, longitude: 0)
+        let washroom = Washroom(id: 1, title: "Washroom", location: location, gender: .all, floor: 1, buildingID: 1, createdAt: Date(), reviewsCount: 0, overallRating: 4, averageRatings: ratings, amenities: amenities)
+        
+        return WashroomDetailView(washroom: washroom)
     }
 }

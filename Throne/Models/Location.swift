@@ -12,7 +12,8 @@ import CoreLocation
 struct Location: Codable {
     let latitude: Double
     let longitude: Double
-    
+    let radius: Int = 1000 // meters
+
     static func currentLocation() -> Location? {
         let manager = CLLocationManager()
         if let currLocation = manager.location {
