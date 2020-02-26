@@ -12,17 +12,21 @@ import Foundation
 class ThroneEndpoint {
     private static let host = AppConfiguration.apiAddress
     
-    class func fetchWashrooms(near location: Location, maxResults: Int = 100,completionHandler: @escaping ([Washroom]) -> Void) {
+    class func fetchWashrooms(near location: Location?, maxResults: Int = 100, completionHandler: @escaping ([Washroom]) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/washrooms/"
         urlComponents.queryItems = [
             URLQueryItem(name: "max_results", value: "\(maxResults)"),
-            URLQueryItem(name: "latitude", value: "\(location.latitude)"),
-            URLQueryItem(name: "longitude", value: "\(location.longitude)"),
-            URLQueryItem(name: "radius", value: "\(location.radius)")
         ]
+        if location != nil {
+            urlComponents.queryItems!.append(contentsOf: [
+                URLQueryItem(name: "latitude", value: "\(location!.latitude)"),
+                URLQueryItem(name: "longitude", value: "\(location!.longitude)"),
+                URLQueryItem(name: "radius", value: "\(location!.radius)")
+            ])
+        }
 
-        NSLog("Fetching washrooms near \(location).")
+        NSLog("Fetching washrooms near \(String(describing: location)).")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
@@ -50,17 +54,21 @@ class ThroneEndpoint {
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
 
-    class func fetchBuildings(near location: Location, maxResults: Int = 100, completionHandler: @escaping ([Building]) -> Void) {
+    class func fetchBuildings(near location: Location?, maxResults: Int = 10000, completionHandler: @escaping ([Building]) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/buildings/"
         urlComponents.queryItems = [
             URLQueryItem(name: "max_results", value: "\(maxResults)"),
-            URLQueryItem(name: "latitude", value: "\(location.latitude)"),
-            URLQueryItem(name: "longitude", value: "\(location.longitude)"),
-            URLQueryItem(name: "radius", value: "\(location.radius)")
         ]
+        if location != nil {
+            urlComponents.queryItems!.append(contentsOf: [
+                URLQueryItem(name: "latitude", value: "\(location!.latitude)"),
+                URLQueryItem(name: "longitude", value: "\(location!.longitude)"),
+                URLQueryItem(name: "radius", value: "\(location!.radius)")
+            ])
+        }
 
-        NSLog("Fetching Buildings near \(location).")
+        NSLog("Fetching buildings near \(String(describing: location)).")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     

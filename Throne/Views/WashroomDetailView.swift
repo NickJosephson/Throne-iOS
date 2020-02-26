@@ -56,8 +56,8 @@ struct WashroomDetailView: View {
                 }
             }
             Section(header: Text("Location")) {
-                NavigationLink(destination: MapView().edgesIgnoringSafeArea(.vertical).navigationBarTitle("Location", displayMode: .inline)) {
-                    MapView()
+                NavigationLink(destination: MapDetailView(startLocation: washroom.location)) {
+                    MapPreviewView(startLocation: washroom.location)
                         .frame(minWidth: nil, idealWidth: nil, maxWidth: nil, minHeight: 200, idealHeight: 200, maxHeight: 200, alignment: .center)
                         .cornerRadius(10)
                 }
