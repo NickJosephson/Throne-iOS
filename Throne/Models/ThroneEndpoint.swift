@@ -12,7 +12,7 @@ import Foundation
 class ThroneEndpoint {
     private static let host = AppConfiguration.apiAddress
     
-    class func fetchWashrooms(near location: Location?, maxResults: Int = 10000, completionHandler: @escaping ([Washroom]) -> Void) {
+    class func fetchWashrooms(near location: Location?, maxResults: Int = 100, completionHandler: @escaping ([Washroom]) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/washrooms/"
         urlComponents.queryItems = [

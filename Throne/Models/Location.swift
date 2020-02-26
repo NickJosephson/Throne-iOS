@@ -12,7 +12,7 @@ import CoreLocation
 struct Location: Codable {
     let latitude: Double
     let longitude: Double
-    let radius: Int = 1000 // meters
+    let radius: Int = 10000 // meters
 
     init(latitude: Double, longitude: Double) {
         self.latitude = latitude
