@@ -78,13 +78,22 @@ struct Washroom: Codable {
     enum Amenity: String, Codable {
         case contraception = "Contraception"
         case lotion = "Lotion"
+        case automaticPaperTowel = "Automatic Paper Towel"
+        case automaticDryer = "Automatic Dryer"
+        case automaticSink = "Automatic Sink"
         case automaticToilet = "Automatic Toilet"
         case airDryer = "Air Dryer"
         case shower = "Shower"
         case soap = "Soap"
-        case attendant = "Attendant"
+        case attendant = "Bathroom Attendant"
         case babyChangeStation = "Baby Changing Station"
         case urinal = "Urinal"
+        case paperTowel = "Paper Towel"
+        case wheelchairAccessible = "Wheelchair Accessible"
+        case paperSeatCover = "Paper Seat Covers"
+        case hygieneProducts = "Hygiene Products"
+        case needleDisposal = "Needle Disposal"
+        case perfume = "Perfume/Cologne"
         
         var emoji: String? {
             get {
@@ -96,6 +105,9 @@ struct Washroom: Codable {
                 case .soap: return "🧼"
                 case .airDryer: return "💨"
                 case .automaticToilet: return "⚡️🚽"
+                case .automaticSink: return "⚡️🚰"
+                case .automaticDryer: return "⚡️💨"
+                case .wheelchairAccessible: return "🦽"
                 case .contraception: return "🚫👶"
                 default: return nil
                 }
