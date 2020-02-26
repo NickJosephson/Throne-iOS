@@ -57,7 +57,7 @@ struct WashroomDetailView: View {
             }
             Section(header: Text("Location")) {
                 NavigationLink(destination: MapDetailView(startLocation: washroom.location)) {
-                    MapView(startLocation: washroom.location)
+                    MapPreviewView(startLocation: washroom.location)
                         .frame(minWidth: nil, idealWidth: nil, maxWidth: nil, minHeight: 200, idealHeight: 200, maxHeight: 200, alignment: .center)
                         .cornerRadius(10)
                 }

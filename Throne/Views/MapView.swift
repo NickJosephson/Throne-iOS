@@ -11,11 +11,22 @@ import MapKit
 import CoreLocation
 
 struct MapView: View {
+    @ObservedObject var model = NearMe()
     let startLocation: Location?
     
     var body: some View {
-        MapUIView(startLocation: startLocation)
-            .edgesIgnoringSafeArea(.all)
+        NavigationView {
+            MapUIView()
+                .edgesIgnoringSafeArea(.all)
+        }
+    }
+}
+
+struct MapPreviewView: View {
+    let startLocation: Location?
+    
+    var body: some View {
+        MapUIView(startLocation: startLocation, interactive: false)
     }
 }
 
@@ -24,7 +35,7 @@ struct MapDetailView: View {
     
     var body: some View {
         MapUIView(startLocation: startLocation)
-            .edgesIgnoringSafeArea(.vertical)
+            .edgesIgnoringSafeArea(.all)
             .navigationBarTitle("Location", displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {
                 let item = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(self.startLocation!)))
@@ -36,12 +47,14 @@ struct MapDetailView: View {
 struct MapUIView: UIViewRepresentable {
     let mapView = MKMapView()
     let location = CLLocationManager()
-    let startLocation: Location?
-
+    var startLocation: Location? = nil
+    var interactive = true
+    
     func makeUIView(context: Context) -> MKMapView {
         location.requestWhenInUseAuthorization()
         mapView.showsUserLocation = true
         mapView.showsCompass = false
+        mapView.isUserInteractionEnabled = interactive
         mapView.showsBuildings = true
 //        mapView.mapType = .hybrid
         if startLocation != nil {
@@ -51,6 +64,7 @@ struct MapUIView: UIViewRepresentable {
             marker.title = "Washroom"
             marker.coordinate = CLLocationCoordinate2D(latitude: startLocation!.latitude, longitude: startLocation!.longitude)
             mapView.addAnnotation(marker)
+            mapView.selectAnnotation(marker, animated: true)
         }
         return mapView
     }
