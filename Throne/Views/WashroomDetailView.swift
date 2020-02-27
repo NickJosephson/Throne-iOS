@@ -15,11 +15,11 @@ struct WashroomDetailView: View {
 
     var body: some View {
         List {
-            Section {
+            Section(header: Text("Ratings")) {
                 HStack {
                     Text("Overall").fontWeight(.bold)
                     Spacer()
-                    RatingView(rating: .constant(washroom.overallRating))
+                    RatingView(rating: washroom.overallRating)
 //                    Text("\(washroom.averageRatings.cleanliness, specifier:"%.1f")").foregroundColor(.secondary)
                 }
                 HStack {

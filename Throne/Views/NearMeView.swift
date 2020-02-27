@@ -76,7 +76,7 @@ struct WashroomsListView: View {
             NavigationLink(destination: WashroomDetailView(washroom: washroom)) {
                 VStack(alignment: .leading) {
                     Text(washroom.title)
-                    RatingView(rating: .constant(washroom.overallRating))
+                    RatingView(rating: washroom.overallRating)
                         .padding(.bottom)
                 }
                 .layoutPriority(1)
@@ -97,7 +97,7 @@ struct BuildingsListView: View {
             NavigationLink(destination: BuildingDetailView(building: building)) {
                 VStack(alignment: .leading) {
                     Text(building.title)
-                    RatingView(rating: .constant(building.overallRating))
+                    RatingView(rating: building.overallRating)
                         .padding(.bottom)
                 }
                 .layoutPriority(1)

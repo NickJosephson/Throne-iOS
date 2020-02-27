@@ -20,10 +20,10 @@ struct CreateReviewView: View {
         NavigationView {
             Form {
                 Section(header: Text("Ratings")) {
-                    RatingView(rating: $cleanlinessRating, label: "✨ Cleanliness")
-                    RatingView(rating: $privacyRating, label: "🤚 Privacy")
-                    RatingView(rating: $paperRating, label: "🧻 Paper Quality")
-                    RatingView(rating: $smellRating, label: "👃 Smell")
+                    EditableRatingView(rating: $cleanlinessRating, label: "✨ Cleanliness")
+                    EditableRatingView(rating: $privacyRating, label: "🤚 Privacy")
+                    EditableRatingView(rating: $paperRating, label: "🧻 Paper Quality")
+                    EditableRatingView(rating: $smellRating, label: "👃 Smell")
                 }
                 TextField("Comment", text: $comment)
             }
