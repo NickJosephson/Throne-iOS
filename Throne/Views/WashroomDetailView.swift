@@ -96,9 +96,10 @@ struct WashroomDetailView: View {
                         Text("Review")
                     }
                 })
+                .popover(isPresented: self.$showCreateReview, content: { CreateReviewView(show: self.$showCreateReview) } )
+                
             }
-            .sheet(isPresented: self.$showCreateReview, content: { CreateReviewView(show: self.$showCreateReview) } )
-
+            
         )
     }
 }

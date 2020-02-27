@@ -90,11 +90,11 @@ final class LoginManager: ObservableObject {
     /// This is needed if the access token has expired (usually after 60 minutes).
     /// If a refresh has already been attempted, a log out is performed.
     func refreshLogin() {
-//        if refreshAttempted {
-//            NSLog("Login refresh error: Already attempted, logging out.")
-//            logout()
-//            return
-//        }
+        if refreshAttempted {
+            NSLog("Login refresh error: Already attempted, logging out.")
+            logout()
+            return
+        }
         
         if let refreshToken = settings.refreshToken {
             refreshAttempted = true

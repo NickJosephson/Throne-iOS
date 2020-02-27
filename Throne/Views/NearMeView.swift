@@ -58,9 +58,7 @@ struct NearMeListView: View {
                 }
                 .pickerStyle(SegmentedPickerStyle())
             }
-            
-            
-            
+                        
             if listTypeSelection == NearMeListTyle.washrooms {
                 WashroomsListView(model: model)
             } else {

@@ -56,7 +56,7 @@ struct BuildingDetailView: View {
                     Text("Add Washroom")
                 }
             })
-            .sheet(isPresented: $showCreateWashroom, content: { CreateWashroomView(show: self.$showCreateWashroom) } )
+            .popover(isPresented: $showCreateWashroom, content: { CreateWashroomView(show: self.$showCreateWashroom) } )
         )
     }
 
