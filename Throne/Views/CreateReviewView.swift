@@ -1,0 +1,44 @@
+//
+//  CreateReviewView.swift
+//  Throne
+//
+//  Created by Nicholas Josephson on 2020-02-27.
+//  Copyright © 2020 Throne. All rights reserved.
+//
+
+import SwiftUI
+
+struct CreateReviewView: View {
+    @Binding var show: Bool
+    @State private var cleanlinessRating = 0.0
+    @State private var privacyRating = 0.0
+    @State private var paperRating = 0.0
+    @State private var smellRating = 0.0
+    @State private var comment = ""
+
+    var body: some View {
+        NavigationView {
+            Form {
+                Section(header: Text("Ratings")) {
+                    RatingView(rating: $cleanlinessRating, label: "✨ Cleanliness")
+                    RatingView(rating: $privacyRating, label: "🤚 Privacy")
+                    RatingView(rating: $paperRating, label: "🧻 Paper Quality")
+                    RatingView(rating: $smellRating, label: "👃 Smell")
+                }
+                TextField("Comment", text: $comment)
+            }
+            .navigationBarTitle("New Review", displayMode: .inline)
+            .navigationBarItems(
+                leading: Button(action: {self.show = false}, label: { Text("Cancel") }),
+                trailing: Button(action: {self.show = false}, label: { Text("Post") })
+            )
+
+        }
+    }
+}
+
+struct CreateReviewView_Previews: PreviewProvider {
+    static var previews: some View {
+        CreateReviewView(show: .constant(true))
+    }
+}
