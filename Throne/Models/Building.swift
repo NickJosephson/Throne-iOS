@@ -7,23 +7,36 @@
 //
 
 import Foundation
+import Combine
 
-struct Building: Codable {
+final class Building: Codable, ObservableObject {
     let id: Int
     let title: String
     let location: Location
+    let distance: Double = 14.5
     let createdAt: Date
     let overallRating: Double
     let bestRatings: Washroom.Ratings
-    let amenities: [Washroom.Amenity]
-     
+    let amenities: [Washroom.Amenity]?
+    
+    @Published var washrooms: [Washroom] = []
+    
+    func fetchWashrooms() {
+        ThroneEndpoint.fetchWashrooms(in: self) { washrooms in
+            DispatchQueue.main.async {
+                self.washrooms = washrooms
+            }
+        }
+    }
+    
     private enum CodingKeys: String, CodingKey {
         case id
         case title
         case location
+        case distance
         case createdAt = "created_at"
         case overallRating = "overall_rating"
-        case bestRatings = "best_ratings"
+        case bestRatings = "best_rating"
         case amenities
     }
 }

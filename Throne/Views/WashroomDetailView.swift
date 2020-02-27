@@ -13,25 +13,35 @@ struct WashroomDetailView: View {
     
     var body: some View {
         List {
-            Section(header: Text("Overview")) {
+            Section {
+                HStack {
+                    Text("Overall").fontWeight(.bold)
+                    Spacer()
+                    RatingView(rating: washroom.overallRating)
+//                    Text("\(washroom.averageRatings.cleanliness, specifier:"%.1f")").foregroundColor(.secondary)
+                }
                 HStack {
                     Text("✨ Cleanliness")
                     Spacer()
+//                    RatingView(rating: washroom.averageRatings.cleanliness)
                     Text("\(washroom.averageRatings.cleanliness, specifier:"%.1f")").foregroundColor(.secondary)
                 }
                 HStack {
                     Text("🤚 Privacy")
                     Spacer()
+//                    RatingView(rating: washroom.averageRatings.privacy)
                     Text("\(washroom.averageRatings.privacy, specifier:"%.1f")").foregroundColor(.secondary)
                 }
                 HStack {
                     Text("🧻 Paper Quality")
                     Spacer()
+//                    RatingView(rating: washroom.averageRatings.toiletPaperQuality)
                     Text("\(washroom.averageRatings.toiletPaperQuality, specifier:"%.1f")").foregroundColor(.secondary)
                 }
                 HStack {
                     Text("👃 Smell")
                     Spacer()
+//                    RatingView(rating: washroom.averageRatings.smell)
                     Text("\(washroom.averageRatings.smell, specifier:"%.1f")").foregroundColor(.secondary)
                 }
             }
@@ -65,7 +75,23 @@ struct WashroomDetailView: View {
         }
         .listStyle(GroupedListStyle())
         .navigationBarTitle(washroom.title)
-        .navigationBarItems(trailing: Text("\(washroom.overallRating, specifier:"%.1f")").font(.largeTitle) )
+        .navigationBarItems(trailing:
+            HStack {
+                Button(action: {}, label: {
+                    HStack {
+                        Image(systemName: "bookmark")
+                        Text("Favourite")
+                    }
+                })
+                    .padding(.trailing)
+                Button(action: {}, label: {
+                    HStack {
+                        Image(systemName: "square.and.pencil")
+                        Text("Review")
+                    }
+                })
+            }
+        )
     }
 }
 

@@ -13,6 +13,7 @@ final class NearMe: NSObject, ObservableObject, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
 
     @Published var washrooms: [Washroom] = []
+    @Published var buildings: [Building] = []
     @Published var currentLocation: Location?
     
     override init() {
@@ -25,18 +26,22 @@ final class NearMe: NSObject, ObservableObject, CLLocationManagerDelegate {
             currentLocation = Location(location.coordinate)
         }
 
-        fetchWashrooms()
+        update()
     }
     
     /// Handle a location update.
     func locationManager(_ manager: CLLocationManager,  didUpdateLocations locations: [CLLocation]) {
         NSLog("User location updated, start washrooms update.")
         let lastLocation = locations.last!
-        currentLocation = Location(lastLocation.coordinate)
-        fetchWashrooms()
+        
+        DispatchQueue.main.async {
+            self.currentLocation = Location(lastLocation.coordinate)
+        }
+        
+        update()
     }
     
-    private func fetchWashrooms() {
+    private func update() {
         if currentLocation == nil {
             NSLog("Cancelling washroom fetch: No user location.")
             return
@@ -45,6 +50,11 @@ final class NearMe: NSObject, ObservableObject, CLLocationManagerDelegate {
         ThroneEndpoint.fetchWashrooms(near: currentLocation) { washrooms in
             DispatchQueue.main.async {
                 self.washrooms = washrooms
+            }
+        }
+        ThroneEndpoint.fetchBuildings(near: currentLocation) { buildings in
+            DispatchQueue.main.async {
+                self.buildings = buildings
             }
         }
     }

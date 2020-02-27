@@ -25,7 +25,7 @@ struct NearMeView: View {
                 .padding()
                 .navigationBarTitle(Text("Near Me"))
             } else {
-                RoomsListView(model: model)
+                NearMeListView(model: model)
                 .navigationBarTitle(Text("Near Me"))
             }
             Text("No \(settings.preferredTerm.capitalized) Selected")
@@ -35,9 +35,15 @@ struct NearMeView: View {
     }
 }
 
-struct RoomsListView: View {
+struct NearMeListView: View {
     @ObservedObject var settings = PersistentSettings()
     @ObservedObject var model: NearMe
+    @State var listTypeSelection = NearMeListTyle.washrooms
+    
+    enum NearMeListTyle {
+        case washrooms
+        case buildings
+    }
     
     var body: some View {
         List {
@@ -45,24 +51,64 @@ struct RoomsListView: View {
                 Text("No \(settings.preferredTerm.capitalized) Near You")
                 .foregroundColor(.secondary)
                 .navigationBarTitle(Text("Near Me"))
-            }
-            ForEach(model.washrooms, id: \.title) { washroom in
-                NavigationLink(destination: WashroomDetailView(washroom: washroom)) {
-                    VStack(alignment: .leading) {
-                        Text(washroom.title)
-                        HStack {
-                            ForEach(washroom.amenities.filter { $0.emoji != nil } , id: \.self) { amenity in
-                                Text(amenity.emoji!).font(.subheadline).foregroundColor(.secondary)
-                            }
-                        }
-                    }
-                    .layoutPriority(1)
-                    Spacer()
-                    Text("\(washroom.overallRating, specifier:"%.1f")").font(.largeTitle)
-                    .layoutPriority(2)
+            } else {
+                Picker(selection: $listTypeSelection, label: Text("List Type")) {
+                    Text("Washrooms").tag(NearMeListTyle.washrooms)
+                    Text("Buildings").tag(NearMeListTyle.buildings)
                 }
+                .pickerStyle(SegmentedPickerStyle())
+            }
+            
+            
+            
+            if listTypeSelection == NearMeListTyle.washrooms {
+                WashroomsListView(model: model)
+            } else {
+                BuildingsListView(model: model)
             }
         }
+    }
+}
+
+struct WashroomsListView: View {
+    @ObservedObject var model: NearMe
+    
+    var body: some View {
+        ForEach(model.washrooms, id: \.title) { washroom in
+            NavigationLink(destination: WashroomDetailView(washroom: washroom)) {
+                VStack(alignment: .leading) {
+                    Text(washroom.title)
+                    RatingView(rating: washroom.overallRating)
+                        .padding(.bottom)
+                }
+                .layoutPriority(1)
+                Spacer()
+                Text("\(washroom.distance, specifier:"%.1f")m")
+                .foregroundColor(.secondary)
+                .layoutPriority(2)
+            }
+        }.navigationBarTitle(Text("Near Me"))
+    }
+}
+
+struct BuildingsListView: View {
+    @ObservedObject var model: NearMe
+    
+    var body: some View {
+        ForEach(model.buildings, id: \.title) { building in
+            NavigationLink(destination: BuildingDetailView(building: building)) {
+                VStack(alignment: .leading) {
+                    Text(building.title)
+                    RatingView(rating: building.overallRating)
+                        .padding(.bottom)
+                }
+                .layoutPriority(1)
+                Spacer()
+                Text("\(building.distance, specifier:"%.1f")m")
+                .foregroundColor(.secondary)
+                .layoutPriority(2)
+            }
+        }.navigationBarTitle(Text("Near Me"))
     }
 }
 

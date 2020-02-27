@@ -12,6 +12,7 @@ struct Washroom: Codable {
     let id: Int
     let title: String
     let location: Location
+    let distance: Double = 14.5
     let gender: Gender
     let floor: Int
     let buildingID: Int
@@ -25,6 +26,7 @@ struct Washroom: Codable {
         case id
         case title
         case location
+        case distance
         case gender
         case floor
         case buildingID = "building_id"
