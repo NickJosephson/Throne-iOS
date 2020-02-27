@@ -24,25 +24,39 @@ struct BuildingDetailView: View {
                     NavigationLink(destination: WashroomDetailView(washroom: washroom)) {
                         VStack(alignment: .leading) {
                             Text(washroom.title)
-                            HStack {
-                                ForEach(washroom.amenities.filter { $0.emoji != nil } , id: \.self) { amenity in
-                                    Text(amenity.emoji!).font(.subheadline).foregroundColor(.secondary)
-                                }
-                            }
+                            RatingView(rating: .constant(washroom.overallRating))
+                            .padding(.bottom)
                         }
                         .layoutPriority(1)
                         Spacer()
-                        Text("\(washroom.overallRating, specifier:"%.1f")").font(.largeTitle)
+                        VStack(alignment: .trailing) {
+                            Text("Floor \(washroom.floor)")
+                            Text("\(washroom.gender.description)")
+                        }
+                        .multilineTextAlignment(.trailing)
+                        .foregroundColor(.secondary)
                         .layoutPriority(2)
                     }
+                }
+            }
+            Section(header: Text("Location")) {
+                NavigationLink(destination: MapDetailView(startLocation: building.location)) {
+                    MapPreviewView(startLocation: building.location)
+                        .frame(minWidth: nil, idealWidth: nil, maxWidth: nil, minHeight: 200, idealHeight: 200, maxHeight: 200, alignment: .center)
+                        .cornerRadius(10)
                 }
             }
         }
         .listStyle(GroupedListStyle())
         .navigationBarTitle("\(building.title)", displayMode: .large)
         .navigationBarItems(trailing:
-            Button(action: { self.showCreateWashroom = true }, label: { Image(systemName: "plus") })
-                .sheet(isPresented: $showCreateWashroom, content: { CreateWashroomView(show: self.$showCreateWashroom) } )
+            Button(action: { self.showCreateWashroom = true }, label: {
+                HStack {
+                    Image(systemName: "plus")
+                    Text("Add Washroom")
+                }
+            })
+            .sheet(isPresented: $showCreateWashroom, content: { CreateWashroomView(show: self.$showCreateWashroom) } )
         )
     }
 

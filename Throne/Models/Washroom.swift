@@ -41,13 +41,15 @@ struct Washroom: Codable {
         case all
         case women
         case men
-        
+        case family
+
         var description: String {
             get {
                 switch self {
-                case .women: return "Women"
-                case .men: return "Men"
-                case .all: return "All"
+                case .women: return "Women's"
+                case .men: return "Men's"
+                case .all: return "Inclusive"
+                case .family: return "Family"
                 }
             }
         }
@@ -58,6 +60,7 @@ struct Washroom: Codable {
                 case .women: return "🚺"
                 case .men: return "🚹"
                 case .all: return "🚻"
+                case .family: return "🚻"
                 }
             }
         }
@@ -77,23 +80,23 @@ struct Washroom: Codable {
         }
     }
     
-    enum Amenity: String, Codable {
-        case contraception = "Contraception"
-        case lotion = "Lotion"
-        case automaticPaperTowel = "Automatic Paper Towel"
-        case automaticDryer = "Automatic Dryer"
+    enum Amenity: String, Codable, CaseIterable {
+        case wheelchairAccessible = "Wheelchair Accessible"
+        case babyChangeStation = "Baby Changing Station"
+        case hygieneProducts = "Hygiene Products"
+        case paperSeatCover = "Paper Seat Covers"
         case automaticSink = "Automatic Sink"
         case automaticToilet = "Automatic Toilet"
+        case automaticDryer = "Automatic Dryer"
+        case automaticPaperTowel = "Automatic Paper Towel"
         case airDryer = "Air Dryer"
+        case paperTowel = "Paper Towel"
         case shower = "Shower"
         case soap = "Soap"
         case attendant = "Bathroom Attendant"
-        case babyChangeStation = "Baby Changing Station"
         case urinal = "Urinal"
-        case paperTowel = "Paper Towel"
-        case wheelchairAccessible = "Wheelchair Accessible"
-        case paperSeatCover = "Paper Seat Covers"
-        case hygieneProducts = "Hygiene Products"
+        case contraception = "Contraception"
+        case lotion = "Lotion"
         case needleDisposal = "Needle Disposal"
         case perfume = "Perfume/Cologne"
         

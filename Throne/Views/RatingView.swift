@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct RatingView: View {
-    var rating: Double
+    @Binding var rating: Double
     var label = ""
     var maximumRating = 5
 
@@ -25,16 +25,16 @@ struct RatingView: View {
 
     var body: some View {
         HStack {
-//            if !label.isEmpty {
-//                Text(label)
-//                Spacer()
-//            }
+            if !label.isEmpty {
+                Text(label)
+                Spacer()
+            }
 
             ForEach(1..<maximumRating + 1) { number in
                 self.image(for: number)
-//                    .onTapGesture {
-//                        self.rating = number
-//                    }
+                    .onTapGesture {
+                        self.rating = Double(number)
+                    }
             }
         }
     }
@@ -42,6 +42,6 @@ struct RatingView: View {
 
 struct RatingView_Previews: PreviewProvider {
     static var previews: some View {
-        RatingView(rating: 4.5)
+        RatingView(rating: .constant(4.5))
     }
 }

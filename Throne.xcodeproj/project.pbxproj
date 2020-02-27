@@ -46,6 +46,7 @@
 		E1E0738823E561DD00D4AE5E /* Washroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738723E561DD00D4AE5E /* Washroom.swift */; };
 		E1F4FE122407928D00A4096F /* CreateWashroomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F4FE112407928D00A4096F /* CreateWashroomView.swift */; };
 		E1F4FE14240796A100A4096F /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F4FE13240796A100A4096F /* RatingView.swift */; };
+		E1F4FE162407A88B00A4096F /* CreateReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F4FE152407A88B00A4096F /* CreateReviewView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,7 @@
 		E1E0738723E561DD00D4AE5E /* Washroom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Washroom.swift; sourceTree = "<group>"; };
 		E1F4FE112407928D00A4096F /* CreateWashroomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWashroomView.swift; sourceTree = "<group>"; };
 		E1F4FE13240796A100A4096F /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
+		E1F4FE152407A88B00A4096F /* CreateReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReviewView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +211,7 @@
 				E1F4FE112407928D00A4096F /* CreateWashroomView.swift */,
 				E146A6DD2400A1F400F73A0B /* AmenitiesView.swift */,
 				E146A6DF2400A21E00F73A0B /* ReviewsView.swift */,
+				E1F4FE152407A88B00A4096F /* CreateReviewView.swift */,
 				E1F4FE13240796A100A4096F /* RatingView.swift */,
 				E176AEF323E39CC900EF8D15 /* MapView.swift */,
 				E176AEF923E3A88E00EF8D15 /* ProfileView.swift */,
@@ -383,6 +386,7 @@
 				E11C9BEB23F1DBB60045663B /* Building.swift in Sources */,
 				E176AEF623E39CFD00EF8D15 /* SettingsView.swift in Sources */,
 				E146A6E02400A21E00F73A0B /* ReviewsView.swift in Sources */,
+				E1F4FE162407A88B00A4096F /* CreateReviewView.swift in Sources */,
 				E176AEFE23E3ACE400EF8D15 /* ServiceUtilities.swift in Sources */,
 				E176AEFC23E3AA3500EF8D15 /* NearMeView.swift in Sources */,
 				E176AEC723E38B2A00EF8D15 /* ContentView.swift in Sources */,

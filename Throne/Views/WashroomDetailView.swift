@@ -10,14 +10,16 @@ import SwiftUI
 
 struct WashroomDetailView: View {
     var washroom: Washroom
-    
+    @State private var showCreateReview = false
+    @State private var isFavorite = false
+
     var body: some View {
         List {
             Section {
                 HStack {
                     Text("Overall").fontWeight(.bold)
                     Spacer()
-                    RatingView(rating: washroom.overallRating)
+                    RatingView(rating: .constant(washroom.overallRating))
 //                    Text("\(washroom.averageRatings.cleanliness, specifier:"%.1f")").foregroundColor(.secondary)
                 }
                 HStack {
@@ -77,20 +79,26 @@ struct WashroomDetailView: View {
         .navigationBarTitle(washroom.title)
         .navigationBarItems(trailing:
             HStack {
-                Button(action: {}, label: {
+                Button(action: { self.isFavorite.toggle() }, label: {
                     HStack {
-                        Image(systemName: "bookmark")
+                        if self.isFavorite {
+                            Image(systemName: "bookmark.fill")
+                        } else {
+                            Image(systemName: "bookmark")
+                        }
                         Text("Favourite")
                     }
                 })
-                    .padding(.trailing)
-                Button(action: {}, label: {
+                .padding(.trailing)
+                Button(action: { self.showCreateReview = true }, label: {
                     HStack {
                         Image(systemName: "square.and.pencil")
                         Text("Review")
                     }
                 })
             }
+            .sheet(isPresented: self.$showCreateReview, content: { CreateReviewView(show: self.$showCreateReview) } )
+
         )
     }
 }
