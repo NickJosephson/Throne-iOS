@@ -12,6 +12,7 @@ struct Washroom: Codable {
     let id: Int
     let title: String
     let location: Location
+    let distance: Double = 14.5
     let gender: Gender
     let floor: Int
     let buildingID: Int
@@ -25,6 +26,7 @@ struct Washroom: Codable {
         case id
         case title
         case location
+        case distance
         case gender
         case floor
         case buildingID = "building_id"
@@ -35,17 +37,19 @@ struct Washroom: Codable {
         case amenities
     }
     
-    enum Gender: String, Codable {
+    enum Gender: String, Codable, CaseIterable {
         case all
         case women
         case men
-        
+        case family
+
         var description: String {
             get {
                 switch self {
-                case .women: return "Women"
-                case .men: return "Men"
-                case .all: return "All"
+                case .all: return "Inclusive"
+                case .women: return "Women's"
+                case .men: return "Men's"
+                case .family: return "Family"
                 }
             }
         }
@@ -56,6 +60,7 @@ struct Washroom: Codable {
                 case .women: return "🚺"
                 case .men: return "🚹"
                 case .all: return "🚻"
+                case .family: return "🚻"
                 }
             }
         }
@@ -75,23 +80,23 @@ struct Washroom: Codable {
         }
     }
     
-    enum Amenity: String, Codable {
-        case contraception = "Contraception"
-        case lotion = "Lotion"
-        case automaticPaperTowel = "Automatic Paper Towel"
-        case automaticDryer = "Automatic Dryer"
+    enum Amenity: String, Codable, CaseIterable {
+        case wheelchairAccessible = "Wheelchair Accessible"
+        case babyChangeStation = "Baby Changing Station"
+        case hygieneProducts = "Hygiene Products"
+        case paperSeatCover = "Paper Seat Covers"
         case automaticSink = "Automatic Sink"
         case automaticToilet = "Automatic Toilet"
+        case automaticDryer = "Automatic Dryer"
+        case automaticPaperTowel = "Automatic Paper Towel"
         case airDryer = "Air Dryer"
+        case paperTowel = "Paper Towel"
         case shower = "Shower"
         case soap = "Soap"
         case attendant = "Bathroom Attendant"
-        case babyChangeStation = "Baby Changing Station"
         case urinal = "Urinal"
-        case paperTowel = "Paper Towel"
-        case wheelchairAccessible = "Wheelchair Accessible"
-        case paperSeatCover = "Paper Seat Covers"
-        case hygieneProducts = "Hygiene Products"
+        case contraception = "Contraception"
+        case lotion = "Lotion"
         case needleDisposal = "Needle Disposal"
         case perfume = "Perfume/Cologne"
         
@@ -107,7 +112,7 @@ struct Washroom: Codable {
                 case .automaticToilet: return "⚡️🚽"
                 case .automaticSink: return "⚡️🚰"
                 case .automaticDryer: return "⚡️💨"
-                case .wheelchairAccessible: return "🦽"
+                case .wheelchairAccessible: return "♿️"
                 case .contraception: return "🚫👶"
                 default: return nil
                 }

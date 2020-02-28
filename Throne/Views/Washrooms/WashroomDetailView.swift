@@ -10,40 +10,43 @@ import SwiftUI
 
 struct WashroomDetailView: View {
     var washroom: Washroom
-    
+    @State private var isFavorite = false
+
     var body: some View {
         List {
-            Section(header: Text("Overview")) {
+            Section(header: Text("Details")) {
+                HStack {
+                    Text("\(washroom.gender.description) Floor \(washroom.floor)")
+                    Spacer()
+                    Text("\(washroom.gender.emoji)")
+                }
+                    .font(.title)
+                NavigationLink(destination: AmenitiesView(amenities: self.washroom.amenities)) {
+                    Text("Amenities")
+                    Spacer()
+                    CompactAmenitiesView(amenities: self.washroom.amenities)
+                }
+            }
+            Section(header: Text("Ratings")) {
                 HStack {
                     Text("✨ Cleanliness")
                     Spacer()
-                    Text("\(washroom.averageRatings.cleanliness, specifier:"%.1f")").foregroundColor(.secondary)
+                    RatingView(rating: washroom.averageRatings.cleanliness)
                 }
                 HStack {
                     Text("🤚 Privacy")
                     Spacer()
-                    Text("\(washroom.averageRatings.privacy, specifier:"%.1f")").foregroundColor(.secondary)
+                    RatingView(rating: washroom.averageRatings.privacy)
                 }
                 HStack {
                     Text("🧻 Paper Quality")
                     Spacer()
-                    Text("\(washroom.averageRatings.toiletPaperQuality, specifier:"%.1f")").foregroundColor(.secondary)
+                    RatingView(rating: washroom.averageRatings.toiletPaperQuality)
                 }
                 HStack {
                     Text("👃 Smell")
                     Spacer()
-                    Text("\(washroom.averageRatings.smell, specifier:"%.1f")").foregroundColor(.secondary)
-                }
-            }
-            Section() {
-                NavigationLink(destination: AmenitiesView(washroom: washroom)) {
-                    Text("Amenities")
-                    Spacer()
-                    ForEach(washroom.amenities.filter { $0.emoji != nil }, id: \.self) { amenity in
-                        Text(amenity.emoji!)
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                    }
+                    RatingView(rating: washroom.averageRatings.smell)
                 }
                 NavigationLink(destination: ReviewsView(washroom: washroom)) {
                     Text("Reviews")
@@ -65,7 +68,12 @@ struct WashroomDetailView: View {
         }
         .listStyle(GroupedListStyle())
         .navigationBarTitle(washroom.title)
-        .navigationBarItems(trailing: Text("\(washroom.overallRating, specifier:"%.1f")").font(.largeTitle) )
+        .navigationBarItems(trailing:
+            HStack(spacing: 20) {
+                FavoriteButton(isFavorite: self.$isFavorite)
+                ReviewButton()
+            }
+        )
     }
 }
 

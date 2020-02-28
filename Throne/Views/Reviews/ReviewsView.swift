@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ReviewsView: View {
     @ObservedObject private var model: Reviews
+    @State private var showCreateReview = false
     
     init(washroom: Washroom) {
         self.model = Reviews(for: washroom)
@@ -43,6 +44,7 @@ struct ReviewsView: View {
             }
         }
         .navigationBarTitle("Reviews", displayMode: .inline)
+        .navigationBarItems(trailing: ReviewButton())
     }
 }
 
