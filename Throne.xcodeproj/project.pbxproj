@@ -186,6 +186,7 @@
 				E176AEF723E3A62D00EF8D15 /* WashroomDetailView.swift */,
 				E11448FD2408D35E00DD4F04 /* FavoriteButton.swift */,
 				E1F4FE112407928D00A4096F /* CreateWashroomView.swift */,
+				E11449032408D5D000DD4F04 /* CreateWashroomButton.swift */,
 				E146A6DD2400A1F400F73A0B /* AmenitiesView.swift */,
 				E11448F42408A6B800DD4F04 /* CompactAmenitiesView.swift */,
 				E11448FF2408D40B00DD4F04 /* AmenitiesSelectionView.swift */,
@@ -199,7 +200,6 @@
 			children = (
 				E11448EC2408A4AA00DD4F04 /* BuildingsListView.swift */,
 				E16BA1DB24078AD6002F9EED /* BuildingDetailView.swift */,
-				E11449032408D5D000DD4F04 /* CreateWashroomButton.swift */,
 			);
 			path = Buildings;
 			sourceTree = "<group>";

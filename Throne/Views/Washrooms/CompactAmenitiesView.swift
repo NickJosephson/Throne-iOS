@@ -22,6 +22,6 @@ struct CompactAmenitiesView: View {
 
 struct CompactAmenitiesView_Previews: PreviewProvider {
     static var previews: some View {
-        CompactAmenitiesView(amenities: [])
+        CompactAmenitiesView(amenities: Washroom.Amenity.allCases)
     }
 }

@@ -27,7 +27,6 @@ struct AmenitiesView: View {
 
 struct AmenitiesView_Previews: PreviewProvider {
     static var previews: some View {
-        let amenities = [Washroom.Amenity]()
-        return AmenitiesView(amenities: amenities)
+        AmenitiesView(amenities: Washroom.Amenity.allCases)
     }
 }

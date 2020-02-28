@@ -36,6 +36,6 @@ struct AmenitiesSelectionView: View {
 
 struct AmenitiesSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        AmenitiesSelectionView(amenities: .constant([]))
+        AmenitiesSelectionView(amenities: .constant(Washroom.Amenity.allCases))
     }
 }
