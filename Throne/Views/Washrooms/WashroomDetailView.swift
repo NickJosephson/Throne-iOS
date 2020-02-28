@@ -15,47 +15,34 @@ struct WashroomDetailView: View {
 
     var body: some View {
         List {
+//            Text("Floor \(washroom.floor) \(washroom.gender.emoji) \(washroom.gender.description)")
             Section(header: Text("Ratings")) {
-                HStack {
-                    Text("Overall").fontWeight(.bold)
-                    Spacer()
-                    RatingView(rating: washroom.overallRating)
-//                    Text("\(washroom.averageRatings.cleanliness, specifier:"%.1f")").foregroundColor(.secondary)
-                }
                 HStack {
                     Text("✨ Cleanliness")
                     Spacer()
-//                    RatingView(rating: washroom.averageRatings.cleanliness)
-                    Text("\(washroom.averageRatings.cleanliness, specifier:"%.1f")").foregroundColor(.secondary)
+                    RatingView(rating: washroom.averageRatings.cleanliness)
                 }
                 HStack {
                     Text("🤚 Privacy")
                     Spacer()
-//                    RatingView(rating: washroom.averageRatings.privacy)
-                    Text("\(washroom.averageRatings.privacy, specifier:"%.1f")").foregroundColor(.secondary)
+                    RatingView(rating: washroom.averageRatings.privacy)
                 }
                 HStack {
                     Text("🧻 Paper Quality")
                     Spacer()
-//                    RatingView(rating: washroom.averageRatings.toiletPaperQuality)
-                    Text("\(washroom.averageRatings.toiletPaperQuality, specifier:"%.1f")").foregroundColor(.secondary)
+                    RatingView(rating: washroom.averageRatings.toiletPaperQuality)
                 }
                 HStack {
                     Text("👃 Smell")
                     Spacer()
-//                    RatingView(rating: washroom.averageRatings.smell)
-                    Text("\(washroom.averageRatings.smell, specifier:"%.1f")").foregroundColor(.secondary)
+                    RatingView(rating: washroom.averageRatings.smell)
                 }
             }
             Section() {
-                NavigationLink(destination: AmenitiesView(washroom: washroom)) {
+                NavigationLink(destination: AmenitiesView(amenities: self.washroom.amenities)) {
                     Text("Amenities")
                     Spacer()
-                    ForEach(washroom.amenities.filter { $0.emoji != nil }, id: \.self) { amenity in
-                        Text(amenity.emoji!)
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                    }
+                    CompactAmenitiesView(amenities: self.washroom.amenities)
                 }
                 NavigationLink(destination: ReviewsView(washroom: washroom)) {
                     Text("Reviews")

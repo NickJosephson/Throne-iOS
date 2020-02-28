@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E11448E7240899FD00DD4F04 /* EnableLocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11448E6240899FD00DD4F04 /* EnableLocationButton.swift */; };
+		E11448E92408A3C900DD4F04 /* NearMeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11448E82408A3C900DD4F04 /* NearMeListView.swift */; };
+		E11448EB2408A46E00DD4F04 /* WashroomsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11448EA2408A46E00DD4F04 /* WashroomsListView.swift */; };
+		E11448ED2408A4AA00DD4F04 /* BuildingsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11448EC2408A4AA00DD4F04 /* BuildingsListView.swift */; };
+		E11448EF2408A4DF00DD4F04 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11448EE2408A4DF00DD4F04 /* MainTabView.swift */; };
+		E11448F52408A6B800DD4F04 /* CompactAmenitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11448F42408A6B800DD4F04 /* CompactAmenitiesView.swift */; };
 		E11C9BE923F1DB3A0045663B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C9BE823F1DB3A0045663B /* Location.swift */; };
 		E11C9BEB23F1DBB60045663B /* Building.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C9BEA23F1DBB60045663B /* Building.swift */; };
 		E11C9BED23F1DD850045663B /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C9BEC23F1DD850045663B /* Review.swift */; };
@@ -67,6 +73,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E11448E6240899FD00DD4F04 /* EnableLocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableLocationButton.swift; sourceTree = "<group>"; };
+		E11448E82408A3C900DD4F04 /* NearMeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearMeListView.swift; sourceTree = "<group>"; };
+		E11448EA2408A46E00DD4F04 /* WashroomsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashroomsListView.swift; sourceTree = "<group>"; };
+		E11448EC2408A4AA00DD4F04 /* BuildingsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingsListView.swift; sourceTree = "<group>"; };
+		E11448EE2408A4DF00DD4F04 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		E11448F42408A6B800DD4F04 /* CompactAmenitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactAmenitiesView.swift; sourceTree = "<group>"; };
 		E11C9BE823F1DB3A0045663B /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		E11C9BEA23F1DBB60045663B /* Building.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Building.swift; sourceTree = "<group>"; };
 		E11C9BEC23F1DD850045663B /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
@@ -136,6 +148,91 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E11448F02408A51700DD4F04 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				E176AEC623E38B2A00EF8D15 /* ContentView.swift */,
+				E11448EE2408A4DF00DD4F04 /* MainTabView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		E11448F12408A53300DD4F04 /* Near Me */ = {
+			isa = PBXGroup;
+			children = (
+				E176AEFB23E3AA3500EF8D15 /* NearMeView.swift */,
+				E11448E82408A3C900DD4F04 /* NearMeListView.swift */,
+				E11448E6240899FD00DD4F04 /* EnableLocationButton.swift */,
+			);
+			path = "Near Me";
+			sourceTree = "<group>";
+		};
+		E11448F22408A54C00DD4F04 /* Washrooms */ = {
+			isa = PBXGroup;
+			children = (
+				E176AEF723E3A62D00EF8D15 /* WashroomDetailView.swift */,
+				E11448EA2408A46E00DD4F04 /* WashroomsListView.swift */,
+				E1F4FE112407928D00A4096F /* CreateWashroomView.swift */,
+				E146A6DD2400A1F400F73A0B /* AmenitiesView.swift */,
+				E11448F42408A6B800DD4F04 /* CompactAmenitiesView.swift */,
+			);
+			path = Washrooms;
+			sourceTree = "<group>";
+		};
+		E11448F32408A56500DD4F04 /* Buildings */ = {
+			isa = PBXGroup;
+			children = (
+				E16BA1DB24078AD6002F9EED /* BuildingDetailView.swift */,
+				E11448EC2408A4AA00DD4F04 /* BuildingsListView.swift */,
+			);
+			path = Buildings;
+			sourceTree = "<group>";
+		};
+		E11448F62408A72500DD4F04 /* Reviews */ = {
+			isa = PBXGroup;
+			children = (
+				E146A6DF2400A21E00F73A0B /* ReviewsView.swift */,
+				E1F4FE152407A88B00A4096F /* CreateReviewView.swift */,
+				E1F4FE13240796A100A4096F /* RatingView.swift */,
+			);
+			path = Reviews;
+			sourceTree = "<group>";
+		};
+		E11448F72408A75C00DD4F04 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				E1E0738123E54E3A00D4AE5E /* WelcomeView.swift */,
+				E1580F2C23F768E10087DE0B /* LoginView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		E11448F82408A76F00DD4F04 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				E176AEF923E3A88E00EF8D15 /* ProfileView.swift */,
+				E176AEF523E39CFD00EF8D15 /* SettingsView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		E11448F92408A77D00DD4F04 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				E176AEF323E39CC900EF8D15 /* MapView.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		E11448FA2408A79600DD4F04 /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+				E1CFDE6723FA4FBF007423FD /* AuthenticationEndpoint.swift */,
+				E12211D423FB4E18006C99D2 /* ThroneEndpoint.swift */,
+			);
+			path = Endpoints;
+			sourceTree = "<group>";
+		};
 		E176AEB323E38B2A00EF8D15 = {
 			isa = PBXGroup;
 			children = (
@@ -204,20 +301,14 @@
 		E176AEF223E3987900EF8D15 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E176AEC623E38B2A00EF8D15 /* ContentView.swift */,
-				E176AEFB23E3AA3500EF8D15 /* NearMeView.swift */,
-				E176AEF723E3A62D00EF8D15 /* WashroomDetailView.swift */,
-				E16BA1DB24078AD6002F9EED /* BuildingDetailView.swift */,
-				E1F4FE112407928D00A4096F /* CreateWashroomView.swift */,
-				E146A6DD2400A1F400F73A0B /* AmenitiesView.swift */,
-				E146A6DF2400A21E00F73A0B /* ReviewsView.swift */,
-				E1F4FE152407A88B00A4096F /* CreateReviewView.swift */,
-				E1F4FE13240796A100A4096F /* RatingView.swift */,
-				E176AEF323E39CC900EF8D15 /* MapView.swift */,
-				E176AEF923E3A88E00EF8D15 /* ProfileView.swift */,
-				E176AEF523E39CFD00EF8D15 /* SettingsView.swift */,
-				E1E0738123E54E3A00D4AE5E /* WelcomeView.swift */,
-				E1580F2C23F768E10087DE0B /* LoginView.swift */,
+				E11448F02408A51700DD4F04 /* Main */,
+				E11448F12408A53300DD4F04 /* Near Me */,
+				E11448F22408A54C00DD4F04 /* Washrooms */,
+				E11448F32408A56500DD4F04 /* Buildings */,
+				E11448F62408A72500DD4F04 /* Reviews */,
+				E11448F92408A77D00DD4F04 /* Map */,
+				E11448F82408A76F00DD4F04 /* Profile */,
+				E11448F72408A75C00DD4F04 /* Onboarding */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -234,8 +325,7 @@
 				E146A6E12400A28E00F73A0B /* Reviews.swift */,
 				E1CDA0B723E404A6007ADA73 /* PersistentSettings.swift */,
 				E1E0738323E5612400D4AE5E /* LoginManager.swift */,
-				E1CFDE6723FA4FBF007423FD /* AuthenticationEndpoint.swift */,
-				E12211D423FB4E18006C99D2 /* ThroneEndpoint.swift */,
+				E11448FA2408A79600DD4F04 /* Endpoints */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -374,25 +464,31 @@
 				E176AEFA23E3A88E00EF8D15 /* ProfileView.swift in Sources */,
 				E146A6E22400A28E00F73A0B /* Reviews.swift in Sources */,
 				E1E0738423E5612400D4AE5E /* LoginManager.swift in Sources */,
+				E11448F52408A6B800DD4F04 /* CompactAmenitiesView.swift in Sources */,
 				E1CDA0B823E404A6007ADA73 /* PersistentSettings.swift in Sources */,
 				E12211D523FB4E18006C99D2 /* ThroneEndpoint.swift in Sources */,
 				E1E0738623E561BB00D4AE5E /* NearMe.swift in Sources */,
 				E11C9BE923F1DB3A0045663B /* Location.swift in Sources */,
 				E1F4FE122407928D00A4096F /* CreateWashroomView.swift in Sources */,
 				E11C9BED23F1DD850045663B /* Review.swift in Sources */,
+				E11448EF2408A4DF00DD4F04 /* MainTabView.swift in Sources */,
 				E176AEC023E38B2A00EF8D15 /* AppDelegate.swift in Sources */,
+				E11448E92408A3C900DD4F04 /* NearMeListView.swift in Sources */,
 				E1CFDE6823FA4FBF007423FD /* AuthenticationEndpoint.swift in Sources */,
+				E11448EB2408A46E00DD4F04 /* WashroomsListView.swift in Sources */,
 				E176AEF423E39CC900EF8D15 /* MapView.swift in Sources */,
 				E11C9BEB23F1DBB60045663B /* Building.swift in Sources */,
 				E176AEF623E39CFD00EF8D15 /* SettingsView.swift in Sources */,
 				E146A6E02400A21E00F73A0B /* ReviewsView.swift in Sources */,
 				E1F4FE162407A88B00A4096F /* CreateReviewView.swift in Sources */,
 				E176AEFE23E3ACE400EF8D15 /* ServiceUtilities.swift in Sources */,
+				E11448E7240899FD00DD4F04 /* EnableLocationButton.swift in Sources */,
 				E176AEFC23E3AA3500EF8D15 /* NearMeView.swift in Sources */,
 				E176AEC723E38B2A00EF8D15 /* ContentView.swift in Sources */,
 				E1E0738223E54E3A00D4AE5E /* WelcomeView.swift in Sources */,
 				E1768D4E23FDEE2B00A9F098 /* AppConfiguration.swift in Sources */,
 				E16BA1DC24078AD6002F9EED /* BuildingDetailView.swift in Sources */,
+				E11448ED2408A4AA00DD4F04 /* BuildingsListView.swift in Sources */,
 				E1580F2D23F768E20087DE0B /* LoginView.swift in Sources */,
 				E176AEF823E3A62D00EF8D15 /* WashroomDetailView.swift in Sources */,
 				E176AEC223E38B2A00EF8D15 /* SceneDelegate.swift in Sources */,

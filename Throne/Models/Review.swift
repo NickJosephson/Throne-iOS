@@ -13,7 +13,7 @@ struct Review: Codable {
     let washroomID: Int
     let user: User
     let createdAt: Date
-    let upvoteCount: Int
+    let upvoteCount: Int?
     let ratings: Washroom.Ratings
     let comment: String?
     

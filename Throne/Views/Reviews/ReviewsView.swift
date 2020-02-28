@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ReviewsView: View {
     @ObservedObject private var model: Reviews
+    @State private var showCreateReview = false
     
     init(washroom: Washroom) {
         self.model = Reviews(for: washroom)
@@ -43,6 +44,16 @@ struct ReviewsView: View {
             }
         }
         .navigationBarTitle("Reviews", displayMode: .inline)
+        .navigationBarItems(trailing:
+            Button(action: { self.showCreateReview = true }, label: {
+                HStack {
+                    Image(systemName: "square.and.pencil")
+                    Text("Review")
+                }
+            })
+            .popover(isPresented: self.$showCreateReview, content: { CreateReviewView(show: self.$showCreateReview) } )
+
+        )
     }
 }
 

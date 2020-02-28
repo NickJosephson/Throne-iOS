@@ -37,7 +37,7 @@ struct Washroom: Codable {
         case amenities
     }
     
-    enum Gender: String, Codable {
+    enum Gender: String, Codable, CaseIterable {
         case all
         case women
         case men
@@ -46,9 +46,9 @@ struct Washroom: Codable {
         var description: String {
             get {
                 switch self {
+                case .all: return "Inclusive"
                 case .women: return "Women's"
                 case .men: return "Men's"
-                case .all: return "Inclusive"
                 case .family: return "Family"
                 }
             }

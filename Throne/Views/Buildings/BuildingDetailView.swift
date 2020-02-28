@@ -20,24 +20,7 @@ struct BuildingDetailView: View {
     var body: some View {
         List {
             Section(header: Text("Washrooms Inside")) {
-                ForEach(building.washrooms, id: \.title) { washroom in
-                    NavigationLink(destination: WashroomDetailView(washroom: washroom)) {
-                        VStack(alignment: .leading) {
-                            Text(washroom.title)
-                            RatingView(rating: washroom.overallRating)
-                            .padding(.bottom)
-                        }
-                        .layoutPriority(1)
-                        Spacer()
-                        VStack(alignment: .trailing) {
-                            Text("Floor \(washroom.floor)")
-                            Text("\(washroom.gender.description)")
-                        }
-                        .multilineTextAlignment(.trailing)
-                        .foregroundColor(.secondary)
-                        .layoutPriority(2)
-                    }
-                }
+                WashroomsListView(washrooms: building.washrooms)
             }
             Section(header: Text("Location")) {
                 NavigationLink(destination: MapDetailView(startLocation: building.location)) {
