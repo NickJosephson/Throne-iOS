@@ -30,13 +30,13 @@ struct WelcomeView: View {
             Spacer()
             VStack() {
                 Spacer()
-                VStack(spacing: 20) {
-                    Text("🧻")
-                        .font(.system(size: 100))
-                    Text("Welcome to Throne!")
-                        .font(.largeTitle)
-                }
+                    .frame(height: 100)
+                Text("Welcome to Throne")
+                    .font(.system(size: 60))
+                    .foregroundColor(Color.white)
+                    .multilineTextAlignment(.center)
                 Spacer()
+                    .frame(height: 150)
                 Button(action: { self.loginController.startLogin() }) {
                     Text("Login").font(.title)
                 }
@@ -52,8 +52,8 @@ struct WelcomeView: View {
                     .foregroundColor(.white)
                     .background(Color.red)
                     .cornerRadius(20)
-                    .padding()
                 LoginView(controller: loginController).frame(width: 0, height: 0, alignment: .bottom)
+                Spacer()
             }
             Spacer()
         }
