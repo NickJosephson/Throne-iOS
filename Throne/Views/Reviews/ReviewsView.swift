@@ -44,16 +44,7 @@ struct ReviewsView: View {
             }
         }
         .navigationBarTitle("Reviews", displayMode: .inline)
-        .navigationBarItems(trailing:
-            Button(action: { self.showCreateReview = true }, label: {
-                HStack {
-                    Image(systemName: "square.and.pencil")
-                    Text("Review")
-                }
-            })
-            .popover(isPresented: self.$showCreateReview, content: { CreateReviewView(show: self.$showCreateReview) } )
-
-        )
+        .navigationBarItems(trailing: ReviewButton())
     }
 }
 

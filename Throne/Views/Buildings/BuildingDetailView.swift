@@ -10,7 +10,6 @@ import SwiftUI
 
 struct BuildingDetailView: View {
     @ObservedObject var building: Building
-    @State private var showCreateWashroom = false
     
     init(building: Building) {
         self.building = building
@@ -32,21 +31,12 @@ struct BuildingDetailView: View {
         }
         .listStyle(GroupedListStyle())
         .navigationBarTitle("\(building.title)", displayMode: .large)
-        .navigationBarItems(trailing:
-            Button(action: { self.showCreateWashroom = true }, label: {
-                HStack {
-                    Image(systemName: "plus")
-                    Text("Add Washroom")
-                }
-            })
-            .popover(isPresented: $showCreateWashroom, content: { CreateWashroomView(show: self.$showCreateWashroom) } )
-        )
+        .navigationBarItems(trailing: CreateWashroomButton())
     }
-
 }
 
-//struct BuildingDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BuildingDetailView()
-//    }
-//}
+struct BuildingDetailView_Previews: PreviewProvider {
+    static var previews: some View {        
+        BuildingDetailView(building: Building())
+    }
+}

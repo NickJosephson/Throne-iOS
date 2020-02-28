@@ -21,6 +21,16 @@ final class Building: Codable, ObservableObject {
     
     @Published var washrooms: [Washroom] = []
     
+    init() {
+        id = 0
+        title = ""
+        location = Location(latitude: 0, longitude: 0)
+        createdAt = Date()
+        overallRating = 0.0
+        bestRatings = Washroom.Ratings(privacy: 0, toiletPaperQuality: 0, smell: 0, cleanliness: 0)
+        amenities = []
+    }
+    
     func fetchWashrooms() {
         ThroneEndpoint.fetchWashrooms(in: self) { washrooms in
             DispatchQueue.main.async {

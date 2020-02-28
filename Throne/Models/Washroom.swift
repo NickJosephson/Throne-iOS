@@ -112,7 +112,7 @@ struct Washroom: Codable {
                 case .automaticToilet: return "⚡️🚽"
                 case .automaticSink: return "⚡️🚰"
                 case .automaticDryer: return "⚡️💨"
-                case .wheelchairAccessible: return "🦽"
+                case .wheelchairAccessible: return "♿️"
                 case .contraception: return "🚫👶"
                 default: return nil
                 }

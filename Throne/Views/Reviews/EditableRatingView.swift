@@ -1,5 +1,5 @@
 //
-//  RatingView.swift
+//  EditableRatingView.swift
 //  Throne
 //
 //  Created by Nicholas Josephson on 2020-02-27.
@@ -8,8 +8,8 @@
 
 import SwiftUI
 
-struct RatingView: View {
-    var rating: Double
+struct EditableRatingView: View {
+    @Binding var rating: Double
     var label = ""
     var maximumRating = 5
     
@@ -32,13 +32,16 @@ struct RatingView: View {
 
             ForEach(1..<maximumRating + 1) { number in
                     self.image(for: number)
+                    .onTapGesture {
+                        self.rating = Double(number)
+                    }
             }
         }
     }
 }
 
-struct RatingView_Previews: PreviewProvider {
+struct EditableRatingView_Previews: PreviewProvider {
     static var previews: some View {
-        RatingView(rating: 2.5)
+        EditableRatingView(rating: .constant(2.5))
     }
 }

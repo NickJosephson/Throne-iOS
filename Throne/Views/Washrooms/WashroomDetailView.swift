@@ -10,12 +10,23 @@ import SwiftUI
 
 struct WashroomDetailView: View {
     var washroom: Washroom
-    @State private var showCreateReview = false
     @State private var isFavorite = false
 
     var body: some View {
         List {
-//            Text("Floor \(washroom.floor) \(washroom.gender.emoji) \(washroom.gender.description)")
+            Section(header: Text("Details")) {
+                HStack {
+                    Text("\(washroom.gender.description) Floor \(washroom.floor)")
+                    Spacer()
+                    Text("\(washroom.gender.emoji)")
+                }
+                    .font(.title)
+                NavigationLink(destination: AmenitiesView(amenities: self.washroom.amenities)) {
+                    Text("Amenities")
+                    Spacer()
+                    CompactAmenitiesView(amenities: self.washroom.amenities)
+                }
+            }
             Section(header: Text("Ratings")) {
                 HStack {
                     Text("✨ Cleanliness")
@@ -36,13 +47,6 @@ struct WashroomDetailView: View {
                     Text("👃 Smell")
                     Spacer()
                     RatingView(rating: washroom.averageRatings.smell)
-                }
-            }
-            Section() {
-                NavigationLink(destination: AmenitiesView(amenities: self.washroom.amenities)) {
-                    Text("Amenities")
-                    Spacer()
-                    CompactAmenitiesView(amenities: self.washroom.amenities)
                 }
                 NavigationLink(destination: ReviewsView(washroom: washroom)) {
                     Text("Reviews")
@@ -65,28 +69,10 @@ struct WashroomDetailView: View {
         .listStyle(GroupedListStyle())
         .navigationBarTitle(washroom.title)
         .navigationBarItems(trailing:
-            HStack {
-                Button(action: { self.isFavorite.toggle() }, label: {
-                    HStack {
-                        if self.isFavorite {
-                            Image(systemName: "bookmark.fill")
-                        } else {
-                            Image(systemName: "bookmark")
-                        }
-                        Text("Favourite")
-                    }
-                })
-                .padding(.trailing)
-                Button(action: { self.showCreateReview = true }, label: {
-                    HStack {
-                        Image(systemName: "square.and.pencil")
-                        Text("Review")
-                    }
-                })
-                .popover(isPresented: self.$showCreateReview, content: { CreateReviewView(show: self.$showCreateReview) } )
-                
+            HStack(spacing: 20) {
+                FavoriteButton(isFavorite: self.$isFavorite)
+                ReviewButton()
             }
-            
         )
     }
 }
