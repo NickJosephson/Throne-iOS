@@ -36,28 +36,34 @@ struct WelcomeView: View {
                     .foregroundColor(Color.white)
                     .multilineTextAlignment(.center)
                 Spacer()
-                    .frame(height: 150)
+                    .frame(height: 100)
                 Button(action: { self.loginController.startLogin() }) {
-                    Text("Login").font(.title)
+                    Text("Login")
+                        .font(.title)
                 }
                     .padding()
                     .foregroundColor(.white)
-                    .background(Color.red)
+                    .background(Color(red: 0.1019607843, green: 0.5647058824, blue: 1, opacity: 1.0))
                     .cornerRadius(20)
                     .padding()
                 Button(action: { self.loginController.startSignup() }) {
-                    Text("Sign Up").font(.title)
+                    Text("Sign Up")
+                        .font(.title)
                 }
                     .padding()
-                    .foregroundColor(.white)
-                    .background(Color.red)
+                    .foregroundColor(.black)
+                    .background(Color.white)
                     .cornerRadius(20)
+                    .padding()
                 LoginView(controller: loginController).frame(width: 0, height: 0, alignment: .bottom)
                 Spacer()
             }
             Spacer()
         }
-        .background(LinearGradient(gradient: Gradient(colors: [.red, .blue]), startPoint: .bottom, endPoint: .top).edgesIgnoringSafeArea(.all))
+        .background(LinearGradient(gradient: Gradient(colors: [
+            Color(red: 0.3647058824, green: 0.6392156863, blue: 0.9058823529, opacity: 1.0),
+            Color(red: 0.4862745098, green: 0.8392156863, blue: 1, opacity: 1.0)]
+        ), startPoint: .bottom, endPoint: .top).edgesIgnoringSafeArea(.all))
     }
 }
 
