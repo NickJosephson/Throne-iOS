@@ -44,7 +44,7 @@ struct WelcomeView: View {
                     .padding()
                     .foregroundColor(.white)
                     .background(Color(red: 0.1019607843, green: 0.5647058824, blue: 1, opacity: 1.0))
-                    .cornerRadius(20)
+                    .cornerRadius(30)
                     .padding()
                 Button(action: { self.loginController.startSignup() }) {
                     Text("Sign Up")
@@ -53,7 +53,7 @@ struct WelcomeView: View {
                     .padding()
                     .foregroundColor(.black)
                     .background(Color.white)
-                    .cornerRadius(20)
+                    .cornerRadius(30)
                     .padding()
                 LoginView(controller: loginController).frame(width: 0, height: 0, alignment: .bottom)
                 Spacer()
