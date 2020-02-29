@@ -114,7 +114,7 @@ class ThroneEndpoint {
     
     class func fetchCurrentUser(completionHandler: @escaping (User) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
-        urlComponents.path = "/user/"
+        urlComponents.path = "/users/"
 
         NSLog("Fetching current user.")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)

@@ -10,20 +10,21 @@ import SwiftUI
 
 struct ProfileView: View {
     @Environment(\.verticalSizeClass) var horizontalSizeClass
-
+    @ObservedObject private var loginManager = LoginManager.shared
+    
     var body: some View {
         NavigationView {
             VStack() {
                 if horizontalSizeClass != .compact {
                     VStack {
                         AvatarView()
-                        NameView()
+                        NameView(user: loginManager.currentUser)
                     }
                     .padding(30)
                 } else {
                     HStack {
                         AvatarView()
-                        NameView()
+                        NameView(user: loginManager.currentUser)
                     }
                     .padding(10)
                 }
@@ -32,6 +33,9 @@ struct ProfileView: View {
             .navigationBarItems(
                 trailing: NavigationLink(destination: SettingsView()) { Image(systemName: "gear") }
             )
+            .onAppear {
+                self.loginManager.requestUserFetch.send()
+            }
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
@@ -48,8 +52,10 @@ struct AvatarView: View {
 }
 
 struct NameView: View {
+    var user: User?
+    
     var body: some View {
-        Text("User Name")
+        Text("\(user?.username ?? "")")
         .font(.largeTitle)
         .multilineTextAlignment(.center)
     }

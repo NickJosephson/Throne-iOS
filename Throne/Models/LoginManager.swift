@@ -15,11 +15,15 @@ final class LoginManager: ObservableObject {
 
     private let settings = PersistentSettings()
     private var refreshSubscription: AnyCancellable!
-    
+    private var currentUserSubscription: AnyCancellable!
+
     var requestRefresh = PassthroughSubject<Void, Never>()
+    var requestUserFetch = PassthroughSubject<Void, Never>()
     var refreshCompleted = PassthroughSubject<Void, Never>()
     var loginCompleted = PassthroughSubject<Void, Never>()
 
+    @Published private(set) var currentUser: User?
+    
     /// Whether the user is currently logged in.
     ///
     /// Logged in means the refresh token is currently believed to be valid.
@@ -39,6 +43,22 @@ final class LoginManager: ObservableObject {
             .sink {
                 self.refreshLogin()
             }
+        
+        // create publisher for indicating when to perform current user update
+        let shouldUpdatePublisher = self.loginCompleted
+            .merge(with: self.refreshCompleted, self.requestUserFetch)
+          .eraseToAnyPublisher()
+
+        currentUserSubscription = shouldUpdatePublisher
+            .flatMap { _ in
+                return Future { promise in
+                    ThroneEndpoint.fetchCurrentUser { user in
+                        promise(.success(user))
+                    }
+                }
+            }
+            .receive(on: RunLoop.main)
+            .assign(to: \.currentUser, on: self)
     }
     
     func logout() {
@@ -48,6 +68,7 @@ final class LoginManager: ObservableObject {
                 self.settings.idToken = nil
                 self.settings.accessToken = nil
                 self.settings.refreshToken = nil
+                self.currentUser = nil
                 
                 NSLog("Log out completed.")
             }

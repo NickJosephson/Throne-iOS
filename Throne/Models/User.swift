@@ -10,9 +10,9 @@ import Foundation
 
 struct User: Codable {
     let id: Int
-    let createdAt: Date?
+    let createdAt: Date
     let username: String
-    let profilePicture: URL?
+    let profilePicture: String
     let preferences: User.Preferences?
     
     private enum CodingKeys: String, CodingKey {
@@ -20,11 +20,10 @@ struct User: Codable {
         case createdAt = "created_at"
         case username
         case profilePicture = "profile_picture"
-        case preferences = "washroom_preferences"
+        case preferences
     }
     
     struct Preferences: Codable {
         let terminology: String?
-        let gender: Washroom.Gender?
     }
 }
