@@ -12,11 +12,8 @@ struct MapView: View {
     @ObservedObject var model: NearMe
     
     var body: some View {
-        NavigationView {
-            MapUIView(buildings: model.buildings)
+        MapUIView(buildings: model.buildings)
             .edgesIgnoringSafeArea(.all)
-        }
-        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

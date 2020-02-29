@@ -11,33 +11,20 @@ import MapKit
 import CoreLocation
 
 struct MapUIView: UIViewRepresentable {
-    let mapView = MKMapView()
-    let location = CLLocationManager()
+    private let controller = MapViewController()
     var startLocation: Location? = nil
     var interactive = true
-    var buildings: [Building]?
+    var buildings: [Building] = []
     
-    
-    func makeUIView(context: Context) -> MKMapView {
-        location.requestWhenInUseAuthorization()
-        mapView.showsUserLocation = true
-        mapView.showsCompass = false
-        mapView.isUserInteractionEnabled = interactive
-        mapView.showsBuildings = true
-        mapView.mapType = .standard
+    func makeUIView(context: Context) -> UIView {
+        controller.buildings = buildings
+        controller.startLocation = startLocation
+        controller.interactive = interactive
         
-        if startLocation != nil {
-            mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: startLocation!.latitude, longitude: startLocation!.longitude), span: MKCoordinateSpan(latitudeDelta: 0.0025, longitudeDelta: 0.0025)), animated: false)
-            let marker = MKPointAnnotation()
-            marker.coordinate = CLLocationCoordinate2D(latitude: startLocation!.latitude, longitude: startLocation!.longitude)
-            mapView.addAnnotation(marker)
-            mapView.selectAnnotation(marker, animated: true)
-        }
-                
-        return mapView
+        return controller.view
     }
 
-    func updateUIView(_ uiView: MKMapView, context: Context) {
+    func updateUIView(_ uiView: UIView, context: Context) {
     }
 }
 
