@@ -39,22 +39,24 @@ struct WelcomeView: View {
                     .frame(height: 100)
                 Button(action: { self.loginController.startLogin() }) {
                     Text("Login")
-                        .font(.title)
+                        .font(.system(size: 25))
+                        .frame(width: 200.0, height: 20.0)
                 }
                     .padding()
                     .foregroundColor(.white)
                     .background(Color(red: 0.1019607843, green: 0.5647058824, blue: 1, opacity: 1.0))
                     .cornerRadius(30)
-                    .padding()
+                    .padding(5)
                 Button(action: { self.loginController.startSignup() }) {
                     Text("Sign Up")
-                        .font(.title)
+                        .font(.system(size: 25))
+                        .frame(width: 200.0, height: 20.0)
                 }
                     .padding()
                     .foregroundColor(.black)
                     .background(Color.white)
                     .cornerRadius(30)
-                    .padding()
+                    .padding(5)
                 LoginView(controller: loginController).frame(width: 0, height: 0, alignment: .bottom)
                 Spacer()
             }
