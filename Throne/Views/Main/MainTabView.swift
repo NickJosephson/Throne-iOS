@@ -22,7 +22,7 @@ struct MainTabView: View {
                     }
                 }
                 .tag(0)
-            MapView()
+            MapView(model: model)
                 .tabItem {
                     VStack {
                         Image(systemName: "map")

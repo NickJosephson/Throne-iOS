@@ -21,6 +21,20 @@ final class Building: Codable, ObservableObject {
     
     @Published var washrooms: [Washroom] = []
     
+    var stars: String {
+        get {
+            var stars = ""
+            for rating in 1...5 {
+                if Double(rating) > self.overallRating.rounded(.toNearestOrAwayFromZero) {
+                    stars += "☆"
+                } else {
+                    stars += "★"
+                }
+            }
+            return stars
+        }
+    }
+    
     init() {
         id = 0
         title = ""
@@ -32,9 +46,11 @@ final class Building: Codable, ObservableObject {
     }
     
     func fetchWashrooms() {
-        ThroneEndpoint.fetchWashrooms(in: self) { washrooms in
-            DispatchQueue.main.async {
-                self.washrooms = washrooms
+        if washrooms.isEmpty {
+            ThroneEndpoint.fetchWashrooms(in: self) { washrooms in
+                DispatchQueue.main.async {
+                    self.washrooms = washrooms
+                }
             }
         }
     }
