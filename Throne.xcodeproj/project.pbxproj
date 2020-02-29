@@ -20,6 +20,11 @@
 		E11449042408D5D000DD4F04 /* CreateWashroomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11449032408D5D000DD4F04 /* CreateWashroomButton.swift */; };
 		E11449062408D7A300DD4F04 /* EditableRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11449052408D7A300DD4F04 /* EditableRatingView.swift */; };
 		E11449082409C03A00DD4F04 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11449072409C03A00DD4F04 /* LocationManager.swift */; };
+		E116F687240A493E00680E92 /* MapDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E116F686240A493E00680E92 /* MapDetailView.swift */; };
+		E116F689240A495F00680E92 /* MapPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E116F688240A495F00680E92 /* MapPreviewView.swift */; };
+		E116F68B240A49AB00680E92 /* MapUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E116F68A240A49AB00680E92 /* MapUIView.swift */; };
+		E116F691240A699300680E92 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E116F690240A699300680E92 /* MapViewController.swift */; };
+		E116F695240A7F3800680E92 /* BuildingAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E116F694240A7F3800680E92 /* BuildingAnnotation.swift */; };
 		E11C9BE923F1DB3A0045663B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C9BE823F1DB3A0045663B /* Location.swift */; };
 		E11C9BEB23F1DBB60045663B /* Building.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C9BEA23F1DBB60045663B /* Building.swift */; };
 		E11C9BED23F1DD850045663B /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C9BEC23F1DD850045663B /* Review.swift */; };
@@ -90,6 +95,11 @@
 		E11449032408D5D000DD4F04 /* CreateWashroomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWashroomButton.swift; sourceTree = "<group>"; };
 		E11449052408D7A300DD4F04 /* EditableRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableRatingView.swift; sourceTree = "<group>"; };
 		E11449072409C03A00DD4F04 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		E116F686240A493E00680E92 /* MapDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailView.swift; sourceTree = "<group>"; };
+		E116F688240A495F00680E92 /* MapPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPreviewView.swift; sourceTree = "<group>"; };
+		E116F68A240A49AB00680E92 /* MapUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapUIView.swift; sourceTree = "<group>"; };
+		E116F690240A699300680E92 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		E116F694240A7F3800680E92 /* BuildingAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingAnnotation.swift; sourceTree = "<group>"; };
 		E11C9BE823F1DB3A0045663B /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		E11C9BEA23F1DBB60045663B /* Building.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Building.swift; sourceTree = "<group>"; };
 		E11C9BEC23F1DD850045663B /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
@@ -235,6 +245,11 @@
 			isa = PBXGroup;
 			children = (
 				E176AEF323E39CC900EF8D15 /* MapView.swift */,
+				E116F686240A493E00680E92 /* MapDetailView.swift */,
+				E116F688240A495F00680E92 /* MapPreviewView.swift */,
+				E116F68A240A49AB00680E92 /* MapUIView.swift */,
+				E116F690240A699300680E92 /* MapViewController.swift */,
+				E116F694240A7F3800680E92 /* BuildingAnnotation.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -476,17 +491,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				E176AEFA23E3A88E00EF8D15 /* ProfileView.swift in Sources */,
+				E116F689240A495F00680E92 /* MapPreviewView.swift in Sources */,
 				E146A6E22400A28E00F73A0B /* Reviews.swift in Sources */,
 				E1E0738423E5612400D4AE5E /* LoginManager.swift in Sources */,
 				E11448F52408A6B800DD4F04 /* CompactAmenitiesView.swift in Sources */,
 				E1CDA0B823E404A6007ADA73 /* PersistentSettings.swift in Sources */,
 				E12211D523FB4E18006C99D2 /* ThroneEndpoint.swift in Sources */,
 				E11449022408D49000DD4F04 /* GenderSelectionView.swift in Sources */,
+				E116F695240A7F3800680E92 /* BuildingAnnotation.swift in Sources */,
 				E1E0738623E561BB00D4AE5E /* NearMe.swift in Sources */,
 				E11C9BE923F1DB3A0045663B /* Location.swift in Sources */,
 				E1F4FE122407928D00A4096F /* CreateWashroomView.swift in Sources */,
 				E11C9BED23F1DD850045663B /* Review.swift in Sources */,
 				E11448EF2408A4DF00DD4F04 /* MainTabView.swift in Sources */,
+				E116F691240A699300680E92 /* MapViewController.swift in Sources */,
 				E176AEC023E38B2A00EF8D15 /* AppDelegate.swift in Sources */,
 				E11448E92408A3C900DD4F04 /* NearMeListView.swift in Sources */,
 				E1CFDE6823FA4FBF007423FD /* AuthenticationEndpoint.swift in Sources */,
@@ -499,6 +517,7 @@
 				E11448E7240899FD00DD4F04 /* EnableLocationButton.swift in Sources */,
 				E176AEFC23E3AA3500EF8D15 /* NearMeView.swift in Sources */,
 				E176AEC723E38B2A00EF8D15 /* ContentView.swift in Sources */,
+				E116F68B240A49AB00680E92 /* MapUIView.swift in Sources */,
 				E1E0738223E54E3A00D4AE5E /* WelcomeView.swift in Sources */,
 				E11449082409C03A00DD4F04 /* LocationManager.swift in Sources */,
 				E1768D4E23FDEE2B00A9F098 /* AppConfiguration.swift in Sources */,
@@ -515,6 +534,7 @@
 				E11C9BEF23F1DF6D0045663B /* User.swift in Sources */,
 				E146A6DE2400A1F400F73A0B /* AmenitiesView.swift in Sources */,
 				E1F4FE14240796A100A4096F /* RatingView.swift in Sources */,
+				E116F687240A493E00680E92 /* MapDetailView.swift in Sources */,
 				E11448FC2408D33E00DD4F04 /* ReviewButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
