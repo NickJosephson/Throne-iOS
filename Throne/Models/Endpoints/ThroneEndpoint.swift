@@ -144,4 +144,54 @@ class ThroneEndpoint {
         }
     }
     
+    /// Fetch Data at a given URL.
+    ///
+    /// If an accessToken is set it will be used for authentication.
+    /// - Parameters:
+    ///   - url: URL to send GET request to.
+    ///   - completionHandler: Function to handle Data once received.
+    private class func fetch(url: URL, completionHandler: @escaping (Data) -> Void) {
+        var request = URLRequest(url: url)
+
+        if !LoginManager.shared.isLoggedIn {
+            NSLog("Throne Endpoint Fetch Cancelled: Not logged in.")
+            return
+        }
+        
+        if let accessToken = PersistentSettings().accessToken, !accessToken.isEmpty {
+            request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        }
+
+        performRequest(with: request, completionHandler: completionHandler)
+    }
+
+    /// Perform a URLRequest with error handling.
+    /// - Parameters:
+    ///   - request: URLRequest to perform.
+    ///   - completionHandler: Function to handle Data once received.
+    private class func performRequest(with request: URLRequest, completionHandler: @escaping (Data) -> Void) {
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                NSLog("Throne Endpoint URL Session Error: \(error)")
+                return
+            }
+
+            if let httpResponse = response as? HTTPURLResponse {
+                if httpResponse.statusCode == 401 {
+                    NSLog("Throne Endpoint URL Session Error: Unauthorized, requesting login refresh.")
+                    LoginManager.shared.requestRefresh.send()
+                    return
+                } else if !(200...299).contains(httpResponse.statusCode) {
+                    NSLog("Throne Endpoint URL Session Error: Unexpected status code \(httpResponse.statusCode))")
+                    return
+                }
+            }
+
+            if let data = data {
+                completionHandler(data)
+            }
+        }
+
+        task.resume()
+    }
 }

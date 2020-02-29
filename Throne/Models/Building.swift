@@ -46,7 +46,7 @@ final class Building: Codable, ObservableObject {
         case distance
         case createdAt = "created_at"
         case overallRating = "overall_rating"
-        case bestRatings = "best_rating"
+        case bestRatings = "best_ratings"
         case amenities
     }
 }

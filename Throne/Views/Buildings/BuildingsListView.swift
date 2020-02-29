@@ -9,10 +9,10 @@
 import SwiftUI
 
 struct BuildingsListView: View {
-    @ObservedObject var model: NearMe
+    var buildings: [Building]
     
     var body: some View {
-        ForEach(model.buildings, id: \.title) { building in
+        ForEach(buildings, id: \.title) { building in
             NavigationLink(destination: BuildingDetailView(building: building)) {
                 HStack {
                     VStack(alignment: .leading) {
@@ -36,6 +36,6 @@ struct BuildingsListView: View {
 
 struct BuildingsListView_Previews: PreviewProvider {
     static var previews: some View {
-        BuildingsListView(model: NearMe())
+        BuildingsListView(buildings: [])
     }
 }
