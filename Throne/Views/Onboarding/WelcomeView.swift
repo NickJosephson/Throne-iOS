@@ -8,22 +8,31 @@
 
 import SwiftUI
 
+extension Color {
+    static let yellow1 = Color.yellow
+    static let darkGrey1 = Color.init(UIColor.darkGray)
+
+    static func backgroundColor(for colorScheme: ColorScheme) -> Color {
+        if colorScheme == .dark {
+            return darkGrey1
+        } else {
+            return yellow1
+        }
+    }
+    
+    static func foregroundColor(for colorScheme: ColorScheme) -> Color {
+        if colorScheme == .dark {
+            return darkGrey1
+        } else {
+            return yellow1
+        }
+    }
+}
+
 struct WelcomeView: View {
     var loginController = LoginViewController()
-    var myBlueColor = Color (
-        red: 94.0,
-        green: 162.0,
-        blue: 231.0,
-        opacity: 1.0
-    )
     
-    
-    var myBlueColor2 = Color (
-        red: 255.0,
-        green: 255.0,
-        blue: 255.0,
-        opacity: 1.0
-    )
+    @Environment (\.colorScheme) var colorScheme:ColorScheme
     
     var body: some View {
         HStack {
@@ -43,7 +52,7 @@ struct WelcomeView: View {
                         .frame(width: 200.0, height: 20.0)
                 }
                     .padding()
-                    .foregroundColor(.white)
+                    .foregroundColor(Color.foregroundColor(for: colorScheme))
                     .background(Color(red: 0.1019607843, green: 0.5647058824, blue: 1, opacity: 1.0))
                     .cornerRadius(30)
                     .padding(5)
@@ -53,7 +62,7 @@ struct WelcomeView: View {
                         .frame(width: 200.0, height: 20.0)
                 }
                     .padding()
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.foregroundColor(for: colorScheme))
                     .background(Color.white)
                     .cornerRadius(30)
                     .padding(5)
@@ -62,10 +71,11 @@ struct WelcomeView: View {
             }
             Spacer()
         }
-        .background(LinearGradient(gradient: Gradient(colors: [
-            Color(red: 0.3647058824, green: 0.6392156863, blue: 0.9058823529, opacity: 1.0),
-            Color(red: 0.4862745098, green: 0.8392156863, blue: 1, opacity: 1.0)]
-        ), startPoint: .bottom, endPoint: .top).edgesIgnoringSafeArea(.all))
+        .background((Color.backgroundColor(for: colorScheme))).edgesIgnoringSafeArea(.all)
+//        .background(LinearGradient(gradient: Gradient(colors: [
+//            Color(red: 0.3647058824, green: 0.6392156863, blue: 0.9058823529, opacity: 1.0),
+//            Color(red: 0.4862745098, green: 0.8392156863, blue: 1, opacity: 1.0)]
+//        ), startPoint: .bottom, endPoint: .top).edgesIgnoringSafeArea(.all))
     }
 }
 
