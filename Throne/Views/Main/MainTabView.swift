@@ -10,10 +10,11 @@ import SwiftUI
 
 struct MainTabView: View {
     @State private var currentTab = 0
-    
+    @ObservedObject var model = NearMe()
+
     var body: some View {
         TabView(selection: $currentTab) {
-            NearMeView()
+            NearMeView(model: model)
                 .tabItem {
                     VStack {
                         Image(systemName: "mappin.and.ellipse")

@@ -11,14 +11,15 @@ import SwiftUI
 struct NearMeView: View {
     @ObservedObject var settings = PersistentSettings()
     @ObservedObject var locationManager = LocationManager.shared
-    
+    @ObservedObject var model: NearMe
+
     var body: some View {
         NavigationView {
             if locationManager.currentLocation == nil {
                 EnableLocationButton()
                 .navigationBarTitle(Text("Near Me"))
             } else {
-                NearMeListView()
+                NearMeListView(model: model)
                 .navigationBarTitle(Text("Near Me"))
             }
             
@@ -31,6 +32,6 @@ struct NearMeView: View {
 
 struct NearMeView_Previews: PreviewProvider {
     static var previews: some View {
-        NearMeView()
+        NearMeView(model: NearMe())
     }
 }

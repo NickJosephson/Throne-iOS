@@ -30,8 +30,10 @@ final class NearMe: ObservableObject {
             .autoconnect()
             .map { _ in return }
         shouldUpdatePublisher = timerUpdatePublisher
-            .merge(with: refreshUpdatePublisher, locationUpdatePublisher, loginUpdatePublisher)
-            .throttle(for: .seconds(10), scheduler: RunLoop.current, latest: false)
+            .merge(with: locationUpdatePublisher)
+            .throttle(for: .seconds(60), scheduler: RunLoop.current, latest: false)
+            .merge(with: refreshUpdatePublisher, loginUpdatePublisher)
+            .throttle(for: .seconds(5), scheduler: RunLoop.current, latest: false)
             .eraseToAnyPublisher()
         
         washroomsSubscription = shouldUpdatePublisher
@@ -42,7 +44,6 @@ final class NearMe: ObservableObject {
                     }
                 }
             }
-            .replaceError(with: [])
             .receive(on: RunLoop.main)
             .assign(to: \.washrooms, on: self)
 
@@ -54,7 +55,6 @@ final class NearMe: ObservableObject {
                     }
                 }
             }
-            .replaceError(with: [])
             .receive(on: RunLoop.main)
             .assign(to: \.buildings, on: self)
     }

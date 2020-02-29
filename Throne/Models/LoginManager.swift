@@ -34,7 +34,7 @@ final class LoginManager: ObservableObject {
         
         // refresh token when a refresh is requested
         refreshSubscription = requestRefresh
-            .throttle(for: .seconds(10), scheduler: RunLoop.current, latest: false)
+            .throttle(for: .seconds(60), scheduler: RunLoop.current, latest: false)
             .sink {
                 self.refreshLogin()
             }

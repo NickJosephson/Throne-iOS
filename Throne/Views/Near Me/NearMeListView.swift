@@ -10,7 +10,7 @@ import SwiftUI
 
 struct NearMeListView: View {
     @ObservedObject var settings = PersistentSettings()
-    @ObservedObject var model = NearMe()
+    @ObservedObject var model: NearMe
     @State var currentListType = NearMeListType.washrooms
     
     enum NearMeListType {
