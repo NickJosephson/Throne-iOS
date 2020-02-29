@@ -19,6 +19,7 @@
 		E11449022408D49000DD4F04 /* GenderSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11449012408D49000DD4F04 /* GenderSelectionView.swift */; };
 		E11449042408D5D000DD4F04 /* CreateWashroomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11449032408D5D000DD4F04 /* CreateWashroomButton.swift */; };
 		E11449062408D7A300DD4F04 /* EditableRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11449052408D7A300DD4F04 /* EditableRatingView.swift */; };
+		E11449082409C03A00DD4F04 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11449072409C03A00DD4F04 /* LocationManager.swift */; };
 		E11C9BE923F1DB3A0045663B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C9BE823F1DB3A0045663B /* Location.swift */; };
 		E11C9BEB23F1DBB60045663B /* Building.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C9BEA23F1DBB60045663B /* Building.swift */; };
 		E11C9BED23F1DD850045663B /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C9BEC23F1DD850045663B /* Review.swift */; };
@@ -44,12 +45,9 @@
 		E176AEF823E3A62D00EF8D15 /* WashroomDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEF723E3A62D00EF8D15 /* WashroomDetailView.swift */; };
 		E176AEFA23E3A88E00EF8D15 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEF923E3A88E00EF8D15 /* ProfileView.swift */; };
 		E176AEFC23E3AA3500EF8D15 /* NearMeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEFB23E3AA3500EF8D15 /* NearMeView.swift */; };
-		E176AEFE23E3ACE400EF8D15 /* ServiceUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEFD23E3ACE400EF8D15 /* ServiceUtilities.swift */; };
-		E17ABBF723FAA45F004451C2 /* LoginManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17ABBF623FAA45F004451C2 /* LoginManagerTests.swift */; };
 		E17ABBF823FAA4E4004451C2 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738323E5612400D4AE5E /* LoginManager.swift */; };
 		E17ABBF923FAA648004451C2 /* PersistentSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDA0B723E404A6007ADA73 /* PersistentSettings.swift */; };
 		E17ABBFA23FAA648004451C2 /* AuthenticationEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CFDE6723FA4FBF007423FD /* AuthenticationEndpoint.swift */; };
-		E17ABBFB23FAA65F004451C2 /* ServiceUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEFD23E3ACE400EF8D15 /* ServiceUtilities.swift */; };
 		E1CDA0B823E404A6007ADA73 /* PersistentSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDA0B723E404A6007ADA73 /* PersistentSettings.swift */; };
 		E1CFDE6823FA4FBF007423FD /* AuthenticationEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CFDE6723FA4FBF007423FD /* AuthenticationEndpoint.swift */; };
 		E1E0738223E54E3A00D4AE5E /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738123E54E3A00D4AE5E /* WelcomeView.swift */; };
@@ -91,6 +89,7 @@
 		E11449012408D49000DD4F04 /* GenderSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderSelectionView.swift; sourceTree = "<group>"; };
 		E11449032408D5D000DD4F04 /* CreateWashroomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWashroomButton.swift; sourceTree = "<group>"; };
 		E11449052408D7A300DD4F04 /* EditableRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableRatingView.swift; sourceTree = "<group>"; };
+		E11449072409C03A00DD4F04 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E11C9BE823F1DB3A0045663B /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		E11C9BEA23F1DBB60045663B /* Building.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Building.swift; sourceTree = "<group>"; };
 		E11C9BEC23F1DD850045663B /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
@@ -121,8 +120,6 @@
 		E176AEF723E3A62D00EF8D15 /* WashroomDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashroomDetailView.swift; sourceTree = "<group>"; };
 		E176AEF923E3A88E00EF8D15 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		E176AEFB23E3AA3500EF8D15 /* NearMeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearMeView.swift; sourceTree = "<group>"; };
-		E176AEFD23E3ACE400EF8D15 /* ServiceUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceUtilities.swift; sourceTree = "<group>"; };
-		E17ABBF623FAA45F004451C2 /* LoginManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManagerTests.swift; sourceTree = "<group>"; };
 		E1CDA0B723E404A6007ADA73 /* PersistentSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentSettings.swift; sourceTree = "<group>"; };
 		E1CFDE6723FA4FBF007423FD /* AuthenticationEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationEndpoint.swift; sourceTree = "<group>"; };
 		E1E0737A23E5452B00D4AE5E /* Throne.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Throne.entitlements; sourceTree = "<group>"; };
@@ -277,7 +274,6 @@
 				E176AEBF23E38B2A00EF8D15 /* AppDelegate.swift */,
 				E1768D4D23FDEE2B00A9F098 /* AppConfiguration.swift */,
 				E176AEC123E38B2A00EF8D15 /* SceneDelegate.swift */,
-				E176AEFD23E3ACE400EF8D15 /* ServiceUtilities.swift */,
 				E1CDA0B623E3B3AB007ADA73 /* Models */,
 				E176AEF223E3987900EF8D15 /* Views */,
 				E176AEC823E38B2B00EF8D15 /* Assets.xcassets */,
@@ -301,7 +297,6 @@
 			isa = PBXGroup;
 			children = (
 				E176AED923E38B2C00EF8D15 /* ThroneTests.swift */,
-				E17ABBF623FAA45F004451C2 /* LoginManagerTests.swift */,
 				E176AEDB23E38B2C00EF8D15 /* Info.plist */,
 			);
 			path = ThroneTests;
@@ -343,6 +338,7 @@
 				E146A6E12400A28E00F73A0B /* Reviews.swift */,
 				E1CDA0B723E404A6007ADA73 /* PersistentSettings.swift */,
 				E1E0738323E5612400D4AE5E /* LoginManager.swift */,
+				E11449072409C03A00DD4F04 /* LocationManager.swift */,
 				E11448FA2408A79600DD4F04 /* Endpoints */,
 			);
 			path = Models;
@@ -500,11 +496,11 @@
 				E176AEF623E39CFD00EF8D15 /* SettingsView.swift in Sources */,
 				E146A6E02400A21E00F73A0B /* ReviewsView.swift in Sources */,
 				E1F4FE162407A88B00A4096F /* CreateReviewView.swift in Sources */,
-				E176AEFE23E3ACE400EF8D15 /* ServiceUtilities.swift in Sources */,
 				E11448E7240899FD00DD4F04 /* EnableLocationButton.swift in Sources */,
 				E176AEFC23E3AA3500EF8D15 /* NearMeView.swift in Sources */,
 				E176AEC723E38B2A00EF8D15 /* ContentView.swift in Sources */,
 				E1E0738223E54E3A00D4AE5E /* WelcomeView.swift in Sources */,
+				E11449082409C03A00DD4F04 /* LocationManager.swift in Sources */,
 				E1768D4E23FDEE2B00A9F098 /* AppConfiguration.swift in Sources */,
 				E11449062408D7A300DD4F04 /* EditableRatingView.swift in Sources */,
 				E16BA1DC24078AD6002F9EED /* BuildingDetailView.swift in Sources */,
@@ -528,12 +524,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E13C489723FDFC38003B20A0 /* AppConfiguration.swift in Sources */,
-				E17ABBFB23FAA65F004451C2 /* ServiceUtilities.swift in Sources */,
 				E17ABBF923FAA648004451C2 /* PersistentSettings.swift in Sources */,
 				E17ABBFA23FAA648004451C2 /* AuthenticationEndpoint.swift in Sources */,
 				E17ABBF823FAA4E4004451C2 /* LoginManager.swift in Sources */,
 				E176AEDA23E38B2C00EF8D15 /* ThroneTests.swift in Sources */,
-				E17ABBF723FAA45F004451C2 /* LoginManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

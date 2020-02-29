@@ -15,7 +15,7 @@ struct AmenitiesView: View {
         List {
             ForEach(amenities, id: \.self) { amenity in
                 HStack {
-                    Text(amenity.rawValue)
+                    Text(amenity.description)
                     Spacer()
                     Text(amenity.emoji ?? "")
                 }

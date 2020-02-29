@@ -14,7 +14,7 @@ struct AmenitiesSelectionView: View {
     var body: some View {
         ForEach(Washroom.Amenity.allCases, id: \.self) { amenity in
             HStack {
-                Text("\(amenity.rawValue)")
+                Text("\(amenity.description)")
                 Spacer()
                 Text("\(amenity.emoji ?? "")")
                 if self.amenities.contains(amenity) {

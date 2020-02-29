@@ -10,7 +10,7 @@ import SwiftUI
 
 struct NearMeListView: View {
     @ObservedObject var settings = PersistentSettings()
-    @ObservedObject var model: NearMe
+    @ObservedObject var model = NearMe()
     @State var currentListType = NearMeListType.washrooms
     
     enum NearMeListType {
@@ -36,7 +36,7 @@ struct NearMeListView: View {
                 WashroomsListView(washrooms: model.washrooms)
                 .navigationBarTitle(Text("Near Me"))
             } else {
-                BuildingsListView(model: model)
+                BuildingsListView(buildings: model.buildings)
                 .navigationBarTitle(Text("Near Me"))
             }
         }

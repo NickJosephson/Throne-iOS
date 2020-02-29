@@ -7,55 +7,56 @@
 //
 
 import Foundation
-import CoreLocation
+import Combine
 
-final class NearMe: NSObject, ObservableObject, CLLocationManagerDelegate {
-    private let locationManager = CLLocationManager()
+final class NearMe: ObservableObject {
+    private var shouldUpdatePublisher: AnyPublisher<Void, Never>
+    private var washroomsSubscription: AnyCancellable!
+    private var buildingsSubscription: AnyCancellable!
 
     @Published var washrooms: [Washroom] = []
     @Published var buildings: [Building] = []
-    @Published var currentLocation: Location?
     
-    override init() {
-        super.init()
-
-        // start tracking location
-        locationManager.delegate = self
-        locationManager.startMonitoringSignificantLocationChanges()
-        if let location = locationManager.location {
-            currentLocation = Location(location.coordinate)
-        }
-
-        update()
-    }
-    
-    /// Handle a location update.
-    func locationManager(_ manager: CLLocationManager,  didUpdateLocations locations: [CLLocation]) {
-        NSLog("User location updated, start washrooms update.")
-        let lastLocation = locations.last!
+    init() {
+        // create publisher for indicating when to perform near me update
+        let loginUpdatePublisher = LoginManager.shared.$isLoggedIn
+            .filter { $0 }
+            .map { _ in return }
+        let refreshUpdatePublisher = LoginManager.shared.refreshCompleted
+        let locationUpdatePublisher = LocationManager.shared.$currentLocation
+            .filter { $0 != nil }
+            .map { _ in return }
+        let timerUpdatePublisher = Timer.publish(every: TimeInterval(exactly: 300.0)!, on: RunLoop.current, in: .default)
+            .autoconnect()
+            .map { _ in return }
+        shouldUpdatePublisher = timerUpdatePublisher
+            .merge(with: refreshUpdatePublisher, locationUpdatePublisher, loginUpdatePublisher)
+            .throttle(for: .seconds(10), scheduler: RunLoop.current, latest: false)
+            .eraseToAnyPublisher()
         
-        DispatchQueue.main.async {
-            self.currentLocation = Location(lastLocation.coordinate)
-        }
-        
-        update()
-    }
-    
-    private func update() {
-        if currentLocation == nil {
-            NSLog("Cancelling washroom fetch: No user location.")
-            return
-        }
-        
-        ThroneEndpoint.fetchWashrooms(near: currentLocation) { washrooms in
-            DispatchQueue.main.async {
-                self.washrooms = washrooms
+        washroomsSubscription = shouldUpdatePublisher
+            .flatMap { _ in
+                return Future { promise in
+                    ThroneEndpoint.fetchWashrooms(near: LocationManager.shared.currentLocation) { washrooms in
+                        promise(.success(washrooms))
+                    }
+                }
             }
-        }
-        ThroneEndpoint.fetchBuildings(near: currentLocation) { buildings in
-            DispatchQueue.main.async {
-                self.buildings = buildings
+            .replaceError(with: [])
+            .receive(on: RunLoop.main)
+            .assign(to: \.washrooms, on: self)
+
+        buildingsSubscription = shouldUpdatePublisher
+            .flatMap {_ in
+                return Future { promise in
+                    ThroneEndpoint.fetchBuildings(near: LocationManager.shared.currentLocation) { buildings in
+                        promise(.success(buildings))
+                    }
+                }
             }
-        }
+            .replaceError(with: [])
+            .receive(on: RunLoop.main)
+            .assign(to: \.buildings, on: self)
     }
+    
 }
