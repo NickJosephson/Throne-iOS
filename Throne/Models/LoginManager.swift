@@ -18,7 +18,8 @@ final class LoginManager: ObservableObject {
     
     var requestRefresh = PassthroughSubject<Void, Never>()
     var refreshCompleted = PassthroughSubject<Void, Never>()
-    
+    var loginCompleted = PassthroughSubject<Void, Never>()
+
     /// Whether the user is currently logged in.
     ///
     /// Logged in means the refresh token is currently believed to be valid.
@@ -62,6 +63,7 @@ final class LoginManager: ObservableObject {
                     self.settings.refreshToken = tokens.refreshToken
                                         
                     self.isLoggedIn = true
+                    self.loginCompleted.send()
                     NSLog("Login completed.")
                 } else {
                     NSLog("Login error: Failed to fetch access token.")

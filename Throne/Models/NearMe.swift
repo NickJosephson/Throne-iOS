@@ -19,9 +19,7 @@ final class NearMe: ObservableObject {
     
     init() {
         // create publisher for indicating when to perform near me update
-        let loginUpdatePublisher = LoginManager.shared.$isLoggedIn
-            .filter { $0 }
-            .map { _ in return }
+        let loginUpdatePublisher = LoginManager.shared.loginCompleted
         let refreshUpdatePublisher = LoginManager.shared.refreshCompleted
         let locationUpdatePublisher = LocationManager.shared.$currentLocation
             .filter { $0 != nil }
@@ -33,7 +31,6 @@ final class NearMe: ObservableObject {
             .merge(with: locationUpdatePublisher)
             .throttle(for: .seconds(60), scheduler: RunLoop.current, latest: false)
             .merge(with: refreshUpdatePublisher, loginUpdatePublisher)
-            .throttle(for: .seconds(5), scheduler: RunLoop.current, latest: false)
             .eraseToAnyPublisher()
         
         washroomsSubscription = shouldUpdatePublisher
