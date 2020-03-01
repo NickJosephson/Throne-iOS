@@ -11,7 +11,7 @@ import SwiftUI
 struct NearMeListView: View {
     @ObservedObject var settings = PersistentSettings()
     @ObservedObject var model: NearMe
-    @State var currentListType = NearMeListType.washrooms
+    @State var currentListType = NearMeListType.buildings
     
     enum NearMeListType {
         case washrooms
@@ -26,8 +26,8 @@ struct NearMeListView: View {
                 .navigationBarTitle(Text("Near Me"))
             } else {
                 Picker(selection: $currentListType, label: Text("List Type")) {
-                    Text("Washrooms").tag(NearMeListType.washrooms)
                     Text("Buildings").tag(NearMeListType.buildings)
+                    Text("All Washrooms").tag(NearMeListType.washrooms)
                 }
                 .pickerStyle(SegmentedPickerStyle())
             }
