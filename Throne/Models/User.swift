@@ -10,7 +10,7 @@ import Foundation
 
 struct User: Codable {
     let id: Int
-    let createdAt: Date
+    let createdAt: Date?
     let username: String
     let profilePicture: String
     let preferences: User.Preferences?
