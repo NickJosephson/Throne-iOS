@@ -40,6 +40,7 @@ struct NearMeListView: View {
                 .navigationBarTitle(Text("Near Me"))
             }
         }
+        .navigationBarTitle(Text("Near Me"))
     }
 }
 
