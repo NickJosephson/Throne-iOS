@@ -33,7 +33,7 @@ struct RatingView: View {
             ForEach(1..<maximumRating + 1) { number in
                     self.image(for: number)
             }
-        }
+        }.foregroundColor(rating <= 0 ? Color.secondary : Color.black)
     }
 }
 

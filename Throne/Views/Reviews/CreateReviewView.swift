@@ -31,6 +31,7 @@ struct CreateReviewView: View {
             .navigationBarItems(
                 leading: Button(action: {self.show = false}, label: { Text("Cancel") }),
                 trailing: Button(action: {self.show = false}, label: { Text("Post") })
+                    .disabled(cleanlinessRating <= 0 || privacyRating <= 0 || paperRating <= 0 || smellRating <= 0)
             )
 
         }

@@ -23,6 +23,10 @@ final class Building: Codable, ObservableObject {
     
     var stars: String {
         get {
+            if self.overallRating <= 0 {
+                return ""
+            }
+            
             var stars = ""
             for rating in 1...5 {
                 if Double(rating) > self.overallRating.rounded(.toNearestOrAwayFromZero) {
