@@ -151,7 +151,17 @@ extension MapViewController: MKMapViewDelegate {
         
         flagAnnotationView.canShowCallout = true
         
-        let image = #imageLiteral(resourceName: "paper")
+        let image: UIImage
+        if annotation.building.overallRating <= 1.5 {
+            image = #imageLiteral(resourceName: "skull")
+        } else if annotation.building.overallRating <= 2.5 {
+            image = #imageLiteral(resourceName: "poo")
+        } else if annotation.building.overallRating <= 4.0 {
+            image = #imageLiteral(resourceName: "paper")
+        } else {
+            image = #imageLiteral(resourceName: "crown")
+        }
+        
         flagAnnotationView.image = image
 
         let rightButton = UIButton(type: .detailDisclosure)
