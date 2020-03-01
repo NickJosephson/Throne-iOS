@@ -30,7 +30,6 @@
 		E11C9BED23F1DD850045663B /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C9BEC23F1DD850045663B /* Review.swift */; };
 		E11C9BEF23F1DF6D0045663B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C9BEE23F1DF6D0045663B /* User.swift */; };
 		E12211D523FB4E18006C99D2 /* ThroneEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12211D423FB4E18006C99D2 /* ThroneEndpoint.swift */; };
-		E13C489723FDFC38003B20A0 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1768D4D23FDEE2B00A9F098 /* AppConfiguration.swift */; };
 		E146A6DE2400A1F400F73A0B /* AmenitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E146A6DD2400A1F400F73A0B /* AmenitiesView.swift */; };
 		E146A6E02400A21E00F73A0B /* ReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E146A6DF2400A21E00F73A0B /* ReviewsView.swift */; };
 		E146A6E22400A28E00F73A0B /* Reviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = E146A6E12400A28E00F73A0B /* Reviews.swift */; };
@@ -50,9 +49,6 @@
 		E176AEF823E3A62D00EF8D15 /* WashroomDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEF723E3A62D00EF8D15 /* WashroomDetailView.swift */; };
 		E176AEFA23E3A88E00EF8D15 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEF923E3A88E00EF8D15 /* ProfileView.swift */; };
 		E176AEFC23E3AA3500EF8D15 /* NearMeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEFB23E3AA3500EF8D15 /* NearMeView.swift */; };
-		E17ABBF823FAA4E4004451C2 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738323E5612400D4AE5E /* LoginManager.swift */; };
-		E17ABBF923FAA648004451C2 /* PersistentSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDA0B723E404A6007ADA73 /* PersistentSettings.swift */; };
-		E17ABBFA23FAA648004451C2 /* AuthenticationEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CFDE6723FA4FBF007423FD /* AuthenticationEndpoint.swift */; };
 		E1CDA0B823E404A6007ADA73 /* PersistentSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDA0B723E404A6007ADA73 /* PersistentSettings.swift */; };
 		E1CFDE6823FA4FBF007423FD /* AuthenticationEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CFDE6723FA4FBF007423FD /* AuthenticationEndpoint.swift */; };
 		E1E0738223E54E3A00D4AE5E /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738123E54E3A00D4AE5E /* WelcomeView.swift */; };
@@ -543,10 +539,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E13C489723FDFC38003B20A0 /* AppConfiguration.swift in Sources */,
-				E17ABBF923FAA648004451C2 /* PersistentSettings.swift in Sources */,
-				E17ABBFA23FAA648004451C2 /* AuthenticationEndpoint.swift in Sources */,
-				E17ABBF823FAA4E4004451C2 /* LoginManager.swift in Sources */,
 				E176AEDA23E38B2C00EF8D15 /* ThroneTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
