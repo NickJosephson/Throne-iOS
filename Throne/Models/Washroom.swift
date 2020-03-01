@@ -31,7 +31,7 @@ struct Washroom: Codable {
         case floor
         case buildingID = "building_id"
         case createdAt = "created_at"
-        case reviewsCount = "reviews_count"
+        case reviewsCount = "review_count"
         case overallRating = "overall_rating"
         case averageRatings = "average_ratings"
         case amenities
