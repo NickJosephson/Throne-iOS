@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct WashroomDetailView: View {
-    var washroom: Washroom
+    @ObservedObject var washroom: Washroom
     @State private var isFavorite = false
 
     var body: some View {
@@ -71,7 +71,7 @@ struct WashroomDetailView: View {
         .navigationBarItems(trailing:
             HStack(spacing: 20) {
                 FavoriteButton(isFavorite: self.$isFavorite)
-                ReviewButton(reviews: Reviews(for: self.washroom))
+                ReviewButton(washroom: self.washroom)
             }
         )
     }
@@ -79,11 +79,6 @@ struct WashroomDetailView: View {
 
 struct WashroomDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        let amenities = [Amenity]()
-        let ratings = Ratings(privacy: 4, toiletPaperQuality: 4, smell: 4, cleanliness: 4)
-        let location = Location(latitude: 0, longitude: 0)
-        let washroom = Washroom(id: 1, title: "Washroom", location: location, gender: .all, floor: 1, buildingID: 1, createdAt: Date(), reviewsCount: 0, overallRating: 4, averageRatings: ratings, amenities: amenities)
-        
-        return WashroomDetailView(washroom: washroom)
+        return WashroomDetailView(washroom: Washroom())
     }
 }

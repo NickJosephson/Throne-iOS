@@ -32,7 +32,6 @@
 		E12211D523FB4E18006C99D2 /* ThroneEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12211D423FB4E18006C99D2 /* ThroneEndpoint.swift */; };
 		E146A6DE2400A1F400F73A0B /* AmenitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E146A6DD2400A1F400F73A0B /* AmenitiesView.swift */; };
 		E146A6E02400A21E00F73A0B /* ReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E146A6DF2400A21E00F73A0B /* ReviewsView.swift */; };
-		E146A6E22400A28E00F73A0B /* Reviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = E146A6E12400A28E00F73A0B /* Reviews.swift */; };
 		E1580F2D23F768E20087DE0B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1580F2C23F768E10087DE0B /* LoginView.swift */; };
 		E16BA1DC24078AD6002F9EED /* BuildingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BA1DB24078AD6002F9EED /* BuildingDetailView.swift */; };
 		E1768D4E23FDEE2B00A9F098 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1768D4D23FDEE2B00A9F098 /* AppConfiguration.swift */; };
@@ -106,7 +105,6 @@
 		E12211D423FB4E18006C99D2 /* ThroneEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThroneEndpoint.swift; sourceTree = "<group>"; };
 		E146A6DD2400A1F400F73A0B /* AmenitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenitiesView.swift; sourceTree = "<group>"; };
 		E146A6DF2400A21E00F73A0B /* ReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsView.swift; sourceTree = "<group>"; };
-		E146A6E12400A28E00F73A0B /* Reviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reviews.swift; sourceTree = "<group>"; };
 		E1580F2C23F768E10087DE0B /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E16BA1DB24078AD6002F9EED /* BuildingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingDetailView.swift; sourceTree = "<group>"; };
 		E1768D4D23FDEE2B00A9F098 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
@@ -355,7 +353,6 @@
 				E19AA951240CD14500B2DB28 /* Ratings.swift */,
 				E11C9BEE23F1DF6D0045663B /* User.swift */,
 				E1E0738523E561BB00D4AE5E /* NearMe.swift */,
-				E146A6E12400A28E00F73A0B /* Reviews.swift */,
 				E1CDA0B723E404A6007ADA73 /* PersistentSettings.swift */,
 				E1E0738323E5612400D4AE5E /* LoginManager.swift */,
 				E11449072409C03A00DD4F04 /* LocationManager.swift */,
@@ -498,7 +495,6 @@
 				E176AEFA23E3A88E00EF8D15 /* ProfileView.swift in Sources */,
 				E116F689240A495F00680E92 /* MapPreviewView.swift in Sources */,
 				E19AA94E240CD0D400B2DB28 /* Amenity.swift in Sources */,
-				E146A6E22400A28E00F73A0B /* Reviews.swift in Sources */,
 				E1E0738423E5612400D4AE5E /* LoginManager.swift in Sources */,
 				E11448F52408A6B800DD4F04 /* CompactAmenitiesView.swift in Sources */,
 				E1CDA0B823E404A6007ADA73 /* PersistentSettings.swift in Sources */,

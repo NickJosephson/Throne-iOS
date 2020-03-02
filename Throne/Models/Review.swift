@@ -35,3 +35,18 @@ struct Review: Codable {
         return df.string(from: self.createdAt)
     }
 }
+
+extension Review {
+    init(ratings: Ratings, comment: String) {
+        self.init(
+            id: 0,
+            washroomID: 0,
+            user: nil,
+            createdAt: Date(),
+            upvoteCount: 0,
+            ratings: ratings,
+            comment: comment
+        )
+    }
+    
+}

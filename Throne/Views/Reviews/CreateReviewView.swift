@@ -10,21 +10,19 @@ import SwiftUI
 
 struct CreateReviewView: View {
     @Binding var show: Bool
-    @ObservedObject var reviews: Reviews
-    @State private var cleanlinessRating = 0.0
-    @State private var privacyRating = 0.0
-    @State private var paperRating = 0.0
-    @State private var smellRating = 0.0
+    @ObservedObject var washroom: Washroom
+    
+    @State private var ratings = Ratings()
     @State private var comment = ""
 
     var body: some View {
         NavigationView {
             Form {
                 Section(header: Text("Ratings")) {
-                    EditableRatingView(rating: $cleanlinessRating, label: "✨ Cleanliness")
-                    EditableRatingView(rating: $privacyRating, label: "🤚 Privacy")
-                    EditableRatingView(rating: $paperRating, label: "🧻 Paper Quality")
-                    EditableRatingView(rating: $smellRating, label: "👃 Smell")
+                    EditableRatingView(rating: $ratings.cleanliness, label: "✨ Cleanliness")
+                    EditableRatingView(rating: $ratings.privacy, label: "🤚 Privacy")
+                    EditableRatingView(rating: $ratings.toiletPaperQuality, label: "🧻 Paper Quality")
+                    EditableRatingView(rating: $ratings.smell, label: "👃 Smell")
                 }
                 TextField("Comment", text: $comment)
             }
@@ -32,25 +30,12 @@ struct CreateReviewView: View {
             .navigationBarItems(
                 leading: Button(action: { self.show = false }, label: { Text("Cancel") }),
                 trailing: Button(action: {
-                    self.reviews.postReview(review:
-                        Review(
-                            id: 0,
-                            washroomID: 0,
-                            user: nil,
-                            createdAt: Date(),
-                            upvoteCount: 0,
-                            ratings: Ratings(
-                                privacy: self.privacyRating,
-                                toiletPaperQuality: self.paperRating,
-                                smell: self.smellRating,
-                                cleanliness: self.cleanlinessRating
-                            ),
-                            comment: self.comment
-                        )
+                    self.washroom.postReview(review:
+                        Review(ratings: self.ratings, comment: self.comment)
                     )
                     self.show = false
                 }, label: { Text("Post") })
-                    .disabled(cleanlinessRating <= 0 || privacyRating <= 0 || paperRating <= 0 || smellRating <= 0)
+                    .disabled(ratings.cleanliness <= 0 || ratings.privacy <= 0 || ratings.toiletPaperQuality <= 0 || ratings.smell <= 0 || comment.isEmpty)
             )
 
         }
@@ -64,6 +49,6 @@ struct CreateReviewView_Previews: PreviewProvider {
         let location = Location(latitude: 0, longitude: 0)
         let washroom = Washroom(id: 1, title: "Washroom", location: location, gender: .all, floor: 1, buildingID: 1, createdAt: Date(), reviewsCount: 0, overallRating: 4, averageRatings: ratings, amenities: amenities)
           
-        return CreateReviewView(show: .constant(true), reviews: Reviews(for: washroom))
+        return CreateReviewView(show: .constant(true), washroom: washroom)
     }
 }

@@ -9,16 +9,17 @@
 import SwiftUI
 
 struct ReviewsView: View {
-    @ObservedObject private var model: Reviews
+    @ObservedObject var washroom: Washroom
     @State private var showCreateReview = false
     
     init(washroom: Washroom) {
-        self.model = Reviews(for: washroom)
+        self.washroom = washroom
+        washroom.setupReviewsSubscription()
     }
     
     var body: some View {
         List {
-            ForEach(model.reviews, id: \.id) { review in
+            ForEach(washroom.reviews.sorted { $0.createdAt > $1.createdAt }, id: \.id) { review in
                 HStack(alignment: .top) {
                     VStack(alignment: .leading) {
                         HStack {
@@ -44,7 +45,7 @@ struct ReviewsView: View {
             }
         }
         .navigationBarTitle("Reviews", displayMode: .inline)
-        .navigationBarItems(trailing: ReviewButton(reviews: self.model))
+        .navigationBarItems(trailing: ReviewButton(washroom: self.washroom))
     }
 }
 

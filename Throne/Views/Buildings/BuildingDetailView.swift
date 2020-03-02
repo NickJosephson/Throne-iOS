@@ -13,7 +13,7 @@ struct BuildingDetailView: View {
     
     init(building: Building) {
         self.building = building
-        building.fetchWashrooms()
+        building.setupWashroomsSubscription()
     }
     
     var body: some View {

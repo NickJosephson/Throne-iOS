@@ -25,7 +25,7 @@ struct BuildingsListView: View {
                             .padding(.bottom)
                     }
                     Spacer()
-                    Text("\(building.distance, specifier:"%.1f")m")
+                    Text("\(building.distance ?? 0.0, specifier:"%.1f")m")
                         .foregroundColor(.secondary)
                         .fixedSize(horizontal: true, vertical: true)
                 }

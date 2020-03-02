@@ -9,10 +9,10 @@
 import Foundation
 
 struct Ratings: Codable {
-    let privacy: Double
-    let toiletPaperQuality: Double
-    let smell: Double
-    let cleanliness: Double
+    var privacy = 0.0
+    var toiletPaperQuality = 0.0
+    var smell = 0.0
+    var cleanliness = 0.0
     
     private enum CodingKeys: String, CodingKey {
         case privacy

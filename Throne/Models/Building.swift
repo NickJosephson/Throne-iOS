@@ -13,14 +13,70 @@ final class Building: Codable, ObservableObject {
     let id: Int
     let title: String
     let location: Location
-    let distance: Double = 14.5
+    let distance: Double?
     let createdAt: Date
     let overallRating: Double
     let bestRatings: Ratings
-    let amenities: [Amenity]?
     
     @Published var washrooms: [Washroom] = []
+
+    var requestWashroomsUpdate = PassthroughSubject<Void, Never>()
+    private var washroomsSubscription: AnyCancellable!
     
+    init(id: Int, title: String, location: Location, distance: Double, createdAt: Date, overallRating: Double, bestRatings: Ratings) {
+        self.id = id
+        self.title = title
+        self.location = location
+        self.distance = distance
+        self.createdAt = createdAt
+        self.overallRating = overallRating
+        self.bestRatings = bestRatings
+    }
+    
+    convenience init() {
+        self.init(
+            id: 0,
+            title: "",
+            location: Location(latitude: 0, longitude: 0),
+            distance: 0,
+            createdAt: Date(),
+            overallRating: 0,
+            bestRatings: Ratings(privacy: 0, toiletPaperQuality: 0, smell: 0, cleanliness: 0)
+        )
+    }
+    
+    func setupWashroomsSubscription() {
+        if washroomsSubscription != nil {
+            return
+        }
+        
+        // create publisher for indicating when to perform near me update
+        let locationUpdatePublisher = LocationManager.shared.$currentLocation
+            .filter { $0 != nil }
+            .map { _ in return }
+        let timerUpdatePublisher = Timer.publish(every: TimeInterval(exactly: 300.0)!, on: RunLoop.current, in: .default)
+            .autoconnect()
+            .map { _ in return }
+        let shouldUpdateWashroomsPublisher = timerUpdatePublisher
+            .merge(with: locationUpdatePublisher)
+            .throttle(for: .seconds(60), scheduler: RunLoop.current, latest: false)
+            .merge(with: requestWashroomsUpdate)
+            .eraseToAnyPublisher()
+        
+        washroomsSubscription = shouldUpdateWashroomsPublisher
+            .flatMap { _ in
+                return Future { promise in
+                    ThroneEndpoint.fetchWashrooms(in: self) { washrooms in
+                        promise(.success(washrooms))
+                    }
+                }
+            }
+            .receive(on: RunLoop.main)
+            .assign(to: \.washrooms, on: self)
+        
+        requestWashroomsUpdate.send()
+    }
+        
     var stars: String {
         get {
             if self.overallRating <= 0 {
@@ -39,26 +95,6 @@ final class Building: Codable, ObservableObject {
         }
     }
     
-    init() {
-        id = 0
-        title = ""
-        location = Location(latitude: 0, longitude: 0)
-        createdAt = Date()
-        overallRating = 0.0
-        bestRatings = Ratings(privacy: 0, toiletPaperQuality: 0, smell: 0, cleanliness: 0)
-        amenities = []
-    }
-    
-    func fetchWashrooms() {
-        if washrooms.isEmpty {
-            ThroneEndpoint.fetchWashrooms(in: self) { washrooms in
-                DispatchQueue.main.async {
-                    self.washrooms = washrooms
-                }
-            }
-        }
-    }
-    
     private enum CodingKeys: String, CodingKey {
         case id
         case title
@@ -67,6 +103,5 @@ final class Building: Codable, ObservableObject {
         case createdAt = "created_at"
         case overallRating = "overall_rating"
         case bestRatings = "best_ratings"
-        case amenities
     }
 }
