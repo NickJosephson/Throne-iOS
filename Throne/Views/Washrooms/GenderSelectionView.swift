@@ -9,11 +9,11 @@
 import SwiftUI
 
 struct GenderSelectionView: View {
-    @Binding var gender: Washroom.Gender
+    @Binding var gender: Gender
 
     var body: some View {
         Picker(selection: $gender, label: Text("Gender")) {
-            ForEach(Washroom.Gender.allCases, id: \.self) { gender in
+            ForEach(Gender.allCases, id: \.self) { gender in
                 Text(gender.description).tag(gender)
             }
         }

@@ -50,8 +50,8 @@ struct ReviewsView: View {
 
 struct ReviewsView_Previews: PreviewProvider {
     static var previews: some View {
-        let amenities = [Washroom.Amenity]()
-        let ratings = Washroom.Ratings(privacy: 4, toiletPaperQuality: 4, smell: 4, cleanliness: 4)
+        let amenities = [Amenity]()
+        let ratings = Ratings(privacy: 4, toiletPaperQuality: 4, smell: 4, cleanliness: 4)
         let location = Location(latitude: 0, longitude: 0)
         let washroom = Washroom(id: 1, title: "Washroom", location: location, gender: .all, floor: 1, buildingID: 1, createdAt: Date(), reviewsCount: 0, overallRating: 4, averageRatings: ratings, amenities: amenities)
 

@@ -16,8 +16,8 @@ final class Building: Codable, ObservableObject {
     let distance: Double = 14.5
     let createdAt: Date
     let overallRating: Double
-    let bestRatings: Washroom.Ratings
-    let amenities: [Washroom.Amenity]?
+    let bestRatings: Ratings
+    let amenities: [Amenity]?
     
     @Published var washrooms: [Washroom] = []
     
@@ -45,7 +45,7 @@ final class Building: Codable, ObservableObject {
         location = Location(latitude: 0, longitude: 0)
         createdAt = Date()
         overallRating = 0.0
-        bestRatings = Washroom.Ratings(privacy: 0, toiletPaperQuality: 0, smell: 0, cleanliness: 0)
+        bestRatings = Ratings(privacy: 0, toiletPaperQuality: 0, smell: 0, cleanliness: 0)
         amenities = []
     }
     

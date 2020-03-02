@@ -11,9 +11,9 @@ import SwiftUI
 struct CreateWashroomView: View {
     @Binding var show: Bool
     @State private var floor = 1
-    @State private var gender = Washroom.Gender.all
+    @State private var gender = Gender.all
     @State private var title = ""
-    @State private var amenities: [Washroom.Amenity] = []
+    @State private var amenities: [Amenity] = []
 
     var body: some View {
         NavigationView {

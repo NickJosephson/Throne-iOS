@@ -49,6 +49,9 @@
 		E176AEF823E3A62D00EF8D15 /* WashroomDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEF723E3A62D00EF8D15 /* WashroomDetailView.swift */; };
 		E176AEFA23E3A88E00EF8D15 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEF923E3A88E00EF8D15 /* ProfileView.swift */; };
 		E176AEFC23E3AA3500EF8D15 /* NearMeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEFB23E3AA3500EF8D15 /* NearMeView.swift */; };
+		E19AA94E240CD0D400B2DB28 /* Amenity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19AA94D240CD0D400B2DB28 /* Amenity.swift */; };
+		E19AA950240CD10C00B2DB28 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19AA94F240CD10C00B2DB28 /* Gender.swift */; };
+		E19AA952240CD14500B2DB28 /* Ratings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19AA951240CD14500B2DB28 /* Ratings.swift */; };
 		E1CDA0B823E404A6007ADA73 /* PersistentSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDA0B723E404A6007ADA73 /* PersistentSettings.swift */; };
 		E1CFDE6823FA4FBF007423FD /* AuthenticationEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CFDE6723FA4FBF007423FD /* AuthenticationEndpoint.swift */; };
 		E1E0738223E54E3A00D4AE5E /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738123E54E3A00D4AE5E /* WelcomeView.swift */; };
@@ -126,6 +129,9 @@
 		E176AEF723E3A62D00EF8D15 /* WashroomDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashroomDetailView.swift; sourceTree = "<group>"; };
 		E176AEF923E3A88E00EF8D15 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		E176AEFB23E3AA3500EF8D15 /* NearMeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearMeView.swift; sourceTree = "<group>"; };
+		E19AA94D240CD0D400B2DB28 /* Amenity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amenity.swift; sourceTree = "<group>"; };
+		E19AA94F240CD10C00B2DB28 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
+		E19AA951240CD14500B2DB28 /* Ratings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ratings.swift; sourceTree = "<group>"; };
 		E1CDA0B723E404A6007ADA73 /* PersistentSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentSettings.swift; sourceTree = "<group>"; };
 		E1CFDE6723FA4FBF007423FD /* AuthenticationEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationEndpoint.swift; sourceTree = "<group>"; };
 		E1E0737A23E5452B00D4AE5E /* Throne.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Throne.entitlements; sourceTree = "<group>"; };
@@ -342,8 +348,11 @@
 			children = (
 				E1E0738723E561DD00D4AE5E /* Washroom.swift */,
 				E11C9BEA23F1DBB60045663B /* Building.swift */,
+				E19AA94D240CD0D400B2DB28 /* Amenity.swift */,
+				E19AA94F240CD10C00B2DB28 /* Gender.swift */,
 				E11C9BE823F1DB3A0045663B /* Location.swift */,
 				E11C9BEC23F1DD850045663B /* Review.swift */,
+				E19AA951240CD14500B2DB28 /* Ratings.swift */,
 				E11C9BEE23F1DF6D0045663B /* User.swift */,
 				E1E0738523E561BB00D4AE5E /* NearMe.swift */,
 				E146A6E12400A28E00F73A0B /* Reviews.swift */,
@@ -488,6 +497,7 @@
 			files = (
 				E176AEFA23E3A88E00EF8D15 /* ProfileView.swift in Sources */,
 				E116F689240A495F00680E92 /* MapPreviewView.swift in Sources */,
+				E19AA94E240CD0D400B2DB28 /* Amenity.swift in Sources */,
 				E146A6E22400A28E00F73A0B /* Reviews.swift in Sources */,
 				E1E0738423E5612400D4AE5E /* LoginManager.swift in Sources */,
 				E11448F52408A6B800DD4F04 /* CompactAmenitiesView.swift in Sources */,
@@ -497,6 +507,7 @@
 				E116F695240A7F3800680E92 /* BuildingAnnotation.swift in Sources */,
 				E1E0738623E561BB00D4AE5E /* NearMe.swift in Sources */,
 				E11C9BE923F1DB3A0045663B /* Location.swift in Sources */,
+				E19AA950240CD10C00B2DB28 /* Gender.swift in Sources */,
 				E1F4FE122407928D00A4096F /* CreateWashroomView.swift in Sources */,
 				E11C9BED23F1DD850045663B /* Review.swift in Sources */,
 				E11448EF2408A4DF00DD4F04 /* MainTabView.swift in Sources */,
@@ -511,6 +522,7 @@
 				E146A6E02400A21E00F73A0B /* ReviewsView.swift in Sources */,
 				E1F4FE162407A88B00A4096F /* CreateReviewView.swift in Sources */,
 				E11448E7240899FD00DD4F04 /* EnableLocationButton.swift in Sources */,
+				E19AA952240CD14500B2DB28 /* Ratings.swift in Sources */,
 				E176AEFC23E3AA3500EF8D15 /* NearMeView.swift in Sources */,
 				E176AEC723E38B2A00EF8D15 /* ContentView.swift in Sources */,
 				E116F68B240A49AB00680E92 /* MapUIView.swift in Sources */,
