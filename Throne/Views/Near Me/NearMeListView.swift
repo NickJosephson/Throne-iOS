@@ -47,6 +47,6 @@ struct NearMeListView: View {
 
 struct NearMeListView_Previews: PreviewProvider {
     static var previews: some View {
-        NearMeListView(model: NearMe())
+        NearMeListView(model: NearMe.shared)
     }
 }

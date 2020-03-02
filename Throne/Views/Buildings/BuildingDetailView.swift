@@ -32,6 +32,9 @@ struct BuildingDetailView: View {
         .listStyle(GroupedListStyle())
         .navigationBarTitle("\(building.title)", displayMode: .large)
         .navigationBarItems(trailing: CreateWashroomButton(building: self.building))
+        .onAppear {
+            self.building.requestWashroomsUpdate.send()
+        }
     }
 }
 

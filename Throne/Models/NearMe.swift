@@ -10,10 +10,13 @@ import Foundation
 import Combine
 
 final class NearMe: ObservableObject {
+    static var shared = NearMe() // Shared instance to use across application
+
+    var requestDataUpdate = PassthroughSubject<Void, Never>()
     private var shouldUpdatePublisher: AnyPublisher<Void, Never>
     private var washroomsSubscription: AnyCancellable!
     private var buildingsSubscription: AnyCancellable!
-
+    
     @Published var washrooms: [Washroom] = []
     @Published var buildings: [Building] = []
     
@@ -31,6 +34,7 @@ final class NearMe: ObservableObject {
             .merge(with: locationUpdatePublisher)
             .throttle(for: .seconds(60), scheduler: RunLoop.current, latest: false)
             .merge(with: refreshUpdatePublisher, loginUpdatePublisher)
+            .merge(with: requestDataUpdate)
             .throttle(for: .seconds(3), scheduler: RunLoop.current, latest: false)
             .eraseToAnyPublisher()
         

@@ -105,6 +105,7 @@ final class Washroom: Codable, ObservableObject {
             self.overallRating = updatedWashroom.overallRating
             self.averageRatings = updatedWashroom.averageRatings
             self.objectWillChange.send()
+            NearMe.shared.requestDataUpdate.send()
         }
         
         requestReviewsUpdate.send()

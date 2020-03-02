@@ -61,6 +61,7 @@ final class Building: Codable, ObservableObject {
             .merge(with: locationUpdatePublisher)
             .throttle(for: .seconds(60), scheduler: RunLoop.current, latest: false)
             .merge(with: requestWashroomsUpdate)
+            .throttle(for: .seconds(3), scheduler: RunLoop.current, latest: false)
             .eraseToAnyPublisher()
         
         washroomsSubscription = shouldUpdateWashroomsPublisher
@@ -81,6 +82,7 @@ final class Building: Codable, ObservableObject {
         ThroneEndpoint.post(washroom: washroom, for: self) { _ in
             self.setupWashroomsSubscription()
             self.requestWashroomsUpdate.send()
+            NearMe.shared.objectWillChange.send()
         }
     }
         
