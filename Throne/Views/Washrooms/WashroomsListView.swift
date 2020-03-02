@@ -26,7 +26,7 @@ struct WashroomsListView: View {
                     }
                     Spacer()
                     VStack(alignment: .trailing) {
-                        Text("\(washroom.distance, specifier:"%.1f")m")
+                        Text("\(washroom.distance ?? 0.0, specifier:"%.1f")m")
                         Text("Floor \(washroom.floor)")
                         Text("\(washroom.gender.description)")
                     }
@@ -41,11 +41,6 @@ struct WashroomsListView: View {
 
 struct WashroomsListView_Previews: PreviewProvider {
     static var previews: some View {
-        let amenities = [Amenity]()
-        let ratings = Ratings(privacy: 4, toiletPaperQuality: 4, smell: 4, cleanliness: 4)
-        let location = Location(latitude: 0, longitude: 0)
-        let washroom = Washroom(id: 1, title: "Washroom", location: location, gender: .all, floor: 1, buildingID: 1, createdAt: Date(), reviewsCount: 0, overallRating: 4, averageRatings: ratings, amenities: amenities)
-        
-        return WashroomsListView(washrooms: [washroom])
+        return WashroomsListView(washrooms: [Washroom()])
     }
 }

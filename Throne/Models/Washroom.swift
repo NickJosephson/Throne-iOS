@@ -10,18 +10,18 @@ import Foundation
 import Combine
 
 final class Washroom: Codable, ObservableObject {
-    let id: Int
-    let title: String
-    let location: Location
-    let distance: Double = 14.5
-    let gender: Gender
-    let floor: Int
-    let buildingID: Int
-    let createdAt: Date
+    var id: Int
+    var title: String
+    var location: Location
+    var distance: Double?
+    var gender: Gender
+    var floor: Int
+    var buildingID: Int
+    var createdAt: Date
     var reviewsCount: Int?
     var overallRating: Double
     var averageRatings: Ratings
-    let amenities: [Amenity]
+    var amenities: [Amenity]
     
     @Published var reviews: [Review] = []
 
@@ -29,10 +29,11 @@ final class Washroom: Codable, ObservableObject {
     private var reviewsSubscription: AnyCancellable!
     private var detailsSubscription: AnyCancellable!
 
-    init(id: Int, title: String, location: Location, gender: Gender, floor: Int, buildingID: Int, createdAt: Date, reviewsCount: Int?, overallRating: Double, averageRatings: Ratings, amenities: [Amenity]) {
+    init(id: Int, title: String, location: Location, distance: Double, gender: Gender, floor: Int, buildingID: Int, createdAt: Date, reviewsCount: Int?, overallRating: Double, averageRatings: Ratings, amenities: [Amenity]) {
         self.id = id
         self.title = title
         self.location = location
+        self.distance = distance
         self.gender = gender
         self.floor = floor
         self.buildingID = buildingID
@@ -48,6 +49,7 @@ final class Washroom: Codable, ObservableObject {
             id: 0,
             title: "",
             location: Location(latitude: 0, longitude: 0),
+            distance: 0.0,
             gender: .all,
             floor: 1,
             buildingID: 0,
@@ -75,6 +77,7 @@ final class Washroom: Codable, ObservableObject {
             .merge(with: locationUpdatePublisher)
             .throttle(for: .seconds(60), scheduler: RunLoop.current, latest: false)
             .merge(with: requestReviewsUpdate)
+            .throttle(for: .seconds(3), scheduler: RunLoop.current, latest: false)
             .eraseToAnyPublisher()
         
         reviewsSubscription = shouldUpdateReviewsPublisher
@@ -101,6 +104,7 @@ final class Washroom: Codable, ObservableObject {
             self.reviewsCount = updatedWashroom.reviewsCount
             self.overallRating = updatedWashroom.overallRating
             self.averageRatings = updatedWashroom.averageRatings
+            self.objectWillChange.send()
         }
         
         requestReviewsUpdate.send()
@@ -108,6 +112,7 @@ final class Washroom: Codable, ObservableObject {
     
     func postReview(review: Review) {
         ThroneEndpoint.post(review: review, for: self) { _ in
+            self.setupReviewsSubscription()
             self.requestReviewsUpdate.send()
         }
     }

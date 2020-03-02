@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct CreateWashroomButton: View {
+    @ObservedObject var building: Building
     @State private var showCreateWashroom = false
 
     var body: some View {
@@ -18,12 +19,12 @@ struct CreateWashroomButton: View {
                 Text("Add Washroom")
             }
         })
-        .popover(isPresented: $showCreateWashroom, content: { CreateWashroomView(show: self.$showCreateWashroom) } )
+            .popover(isPresented: $showCreateWashroom, content: { CreateWashroomView(show: self.$showCreateWashroom, building: self.building) } )
     }
 }
 
 struct CreateWashroomButton_Previews: PreviewProvider {
     static var previews: some View {
-        CreateWashroomButton()
+        CreateWashroomButton(building: Building())
     }
 }

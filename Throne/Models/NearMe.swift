@@ -24,13 +24,14 @@ final class NearMe: ObservableObject {
         let locationUpdatePublisher = LocationManager.shared.$currentLocation
             .filter { $0 != nil }
             .map { _ in return }
-        let timerUpdatePublisher = Timer.publish(every: TimeInterval(exactly: 300.0)!, on: RunLoop.current, in: .default)
+        let timerUpdatePublisher = Timer.publish(every: TimeInterval(exactly: 60.0)!, on: RunLoop.current, in: .default)
             .autoconnect()
             .map { _ in return }
         shouldUpdatePublisher = timerUpdatePublisher
             .merge(with: locationUpdatePublisher)
             .throttle(for: .seconds(60), scheduler: RunLoop.current, latest: false)
             .merge(with: refreshUpdatePublisher, loginUpdatePublisher)
+            .throttle(for: .seconds(3), scheduler: RunLoop.current, latest: false)
             .eraseToAnyPublisher()
         
         washroomsSubscription = shouldUpdatePublisher

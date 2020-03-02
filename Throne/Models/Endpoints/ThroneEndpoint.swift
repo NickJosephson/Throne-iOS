@@ -88,14 +88,6 @@ class ThroneEndpoint {
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
-    class func post(review: Review, for washroom: Washroom, completionHandler: @escaping (Review) -> Void) {
-        var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
-        urlComponents.path = "/washrooms/\(washroom.id)/reviews/"
-
-        NSLog("Fetching reviews for \(washroom.title).")
-        encodeAndPost(url: urlComponents.url!, item: review, completionHandler: completionHandler)
-    }
-
     class func fetchReviews(madeBy user: User, completionHandler: @escaping ([Review]) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/users/\(user.id)/reviews/"
@@ -126,6 +118,22 @@ class ThroneEndpoint {
 
         NSLog("Fetching current user.")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
+    }
+    
+    class func post(review: Review, for washroom: Washroom, completionHandler: @escaping (Review) -> Void) {
+        var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
+        urlComponents.path = "/washrooms/\(washroom.id)/reviews/"
+
+        NSLog("Posting review for \(washroom.title).")
+        encodeAndPost(url: urlComponents.url!, item: review, completionHandler: completionHandler)
+    }
+    
+    class func post(washroom: Washroom, for building: Building, completionHandler: @escaping (Washroom) -> Void) {
+        var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
+        urlComponents.path = "/washrooms/"
+
+        NSLog("Posting washroom for \(building.title).")
+        encodeAndPost(url: urlComponents.url!, item: washroom, completionHandler: completionHandler)
     }
     
     private class func fetchAndDecode<T: Decodable>(url: URL, completionHandler: @escaping (T) -> Void) {

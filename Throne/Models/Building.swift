@@ -10,13 +10,13 @@ import Foundation
 import Combine
 
 final class Building: Codable, ObservableObject {
-    let id: Int
-    let title: String
-    let location: Location
-    let distance: Double?
-    let createdAt: Date
-    let overallRating: Double
-    let bestRatings: Ratings
+    var id: Int
+    var title: String
+    var location: Location
+    var distance: Double?
+    var createdAt: Date
+    var overallRating: Double
+    var bestRatings: Ratings
     
     @Published var washrooms: [Washroom] = []
 
@@ -75,6 +75,13 @@ final class Building: Codable, ObservableObject {
             .assign(to: \.washrooms, on: self)
         
         requestWashroomsUpdate.send()
+    }
+    
+    func postWashroom(washroom: Washroom) {
+        ThroneEndpoint.post(washroom: washroom, for: self) { _ in
+            self.setupWashroomsSubscription()
+            self.requestWashroomsUpdate.send()
+        }
     }
         
     var stars: String {

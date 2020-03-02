@@ -20,5 +20,4 @@ struct Ratings: Codable {
         case smell
         case cleanliness
     }
-    
 }

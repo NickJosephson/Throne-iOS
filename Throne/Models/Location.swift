@@ -23,6 +23,11 @@ struct Location: Codable {
         self.latitude = coordinate.latitude
         self.longitude = coordinate.longitude
     }
+    
+    private enum CodingKeys: String, CodingKey {
+        case latitude
+        case longitude
+    }
 }
 
 extension CLLocationCoordinate2D {

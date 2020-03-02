@@ -30,6 +30,7 @@ struct NearMeListView: View {
                     Text("All Washrooms").tag(NearMeListType.washrooms)
                 }
                 .pickerStyle(SegmentedPickerStyle())
+                .navigationBarTitle(Text("Near Me"))
             }
                         
             if currentListType == NearMeListType.washrooms {

@@ -31,7 +31,7 @@ struct BuildingDetailView: View {
         }
         .listStyle(GroupedListStyle())
         .navigationBarTitle("\(building.title)", displayMode: .large)
-        .navigationBarItems(trailing: CreateWashroomButton())
+        .navigationBarItems(trailing: CreateWashroomButton(building: self.building))
     }
 }
 

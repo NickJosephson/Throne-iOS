@@ -10,6 +10,7 @@ import SwiftUI
 
 struct CreateWashroomView: View {
     @Binding var show: Bool
+    @ObservedObject var building: Building
     @State private var floor = 1
     @State private var gender = Gender.all
     @State private var title = ""
@@ -30,7 +31,17 @@ struct CreateWashroomView: View {
             .navigationBarTitle("New Washroom", displayMode: .inline)
             .navigationBarItems(
                 leading: Button(action: { self.show = false }, label: { Text("Cancel") }),
-                trailing: Button(action: { self.show = false }, label: { Text("Add") })
+                trailing: Button(action: {
+                    let newWashroom = Washroom()
+                    newWashroom.amenities = self.amenities
+                    newWashroom.floor = self.floor
+                    newWashroom.gender = self.gender
+                    newWashroom.title = self.title
+                    newWashroom.location = LocationManager.shared.currentLocation!
+                    newWashroom.buildingID = self.building.id
+                    self.building.postWashroom(washroom: newWashroom)
+                    self.show = false
+                }, label: { Text("Add") })
             )
         }
     }
@@ -38,6 +49,6 @@ struct CreateWashroomView: View {
 
 struct CreateWashroomView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateWashroomView(show: .constant(true))
+        CreateWashroomView(show: .constant(true), building: Building())
     }
 }
