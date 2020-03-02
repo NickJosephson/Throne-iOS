@@ -11,7 +11,7 @@ import Foundation
 struct Review: Codable {
     let id: Int
     let washroomID: Int
-    let user: User
+    let user: User!
     let createdAt: Date
     let upvoteCount: Int?
     let ratings: Washroom.Ratings

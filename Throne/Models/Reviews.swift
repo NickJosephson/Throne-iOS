@@ -18,10 +18,18 @@ final class Reviews: ObservableObject {
         fetchReviews()
     }
     
-    private func fetchReviews() {
+    func postReview(review: Review) {
+        ThroneEndpoint.post(review: review, for: self.washroom) { _ in
+            self.fetchReviews()
+        }
+    }
+    
+    func fetchReviews() {
         ThroneEndpoint.fetchReviews(for: self.washroom) { reviews in
             DispatchQueue.main.async {
-                self.reviews = reviews
+                self.reviews = reviews.sorted(by: { review1, review2 in
+                    review1.createdAt > review2.createdAt
+                })
             }
         }
     }

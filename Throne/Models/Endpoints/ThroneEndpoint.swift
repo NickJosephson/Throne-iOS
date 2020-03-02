@@ -88,6 +88,14 @@ class ThroneEndpoint {
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
+    class func post(review: Review, for washroom: Washroom, completionHandler: @escaping (Review) -> Void) {
+        var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
+        urlComponents.path = "/washrooms/\(washroom.id)/reviews/"
+
+        NSLog("Fetching reviews for \(washroom.title).")
+        encodeAndPost(url: urlComponents.url!, item: review, completionHandler: completionHandler)
+    }
+
     class func fetchReviews(madeBy user: User, completionHandler: @escaping ([Review]) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/users/\(user.id)/reviews/"
@@ -144,6 +152,66 @@ class ThroneEndpoint {
         }
     }
     
+    private class func encodeAndPost<T: Codable>(url: URL, item: T, completionHandler: @escaping (T) -> Void) {
+        let data: Data
+        
+        do {
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .iso8601
+            
+            data = try encoder.encode(item)
+        } catch {
+            NSLog("Error encoding response.")
+            return
+        }
+        
+        post(url: url, data: data) { data in
+            do {
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = JSONDecoder.DateDecodingStrategy.iso8601
+                let decoded: T
+                
+                try decoded = decoder.decode(T.self, from: data)
+                
+                completionHandler(decoded)
+            } catch DecodingError.dataCorrupted {
+                NSLog("Error decoding response: Data is corrupted or invalid.")
+            } catch let DecodingError.keyNotFound(key, _) {
+                NSLog("Error decoding response: Key '\(key)' not found.")
+            } catch let DecodingError.valueNotFound(value, _) {
+                NSLog("Error decoding response: Value '\(value)' not found.")
+            } catch let DecodingError.typeMismatch(type, _)  {
+                NSLog("Error decoding response: Type '\(type)' mismatch.")
+            } catch {
+                NSLog("Error decoding response.")
+            }
+        }
+    }
+    
+    /// Fetch Data at a given URL.
+    ///
+    /// If an accessToken is set it will be used for authentication.
+    /// - Parameters:
+    ///   - url: URL to send GET request to.
+    ///   - completionHandler: Function to handle Data once received.
+    private class func post(url: URL, data: Data, completionHandler: @escaping (Data) -> Void) {
+        if !LoginManager.shared.isLoggedIn {
+            NSLog("Throne Endpoint Post Cancelled: Not logged in.")
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpBody = data
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                
+        if let accessToken = PersistentSettings().accessToken, !accessToken.isEmpty {
+            request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        }
+
+        performRequest(with: request, completionHandler: completionHandler)
+    }
+    
     /// Fetch Data at a given URL.
     ///
     /// If an accessToken is set it will be used for authentication.
@@ -151,13 +219,13 @@ class ThroneEndpoint {
     ///   - url: URL to send GET request to.
     ///   - completionHandler: Function to handle Data once received.
     private class func fetch(url: URL, completionHandler: @escaping (Data) -> Void) {
-        var request = URLRequest(url: url)
-
         if !LoginManager.shared.isLoggedIn {
             NSLog("Throne Endpoint Fetch Cancelled: Not logged in.")
             return
         }
         
+        var request = URLRequest(url: url)
+
         if let accessToken = PersistentSettings().accessToken, !accessToken.isEmpty {
             request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         }
