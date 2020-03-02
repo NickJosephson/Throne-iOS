@@ -21,7 +21,7 @@ struct CreateWashroomView: View {
             Form {
                 Section {
                     GenderSelectionView(gender: self.$gender)
-                    Stepper("Floor \(floor)", value: $floor)
+                    Stepper("Floor \(floor)", value: $floor, in: 0...10)
                     TextField("Additional Title", text: $title)
                 }
                 Section(header: Text("Amenities")) {
