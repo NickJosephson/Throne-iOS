@@ -99,7 +99,6 @@ enum Amenity: String, Codable, CaseIterable {
              case .bathroomAttendant: return "🛎 "
              case .bidet: return "💦"
              case .bodyTowel: return "🧺"
-             case .brailleLabeling: return "⠞⠗⠝"
              case .callButton: return "📢"
              case .contraception: return "🚫👶"
              case .diapers: return "🧷"
