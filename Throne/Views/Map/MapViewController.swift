@@ -32,11 +32,17 @@ class MapViewController: UIViewController {
             mapView.isUserInteractionEnabled = interactive
         }
     }
+    
+    var showsUserLocation = true {
+        didSet {
+            mapView.showsUserLocation = showsUserLocation
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        mapView.showsUserLocation = true
+        mapView.showsUserLocation = showsUserLocation
         mapView.showsCompass = false
         mapView.isUserInteractionEnabled = interactive
         mapView.showsBuildings = true
@@ -103,7 +109,7 @@ class MapViewController: UIViewController {
 
 extension MapViewController: MKMapViewDelegate {
 
-    /// The map view asks `mapView(_:viewFor:)` for an appropiate annotation view for a specific annotation.
+    /// The map view asks `mapView(_:viewFor:)` for an appropriate annotation view for a specific annotation.
     /// - Tag: CreateAnnotationViews
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard !annotation.isKind(of: MKUserLocation.self) else {
@@ -120,16 +126,16 @@ extension MapViewController: MKMapViewDelegate {
         return annotationView
     }
         
-    /// Called whent he user taps the disclosure button in the bridge callout.
+    /// Called when the user taps the disclosure button in the bridge callout.
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         // This illustrates how to detect which annotation type was tapped on for its callout.
         if let annotation = view.annotation as? BuildingAnnotation {
-            print("Tapped annotation accessory view")
+            NSLog("Tapped annotation accessory view")
 
             let detailView = UIHostingController(rootView: BuildingDetailView(building: annotation.building))
             let detailNavController = UINavigationController(rootViewController: detailView)
             detailNavController.navigationBar.prefersLargeTitles = true
-            detailNavController.modalPresentationStyle = .popover
+            detailNavController.modalPresentationStyle = .automatic
             
             let presentationController = detailNavController.popoverPresentationController
             presentationController?.permittedArrowDirections = .any

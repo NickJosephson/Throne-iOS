@@ -11,7 +11,7 @@ import SwiftUI
 struct NearMeListView: View {
     @ObservedObject var nearMe: NearMe
     @ObservedObject var settings = PersistentSettings.shared
-    @State var currentListType = NearMeListType.buildings
+    @Binding var currentListType: NearMeListType
     
     enum NearMeListType {
         case washrooms
@@ -57,6 +57,6 @@ struct NearMeListView: View {
 
 struct NearMeListView_Previews: PreviewProvider {
     static var previews: some View {
-        NearMeListView(nearMe: NearMe.shared)
+        NearMeListView(nearMe: NearMe.shared, currentListType: .constant(.buildings))
     }
 }

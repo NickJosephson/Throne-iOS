@@ -11,20 +11,26 @@ import SwiftUI
 struct NearMeView: View {
     @ObservedObject var settings = PersistentSettings.shared
     @ObservedObject var locationManager = LocationManager.shared
-    @ObservedObject var model: NearMe
-
+    @ObservedObject var nearMe: NearMe
+    @State var currentListType = NearMeListView.NearMeListType.buildings
+    
     var body: some View {
         NavigationView {
             if locationManager.currentLocation == nil {
                 EnableLocationButton()
                 .navigationBarTitle(Text("Near Me"))
             } else {
-                NearMeListView(nearMe: model)
+                NearMeListView(nearMe: nearMe, currentListType: $currentListType)
                 .navigationBarTitle(Text("Near Me"))
             }
             
-            Text("No \(settings.preferredTerm.capitalized) Selected")
-            .foregroundColor(.secondary)
+            if currentListType == .buildings {
+                Text("No Building Selected")
+                .foregroundColor(.secondary)
+            } else {
+                Text("No \(settings.preferredTerm.capitalized) Selected")
+                .foregroundColor(.secondary)
+            }
         }
         .navigationViewStyle(DoubleColumnNavigationViewStyle())
     }
@@ -32,6 +38,6 @@ struct NearMeView: View {
 
 struct NearMeView_Previews: PreviewProvider {
     static var previews: some View {
-        NearMeView(model: NearMe.shared)
+        NearMeView(nearMe: NearMe.shared)
     }
 }

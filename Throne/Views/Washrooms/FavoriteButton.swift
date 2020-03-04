@@ -22,6 +22,8 @@ struct FavoriteButton: View {
                 Text("Favourite")
             }
         })
+            .disabled(true)
+            .opacity(0.5)
     }
 }
 

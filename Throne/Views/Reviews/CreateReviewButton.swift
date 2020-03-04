@@ -16,7 +16,7 @@ struct ReviewButton: View {
     var body: some View {
         // Use a popover on iPad, use a sheet on iPhone.
         // This is a workaround to address SwiftUI bugs with popovers on iPhone.
-        HStack {
+        HStack(spacing: 0) {
             if horizontalSizeClass == .compact {
                 Button(action: { self.showCreateReview = true }, label: {
                     HStack {

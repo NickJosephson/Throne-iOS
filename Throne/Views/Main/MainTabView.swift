@@ -14,7 +14,7 @@ struct MainTabView: View {
 
     var body: some View {
         TabView(selection: $currentTab) {
-            NearMeView(model: model)
+            NearMeView(nearMe: model)
                 .tabItem {
                     VStack {
                         Image(systemName: "mappin.and.ellipse")

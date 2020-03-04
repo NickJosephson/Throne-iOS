@@ -15,11 +15,13 @@ struct MapUIView: UIViewRepresentable {
     var startLocation: Location? = nil
     var interactive = true
     var buildings: [Building] = []
+    var showsUserLocation = true
     
     func makeUIView(context: Context) -> UIView {
         controller.buildings = buildings
         controller.startLocation = startLocation
         controller.interactive = interactive
+        controller.showsUserLocation = showsUserLocation
         
         return controller.view
     }

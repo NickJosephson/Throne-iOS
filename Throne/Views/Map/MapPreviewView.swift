@@ -12,7 +12,7 @@ struct MapPreviewView: View {
     let startLocation: Location
     
     var body: some View {
-        MapUIView(startLocation: startLocation, interactive: false)
+        MapUIView(startLocation: startLocation, interactive: false, showsUserLocation: false)
     }
 }
 
