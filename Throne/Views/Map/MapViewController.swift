@@ -151,11 +151,11 @@ extension MapViewController: MKMapViewDelegate {
         
         flagAnnotationView.canShowCallout = true
         flagAnnotationView.displayPriority = .defaultHigh
-        
+        flagAnnotationView.displayPriority = .init(Float(annotation.building.overallRating) + 0.5)
+
         let image: UIImage
         if annotation.building.overallRating <= 0 {
             image = #imageLiteral(resourceName: "building")
-            flagAnnotationView.displayPriority = .defaultLow
         } else if annotation.building.overallRating <= 1.5 {
             image = #imageLiteral(resourceName: "skull")
         } else if annotation.building.overallRating <= 2.5 {
@@ -164,10 +164,9 @@ extension MapViewController: MKMapViewDelegate {
             image = #imageLiteral(resourceName: "paper")
         } else {
             image = #imageLiteral(resourceName: "crown")
-            flagAnnotationView.displayPriority = .required
         }
-        
         flagAnnotationView.image = image
+        
         let rightButton = UIButton(type: .detailDisclosure)
         flagAnnotationView.rightCalloutAccessoryView = rightButton
         
