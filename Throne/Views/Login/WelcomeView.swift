@@ -9,8 +9,9 @@
 import SwiftUI
 
 struct WelcomeView: View {
-    @Environment (\.colorScheme) var colorScheme:ColorScheme
-    
+    @Environment(\.colorScheme) var colorScheme:ColorScheme
+    @Environment(\.verticalSizeClass) var verticalSizeClass
+
     var loginController = LoginViewController()
     
     var body: some View {
@@ -18,6 +19,9 @@ struct WelcomeView: View {
             Spacer()
             VStack() {
                 Spacer()
+                if verticalSizeClass == .regular {
+                    Image("logo")
+                }
                 Text("Welcome to Throne")
                     .font(.system(size: 60))
                     .multilineTextAlignment(.center)
