@@ -213,7 +213,7 @@ class ThroneEndpoint {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
                 
-        if let accessToken = PersistentSettings().accessToken, !accessToken.isEmpty {
+        if let accessToken = PersistentSettings.shared.accessToken, !accessToken.isEmpty {
             request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         }
 
@@ -234,7 +234,7 @@ class ThroneEndpoint {
         
         var request = URLRequest(url: url)
 
-        if let accessToken = PersistentSettings().accessToken, !accessToken.isEmpty {
+        if let accessToken = PersistentSettings.shared.accessToken, !accessToken.isEmpty {
             request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         }
 

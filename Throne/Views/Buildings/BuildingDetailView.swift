@@ -10,6 +10,7 @@ import SwiftUI
 
 struct BuildingDetailView: View {
     @ObservedObject var building: Building
+    @ObservedObject var settings = PersistentSettings.shared
     
     init(building: Building) {
         self.building = building
@@ -19,7 +20,15 @@ struct BuildingDetailView: View {
     var body: some View {
         List {
             Section(header: Text("Washrooms Inside")) {
-                WashroomsListView(washrooms: building.washrooms)
+                if building.washrooms.count == 0 {
+                    Text("No \(settings.preferredTerm.capitalized) Inside")
+                    .foregroundColor(.secondary)
+                    .navigationBarTitle(Text("Near Me"))
+                }
+                
+                ForEach(building.washrooms, id: \.id) { washroom in
+                    WashroomRowView(washroom: washroom)
+                }
             }
             Section(header: Text("Location")) {
                 NavigationLink(destination: MapDetailView(startLocation: building.location)) {
@@ -32,9 +41,6 @@ struct BuildingDetailView: View {
         .listStyle(GroupedListStyle())
         .navigationBarTitle("\(building.title)", displayMode: .large)
         .navigationBarItems(trailing: CreateWashroomButton(building: self.building))
-        .onAppear {
-            self.building.requestWashroomsUpdate.send()
-        }
     }
 }
 

@@ -18,10 +18,25 @@ final class Building: Codable, ObservableObject {
     var overallRating: Double
     var bestRatings: Ratings
     
-    @Published var washrooms: [Washroom] = []
+    @Published var washrooms: [Washroom] = [] {
+        didSet {
+            var subscriptions: [AnyCancellable] = []
+            for washroom in washrooms {
+                let subscription = washroom.objectWillChange
+                    .sink {
+                        self.requestDetailsUpdate.send()
+                    }
+                subscriptions.append(subscription)
+            }
+            self.washroomsIndividualSubscriptions = subscriptions
+        }
+    }
 
     var requestWashroomsUpdate = PassthroughSubject<Void, Never>()
+    var requestDetailsUpdate = PassthroughSubject<Void, Never>()
     private var washroomsSubscription: AnyCancellable!
+    private var detailsSubscription: AnyCancellable!
+    private var washroomsIndividualSubscriptions: [AnyCancellable] = []
     
     init(id: Int, title: String, location: Location, distance: Double, createdAt: Date, overallRating: Double, bestRatings: Ratings) {
         self.id = id
@@ -50,18 +65,8 @@ final class Building: Codable, ObservableObject {
             return
         }
         
-        // create publisher for indicating when to perform near me update
-        let locationUpdatePublisher = LocationManager.shared.$currentLocation
-            .filter { $0 != nil }
-            .map { _ in return }
-        let timerUpdatePublisher = Timer.publish(every: TimeInterval(exactly: 300.0)!, on: RunLoop.current, in: .default)
-            .autoconnect()
-            .map { _ in return }
-        let shouldUpdateWashroomsPublisher = timerUpdatePublisher
-            .merge(with: locationUpdatePublisher)
-            .throttle(for: .seconds(60), scheduler: RunLoop.current, latest: false)
-            .merge(with: requestWashroomsUpdate)
-            .throttle(for: .seconds(3), scheduler: RunLoop.current, latest: false)
+        let shouldUpdateWashroomsPublisher = requestWashroomsUpdate
+            .throttle(for: .seconds(5), scheduler: RunLoop.current, latest: false)
             .eraseToAnyPublisher()
         
         washroomsSubscription = shouldUpdateWashroomsPublisher
@@ -74,18 +79,49 @@ final class Building: Codable, ObservableObject {
             }
             .receive(on: RunLoop.main)
             .assign(to: \.washrooms, on: self)
+                
+        detailsSubscription = requestDetailsUpdate
+            .merge(with: shouldUpdateWashroomsPublisher)
+            .flatMap { _ in
+                return Future { promise in
+                    ThroneEndpoint.fetchBuilding(matching: self.id) { building in
+                        promise(.success(building))
+                    }
+                }
+            }
+            .receive(on: RunLoop.main)
+            .sink { updatedBuilding in
+                self.objectWillChange.send()
+                self.overallRating = updatedBuilding.overallRating
+                self.bestRatings = updatedBuilding.bestRatings
+            }
         
-        requestWashroomsUpdate.send()
+        self.requestWashroomsUpdate.send()
     }
     
     func postWashroom(washroom: Washroom) {
         ThroneEndpoint.post(washroom: washroom, for: self) { _ in
             self.setupWashroomsSubscription()
             self.requestWashroomsUpdate.send()
-            NearMe.shared.objectWillChange.send()
         }
     }
-        
+    
+    var distanceDescription: String {
+        get {
+            if let distance = self.distance {
+                if distance < 500.0 {
+                    let value = String(format: "%.1f", distance)
+                    return "\(value) m"
+                } else {
+                    let value = String(format: "%.1f", distance / 1000.0)
+                    return "\(value) km"
+                }
+            } else {
+                return "?m"
+            }
+        }
+    }
+
     var stars: String {
         get {
             if self.overallRating <= 0 {
@@ -113,4 +149,5 @@ final class Building: Codable, ObservableObject {
         case overallRating = "overall_rating"
         case bestRatings = "best_ratings"
     }
+    
 }

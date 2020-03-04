@@ -12,7 +12,6 @@ enum Gender: String, Codable, CaseIterable {
     case all
     case women
     case men
-    case family
 
     var description: String {
         get {
@@ -20,7 +19,6 @@ enum Gender: String, Codable, CaseIterable {
             case .all: return "Inclusive"
             case .women: return "Women's"
             case .men: return "Men's"
-            case .family: return "Family"
             }
         }
     }
@@ -31,7 +29,6 @@ enum Gender: String, Codable, CaseIterable {
             case .women: return "🚺"
             case .men: return "🚹"
             case .all: return "🚻"
-            case .family: return "🚻"
             }
         }
     }

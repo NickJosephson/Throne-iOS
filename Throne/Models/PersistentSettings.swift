@@ -11,6 +11,8 @@ import Combine
 
 /// Observable Key-Value storage for persistence of key application settings.
 final class PersistentSettings: ObservableObject {
+    static var shared = PersistentSettings() // Shared instance to use across application
+    
     private let isLoggedInKey = "is-logged-in"
     var isLoggedIn: Bool {
         get {

@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		E11448E7240899FD00DD4F04 /* EnableLocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11448E6240899FD00DD4F04 /* EnableLocationButton.swift */; };
 		E11448E92408A3C900DD4F04 /* NearMeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11448E82408A3C900DD4F04 /* NearMeListView.swift */; };
-		E11448EB2408A46E00DD4F04 /* WashroomsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11448EA2408A46E00DD4F04 /* WashroomsListView.swift */; };
-		E11448ED2408A4AA00DD4F04 /* BuildingsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11448EC2408A4AA00DD4F04 /* BuildingsListView.swift */; };
+		E11448EB2408A46E00DD4F04 /* WashroomRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11448EA2408A46E00DD4F04 /* WashroomRowView.swift */; };
+		E11448ED2408A4AA00DD4F04 /* BuildingRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11448EC2408A4AA00DD4F04 /* BuildingRowView.swift */; };
 		E11448EF2408A4DF00DD4F04 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11448EE2408A4DF00DD4F04 /* MainTabView.swift */; };
 		E11448F52408A6B800DD4F04 /* CompactAmenitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11448F42408A6B800DD4F04 /* CompactAmenitiesView.swift */; };
-		E11448FC2408D33E00DD4F04 /* ReviewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11448FB2408D33E00DD4F04 /* ReviewButton.swift */; };
+		E11448FC2408D33E00DD4F04 /* CreateReviewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11448FB2408D33E00DD4F04 /* CreateReviewButton.swift */; };
 		E11448FE2408D35E00DD4F04 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11448FD2408D35E00DD4F04 /* FavoriteButton.swift */; };
 		E11449002408D40B00DD4F04 /* AmenitiesSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11448FF2408D40B00DD4F04 /* AmenitiesSelectionView.swift */; };
 		E11449022408D49000DD4F04 /* GenderSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11449012408D49000DD4F04 /* GenderSelectionView.swift */; };
@@ -82,11 +82,11 @@
 /* Begin PBXFileReference section */
 		E11448E6240899FD00DD4F04 /* EnableLocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableLocationButton.swift; sourceTree = "<group>"; };
 		E11448E82408A3C900DD4F04 /* NearMeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearMeListView.swift; sourceTree = "<group>"; };
-		E11448EA2408A46E00DD4F04 /* WashroomsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashroomsListView.swift; sourceTree = "<group>"; };
-		E11448EC2408A4AA00DD4F04 /* BuildingsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingsListView.swift; sourceTree = "<group>"; };
+		E11448EA2408A46E00DD4F04 /* WashroomRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashroomRowView.swift; sourceTree = "<group>"; };
+		E11448EC2408A4AA00DD4F04 /* BuildingRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingRowView.swift; sourceTree = "<group>"; };
 		E11448EE2408A4DF00DD4F04 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		E11448F42408A6B800DD4F04 /* CompactAmenitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactAmenitiesView.swift; sourceTree = "<group>"; };
-		E11448FB2408D33E00DD4F04 /* ReviewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewButton.swift; sourceTree = "<group>"; };
+		E11448FB2408D33E00DD4F04 /* CreateReviewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReviewButton.swift; sourceTree = "<group>"; };
 		E11448FD2408D35E00DD4F04 /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
 		E11448FF2408D40B00DD4F04 /* AmenitiesSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenitiesSelectionView.swift; sourceTree = "<group>"; };
 		E11449012408D49000DD4F04 /* GenderSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderSelectionView.swift; sourceTree = "<group>"; };
@@ -189,15 +189,13 @@
 		E11448F22408A54C00DD4F04 /* Washrooms */ = {
 			isa = PBXGroup;
 			children = (
-				E11448EA2408A46E00DD4F04 /* WashroomsListView.swift */,
 				E176AEF723E3A62D00EF8D15 /* WashroomDetailView.swift */,
-				E11448FD2408D35E00DD4F04 /* FavoriteButton.swift */,
+				E11448EA2408A46E00DD4F04 /* WashroomRowView.swift */,
 				E1F4FE112407928D00A4096F /* CreateWashroomView.swift */,
 				E11449032408D5D000DD4F04 /* CreateWashroomButton.swift */,
-				E146A6DD2400A1F400F73A0B /* AmenitiesView.swift */,
-				E11448F42408A6B800DD4F04 /* CompactAmenitiesView.swift */,
-				E11448FF2408D40B00DD4F04 /* AmenitiesSelectionView.swift */,
+				E11448FD2408D35E00DD4F04 /* FavoriteButton.swift */,
 				E11449012408D49000DD4F04 /* GenderSelectionView.swift */,
+				E1BCB3C9240FA122006C8B83 /* Amenities */,
 			);
 			path = Washrooms;
 			sourceTree = "<group>";
@@ -205,8 +203,8 @@
 		E11448F32408A56500DD4F04 /* Buildings */ = {
 			isa = PBXGroup;
 			children = (
-				E11448EC2408A4AA00DD4F04 /* BuildingsListView.swift */,
 				E16BA1DB24078AD6002F9EED /* BuildingDetailView.swift */,
+				E11448EC2408A4AA00DD4F04 /* BuildingRowView.swift */,
 			);
 			path = Buildings;
 			sourceTree = "<group>";
@@ -216,20 +214,20 @@
 			children = (
 				E146A6DF2400A21E00F73A0B /* ReviewsView.swift */,
 				E1F4FE152407A88B00A4096F /* CreateReviewView.swift */,
-				E11448FB2408D33E00DD4F04 /* ReviewButton.swift */,
+				E11448FB2408D33E00DD4F04 /* CreateReviewButton.swift */,
 				E1F4FE13240796A100A4096F /* RatingView.swift */,
 				E11449052408D7A300DD4F04 /* EditableRatingView.swift */,
 			);
 			path = Reviews;
 			sourceTree = "<group>";
 		};
-		E11448F72408A75C00DD4F04 /* Onboarding */ = {
+		E11448F72408A75C00DD4F04 /* Login */ = {
 			isa = PBXGroup;
 			children = (
 				E1E0738123E54E3A00D4AE5E /* WelcomeView.swift */,
 				E1580F2C23F768E10087DE0B /* LoginView.swift */,
 			);
-			path = Onboarding;
+			path = Login;
 			sourceTree = "<group>";
 		};
 		E11448F82408A76F00DD4F04 /* Profile */ = {
@@ -336,23 +334,33 @@
 				E11448F62408A72500DD4F04 /* Reviews */,
 				E11448F92408A77D00DD4F04 /* Map */,
 				E11448F82408A76F00DD4F04 /* Profile */,
-				E11448F72408A75C00DD4F04 /* Onboarding */,
+				E11448F72408A75C00DD4F04 /* Login */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		E1BCB3C9240FA122006C8B83 /* Amenities */ = {
+			isa = PBXGroup;
+			children = (
+				E146A6DD2400A1F400F73A0B /* AmenitiesView.swift */,
+				E11448F42408A6B800DD4F04 /* CompactAmenitiesView.swift */,
+				E11448FF2408D40B00DD4F04 /* AmenitiesSelectionView.swift */,
+			);
+			path = Amenities;
 			sourceTree = "<group>";
 		};
 		E1CDA0B623E3B3AB007ADA73 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E1E0738723E561DD00D4AE5E /* Washroom.swift */,
+				E1E0738523E561BB00D4AE5E /* NearMe.swift */,
 				E11C9BEA23F1DBB60045663B /* Building.swift */,
-				E19AA94D240CD0D400B2DB28 /* Amenity.swift */,
-				E19AA94F240CD10C00B2DB28 /* Gender.swift */,
+				E1E0738723E561DD00D4AE5E /* Washroom.swift */,
 				E11C9BE823F1DB3A0045663B /* Location.swift */,
+				E19AA94F240CD10C00B2DB28 /* Gender.swift */,
+				E19AA94D240CD0D400B2DB28 /* Amenity.swift */,
 				E11C9BEC23F1DD850045663B /* Review.swift */,
 				E19AA951240CD14500B2DB28 /* Ratings.swift */,
 				E11C9BEE23F1DF6D0045663B /* User.swift */,
-				E1E0738523E561BB00D4AE5E /* NearMe.swift */,
 				E1CDA0B723E404A6007ADA73 /* PersistentSettings.swift */,
 				E1E0738323E5612400D4AE5E /* LoginManager.swift */,
 				E11449072409C03A00DD4F04 /* LocationManager.swift */,
@@ -511,7 +519,7 @@
 				E176AEC023E38B2A00EF8D15 /* AppDelegate.swift in Sources */,
 				E11448E92408A3C900DD4F04 /* NearMeListView.swift in Sources */,
 				E1CFDE6823FA4FBF007423FD /* AuthenticationEndpoint.swift in Sources */,
-				E11448EB2408A46E00DD4F04 /* WashroomsListView.swift in Sources */,
+				E11448EB2408A46E00DD4F04 /* WashroomRowView.swift in Sources */,
 				E176AEF423E39CC900EF8D15 /* MapView.swift in Sources */,
 				E11C9BEB23F1DBB60045663B /* Building.swift in Sources */,
 				E176AEF623E39CFD00EF8D15 /* SettingsView.swift in Sources */,
@@ -527,7 +535,7 @@
 				E1768D4E23FDEE2B00A9F098 /* AppConfiguration.swift in Sources */,
 				E11449062408D7A300DD4F04 /* EditableRatingView.swift in Sources */,
 				E16BA1DC24078AD6002F9EED /* BuildingDetailView.swift in Sources */,
-				E11448ED2408A4AA00DD4F04 /* BuildingsListView.swift in Sources */,
+				E11448ED2408A4AA00DD4F04 /* BuildingRowView.swift in Sources */,
 				E11449042408D5D000DD4F04 /* CreateWashroomButton.swift in Sources */,
 				E1580F2D23F768E20087DE0B /* LoginView.swift in Sources */,
 				E176AEF823E3A62D00EF8D15 /* WashroomDetailView.swift in Sources */,
@@ -539,7 +547,7 @@
 				E146A6DE2400A1F400F73A0B /* AmenitiesView.swift in Sources */,
 				E1F4FE14240796A100A4096F /* RatingView.swift in Sources */,
 				E116F687240A493E00680E92 /* MapDetailView.swift in Sources */,
-				E11448FC2408D33E00DD4F04 /* ReviewButton.swift in Sources */,
+				E11448FC2408D33E00DD4F04 /* CreateReviewButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

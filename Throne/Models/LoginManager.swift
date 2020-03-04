@@ -13,7 +13,7 @@ import Combine
 final class LoginManager: ObservableObject {
     static var shared = LoginManager() // Shared instance to use across application
 
-    private let settings = PersistentSettings()
+    private let settings = PersistentSettings.shared
     private var refreshSubscription: AnyCancellable!
     private var currentUserSubscription: AnyCancellable!
 

@@ -60,24 +60,14 @@ final class Washroom: Codable, ObservableObject {
             amenities: []
         )
     }
-            
+
     func setupReviewsSubscription() {
         if reviewsSubscription != nil {
             return
         }
         
-        // create publisher for indicating when to perform near me update
-        let locationUpdatePublisher = LocationManager.shared.$currentLocation
-            .filter { $0 != nil }
-            .map { _ in return }
-        let timerUpdatePublisher = Timer.publish(every: TimeInterval(exactly: 300.0)!, on: RunLoop.current, in: .default)
-            .autoconnect()
-            .map { _ in return }
-        let shouldUpdateReviewsPublisher = timerUpdatePublisher
-            .merge(with: locationUpdatePublisher)
-            .throttle(for: .seconds(60), scheduler: RunLoop.current, latest: false)
-            .merge(with: requestReviewsUpdate)
-            .throttle(for: .seconds(3), scheduler: RunLoop.current, latest: false)
+        let shouldUpdateReviewsPublisher = requestReviewsUpdate
+            .throttle(for: .seconds(5), scheduler: RunLoop.current, latest: false)
             .eraseToAnyPublisher()
         
         reviewsSubscription = shouldUpdateReviewsPublisher
@@ -101,11 +91,10 @@ final class Washroom: Codable, ObservableObject {
         }
         .receive(on: RunLoop.main)
         .sink { updatedWashroom in
+            self.objectWillChange.send()
             self.reviewsCount = updatedWashroom.reviewsCount
             self.overallRating = updatedWashroom.overallRating
             self.averageRatings = updatedWashroom.averageRatings
-            self.objectWillChange.send()
-            NearMe.shared.requestDataUpdate.send()
         }
         
         requestReviewsUpdate.send()
@@ -115,6 +104,22 @@ final class Washroom: Codable, ObservableObject {
         ThroneEndpoint.post(review: review, for: self) { _ in
             self.setupReviewsSubscription()
             self.requestReviewsUpdate.send()
+        }
+    }
+    
+    var distanceDescription: String {
+        get {
+            if let distance = self.distance {
+                if distance < 500.0 {
+                    let value = String(format: "%.1f", distance)
+                    return "\(value) m"
+                } else {
+                    let value = String(format: "%.1f", distance / 1000.0)
+                    return "\(value) km"
+                }
+            } else {
+                return "?m"
+            }
         }
     }
     
@@ -132,4 +137,5 @@ final class Washroom: Codable, ObservableObject {
         case averageRatings = "average_ratings"
         case amenities
     }
+    
 }
