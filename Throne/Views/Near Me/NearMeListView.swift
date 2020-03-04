@@ -45,7 +45,7 @@ struct NearMeListView: View {
                     .navigationBarTitle(Text("Near Me"))
                 }
                 
-                ForEach(nearMe.buildings, id: \.id) { building in
+                ForEach(nearMe.buildings, id: \.title) { building in
                     BuildingRowView(building: building)
                 }
                 .navigationBarTitle(Text("Near Me"))
