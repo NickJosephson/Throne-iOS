@@ -9,13 +9,13 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @Environment(\.verticalSizeClass) var horizontalSizeClass
+    @Environment(\.verticalSizeClass) var verticalSizeClass
     @ObservedObject private var loginManager = LoginManager.shared
     
     var body: some View {
         NavigationView {
             VStack() {
-                if horizontalSizeClass != .compact {
+                if verticalSizeClass != .compact {
                     VStack {
                         AvatarView()
                         NameView(user: loginManager.currentUser)
