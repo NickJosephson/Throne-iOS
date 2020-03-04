@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct AmenitiesView: View {
-    var amenities: [Washroom.Amenity]
+    var amenities: [Amenity]
 
     var body: some View {
         List {
@@ -27,6 +27,6 @@ struct AmenitiesView: View {
 
 struct AmenitiesView_Previews: PreviewProvider {
     static var previews: some View {
-        AmenitiesView(amenities: Washroom.Amenity.allCases)
+        AmenitiesView(amenities: Amenity.allCases)
     }
 }

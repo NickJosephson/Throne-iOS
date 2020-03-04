@@ -11,10 +11,10 @@ import Foundation
 struct Review: Codable {
     let id: Int
     let washroomID: Int
-    let user: User
+    let user: User!
     let createdAt: Date
     let upvoteCount: Int?
-    let ratings: Washroom.Ratings
+    let ratings: Ratings
     let comment: String?
     
     private enum CodingKeys: String, CodingKey {
@@ -34,4 +34,19 @@ struct Review: Codable {
         df.timeStyle = .none
         return df.string(from: self.createdAt)
     }
+}
+
+extension Review {
+    init(ratings: Ratings, comment: String) {
+        self.init(
+            id: 0,
+            washroomID: 0,
+            user: nil,
+            createdAt: Date(),
+            upvoteCount: 0,
+            ratings: ratings,
+            comment: comment
+        )
+    }
+    
 }

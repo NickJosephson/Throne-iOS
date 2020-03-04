@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct NearMeListView: View {
-    @ObservedObject var settings = PersistentSettings()
-    @ObservedObject var model: NearMe
+    @ObservedObject var nearMe: NearMe
+    @ObservedObject var settings = PersistentSettings.shared
     @State var currentListType = NearMeListType.buildings
     
     enum NearMeListType {
@@ -20,23 +20,34 @@ struct NearMeListView: View {
     
     var body: some View {
         List {
-            if model.washrooms.count == 0 {
-                Text("No \(settings.preferredTerm.capitalized) Near You")
-                .foregroundColor(.secondary)
-                .navigationBarTitle(Text("Near Me"))
-            } else {
-                Picker(selection: $currentListType, label: Text("List Type")) {
-                    Text("Buildings").tag(NearMeListType.buildings)
-                    Text("All Washrooms").tag(NearMeListType.washrooms)
-                }
-                .pickerStyle(SegmentedPickerStyle())
+            Picker(selection: $currentListType, label: Text("List Type")) {
+                Text("Buildings").tag(NearMeListType.buildings)
+                Text("All Washrooms").tag(NearMeListType.washrooms)
             }
+            .pickerStyle(SegmentedPickerStyle())
+            .navigationBarTitle(Text("Near Me"))
                         
             if currentListType == NearMeListType.washrooms {
-                WashroomsListView(washrooms: model.washrooms)
+                if nearMe.washrooms.count == 0 {
+                    Text("No \(settings.preferredTerm.capitalized) Near You")
+                    .foregroundColor(.secondary)
+                    .navigationBarTitle(Text("Near Me"))
+                }
+                
+                ForEach(nearMe.washrooms, id: \.id) { washroom in
+                    WashroomRowView(washroom: washroom)
+                }
                 .navigationBarTitle(Text("Near Me"))
             } else {
-                BuildingsListView(buildings: model.buildings)
+                if nearMe.buildings.count == 0 {
+                    Text("No Buildings Near You")
+                    .foregroundColor(.secondary)
+                    .navigationBarTitle(Text("Near Me"))
+                }
+                
+                ForEach(nearMe.buildings, id: \.id) { building in
+                    BuildingRowView(building: building)
+                }
                 .navigationBarTitle(Text("Near Me"))
             }
         }
@@ -46,6 +57,6 @@ struct NearMeListView: View {
 
 struct NearMeListView_Previews: PreviewProvider {
     static var previews: some View {
-        NearMeListView(model: NearMe())
+        NearMeListView(nearMe: NearMe.shared)
     }
 }

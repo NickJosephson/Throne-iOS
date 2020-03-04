@@ -10,14 +10,20 @@ import Foundation
 import Combine
 
 final class NearMe: ObservableObject {
-    private var shouldUpdatePublisher: AnyPublisher<Void, Never>
+    static var shared = NearMe() // Shared instance to use across application
+
+    var requestDataUpdate = PassthroughSubject<Void, Never>()
     private var washroomsSubscription: AnyCancellable!
     private var buildingsSubscription: AnyCancellable!
-
+    
     @Published var washrooms: [Washroom] = []
     @Published var buildings: [Building] = []
     
     init() {
+        setupSubscriptions()
+    }
+    
+    private func setupSubscriptions() {
         // create publisher for indicating when to perform near me update
         let loginUpdatePublisher = LoginManager.shared.loginCompleted
         let refreshUpdatePublisher = LoginManager.shared.refreshCompleted
@@ -27,10 +33,12 @@ final class NearMe: ObservableObject {
         let timerUpdatePublisher = Timer.publish(every: TimeInterval(exactly: 300.0)!, on: RunLoop.current, in: .default)
             .autoconnect()
             .map { _ in return }
-        shouldUpdatePublisher = timerUpdatePublisher
+        let shouldUpdatePublisher = timerUpdatePublisher
             .merge(with: locationUpdatePublisher)
-            .throttle(for: .seconds(60), scheduler: RunLoop.current, latest: false)
+            .throttle(for: .seconds(30), scheduler: RunLoop.current, latest: false)
             .merge(with: refreshUpdatePublisher, loginUpdatePublisher)
+            .merge(with: requestDataUpdate)
+            .throttle(for: .seconds(5), scheduler: RunLoop.current, latest: false)
             .eraseToAnyPublisher()
         
         washroomsSubscription = shouldUpdatePublisher
@@ -45,7 +53,7 @@ final class NearMe: ObservableObject {
             .assign(to: \.washrooms, on: self)
 
         buildingsSubscription = shouldUpdatePublisher
-            .flatMap {_ in
+            .flatMap { _ in
                 return Future { promise in
                     ThroneEndpoint.fetchBuildings(near: LocationManager.shared.currentLocation) { buildings in
                         promise(.success(buildings))
@@ -55,5 +63,5 @@ final class NearMe: ObservableObject {
             .receive(on: RunLoop.main)
             .assign(to: \.buildings, on: self)
     }
-    
+
 }

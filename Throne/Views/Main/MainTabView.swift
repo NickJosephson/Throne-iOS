@@ -10,7 +10,7 @@ import SwiftUI
 
 struct MainTabView: View {
     @State private var currentTab = 0
-    @ObservedObject var model = NearMe()
+    @ObservedObject var model = NearMe.shared
 
     var body: some View {
         TabView(selection: $currentTab) {

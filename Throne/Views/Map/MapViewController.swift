@@ -150,10 +150,12 @@ extension MapViewController: MKMapViewDelegate {
         let flagAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier, for: annotation)
         
         flagAnnotationView.canShowCallout = true
+        flagAnnotationView.displayPriority = .defaultHigh
         
         let image: UIImage
         if annotation.building.overallRating <= 0 {
-            image = #imageLiteral(resourceName: "paper")
+            image = #imageLiteral(resourceName: "building")
+            flagAnnotationView.displayPriority = .defaultLow
         } else if annotation.building.overallRating <= 1.5 {
             image = #imageLiteral(resourceName: "skull")
         } else if annotation.building.overallRating <= 2.5 {
@@ -162,14 +164,14 @@ extension MapViewController: MKMapViewDelegate {
             image = #imageLiteral(resourceName: "paper")
         } else {
             image = #imageLiteral(resourceName: "crown")
+            flagAnnotationView.displayPriority = .required
         }
         
         flagAnnotationView.image = image
-
         let rightButton = UIButton(type: .detailDisclosure)
         flagAnnotationView.rightCalloutAccessoryView = rightButton
         
         return flagAnnotationView
     }
-    
+
 }

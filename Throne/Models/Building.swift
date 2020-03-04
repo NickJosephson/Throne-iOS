@@ -10,17 +10,118 @@ import Foundation
 import Combine
 
 final class Building: Codable, ObservableObject {
-    let id: Int
-    let title: String
-    let location: Location
-    let distance: Double = 14.5
-    let createdAt: Date
-    let overallRating: Double
-    let bestRatings: Washroom.Ratings
-    let amenities: [Washroom.Amenity]?
+    var id: Int
+    var title: String
+    var location: Location
+    var distance: Double?
+    var createdAt: Date
+    var overallRating: Double
+    var bestRatings: Ratings
     
-    @Published var washrooms: [Washroom] = []
+    @Published var washrooms: [Washroom] = [] {
+        didSet {
+            var subscriptions: [AnyCancellable] = []
+            for washroom in washrooms {
+                let subscription = washroom.objectWillChange
+                    .sink {
+                        self.requestDetailsUpdate.send()
+                    }
+                subscriptions.append(subscription)
+            }
+            self.washroomsIndividualSubscriptions = subscriptions
+        }
+    }
+
+    var requestWashroomsUpdate = PassthroughSubject<Void, Never>()
+    var requestDetailsUpdate = PassthroughSubject<Void, Never>()
+    private var washroomsSubscription: AnyCancellable!
+    private var detailsSubscription: AnyCancellable!
+    private var washroomsIndividualSubscriptions: [AnyCancellable] = []
     
+    init(id: Int, title: String, location: Location, distance: Double, createdAt: Date, overallRating: Double, bestRatings: Ratings) {
+        self.id = id
+        self.title = title
+        self.location = location
+        self.distance = distance
+        self.createdAt = createdAt
+        self.overallRating = overallRating
+        self.bestRatings = bestRatings
+    }
+    
+    convenience init() {
+        self.init(
+            id: 0,
+            title: "",
+            location: Location(latitude: 0, longitude: 0),
+            distance: 0,
+            createdAt: Date(),
+            overallRating: 0,
+            bestRatings: Ratings(privacy: 0, toiletPaperQuality: 0, smell: 0, cleanliness: 0)
+        )
+    }
+    
+    func setupWashroomsSubscription() {
+        if washroomsSubscription != nil {
+            return
+        }
+        
+        let shouldUpdateWashroomsPublisher = requestWashroomsUpdate
+            .throttle(for: .seconds(5), scheduler: RunLoop.current, latest: false)
+            .eraseToAnyPublisher()
+        
+        washroomsSubscription = shouldUpdateWashroomsPublisher
+            .flatMap { _ in
+                return Future { promise in
+                    ThroneEndpoint.fetchWashrooms(in: self) { washrooms in
+                        promise(.success(washrooms))
+                    }
+                }
+            }
+            .receive(on: RunLoop.main)
+            .assign(to: \.washrooms, on: self)
+                
+        detailsSubscription = requestDetailsUpdate
+            .merge(with: shouldUpdateWashroomsPublisher)
+            .flatMap { _ in
+                return Future { promise in
+                    ThroneEndpoint.fetchBuilding(matching: self.id) { building in
+                        promise(.success(building))
+                    }
+                }
+            }
+            .receive(on: RunLoop.main)
+            .sink { updatedBuilding in
+                self.objectWillChange.send()
+                self.overallRating = updatedBuilding.overallRating
+                self.bestRatings = updatedBuilding.bestRatings
+            }
+        
+        self.requestWashroomsUpdate.send()
+    }
+    
+    func postWashroom(washroom: Washroom) {
+        ThroneEndpoint.post(washroom: washroom, for: self) { _ in
+            self.setupWashroomsSubscription()
+            self.requestWashroomsUpdate.send()
+        }
+    }
+    
+    var distanceDescription: String {
+        get {
+            if let distance = self.distance {
+                if distance < 500.0 {
+                    let value = String(format: "%.1f", distance)
+                    return "\(value) m"
+                } else {
+                    let value = String(format: "%.1f", distance / 1000.0)
+                    return "\(value) km"
+                }
+            } else {
+                return "?m"
+            }
+        }
+    }
+
     var stars: String {
         get {
             if self.overallRating <= 0 {
@@ -39,26 +140,6 @@ final class Building: Codable, ObservableObject {
         }
     }
     
-    init() {
-        id = 0
-        title = ""
-        location = Location(latitude: 0, longitude: 0)
-        createdAt = Date()
-        overallRating = 0.0
-        bestRatings = Washroom.Ratings(privacy: 0, toiletPaperQuality: 0, smell: 0, cleanliness: 0)
-        amenities = []
-    }
-    
-    func fetchWashrooms() {
-        if washrooms.isEmpty {
-            ThroneEndpoint.fetchWashrooms(in: self) { washrooms in
-                DispatchQueue.main.async {
-                    self.washrooms = washrooms
-                }
-            }
-        }
-    }
-    
     private enum CodingKeys: String, CodingKey {
         case id
         case title
@@ -67,6 +148,6 @@ final class Building: Codable, ObservableObject {
         case createdAt = "created_at"
         case overallRating = "overall_rating"
         case bestRatings = "best_ratings"
-        case amenities
     }
+    
 }

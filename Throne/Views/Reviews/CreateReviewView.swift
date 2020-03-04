@@ -10,28 +10,32 @@ import SwiftUI
 
 struct CreateReviewView: View {
     @Binding var show: Bool
-    @State private var cleanlinessRating = 0.0
-    @State private var privacyRating = 0.0
-    @State private var paperRating = 0.0
-    @State private var smellRating = 0.0
+    @ObservedObject var washroom: Washroom
+    
+    @State private var ratings = Ratings()
     @State private var comment = ""
 
     var body: some View {
         NavigationView {
             Form {
                 Section(header: Text("Ratings")) {
-                    EditableRatingView(rating: $cleanlinessRating, label: "✨ Cleanliness")
-                    EditableRatingView(rating: $privacyRating, label: "🤚 Privacy")
-                    EditableRatingView(rating: $paperRating, label: "🧻 Paper Quality")
-                    EditableRatingView(rating: $smellRating, label: "👃 Smell")
+                    EditableRatingView(rating: $ratings.cleanliness, label: "✨ Cleanliness")
+                    EditableRatingView(rating: $ratings.privacy, label: "🤚 Privacy")
+                    EditableRatingView(rating: $ratings.toiletPaperQuality, label: "🧻 Paper Quality")
+                    EditableRatingView(rating: $ratings.smell, label: "👃 Smell")
                 }
                 TextField("Comment", text: $comment)
             }
             .navigationBarTitle("New Review", displayMode: .inline)
             .navigationBarItems(
-                leading: Button(action: {self.show = false}, label: { Text("Cancel") }),
-                trailing: Button(action: {self.show = false}, label: { Text("Post") })
-                    .disabled(cleanlinessRating <= 0 || privacyRating <= 0 || paperRating <= 0 || smellRating <= 0)
+                leading: Button(action: { self.show = false }, label: { Text("Cancel") }),
+                trailing: Button(action: {
+                    self.washroom.postReview(review:
+                        Review(ratings: self.ratings, comment: self.comment)
+                    )
+                    self.show = false
+                }, label: { Text("Post") })
+                    .disabled(ratings.cleanliness <= 0 || ratings.privacy <= 0 || ratings.toiletPaperQuality <= 0 || ratings.smell <= 0 || comment.isEmpty)
             )
 
         }
@@ -40,6 +44,6 @@ struct CreateReviewView: View {
 
 struct CreateReviewView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateReviewView(show: .constant(true))
+        return CreateReviewView(show: .constant(true), washroom: Washroom())
     }
 }

@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct CompactAmenitiesView: View {
-    var amenities: [Washroom.Amenity]
+    var amenities: [Amenity]
 
     var body: some View {
         ForEach(amenities.filter { $0.emoji != nil }, id: \.self) { amenity in
@@ -22,6 +22,6 @@ struct CompactAmenitiesView: View {
 
 struct CompactAmenitiesView_Previews: PreviewProvider {
     static var previews: some View {
-        CompactAmenitiesView(amenities: Washroom.Amenity.allCases)
+        CompactAmenitiesView(amenities: Amenity.allCases)
     }
 }

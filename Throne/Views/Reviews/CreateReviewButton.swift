@@ -9,8 +9,9 @@
 import SwiftUI
 
 struct ReviewButton: View {
+    @ObservedObject var washroom: Washroom
     @State private var showCreateReview = false
-
+    
     var body: some View {
         Button(action: { self.showCreateReview = true }, label: {
             HStack {
@@ -18,12 +19,15 @@ struct ReviewButton: View {
                 Text("Review")
             }
         })
-        .popover(isPresented: self.$showCreateReview, content: { CreateReviewView(show: self.$showCreateReview) } )
+            .popover(isPresented: self.$showCreateReview, content: {
+                CreateReviewView(show: self.$showCreateReview, washroom: self.washroom)
+            })
     }
+
 }
 
 struct ReviewButton_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewButton()
+        ReviewButton(washroom: Washroom())
     }
 }

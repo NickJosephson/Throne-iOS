@@ -24,7 +24,7 @@ struct LoginView: UIViewRepresentable {
 /// A view to host a ASWebAuthenticationSession for allowing the user to log in
 class LoginViewController: UIViewController, ASWebAuthenticationPresentationContextProviding {
     private var session: ASWebAuthenticationSession!
-    private var settings = PersistentSettings()
+    private var settings = PersistentSettings.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()

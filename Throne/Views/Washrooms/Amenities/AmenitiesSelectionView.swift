@@ -9,10 +9,10 @@
 import SwiftUI
 
 struct AmenitiesSelectionView: View {
-    @Binding var amenities: [Washroom.Amenity]
+    @Binding var amenities: [Amenity]
 
     var body: some View {
-        ForEach(Washroom.Amenity.allCases, id: \.self) { amenity in
+        ForEach(Amenity.allCases, id: \.self) { amenity in
             HStack {
                 Text("\(amenity.description)")
                 Spacer()
@@ -36,6 +36,6 @@ struct AmenitiesSelectionView: View {
 
 struct AmenitiesSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        AmenitiesSelectionView(amenities: .constant(Washroom.Amenity.allCases))
+        AmenitiesSelectionView(amenities: .constant(Amenity.allCases))
     }
 }

@@ -7,20 +7,121 @@
 //
 
 import Foundation
+import Combine
 
-struct Washroom: Codable {
-    let id: Int
-    let title: String
-    let location: Location
-    let distance: Double = 14.5
-    let gender: Gender
-    let floor: Int
-    let buildingID: Int
-    let createdAt: Date
-    let reviewsCount: Int?
-    let overallRating: Double
-    let averageRatings: Ratings
-    let amenities: [Amenity]
+final class Washroom: Codable, ObservableObject {
+    var id: Int
+    var title: String
+    var location: Location
+    var distance: Double?
+    var gender: Gender
+    var floor: Int
+    var buildingID: Int
+    var createdAt: Date
+    var reviewsCount: Int?
+    var overallRating: Double
+    var averageRatings: Ratings
+    var amenities: [Amenity]
+    
+    @Published var reviews: [Review] = []
+
+    var requestReviewsUpdate = PassthroughSubject<Void, Never>()
+    private var reviewsSubscription: AnyCancellable!
+    private var detailsSubscription: AnyCancellable!
+
+    init(id: Int, title: String, location: Location, distance: Double, gender: Gender, floor: Int, buildingID: Int, createdAt: Date, reviewsCount: Int?, overallRating: Double, averageRatings: Ratings, amenities: [Amenity]) {
+        self.id = id
+        self.title = title
+        self.location = location
+        self.distance = distance
+        self.gender = gender
+        self.floor = floor
+        self.buildingID = buildingID
+        self.createdAt = createdAt
+        self.reviewsCount = reviewsCount
+        self.overallRating = overallRating
+        self.averageRatings = averageRatings
+        self.amenities = amenities
+    }
+    
+    convenience init() {
+        self.init(
+            id: 0,
+            title: "",
+            location: Location(latitude: 0, longitude: 0),
+            distance: 0.0,
+            gender: .all,
+            floor: 1,
+            buildingID: 0,
+            createdAt: Date(),
+            reviewsCount: 0,
+            overallRating: 0,
+            averageRatings: Ratings(privacy: 0, toiletPaperQuality: 0, smell: 0, cleanliness: 0),
+            amenities: []
+        )
+    }
+
+    func setupReviewsSubscription() {
+        if reviewsSubscription != nil {
+            return
+        }
+        
+        let shouldUpdateReviewsPublisher = requestReviewsUpdate
+            .throttle(for: .seconds(5), scheduler: RunLoop.current, latest: false)
+            .eraseToAnyPublisher()
+        
+        reviewsSubscription = shouldUpdateReviewsPublisher
+            .flatMap { _ in
+                return Future { promise in
+                    ThroneEndpoint.fetchReviews(for: self) { reviews in
+                        promise(.success(reviews))
+                    }
+                }
+            }
+            .receive(on: RunLoop.main)
+            .assign(to: \.reviews, on: self)
+        
+        detailsSubscription = shouldUpdateReviewsPublisher
+        .flatMap { _ in
+            return Future { promise in
+                ThroneEndpoint.fetchWashroom(matching: self.id) { washroom in
+                    promise(.success(washroom))
+                }
+            }
+        }
+        .receive(on: RunLoop.main)
+        .sink { updatedWashroom in
+            self.objectWillChange.send()
+            self.reviewsCount = updatedWashroom.reviewsCount
+            self.overallRating = updatedWashroom.overallRating
+            self.averageRatings = updatedWashroom.averageRatings
+        }
+        
+        requestReviewsUpdate.send()
+    }
+    
+    func postReview(review: Review) {
+        ThroneEndpoint.post(review: review, for: self) { _ in
+            self.setupReviewsSubscription()
+            self.requestReviewsUpdate.send()
+        }
+    }
+    
+    var distanceDescription: String {
+        get {
+            if let distance = self.distance {
+                if distance < 500.0 {
+                    let value = String(format: "%.1f", distance)
+                    return "\(value) m"
+                } else {
+                    let value = String(format: "%.1f", distance / 1000.0)
+                    return "\(value) km"
+                }
+            } else {
+                return "?m"
+            }
+        }
+    }
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -35,163 +136,6 @@ struct Washroom: Codable {
         case overallRating = "overall_rating"
         case averageRatings = "average_ratings"
         case amenities
-    }
-    
-    enum Gender: String, Codable, CaseIterable {
-        case all
-        case women
-        case men
-        case family
-
-        var description: String {
-            get {
-                switch self {
-                case .all: return "Inclusive"
-                case .women: return "Women's"
-                case .men: return "Men's"
-                case .family: return "Family"
-                }
-            }
-        }
-        
-        var emoji: String {
-            get {
-                switch self {
-                case .women: return "🚺"
-                case .men: return "🚹"
-                case .all: return "🚻"
-                case .family: return "🚻"
-                }
-            }
-        }
-    }
-        
-    struct Ratings: Codable {
-        let privacy: Double
-        let toiletPaperQuality: Double
-        let smell: Double
-        let cleanliness: Double
-        
-        private enum CodingKeys: String, CodingKey {
-            case privacy
-            case toiletPaperQuality = "toilet_paper_quality"
-            case smell
-            case cleanliness
-        }
-    }
-    
-    enum Amenity: String, Codable, CaseIterable {
-        case airDryer = "air_dryer"
-        case airFreshener = "air_freshener"
-        case automaticDryer = "auto_dryer"
-        case automaticPaperTowel = "auto_paper_towel"
-        case automaticSink = "auto_sink"
-        case automaticToilet = "auto_toilet"
-        case babyChangeStation = "baby_change_station"
-        case babyPowder = "baby_powder"
-        case bathroomAttendant = "bathroom_attendant "
-        case bidet = "bidet"
-        case bodyTowel = "body_towel"
-        case bodyWash = "bodywash"
-        case brailleLabeling = "braille_labeling"
-        case callButton = "call_button"
-        case coatHook = "coat_hook"
-        case contraception = "contraception"
-        case diapers = "diapers"
-        case hygieneProducts = "hygiene_products"
-        case firstAid = "first_aid"
-        case fullBodyMirror = "full_body_mirror"
-        case garbageCan = "garbage_can"
-        case heatedSeat = "heated_seat"
-        case lotion = "lotion"
-        case moistTowelette = "moist_towelette"
-        case music = "music"
-        case needleDisposal = "needle_disposal"
-        case paperSeatCovers = "paper_seat_covers"
-        case paperTowel = "paper_towel"
-        case perfumeCologne = "perfume_cologne"
-        case safetyRail = "safety_rail"
-        case sauna = "sauna"
-        case shampoo = "shampoo"
-        case shower = "shower"
-        case tissues = "tissues"
-        case wheelChairAccess = "wheel_chair_access"
-
-        var description: String {
-            get {
-                switch self {
-                case .airDryer: return "Air Dryer"
-                case .airFreshener: return "Air Freshener"
-                case .automaticDryer: return "Automatic Dryer"
-                case .automaticPaperTowel: return "Automatic Paper Towel"
-                case .automaticSink: return "Automatic Sink"
-                case .automaticToilet: return "Automatic Toilet"
-                case .babyChangeStation: return "Baby Change Station"
-                case .babyPowder: return "Baby Powder"
-                case .bathroomAttendant: return "Bathroom Attendant "
-                case .bidet: return "Bidet"
-                case .bodyTowel: return "Body Towel"
-                case .bodyWash: return "Body Wash"
-                case .brailleLabeling: return "Braille Labeling"
-                case .callButton: return "Call Button"
-                case .coatHook: return "Coat Hook"
-                case .contraception: return "Contraception"
-                case .diapers: return "Diapers"
-                case .hygieneProducts: return "Hygiene Products"
-                case .firstAid: return "First Aid"
-                case .fullBodyMirror: return "Full Body Mirror"
-                case .garbageCan: return "Garbage Can"
-                case .heatedSeat: return "Heated Seat"
-                case .lotion: return "Lotion"
-                case .moistTowelette: return "Moist Towelette"
-                case .music: return "Music"
-                case .needleDisposal: return "Needle Disposal"
-                case .paperSeatCovers: return "Paper Seat Covers"
-                case .paperTowel: return "Paper Towel"
-                case .perfumeCologne: return "Perfume Cologne"
-                case .safetyRail: return "Safety Rail"
-                case .sauna: return "Sauna"
-                case .shampoo: return "Shampoo"
-                case .shower: return "Shower"
-                case .tissues: return "Tissues"
-                case .wheelChairAccess: return "Wheel Chair Access"
-                }
-            }
-        }
-
-        var emoji: String? {
-             get {
-                 switch self {
-                 case .airDryer: return "💨"
-                 case .airFreshener: return "🌻"
-                 case .automaticDryer: return "⚡️💨"
-                 case .automaticSink: return "⚡️🚰"
-                 case .automaticToilet: return "⚡️🚽"
-                 case .babyChangeStation: return "👶"
-                 case .bathroomAttendant: return "🛎 "
-                 case .bidet: return "💦"
-                 case .bodyTowel: return "🧺"
-                 case .brailleLabeling: return "⠞⠗⠝"
-                 case .callButton: return "📢"
-                 case .contraception: return "🚫👶"
-                 case .diapers: return "🧷"
-                 case .hygieneProducts: return "♀"
-                 case .firstAid: return "🩹"
-                 case .garbageCan: return "🗑"
-                 case .heatedSeat: return "🔥🚽"
-                 case .lotion: return "🧴"
-                 case .music: return "🎶"
-                 case .needleDisposal: return "💉"
-                 case .perfumeCologne: return "🌹"
-                 case .sauna: return "🧖🏽‍♂️"
-                 case .shampoo: return "🧴💆‍♀️"
-                 case .shower: return "🚿"
-                 case .tissues: return "🤧"
-                 case .wheelChairAccess: return "♿️"
-                 default: return nil
-                 }
-             }
-         }
     }
     
 }
