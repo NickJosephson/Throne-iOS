@@ -13,6 +13,11 @@ struct AmenitiesView: View {
 
     var body: some View {
         List {
+            if amenities.count == 0 {
+                Text("No Amenities")
+                .foregroundColor(.secondary)
+            }
+            
             ForEach(amenities, id: \.self) { amenity in
                 HStack {
                     Text(amenity.description)

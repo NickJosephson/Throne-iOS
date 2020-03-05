@@ -21,7 +21,13 @@ struct CreateWashroomView: View {
             Form {
                 Section {
                     GenderSelectionView(gender: self.$gender)
-                    Stepper("Floor \(floor)", value: $floor, in: 0...10)
+                    Stepper(value: $floor, in: 0...10) {
+                        HStack {
+                            Text("Floor")
+                            Text("\(floor)").accessibility(hidden: true)
+                        }
+                    }
+                        .accessibility(value: Text("\(floor)"))
                     TextField("Additional Title", text: $title)
                 }
                 Section(header: Text("Amenities")) {

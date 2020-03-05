@@ -29,11 +29,23 @@ struct RatingView: View {
                 Text(label)
                 Spacer()
             }
-
-            ForEach(1..<maximumRating + 1) { number in
-                    self.image(for: number)
+            
+            HStack {
+                ForEach(1..<maximumRating + 1) { number in
+                        self.image(for: number)
+                }
             }
-        }.foregroundColor(rating <= 0 ? Color.secondary : Color.primary)
+            .accessibility(hidden: true)
+            .foregroundColor(rating <= 0 ? Color.secondary : Color.primary)
+        }
+        .accessibilityElement(children: .combine)
+        .accessibility(value: {
+            if rating > 0.0 {
+                return Text("\(rating, specifier: "%.1f") stars")
+            } else {
+                return Text("No Rating")
+            }
+        }())
     }
 }
 

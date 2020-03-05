@@ -25,7 +25,9 @@ struct WashroomRowView: View {
                 }
                 Spacer()
                 VStack(alignment: .trailing) {
-                    Text(washroom.distanceDescription)
+                    if washroom.distance != nil {
+                        Text(washroom.distanceDescription)
+                    }
                     Text("Floor \(washroom.floor)")
                     Text(washroom.gender.description)
                 }

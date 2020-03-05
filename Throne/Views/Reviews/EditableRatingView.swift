@@ -31,10 +31,26 @@ struct EditableRatingView: View {
             }
 
             ForEach(1..<maximumRating + 1) { number in
-                    self.image(for: number)
+                self.image(for: number)
                     .onTapGesture {
                         self.rating = Double(number)
                     }
+            }
+                .accessibility(hidden: true)
+        }
+        .accessibilityElement(children: .combine)
+        .accessibility(value: {
+            if rating > 0.0 {
+                return Text("\(rating, specifier: "%.1f") stars")
+            } else {
+                return Text("No Rating")
+            }
+        }())
+        .accessibilityAdjustableAction { direction in
+            switch direction {
+            case .decrement: self.rating = max(self.rating - 1, 1)
+            case .increment: self.rating = min(self.rating + 1, Double(self.maximumRating))
+            default: break
             }
         }
     }
