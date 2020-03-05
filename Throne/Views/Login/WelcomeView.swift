@@ -20,7 +20,7 @@ struct WelcomeView: View {
             VStack() {
                 Spacer()
                 if verticalSizeClass == .regular {
-                    Image("logo")
+                    Image(decorative: "logo")
                 }
                 Text("Welcome to Throne")
                     .font(.system(size: 60))

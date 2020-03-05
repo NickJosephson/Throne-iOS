@@ -35,7 +35,7 @@ struct BuildingDetailView: View {
                     MapPreviewView(startLocation: building.location)
                         .frame(minWidth: nil, idealWidth: nil, maxWidth: nil, minHeight: 200, idealHeight: 200, maxHeight: 200, alignment: .center)
                         .cornerRadius(10)
-                }
+                }.accessibility(label: Text("Location on map"))
             }
         }
         .listStyle(GroupedListStyle())

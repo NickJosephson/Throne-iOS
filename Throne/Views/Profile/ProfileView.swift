@@ -31,7 +31,10 @@ struct ProfileView: View {
             }
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(
-                trailing: NavigationLink(destination: SettingsView()) { Image(systemName: "gear") }
+                trailing: NavigationLink(destination: SettingsView()) {
+                    Image(systemName: "gear")
+                        .accessibility(label: Text("Settings"))
+                }
             )
             .onAppear {
                 self.loginManager.requestUserFetch.send()
@@ -48,6 +51,7 @@ struct AvatarView: View {
         .scaledToFit()
         .frame(width: 100, height: 100)
         .cornerRadius(90)
+        .accessibility(hidden: true)
     }
 }
 
@@ -58,6 +62,8 @@ struct NameView: View {
         Text("\(user?.username ?? "")")
         .font(.largeTitle)
         .multilineTextAlignment(.center)
+        .accessibility(label: Text("username \(user?.username ?? "")"))
+        .accessibility(hidden: user?.username == nil)
     }
 }
 

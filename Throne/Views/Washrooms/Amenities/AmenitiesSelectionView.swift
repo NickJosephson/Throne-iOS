@@ -13,22 +13,28 @@ struct AmenitiesSelectionView: View {
 
     var body: some View {
         ForEach(Amenity.allCases, id: \.self) { amenity in
-            HStack {
-                Text("\(amenity.description)")
-                Spacer()
-                Text("\(amenity.emoji ?? "")")
-                if self.amenities.contains(amenity) {
-                    Image(systemName: "checkmark.circle.fill")
-                } else {
-                    Image(systemName: "circle")
-                }
-            }.onTapGesture {
+            Button(action: {
                 if self.amenities.contains(amenity) {
                     self.amenities.removeAll(where: { $0 == amenity})
                 } else {
                     self.amenities.append(amenity)
                 }
-            }
+            }, label: {
+                HStack {
+                    Text("\(amenity.description)")
+                    Spacer()
+                    HStack {
+                        Text("\(amenity.emoji ?? "")")
+                        if self.amenities.contains(amenity) {
+                            Image(systemName: "checkmark.circle.fill")
+                        } else {
+                            Image(systemName: "circle")
+                        }
+                    }
+                        .accessibility(hidden: true)
+                }
+            })
+            .accessibility(addTraits: self.amenities.contains(amenity) ? .isSelected : [])
         }
 
     }

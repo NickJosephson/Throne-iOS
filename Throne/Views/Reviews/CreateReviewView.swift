@@ -19,10 +19,23 @@ struct CreateReviewView: View {
         NavigationView {
             Form {
                 Section(header: Text("Ratings")) {
-                    EditableRatingView(rating: $ratings.cleanliness, label: "✨ Cleanliness")
-                    EditableRatingView(rating: $ratings.privacy, label: "🤚 Privacy")
-                    EditableRatingView(rating: $ratings.toiletPaperQuality, label: "🧻 Paper Quality")
-                    EditableRatingView(rating: $ratings.smell, label: "👃 Smell")
+                    HStack {
+                        Text("✨").accessibility(hidden: true)
+                        EditableRatingView(rating: $ratings.cleanliness, label: "Cleanliness")
+                    }
+                    HStack {
+                        Text("🤚").accessibility(hidden: true)
+                        EditableRatingView(rating: $ratings.privacy, label: "Privacy")
+                    }
+                    HStack {
+                        Text("🧻").accessibility(hidden: true)
+                        EditableRatingView(rating: $ratings.toiletPaperQuality, label: "Paper Quality")
+                    }
+                    HStack {
+                        Text("👃").accessibility(hidden: true)
+                        EditableRatingView(rating: $ratings.smell, label: "Smell")
+                    }
+                    
                 }
                 TextField("Comment", text: $comment)
             }
