@@ -84,7 +84,7 @@ class ThroneEndpoint {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/washrooms/\(washroom.id)/reviews/"
 
-        NSLog("Fetching reviews for \(washroom.title).")
+        NSLog("Fetching reviews for \(washroom.comment).")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
@@ -124,7 +124,7 @@ class ThroneEndpoint {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/washrooms/\(washroom.id)/reviews/"
 
-        NSLog("Posting review for \(washroom.title).")
+        NSLog("Posting review for \(washroom.comment).")
         encodeAndPost(url: urlComponents.url!, item: review, completionHandler: completionHandler)
     }
     

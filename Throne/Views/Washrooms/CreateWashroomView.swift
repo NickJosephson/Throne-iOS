@@ -42,8 +42,8 @@ struct CreateWashroomView: View {
                     newWashroom.amenities = self.amenities
                     newWashroom.floor = self.floor
                     newWashroom.gender = self.gender
-                    newWashroom.title = self.title
-                    newWashroom.location = LocationManager.shared.currentLocation!
+                    newWashroom.comment = self.title
+                    newWashroom.location = self.building.location
                     newWashroom.buildingID = self.building.id
                     self.building.postWashroom(washroom: newWashroom)
                     self.show = false

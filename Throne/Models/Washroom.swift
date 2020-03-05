@@ -11,7 +11,7 @@ import Combine
 
 final class Washroom: Codable, ObservableObject {
     var id: Int
-    var title: String
+    var comment: String
     var location: Location
     var distance: Double?
     var gender: Gender
@@ -31,7 +31,7 @@ final class Washroom: Codable, ObservableObject {
 
     init(id: Int, title: String, location: Location, distance: Double, gender: Gender, floor: Int, buildingID: Int, createdAt: Date, reviewsCount: Int?, overallRating: Double, averageRatings: Ratings, amenities: [Amenity]) {
         self.id = id
-        self.title = title
+        self.comment = title
         self.location = location
         self.distance = distance
         self.gender = gender
@@ -125,7 +125,7 @@ final class Washroom: Codable, ObservableObject {
     
     private enum CodingKeys: String, CodingKey {
         case id
-        case title
+        case comment
         case location
         case distance
         case gender

@@ -15,7 +15,7 @@ struct WashroomRowView: View {
         NavigationLink(destination: WashroomDetailView(washroom: washroom)) {
             HStack {
                 VStack(alignment: .leading) {
-                    Text(washroom.title)
+                    Text(washroom.comment)
                         .lineLimit(nil)
                         .layoutPriority(1)
                     .fixedSize(horizontal: false, vertical: true)
