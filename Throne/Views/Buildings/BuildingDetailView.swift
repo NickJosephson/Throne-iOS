@@ -23,7 +23,6 @@ struct BuildingDetailView: View {
                 if building.washrooms.count == 0 {
                     Text("No \(settings.preferredTerm.capitalized) Inside")
                     .foregroundColor(.secondary)
-                    .navigationBarTitle(Text("Near Me"))
                 }
                 
                 ForEach(building.washrooms, id: \.id) { washroom in
