@@ -10,41 +10,51 @@ import Foundation
 
 enum Amenity: String, Codable, CaseIterable {
     case airDryer = "air_dryer"
-    case airFreshener = "air_freshener"
+    case paperTowel = "paper_towel"
+    
     case automaticDryer = "auto_dryer"
     case automaticPaperTowel = "auto_paper_towel"
     case automaticSink = "auto_sink"
     case automaticToilet = "auto_toilet"
+    
+    case garbageCan = "garbage_can"
+    case coatHook = "coat_hook"
+    case fullBodyMirror = "full_body_mirror"
+    
+    case paperSeatCovers = "paper_seat_covers"
+    case tissues = "tissues"
+    
+    case hygieneProducts = "hygiene_products"
+    
     case babyChangeStation = "baby_change_station"
+    case diapers = "diapers"
     case babyPowder = "baby_powder"
-    case bathroomAttendant = "bathroom_attendant "
-    case bidet = "bidet"
-    case bodyTowel = "body_towel"
-    case bodyWash = "bodywash"
+
+    case wheelChairAccess = "wheel_chair_access"
     case brailleLabeling = "braille_labeling"
     case callButton = "call_button"
-    case coatHook = "coat_hook"
-    case contraception = "contraception"
-    case diapers = "diapers"
-    case hygieneProducts = "hygiene_products"
-    case firstAid = "first_aid"
-    case fullBodyMirror = "full_body_mirror"
-    case garbageCan = "garbage_can"
-    case heatedSeat = "heated_seat"
-    case lotion = "lotion"
-    case moistTowelette = "moist_towelette"
-    case music = "music"
-    case needleDisposal = "needle_disposal"
-    case paperSeatCovers = "paper_seat_covers"
-    case paperTowel = "paper_towel"
-    case perfumeCologne = "perfume_cologne"
     case safetyRail = "safety_rail"
-    case sauna = "sauna"
-    case shampoo = "shampoo"
-    case shower = "shower"
-    case tissues = "tissues"
-    case wheelChairAccess = "wheel_chair_access"
 
+    case contraception = "contraception"
+    case firstAid = "first_aid"
+    case needleDisposal = "needle_disposal"
+    
+    case airFreshener = "air_freshener"
+    case lotion = "lotion"
+    case perfumeCologne = "perfume_cologne"
+    case moistTowelette = "moist_towelette"
+
+    case music = "music"
+    case bathroomAttendant = "bathroom_attendant "
+    case bidet = "bidet"
+    case heatedSeat = "heated_seat"
+    case sauna = "sauna"
+
+    case shower = "shower"
+    case bodyTowel = "body_towel"
+    case shampoo = "shampoo"
+    case bodyWash = "bodywash"
+    
     var description: String {
         get {
             switch self {
@@ -88,36 +98,36 @@ enum Amenity: String, Codable, CaseIterable {
     }
 
     var emoji: String? {
-         get {
-             switch self {
-             case .airDryer: return "💨"
-             case .airFreshener: return "🌻"
-             case .automaticDryer: return "⚡️💨"
-             case .automaticSink: return "⚡️🚰"
-             case .automaticToilet: return "⚡️🚽"
-             case .babyChangeStation: return "👶"
-             case .bathroomAttendant: return "🛎 "
-             case .bidet: return "💦"
-             case .bodyTowel: return "🧺"
-             case .callButton: return "📢"
-             case .contraception: return "🚫👶"
-             case .diapers: return "🧷"
-             case .hygieneProducts: return "♀"
-             case .firstAid: return "🩹"
-             case .garbageCan: return "🗑"
-             case .heatedSeat: return "🔥🚽"
-             case .lotion: return "🧴"
-             case .music: return "🎶"
-             case .needleDisposal: return "💉"
-             case .perfumeCologne: return "🌹"
-             case .sauna: return "🧖🏽‍♂️"
-             case .shampoo: return "🧴💆‍♀️"
-             case .shower: return "🚿"
-             case .tissues: return "🤧"
-             case .wheelChairAccess: return "♿️"
-             default: return nil
-             }
-         }
-     }
+        get {
+            switch self {
+            case .automaticDryer: return "⚡️💨"
+            case .automaticSink: return "⚡️🚰"
+            case .automaticToilet: return "⚡️🚽"
+            case .airDryer: return "💨"
+            case .airFreshener: return "🌻"
+            case .babyChangeStation: return "👶"
+            case .bathroomAttendant: return "🛎 "
+            case .bidet: return "💦"
+            case .bodyTowel: return "🧺"
+            case .callButton: return "📢"
+            case .contraception: return "🚫👶"
+            case .diapers: return "🧷"
+            case .hygieneProducts: return "♀"
+            case .firstAid: return "🩹"
+            case .garbageCan: return "🗑"
+            case .heatedSeat: return "🔥🚽"
+            case .lotion: return "🧴"
+            case .music: return "🎶"
+            case .needleDisposal: return "💉"
+            case .perfumeCologne: return "🌹"
+            case .sauna: return "🧖🏽‍♂️"
+            case .shampoo: return "🧴💆‍♀️"
+            case .shower: return "🚿"
+            case .tissues: return "🤧"
+            case .wheelChairAccess: return "♿️"
+            default: return nil
+            }
+        }
+    }
     
 }
