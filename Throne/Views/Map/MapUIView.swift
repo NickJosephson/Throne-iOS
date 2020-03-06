@@ -10,24 +10,25 @@ import SwiftUI
 import MapKit
 import CoreLocation
 
-struct MapUIView: UIViewRepresentable {
-    private let controller = MapViewController()
+struct MapUIView: UIViewControllerRepresentable {
     var startLocation: Location? = nil
     var interactive = true
     var buildings: [Building] = []
     var showsUserLocation = true
     
-    func makeUIView(context: Context) -> UIView {
-        controller.buildings = buildings
-        controller.startLocation = startLocation
-        controller.interactive = interactive
-        controller.showsUserLocation = showsUserLocation
-        
-        return controller.view
+    func makeUIViewController(context: Context) -> MapViewController {
+        let uiViewController = MapViewController()
+        uiViewController.buildings = buildings
+        uiViewController.startLocation = startLocation
+        uiViewController.interactive = interactive
+        uiViewController.showsUserLocation = showsUserLocation
+        return uiViewController
     }
 
-    func updateUIView(_ uiView: UIView, context: Context) {
+    func updateUIViewController(_ uiViewController: MapViewController, context: Context) {
+        uiViewController.buildings = buildings
     }
+
 }
 
 struct MapUIView_Previews: PreviewProvider {

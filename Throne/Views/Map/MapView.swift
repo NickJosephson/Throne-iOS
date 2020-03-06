@@ -9,16 +9,16 @@
 import SwiftUI
 
 struct MapView: View {
-    @ObservedObject var model: NearMe
+    @ObservedObject var nearMe: NearMe
     
     var body: some View {
-        MapUIView(buildings: model.buildings)
+        MapUIView(buildings: nearMe.buildings)
             .edgesIgnoringSafeArea(.all)
     }
 }
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView(model: NearMe.shared)
+        MapView(nearMe: NearMe.shared)
     }
 }

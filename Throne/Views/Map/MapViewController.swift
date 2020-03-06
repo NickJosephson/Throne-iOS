@@ -132,10 +132,10 @@ extension MapViewController: MKMapViewDelegate {
         if let annotation = view.annotation as? BuildingAnnotation {
             NSLog("Tapped annotation accessory view")
 
-            let detailView = UIHostingController(rootView: BuildingDetailView(building: annotation.building))
-            let detailNavController = UINavigationController(rootViewController: detailView)
+            let detailController = UIHostingController(rootView: BuildingDetailView(building: annotation.building))
+            let detailNavController = UINavigationController(rootViewController: detailController)
             detailNavController.navigationBar.prefersLargeTitles = true
-            detailNavController.modalPresentationStyle = .automatic
+            detailNavController.modalPresentationStyle = .popover
             
             let presentationController = detailNavController.popoverPresentationController
             presentationController?.permittedArrowDirections = .any
@@ -144,7 +144,7 @@ extension MapViewController: MKMapViewDelegate {
             presentationController?.sourceRect = control.frame
             presentationController?.sourceView = control
             
-            self.view.window?.rootViewController?.present(detailNavController, animated: true, completion: nil)
+            self.present(detailNavController, animated: true, completion: nil)
         }
     }
     
