@@ -12,7 +12,8 @@ import MapKit
 
 class MapViewController: UIViewController {
     private let mapView = MKMapView()
-    
+    var buildingDetailNavigationController: UINavigationController!
+
     var buildings: [Building] = [] {
         didSet {
             addAnnotations(for: buildings)
@@ -125,26 +126,33 @@ extension MapViewController: MKMapViewDelegate {
         
         return annotationView
     }
-        
+    
+    @objc func dismissPopover() {
+        self.buildingDetailNavigationController?.dismiss(animated: true, completion: {})
+    }
+    
     /// Called when the user taps the disclosure button in the bridge callout.
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         // This illustrates how to detect which annotation type was tapped on for its callout.
         if let annotation = view.annotation as? BuildingAnnotation {
             NSLog("Tapped annotation accessory view")
 
-            let detailController = UIHostingController(rootView: BuildingDetailView(building: annotation.building))
-            let detailNavController = UINavigationController(rootViewController: detailController)
-            detailNavController.navigationBar.prefersLargeTitles = true
-            detailNavController.modalPresentationStyle = .popover
+            let buildingDetailController = UIHostingController(rootView: BuildingDetailView(building: annotation.building))
+            self.buildingDetailNavigationController = UINavigationController(rootViewController: buildingDetailController)
+            self.buildingDetailNavigationController.navigationBar.prefersLargeTitles = true
+            self.buildingDetailNavigationController.modalPresentationStyle = .popover
             
-            let presentationController = detailNavController.popoverPresentationController
+            let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(dismissPopover))
+            self.buildingDetailNavigationController.topViewController?.navigationItem.leftBarButtonItem = doneButton
+            
+            let presentationController = self.buildingDetailNavigationController.popoverPresentationController
             presentationController?.permittedArrowDirections = .any
-            
+
             // Anchor the popover to the button that triggered the popover.
             presentationController?.sourceRect = control.frame
             presentationController?.sourceView = control
             
-            self.present(detailNavController, animated: true, completion: nil)
+            self.present(buildingDetailNavigationController, animated: true, completion: nil)
         }
     }
     
