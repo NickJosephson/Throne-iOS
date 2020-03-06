@@ -27,9 +27,6 @@ struct MapUIView: UIViewControllerRepresentable {
 
     func updateUIViewController(_ uiViewController: MapViewController, context: Context) {
         uiViewController.buildings = buildings
-        uiViewController.startLocation = startLocation
-        uiViewController.interactive = interactive
-        uiViewController.showsUserLocation = showsUserLocation
     }
 
 }
