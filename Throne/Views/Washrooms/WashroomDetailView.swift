@@ -10,7 +10,6 @@ import SwiftUI
 
 struct WashroomDetailView: View {
     @ObservedObject var washroom: Washroom
-    @State private var isFavorite = false
 
     var body: some View {
         List {
@@ -68,7 +67,7 @@ struct WashroomDetailView: View {
         .navigationBarTitle(washroom.buildingTitle)
         .navigationBarItems(trailing:
             HStack(spacing: 20) {
-                FavoriteButton(isFavorite: self.$isFavorite)
+                FavoriteButton(isFavorite: self.$washroom.isFavorite)
                 ReviewButton(washroom: self.washroom)
             }
         )

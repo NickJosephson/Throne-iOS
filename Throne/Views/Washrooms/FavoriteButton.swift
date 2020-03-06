@@ -12,16 +12,21 @@ struct FavoriteButton: View {
     @Binding var isFavorite: Bool
     
     var body: some View {
-        Button(action: { self.isFavorite.toggle() }, label: {
-            HStack {
-                if self.isFavorite {
-                    Image(systemName: "bookmark.fill")
-                } else {
-                    Image(systemName: "bookmark")
+        Button(
+            action: {
+                self.isFavorite.toggle()
+            },
+            label: {
+                HStack {
+                    if self.isFavorite {
+                        Image(systemName: "bookmark.fill")
+                    } else {
+                        Image(systemName: "bookmark")
+                    }
+                    Text("Favourite")
                 }
-                Text("Favourite")
             }
-        })
+        )
             .disabled(true)
             .opacity(0.5)
     }

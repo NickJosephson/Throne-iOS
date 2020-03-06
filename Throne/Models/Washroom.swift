@@ -25,6 +25,7 @@ final class Washroom: Codable, ObservableObject {
     var overallRating: Double
     var averageRatings: Ratings
     var amenities: [Amenity]
+    var isFavorite: Bool
     
     @Published var reviews: [Review] = []
 
@@ -32,7 +33,7 @@ final class Washroom: Codable, ObservableObject {
     private var reviewsSubscription: AnyCancellable!
     private var detailsSubscription: AnyCancellable!
 
-    init(id: Int, buildingTitle: String, additionalTitle: String, location: Location, distance: Double?, gender: Gender, floor: Int, stallsCount: Int, urinalsCount: Int, buildingID: Int, createdAt: Date, reviewsCount: Int?, overallRating: Double, averageRatings: Ratings, amenities: [Amenity]) {
+    init(id: Int, buildingTitle: String, additionalTitle: String, location: Location, distance: Double?, gender: Gender, floor: Int, stallsCount: Int, urinalsCount: Int, buildingID: Int, createdAt: Date, reviewsCount: Int?, overallRating: Double, averageRatings: Ratings, amenities: [Amenity], isFavorite: Bool) {
         self.id = id
         self.buildingTitle = buildingTitle
         self.additionalTitle = additionalTitle
@@ -48,6 +49,7 @@ final class Washroom: Codable, ObservableObject {
         self.overallRating = overallRating
         self.averageRatings = averageRatings
         self.amenities = amenities
+        self.isFavorite = isFavorite
     }
     
     
@@ -67,7 +69,8 @@ final class Washroom: Codable, ObservableObject {
             reviewsCount: 0,
             overallRating: 0,
             averageRatings: Ratings(privacy: 0, toiletPaperQuality: 0, smell: 0, cleanliness: 0),
-            amenities: []
+            amenities: [],
+            isFavorite: false
         )
     }
 
@@ -105,6 +108,7 @@ final class Washroom: Codable, ObservableObject {
             self.reviewsCount = updatedWashroom.reviewsCount
             self.overallRating = updatedWashroom.overallRating
             self.averageRatings = updatedWashroom.averageRatings
+            self.isFavorite = updatedWashroom.isFavorite
         }
         
         requestReviewsUpdate.send()
@@ -149,6 +153,7 @@ final class Washroom: Codable, ObservableObject {
         case overallRating = "overall_rating"
         case averageRatings = "average_ratings"
         case amenities
+        case isFavorite = "is_favorite"
     }
     
 }
