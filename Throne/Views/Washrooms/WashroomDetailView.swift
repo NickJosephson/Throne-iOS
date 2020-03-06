@@ -65,7 +65,7 @@ struct WashroomDetailView: View {
             }
         }
         .listStyle(GroupedListStyle())
-        .navigationBarTitle(washroom.comment)
+        .navigationBarTitle(washroom.buildingTitle)
         .navigationBarItems(trailing:
             HStack(spacing: 20) {
                 FavoriteButton(isFavorite: self.$isFavorite)

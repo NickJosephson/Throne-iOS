@@ -11,11 +11,14 @@ import Combine
 
 final class Washroom: Codable, ObservableObject {
     var id: Int
-    var comment: String
+    var buildingTitle: String
+    var additionalTitle: String
     var location: Location
     var distance: Double?
     var gender: Gender
     var floor: Int
+    var stallsCount: Int
+    var urinalsCount: Int
     var buildingID: Int
     var createdAt: Date
     var reviewsCount: Int?
@@ -29,13 +32,16 @@ final class Washroom: Codable, ObservableObject {
     private var reviewsSubscription: AnyCancellable!
     private var detailsSubscription: AnyCancellable!
 
-    init(id: Int, title: String, location: Location, distance: Double, gender: Gender, floor: Int, buildingID: Int, createdAt: Date, reviewsCount: Int?, overallRating: Double, averageRatings: Ratings, amenities: [Amenity]) {
+    init(id: Int, buildingTitle: String, additionalTitle: String, location: Location, distance: Double?, gender: Gender, floor: Int, stallsCount: Int, urinalsCount: Int, buildingID: Int, createdAt: Date, reviewsCount: Int?, overallRating: Double, averageRatings: Ratings, amenities: [Amenity]) {
         self.id = id
-        self.comment = title
+        self.buildingTitle = buildingTitle
+        self.additionalTitle = additionalTitle
         self.location = location
         self.distance = distance
         self.gender = gender
         self.floor = floor
+        self.stallsCount = stallsCount
+        self.urinalsCount = urinalsCount
         self.buildingID = buildingID
         self.createdAt = createdAt
         self.reviewsCount = reviewsCount
@@ -44,14 +50,18 @@ final class Washroom: Codable, ObservableObject {
         self.amenities = amenities
     }
     
+    
     convenience init() {
         self.init(
             id: 0,
-            title: "",
+            buildingTitle: "",
+            additionalTitle: "",
             location: Location(latitude: 0, longitude: 0),
-            distance: 0.0,
+            distance: 0,
             gender: .all,
             floor: 1,
+            stallsCount: 1,
+            urinalsCount: 0,
             buildingID: 0,
             createdAt: Date(),
             reviewsCount: 0,
@@ -125,11 +135,14 @@ final class Washroom: Codable, ObservableObject {
     
     private enum CodingKeys: String, CodingKey {
         case id
-        case comment
+        case buildingTitle = "building_title"
+        case additionalTitle = "comment"
         case location
         case distance
         case gender
         case floor
+        case urinalsCount = "urinal_count"
+        case stallsCount = "stall_count"
         case buildingID = "building_id"
         case createdAt = "created_at"
         case reviewsCount = "review_count"
