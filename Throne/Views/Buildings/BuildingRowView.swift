@@ -17,12 +17,11 @@ struct BuildingRowView: View {
                 VStack(alignment: .leading) {
                     Text(building.title)
                         .lineLimit(nil)
-                        .layoutPriority(1)
-                    .fixedSize(horizontal: false, vertical: true)
-
                     RatingView(rating: building.overallRating)
                         .padding(.bottom)
                 }
+                    .layoutPriority(1)
+                    .fixedSize(horizontal: false, vertical: true)
                 Spacer()
                 Text(building.distanceDescription)
                     .foregroundColor(.secondary)

@@ -10,26 +10,36 @@ import SwiftUI
 
 struct WashroomRowView: View {
     @ObservedObject var washroom: Washroom
-
+    var showBuilding = true
+    
     var body: some View {
         NavigationLink(destination: WashroomDetailView(washroom: washroom)) {
             HStack {
                 VStack(alignment: .leading) {
-                    Text(washroom.buildingTitle)
-                        .lineLimit(nil)
-                        .layoutPriority(1)
-                    .fixedSize(horizontal: false, vertical: true)
-
+                    if showBuilding {
+                        Text(washroom.buildingTitle)
+                            .lineLimit(nil)
+                            .padding(.bottom, 5)
+                        Text("\(washroom.gender.emoji) Floor \(washroom.floor) \(washroom.additionalTitle)")
+                            .foregroundColor(.secondary)
+                            .lineLimit(1)
+                            .accessibility(label: Text("\(washroom.gender.description) Floor \(washroom.floor) \(washroom.additionalTitle)"))
+                    } else {
+                        Text("\(washroom.gender.emoji) Floor \(washroom.floor) \(washroom.additionalTitle)")
+                            .lineLimit(1)
+                            .accessibility(label: Text("\(washroom.gender.description) Floor \(washroom.floor) \(washroom.additionalTitle)"))
+                            .padding(.bottom, 5)
+                    }
                     RatingView(rating: washroom.overallRating)
                         .padding(.bottom)
                 }
+                    .layoutPriority(1)
+                    .fixedSize(horizontal: false, vertical: true)
                 Spacer()
                 VStack(alignment: .trailing) {
                     if washroom.distance != nil {
                         Text(washroom.distanceDescription)
                     }
-                    Text("Floor \(washroom.floor)")
-                    Text(washroom.gender.description)
                 }
                     .multilineTextAlignment(.trailing)
                     .foregroundColor(.secondary)

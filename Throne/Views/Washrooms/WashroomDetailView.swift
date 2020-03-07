@@ -10,16 +10,28 @@ import SwiftUI
 
 struct WashroomDetailView: View {
     @ObservedObject var washroom: Washroom
-
+    
     var body: some View {
         List {
+            Section(header: Text(washroom.buildingTitle).font(.title)) {
+                Text("\(washroom.gender.emoji) Floor \(washroom.floor) \(washroom.additionalTitle)").font(.title)
+                    .accessibility(label: Text("\(washroom.gender.description) Floor \(washroom.floor) \(washroom.additionalTitle)"))
+            }
             Section(header: Text("Details")) {
                 HStack {
-                    Text("\(washroom.gender.description) Floor \(washroom.floor)")
+                    Text("Stalls")
                     Spacer()
-                    Text("\(washroom.gender.emoji)").accessibility(hidden: true)
+                    Text("\(washroom.stallsCount)")
                 }
-                    .font(.title)
+                    .accessibilityElement(children: .combine)
+                if washroom.urinalsCount > 0 {
+                    HStack {
+                        Text("Urinals")
+                        Spacer()
+                        Text("\(washroom.urinalsCount)")
+                    }
+                        .accessibilityElement(children: .combine)
+                }
                 NavigationLink(destination: AmenitiesView(amenities: self.washroom.amenities)) {
                     Text("Amenities")
                         .fixedSize()
@@ -67,10 +79,10 @@ struct WashroomDetailView: View {
             }
         }
         .listStyle(GroupedListStyle())
-        .navigationBarTitle(washroom.buildingTitle)
+        .navigationBarTitle("", displayMode: .inline)
         .navigationBarItems(trailing:
             HStack(spacing: 20) {
-                FavoriteButton(isFavorite: self.$washroom.isFavorite)
+                FavoriteButton(washroom: self.washroom)
                 ReviewButton(washroom: self.washroom)
             }
         )
@@ -80,5 +92,12 @@ struct WashroomDetailView: View {
 struct WashroomDetailView_Previews: PreviewProvider {
     static var previews: some View {
         return WashroomDetailView(washroom: Washroom())
+    }
+}
+
+extension WashroomDetailView {
+    init(id: Int) {
+        self.washroom = Washroom()
+        self.washroom.updateDetailsFrom(id: id)
     }
 }

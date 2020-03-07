@@ -28,6 +28,7 @@ final class Washroom: Codable, ObservableObject {
     var isFavorite: Bool
     
     @Published var reviews: [Review] = []
+    @Published var favoritingChangeInProgress = false
 
     var requestReviewsUpdate = PassthroughSubject<Void, Never>()
     private var reviewsSubscription: AnyCancellable!
@@ -51,7 +52,6 @@ final class Washroom: Codable, ObservableObject {
         self.amenities = amenities
         self.isFavorite = isFavorite
     }
-    
     
     convenience init() {
         self.init(
@@ -109,15 +109,61 @@ final class Washroom: Codable, ObservableObject {
             self.overallRating = updatedWashroom.overallRating
             self.averageRatings = updatedWashroom.averageRatings
             self.isFavorite = updatedWashroom.isFavorite
+            self.favoritingChangeInProgress = false
         }
         
         requestReviewsUpdate.send()
+    }
+    
+    func updateDetailsFrom(id: Int) {
+        ThroneEndpoint.fetchWashroom(matching: id) { newWashroom in
+            DispatchQueue.main.async {
+                self.objectWillChange.send()
+                self.id = newWashroom.id
+                self.buildingTitle = newWashroom.buildingTitle
+                self.additionalTitle = newWashroom.additionalTitle
+                self.location = newWashroom.location
+                self.distance = newWashroom.distance
+                self.gender = newWashroom.gender
+                self.floor = newWashroom.floor
+                self.stallsCount = newWashroom.stallsCount
+                self.urinalsCount = newWashroom.urinalsCount
+                self.buildingID = newWashroom.buildingID
+                self.createdAt = newWashroom.createdAt
+                self.reviewsCount = newWashroom.reviewsCount
+                self.overallRating = newWashroom.overallRating
+                self.averageRatings = newWashroom.averageRatings
+                self.amenities = newWashroom.amenities
+                self.isFavorite = newWashroom.isFavorite
+                
+                self.requestReviewsUpdate.send()
+            }
+        }
     }
     
     func postReview(review: Review) {
         ThroneEndpoint.post(review: review, for: self) { _ in
             self.setupReviewsSubscription()
             self.requestReviewsUpdate.send()
+            NearMe.shared.requestReviewsUpdate.send()
+        }
+    }
+    
+    func toggleIsFavorite() {
+        favoritingChangeInProgress = true
+        
+        if isFavorite {
+            ThroneEndpoint.deleteFavorite(washroom: self) {
+                self.setupReviewsSubscription()
+                self.requestReviewsUpdate.send()
+                NearMe.shared.requestFavoritesUpdate.send()
+            }
+        } else {
+            ThroneEndpoint.postFavorite(washroom: self) { _ in
+                self.setupReviewsSubscription()
+                self.requestReviewsUpdate.send()
+                NearMe.shared.requestFavoritesUpdate.send()
+            }
         }
     }
     

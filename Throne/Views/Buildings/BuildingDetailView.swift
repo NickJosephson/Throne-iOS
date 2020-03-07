@@ -26,7 +26,7 @@ struct BuildingDetailView: View {
                 }
                 
                 ForEach(building.washrooms, id: \.id) { washroom in
-                    WashroomRowView(washroom: washroom)
+                    WashroomRowView(washroom: washroom, showBuilding: false)
                 }
             }
             Section(header: Text("Location")) {

@@ -53,6 +53,8 @@
 		E19AA952240CD14500B2DB28 /* Ratings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19AA951240CD14500B2DB28 /* Ratings.swift */; };
 		E1CDA0B823E404A6007ADA73 /* PersistentSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDA0B723E404A6007ADA73 /* PersistentSettings.swift */; };
 		E1CFDE6823FA4FBF007423FD /* AuthenticationEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CFDE6723FA4FBF007423FD /* AuthenticationEndpoint.swift */; };
+		E1DCC7322413912A0094A099 /* ProfileListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DCC7312413912A0094A099 /* ProfileListView.swift */; };
+		E1DCC73424139A8C0094A099 /* ReviewRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DCC73324139A8C0094A099 /* ReviewRowView.swift */; };
 		E1E0738223E54E3A00D4AE5E /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738123E54E3A00D4AE5E /* WelcomeView.swift */; };
 		E1E0738423E5612400D4AE5E /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738323E5612400D4AE5E /* LoginManager.swift */; };
 		E1E0738623E561BB00D4AE5E /* NearMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738523E561BB00D4AE5E /* NearMe.swift */; };
@@ -132,6 +134,8 @@
 		E19AA951240CD14500B2DB28 /* Ratings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ratings.swift; sourceTree = "<group>"; };
 		E1CDA0B723E404A6007ADA73 /* PersistentSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentSettings.swift; sourceTree = "<group>"; };
 		E1CFDE6723FA4FBF007423FD /* AuthenticationEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationEndpoint.swift; sourceTree = "<group>"; };
+		E1DCC7312413912A0094A099 /* ProfileListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileListView.swift; sourceTree = "<group>"; };
+		E1DCC73324139A8C0094A099 /* ReviewRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRowView.swift; sourceTree = "<group>"; };
 		E1E0737A23E5452B00D4AE5E /* Throne.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Throne.entitlements; sourceTree = "<group>"; };
 		E1E0738123E54E3A00D4AE5E /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		E1E0738323E5612400D4AE5E /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
@@ -213,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				E146A6DF2400A21E00F73A0B /* ReviewsView.swift */,
+				E1DCC73324139A8C0094A099 /* ReviewRowView.swift */,
 				E1F4FE152407A88B00A4096F /* CreateReviewView.swift */,
 				E11448FB2408D33E00DD4F04 /* CreateReviewButton.swift */,
 				E1F4FE13240796A100A4096F /* RatingView.swift */,
@@ -234,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				E176AEF923E3A88E00EF8D15 /* ProfileView.swift */,
+				E1DCC7312413912A0094A099 /* ProfileListView.swift */,
 				E176AEF523E39CFD00EF8D15 /* SettingsView.swift */,
 			);
 			path = Profile;
@@ -525,6 +531,7 @@
 				E176AEF623E39CFD00EF8D15 /* SettingsView.swift in Sources */,
 				E146A6E02400A21E00F73A0B /* ReviewsView.swift in Sources */,
 				E1F4FE162407A88B00A4096F /* CreateReviewView.swift in Sources */,
+				E1DCC73424139A8C0094A099 /* ReviewRowView.swift in Sources */,
 				E11448E7240899FD00DD4F04 /* EnableLocationButton.swift in Sources */,
 				E19AA952240CD14500B2DB28 /* Ratings.swift in Sources */,
 				E176AEFC23E3AA3500EF8D15 /* NearMeView.swift in Sources */,
@@ -545,6 +552,7 @@
 				E1E0738823E561DD00D4AE5E /* Washroom.swift in Sources */,
 				E11C9BEF23F1DF6D0045663B /* User.swift in Sources */,
 				E146A6DE2400A1F400F73A0B /* AmenitiesView.swift in Sources */,
+				E1DCC7322413912A0094A099 /* ProfileListView.swift in Sources */,
 				E1F4FE14240796A100A4096F /* RatingView.swift in Sources */,
 				E116F687240A493E00680E92 /* MapDetailView.swift in Sources */,
 				E11448FC2408D33E00DD4F04 /* CreateReviewButton.swift in Sources */,

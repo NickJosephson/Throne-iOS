@@ -9,38 +9,49 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @Environment(\.verticalSizeClass) var verticalSizeClass
+    @ObservedObject var nearMe: NearMe
     @ObservedObject private var loginManager = LoginManager.shared
+    @Environment(\.verticalSizeClass) var verticalSizeClass
+    @State var currentListType = ProfileListView.ProfileListType.favorites
     
     var body: some View {
         NavigationView {
-            VStack() {
+            VStack(spacing: 0) {
                 if verticalSizeClass != .compact {
-                    VStack {
-                        AvatarView()
-                        NameView(user: loginManager.currentUser)
-                    }
-                    .padding(30)
-                } else {
-                    HStack {
-                        AvatarView()
-                        NameView(user: loginManager.currentUser)
-                    }
-                    .padding(10)
+                    AvatarView()
+                        .padding(.top)
                 }
+                NameView(user: loginManager.currentUser)
+                ProfileListView(nearMe: self.nearMe, currentListType: self.$currentListType)
             }
-            .navigationBarTitle("", displayMode: .inline)
-            .navigationBarItems(
-                trailing: NavigationLink(destination: SettingsView()) {
-                    Image(systemName: "gear")
-                        .accessibility(label: Text("Settings"))
-                }
-            )
             .onAppear {
                 self.loginManager.requestUserFetch.send()
             }
+            .navigationBarTitle("", displayMode: .inline)
+            .navigationBarItems(
+                leading: HStack {
+                    if self.currentListType == .favorites {
+                        EditButton()
+                    }
+                },
+                trailing: NavigationLink(destination: SettingsView()) {
+                    HStack {
+                        Image(systemName: "gear")
+                            .accessibility(hidden: true)
+                        Text("Settings")
+                    }
+                }
+            )
+            
+            if currentListType == .favorites {
+                Text("No Favorite Selected")
+                .foregroundColor(.secondary)
+            } else {
+                Text("No Review Selected")
+                .foregroundColor(.secondary)
+            }
         }
-        .navigationViewStyle(StackNavigationViewStyle())
+//        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
@@ -67,9 +78,8 @@ struct NameView: View {
     }
 }
 
-
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        ProfileView(nearMe: NearMe.shared)
     }
 }

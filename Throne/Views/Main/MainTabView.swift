@@ -30,7 +30,7 @@ struct MainTabView: View {
                     }
                 }
                 .tag(1)
-            ProfileView()
+            ProfileView(nearMe: model)
                 .tabItem {
                     VStack {
                         Image(systemName: "person.circle")
