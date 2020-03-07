@@ -9,26 +9,20 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @Environment(\.verticalSizeClass) var verticalSizeClass
+    @ObservedObject var nearMe: NearMe
     @ObservedObject private var loginManager = LoginManager.shared
-    
+    @Environment(\.verticalSizeClass) var verticalSizeClass
+
     var body: some View {
         NavigationView {
-            VStack() {
+            VStack(spacing: 0) {
                 if verticalSizeClass != .compact {
-                    VStack {
-                        AvatarView()
-                        NameView(user: loginManager.currentUser)
-                    }
-                    .padding(30)
-                } else {
-                    HStack {
-                        AvatarView()
-                        NameView(user: loginManager.currentUser)
-                    }
-                    .padding(10)
+                    AvatarView()
                 }
+                NameView(user: loginManager.currentUser)
+                FavoritesListView(nearMe: self.nearMe)
             }
+            .padding(.top)
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(
                 trailing: NavigationLink(destination: SettingsView()) {
@@ -67,9 +61,8 @@ struct NameView: View {
     }
 }
 
-
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        ProfileView(nearMe: NearMe.shared)
     }
 }

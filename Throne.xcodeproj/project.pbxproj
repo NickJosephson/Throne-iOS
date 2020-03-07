@@ -53,6 +53,7 @@
 		E19AA952240CD14500B2DB28 /* Ratings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19AA951240CD14500B2DB28 /* Ratings.swift */; };
 		E1CDA0B823E404A6007ADA73 /* PersistentSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDA0B723E404A6007ADA73 /* PersistentSettings.swift */; };
 		E1CFDE6823FA4FBF007423FD /* AuthenticationEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CFDE6723FA4FBF007423FD /* AuthenticationEndpoint.swift */; };
+		E1DCC7322413912A0094A099 /* FavoritesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DCC7312413912A0094A099 /* FavoritesListView.swift */; };
 		E1E0738223E54E3A00D4AE5E /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738123E54E3A00D4AE5E /* WelcomeView.swift */; };
 		E1E0738423E5612400D4AE5E /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738323E5612400D4AE5E /* LoginManager.swift */; };
 		E1E0738623E561BB00D4AE5E /* NearMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738523E561BB00D4AE5E /* NearMe.swift */; };
@@ -132,6 +133,7 @@
 		E19AA951240CD14500B2DB28 /* Ratings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ratings.swift; sourceTree = "<group>"; };
 		E1CDA0B723E404A6007ADA73 /* PersistentSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentSettings.swift; sourceTree = "<group>"; };
 		E1CFDE6723FA4FBF007423FD /* AuthenticationEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationEndpoint.swift; sourceTree = "<group>"; };
+		E1DCC7312413912A0094A099 /* FavoritesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesListView.swift; sourceTree = "<group>"; };
 		E1E0737A23E5452B00D4AE5E /* Throne.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Throne.entitlements; sourceTree = "<group>"; };
 		E1E0738123E54E3A00D4AE5E /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		E1E0738323E5612400D4AE5E /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 			children = (
 				E176AEF923E3A88E00EF8D15 /* ProfileView.swift */,
 				E176AEF523E39CFD00EF8D15 /* SettingsView.swift */,
+				E1DCC7312413912A0094A099 /* FavoritesListView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				E1E0738823E561DD00D4AE5E /* Washroom.swift in Sources */,
 				E11C9BEF23F1DF6D0045663B /* User.swift in Sources */,
 				E146A6DE2400A1F400F73A0B /* AmenitiesView.swift in Sources */,
+				E1DCC7322413912A0094A099 /* FavoritesListView.swift in Sources */,
 				E1F4FE14240796A100A4096F /* RatingView.swift in Sources */,
 				E116F687240A493E00680E92 /* MapDetailView.swift in Sources */,
 				E11448FC2408D33E00DD4F04 /* CreateReviewButton.swift in Sources */,

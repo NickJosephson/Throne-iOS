@@ -129,11 +129,13 @@ final class Washroom: Codable, ObservableObject {
             ThroneEndpoint.deleteFavorite(washroom: self) {
                 self.setupReviewsSubscription()
                 self.requestReviewsUpdate.send()
+                NearMe.shared.requestDataUpdate.send()
             }
         } else {
             ThroneEndpoint.postFavorite(washroom: self) { _ in
                 self.setupReviewsSubscription()
                 self.requestReviewsUpdate.send()
+                NearMe.shared.requestDataUpdate.send()
             }
         }
     }
