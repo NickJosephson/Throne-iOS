@@ -22,8 +22,11 @@ struct WashroomDetailView: View {
                     .font(.title)
                 NavigationLink(destination: AmenitiesView(amenities: self.washroom.amenities)) {
                     Text("Amenities")
+                        .fixedSize()
+                        .layoutPriority(1)
                     Spacer()
                     CompactAmenitiesView(amenities: self.washroom.amenities)
+                        .layoutPriority(1)
                 }
                 .disabled(washroom.amenities.count == 0)
                 .opacity(washroom.amenities.count == 0 ? 0.5 : 1.0)

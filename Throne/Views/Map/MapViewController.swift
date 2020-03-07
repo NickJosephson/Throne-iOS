@@ -82,7 +82,7 @@ class MapViewController: UIViewController {
             mapView.setRegion(
                 MKCoordinateRegion(
                     center: CLLocationCoordinate2D(currentLocation),
-                    span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+                    span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
                 ),
                 animated: false
             )

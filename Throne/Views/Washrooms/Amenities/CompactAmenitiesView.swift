@@ -10,13 +10,22 @@ import SwiftUI
 
 struct CompactAmenitiesView: View {
     var amenities: [Amenity]
-
+    
     var body: some View {
-        ForEach(amenities.filter { $0.emoji != nil }, id: \.self) { amenity in
-            Text(amenity.emoji!)
-                .font(.subheadline)
-                .foregroundColor(.secondary)
-        }
+        Text(amenities
+            .filter { $0.emoji != nil }
+            .reduce("") { currentResult, amenity in
+                return currentResult + "   \(amenity.emoji!)"
+            }
+        )
+        .lineLimit(1)
+        .font(.caption)
+        .foregroundColor(.secondary)
+        .accessibility(
+            label: Text(amenities.reduce("") { currentResult, amenity in
+                return currentResult + "\(amenity.description) "
+            })
+        )
     }
 }
 
