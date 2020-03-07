@@ -27,6 +27,7 @@ struct FavoriteButton: View {
                 }
             }
         )
+            .accessibility(label: Text(washroom.isFavorite ? "Remove from favourites" : "Add to favourites"))
             .disabled(self.washroom.favoritingChangeInProgress)
             .opacity(self.washroom.favoritingChangeInProgress ? 0.5 : 1.0)
     }
