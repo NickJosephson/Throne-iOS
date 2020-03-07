@@ -14,7 +14,7 @@ struct FavoriteButton: View {
     var body: some View {
         Button(
             action: {
-                self.washroom.makeFavorite()
+                self.washroom.toggleIsFavorite()
             },
             label: {
                 HStack {
@@ -27,6 +27,8 @@ struct FavoriteButton: View {
                 }
             }
         )
+            .disabled(self.washroom.favoritingChangeInProgress)
+            .opacity(self.washroom.favoritingChangeInProgress ? 0.5 : 1.0)
     }
 }
 

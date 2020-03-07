@@ -28,6 +28,7 @@ final class Washroom: Codable, ObservableObject {
     var isFavorite: Bool
     
     @Published var reviews: [Review] = []
+    @Published var favoritingChangeInProgress = false
 
     var requestReviewsUpdate = PassthroughSubject<Void, Never>()
     private var reviewsSubscription: AnyCancellable!
@@ -108,6 +109,7 @@ final class Washroom: Codable, ObservableObject {
             self.overallRating = updatedWashroom.overallRating
             self.averageRatings = updatedWashroom.averageRatings
             self.isFavorite = updatedWashroom.isFavorite
+            self.favoritingChangeInProgress = false
         }
         
         requestReviewsUpdate.send()
@@ -120,10 +122,19 @@ final class Washroom: Codable, ObservableObject {
         }
     }
     
-    func makeFavorite() {
-        ThroneEndpoint.postFavorite(washroom: self) { _ in
-            self.setupReviewsSubscription()
-            self.requestReviewsUpdate.send()
+    func toggleIsFavorite() {
+        favoritingChangeInProgress = true
+        
+        if isFavorite {
+            ThroneEndpoint.deleteFavorite(washroom: self) {
+                self.setupReviewsSubscription()
+                self.requestReviewsUpdate.send()
+            }
+        } else {
+            ThroneEndpoint.postFavorite(washroom: self) { _ in
+                self.setupReviewsSubscription()
+                self.requestReviewsUpdate.send()
+            }
         }
     }
     

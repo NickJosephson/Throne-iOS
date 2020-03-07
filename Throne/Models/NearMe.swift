@@ -15,9 +15,11 @@ final class NearMe: ObservableObject {
     var requestDataUpdate = PassthroughSubject<Void, Never>()
     private var washroomsSubscription: AnyCancellable!
     private var buildingsSubscription: AnyCancellable!
-    
+    private var favoritesSubscription: AnyCancellable!
+
     @Published var washrooms: [Washroom] = []
     @Published var buildings: [Building] = []
+    @Published var favorites: [Washroom] = []
     
     init() {
         setupSubscriptions()
@@ -62,6 +64,17 @@ final class NearMe: ObservableObject {
             }
             .receive(on: RunLoop.main)
             .assign(to: \.buildings, on: self)
+        
+        favoritesSubscription = shouldUpdatePublisher
+            .flatMap { _ in
+                return Future { promise in
+                    ThroneEndpoint.fetchFavorites { favoriteWashrooms in
+                        promise(.success(favoriteWashrooms))
+                    }
+                }
+            }
+            .receive(on: RunLoop.main)
+            .assign(to: \.favorites, on: self)
     }
 
 }

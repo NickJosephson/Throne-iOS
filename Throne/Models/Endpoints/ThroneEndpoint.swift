@@ -135,6 +135,14 @@ class ThroneEndpoint {
         NSLog("Posting washroom \(washroom.id) as favorite.")
         encodeAndPost(url: urlComponents.url!, item: washroom, completionHandler: completionHandler)
     }
+    
+    class func deleteFavorite(washroom: Washroom, completionHandler: @escaping () -> Void) {
+        var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
+        urlComponents.path = "/users/favorites"
+        
+        NSLog("Deleting washroom \(washroom.id) as favorite.")
+        encodeAndPost(url: urlComponents.url!, item: washroom, method: "DELETE", completionHandler: completionHandler)
+    }
 
     class func fetchFavorites(completionHandler: @escaping ([Washroom]) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
@@ -168,7 +176,25 @@ class ThroneEndpoint {
         }
     }
     
-    private class func encodeAndPost<Body: Encodable, Response: Decodable>(url: URL, item: Body, completionHandler: @escaping (Response) -> Void) {
+    private class func encodeAndPost<Body: Encodable>(url: URL, item: Body, method: String = "POST", completionHandler: @escaping () -> Void) {
+        let data: Data
+
+        do {
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .iso8601
+
+            data = try encoder.encode(item)
+        } catch {
+            NSLog("Error encoding response.")
+            return
+        }
+
+        post(url: url, data: data, method: method) { _ in
+            completionHandler()
+        }
+    }
+    
+    private class func encodeAndPost<Body: Encodable, Response: Decodable>(url: URL, item: Body, method: String = "POST", completionHandler: @escaping (Response) -> Void) {
         let data: Data
         
         do {
@@ -204,13 +230,13 @@ class ThroneEndpoint {
         }
     }
     
-    /// Fetch Data at a given URL.
+    /// Post Data at a given URL.
     ///
     /// If an accessToken is set it will be used for authentication.
     /// - Parameters:
     ///   - url: URL to send GET request to.
     ///   - completionHandler: Function to handle Data once received.
-    private class func post(url: URL, data: Data, completionHandler: @escaping (Data) -> Void) {
+    private class func post(url: URL, data: Data, method: String = "POST", completionHandler: @escaping (Data) -> Void) {
         if !LoginManager.shared.isLoggedIn {
             NSLog("Throne Endpoint Post Cancelled: Not logged in.")
             return
@@ -218,7 +244,7 @@ class ThroneEndpoint {
         
         var request = URLRequest(url: url)
         request.httpBody = data
-        request.httpMethod = "POST"
+        request.httpMethod = method
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
                 
         if let accessToken = PersistentSettings.shared.accessToken, !accessToken.isEmpty {
