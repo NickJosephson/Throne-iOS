@@ -37,15 +37,7 @@ class ThroneEndpoint {
         NSLog("Fetching washrooms in \(building.title).")
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
-    
-    class func fetchWashrooms(favoritedBy user: User, completionHandler: @escaping ([Washroom]) -> Void) {
-        var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
-        urlComponents.path = "/users/\(user.id)/favorites/"
-
-        NSLog("Fetching washrooms favorited by \(user.username).")
-        fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
-    }
-    
+        
     class func fetchWashroom(matching id: Int, completionHandler: @escaping (Washroom) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/washrooms/\(id)/"
@@ -136,6 +128,22 @@ class ThroneEndpoint {
         encodeAndPost(url: urlComponents.url!, item: washroom, completionHandler: completionHandler)
     }
     
+    class func postFavorite(washroom: Washroom, completionHandler: @escaping ([Washroom]) -> Void) {
+        var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
+        urlComponents.path = "/users/favorites"
+        
+        NSLog("Posting washroom \(washroom.id) as favorite.")
+        encodeAndPost(url: urlComponents.url!, item: washroom, completionHandler: completionHandler)
+    }
+
+    class func fetchFavorites(completionHandler: @escaping ([Washroom]) -> Void) {
+        var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
+        urlComponents.path = "/users/favorites/"
+
+        NSLog("Fetching favorite washrooms.")
+        fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
+    }
+
     private class func fetchAndDecode<T: Decodable>(url: URL, completionHandler: @escaping (T) -> Void) {
         fetch(url: url) { data in
             do {
@@ -160,7 +168,7 @@ class ThroneEndpoint {
         }
     }
     
-    private class func encodeAndPost<T: Codable>(url: URL, item: T, completionHandler: @escaping (T) -> Void) {
+    private class func encodeAndPost<Body: Encodable, Response: Decodable>(url: URL, item: Body, completionHandler: @escaping (Response) -> Void) {
         let data: Data
         
         do {
@@ -177,9 +185,9 @@ class ThroneEndpoint {
             do {
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = JSONDecoder.DateDecodingStrategy.iso8601
-                let decoded: T
+                let decoded: Response
                 
-                try decoded = decoder.decode(T.self, from: data)
+                try decoded = decoder.decode(Response.self, from: data)
                 
                 completionHandler(decoded)
             } catch DecodingError.dataCorrupted {

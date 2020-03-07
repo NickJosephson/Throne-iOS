@@ -52,7 +52,6 @@ final class Washroom: Codable, ObservableObject {
         self.isFavorite = isFavorite
     }
     
-    
     convenience init() {
         self.init(
             id: 0,
@@ -116,6 +115,13 @@ final class Washroom: Codable, ObservableObject {
     
     func postReview(review: Review) {
         ThroneEndpoint.post(review: review, for: self) { _ in
+            self.setupReviewsSubscription()
+            self.requestReviewsUpdate.send()
+        }
+    }
+    
+    func makeFavorite() {
+        ThroneEndpoint.postFavorite(washroom: self) { _ in
             self.setupReviewsSubscription()
             self.requestReviewsUpdate.send()
         }

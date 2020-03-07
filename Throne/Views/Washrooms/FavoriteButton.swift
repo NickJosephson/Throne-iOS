@@ -9,16 +9,16 @@
 import SwiftUI
 
 struct FavoriteButton: View {
-    @Binding var isFavorite: Bool
+    @ObservedObject var washroom: Washroom
     
     var body: some View {
         Button(
             action: {
-                self.isFavorite.toggle()
+                self.washroom.makeFavorite()
             },
             label: {
                 HStack {
-                    if self.isFavorite {
+                    if self.washroom.isFavorite {
                         Image(systemName: "bookmark.fill")
                     } else {
                         Image(systemName: "bookmark")
@@ -27,13 +27,11 @@ struct FavoriteButton: View {
                 }
             }
         )
-            .disabled(true)
-            .opacity(0.5)
     }
 }
 
 struct FavoriteButton_Previews: PreviewProvider {
     static var previews: some View {
-        FavoriteButton(isFavorite: .constant(true))
+        FavoriteButton(washroom: Washroom())
     }
 }
