@@ -12,29 +12,46 @@ struct ProfileView: View {
     @ObservedObject var nearMe: NearMe
     @ObservedObject private var loginManager = LoginManager.shared
     @Environment(\.verticalSizeClass) var verticalSizeClass
-
+    @State var currentListType = ProfileListView.ProfileListType.favorites
+    
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
                 if verticalSizeClass != .compact {
                     AvatarView()
+                        .padding(.top)
                 }
                 NameView(user: loginManager.currentUser)
-                FavoritesListView(nearMe: self.nearMe)
+                ProfileListView(nearMe: self.nearMe, currentListType: self.$currentListType)
             }
-            .padding(.top)
-            .navigationBarTitle("", displayMode: .inline)
-            .navigationBarItems(
-                trailing: NavigationLink(destination: SettingsView()) {
-                    Image(systemName: "gear")
-                        .accessibility(label: Text("Settings"))
-                }
-            )
             .onAppear {
                 self.loginManager.requestUserFetch.send()
             }
+            .navigationBarTitle("", displayMode: .inline)
+            .navigationBarItems(
+                leading: HStack {
+                    if self.currentListType == .favorites {
+                        EditButton()
+                    }
+                },
+                trailing: NavigationLink(destination: SettingsView()) {
+                    HStack {
+                        Image(systemName: "gear")
+                            .accessibility(hidden: true)
+                        Text("Settings")
+                    }
+                }
+            )
+            
+            if currentListType == .favorites {
+                Text("No Favorite Selected")
+                .foregroundColor(.secondary)
+            } else {
+                Text("No Review Selected")
+                .foregroundColor(.secondary)
+            }
         }
-        .navigationViewStyle(StackNavigationViewStyle())
+//        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

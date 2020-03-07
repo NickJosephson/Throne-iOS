@@ -13,14 +13,18 @@ final class NearMe: ObservableObject {
     static var shared = NearMe() // Shared instance to use across application
 
     var requestDataUpdate = PassthroughSubject<Void, Never>()
+    var requestFavoritesUpdate = PassthroughSubject<Void, Never>()
+    var requestReviewsUpdate = PassthroughSubject<Void, Never>()
     private var washroomsSubscription: AnyCancellable!
     private var buildingsSubscription: AnyCancellable!
     private var favoritesSubscription: AnyCancellable!
+    private var reviewsSubscription: AnyCancellable!
 
     @Published var washrooms: [Washroom] = []
     @Published var buildings: [Building] = []
     @Published var favorites: [Washroom] = []
-    
+    @Published var reviews: [Review] = []
+
     init() {
         setupSubscriptions()
     }
@@ -66,6 +70,8 @@ final class NearMe: ObservableObject {
             .assign(to: \.buildings, on: self)
         
         favoritesSubscription = shouldUpdatePublisher
+            .merge(with: requestFavoritesUpdate)
+            .throttle(for: .seconds(1), scheduler: RunLoop.current, latest: false)
             .flatMap { _ in
                 return Future { promise in
                     ThroneEndpoint.fetchFavorites { favoriteWashrooms in
@@ -75,6 +81,19 @@ final class NearMe: ObservableObject {
             }
             .receive(on: RunLoop.main)
             .assign(to: \.favorites, on: self)
+        
+        reviewsSubscription = shouldUpdatePublisher
+            .merge(with: requestReviewsUpdate)
+            .throttle(for: .seconds(1), scheduler: RunLoop.current, latest: false)
+            .flatMap { _ in
+                return Future { promise in
+                    ThroneEndpoint.fetchReviews { reviews in
+                        promise(.success(reviews))
+                    }
+                }
+            }
+            .receive(on: RunLoop.main)
+            .assign(to: \.reviews, on: self)
     }
 
 }

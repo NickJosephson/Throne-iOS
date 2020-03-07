@@ -10,7 +10,7 @@ import SwiftUI
 
 struct WashroomDetailView: View {
     @ObservedObject var washroom: Washroom
-
+    
     var body: some View {
         List {
             Section(header: Text("Details")) {
@@ -80,5 +80,12 @@ struct WashroomDetailView: View {
 struct WashroomDetailView_Previews: PreviewProvider {
     static var previews: some View {
         return WashroomDetailView(washroom: Washroom())
+    }
+}
+
+extension WashroomDetailView {
+    init(id: Int) {
+        self.washroom = Washroom()
+        self.washroom.updateDetailsFrom(id: id)
     }
 }

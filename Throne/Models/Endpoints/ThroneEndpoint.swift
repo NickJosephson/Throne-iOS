@@ -88,6 +88,14 @@ class ThroneEndpoint {
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
+    class func fetchReviews(completionHandler: @escaping ([Review]) -> Void) {
+        var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
+        urlComponents.path = "/users/reviews/"
+
+        NSLog("Fetching reviews made by current user.")
+        fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
+    }
+    
     class func fetchReview(matching id: Int, completionHandler: @escaping (Review) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/reviews/\(id)/"

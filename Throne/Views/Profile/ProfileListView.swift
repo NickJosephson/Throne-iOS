@@ -1,5 +1,5 @@
 //
-//  FavoritesListView.swift
+//  ProfileListView.swift
 //  Throne
 //
 //  Created by Nicholas Josephson on 2020-03-07.
@@ -8,23 +8,25 @@
 
 import SwiftUI
 
-struct FavoritesListView: View {
+struct ProfileListView: View {
     @ObservedObject var nearMe: NearMe
     @ObservedObject var settings = PersistentSettings.shared
-    @State var currentListType: FavoritesListType = FavoritesListType.favorites
+    @Binding var currentListType: ProfileListType
     
-    enum FavoritesListType {
+    enum ProfileListType {
         case favorites
+        case reviews
     }
     
     var body: some View {
         List {
             Picker(selection: $currentListType, label: Text("List Type")) {
-                Text("Favorites").tag(FavoritesListType.favorites)
+                Text("My Favorites").tag(ProfileListType.favorites)
+                Text("My Reviews").tag(ProfileListType.reviews)
             }
             .pickerStyle(SegmentedPickerStyle())
                         
-            if currentListType == FavoritesListType.favorites {
+            if currentListType == ProfileListType.favorites {
                 if nearMe.favorites.count == 0 {
                     Text("No \(settings.preferredTerm.capitalized) Favourited")
                     .foregroundColor(.secondary)
@@ -38,13 +40,24 @@ struct FavoritesListView: View {
                         self.nearMe.favorites[offset].toggleIsFavorite()
                     }
                 }
+            } else if currentListType == ProfileListType.reviews {
+                if nearMe.reviews.count == 0 {
+                    Text("No Reviews")
+                    .foregroundColor(.secondary)
+                }
+                
+                ForEach(nearMe.reviews.sorted { $0.createdAt > $1.createdAt }, id: \.id) { review in
+                    NavigationLink(destination: WashroomDetailView(id: review.washroomID)) {
+                        ReviewRowView(review: review)
+                    }
+                }
             }
         }
     }
 }
 
-struct FavoritesListView_Previews: PreviewProvider {
+struct ProfileListView_Previews: PreviewProvider {
     static var previews: some View {
-        FavoritesListView(nearMe: NearMe.shared)
+        ProfileListView(nearMe: NearMe.shared, currentListType: .constant(.favorites))
     }
 }
