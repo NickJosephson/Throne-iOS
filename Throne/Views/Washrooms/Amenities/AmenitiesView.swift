@@ -23,7 +23,9 @@ struct AmenitiesView: View {
                     Text(amenity.description)
                     Spacer()
                     Text(amenity.emoji ?? "")
+                        .accessibility(hidden: true)
                 }
+                    .accessibilityElement(children: .combine)
             }
         }
         .navigationBarTitle("Amenities", displayMode: .inline)
