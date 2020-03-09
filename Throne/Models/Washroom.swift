@@ -167,6 +167,14 @@ final class Washroom: Codable, ObservableObject {
         }
     }
     
+    var webURL: URL {
+        get {
+            var url = AppConfiguration.webAddress
+            url.appendPathComponent("/washrooms/\(self.id)")
+            return url
+        }
+    }
+    
     var distanceDescription: String {
         get {
             if let distance = self.distance {

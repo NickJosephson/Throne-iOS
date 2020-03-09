@@ -10,6 +10,7 @@ import SwiftUI
 
 struct WashroomDetailView: View {
     @ObservedObject var washroom: Washroom
+    @State private var showShareSheet = false
     
     var body: some View {
         List {
@@ -98,18 +99,18 @@ struct WashroomDetailView: View {
                 ReviewButton(washroom: self.washroom)
                 Button(
                     action: {
-                        var url = AppConfiguration.webAddress
-                        url.appendPathComponent("/washrooms/\(self.washroom.id)")
-                        let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-                        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
-                        let rootVC = sceneDelegate.window?.rootViewController
-                        rootVC?.present(activityVC, animated: true, completion: nil)
+                        self.showShareSheet = true
                     },
                     label: {
                         Image(systemName: "square.and.arrow.up")
                             .accessibility(label: Text("Share Washroom"))
                     }
                 )
+                    .popover(isPresented: $showShareSheet) {
+                        ShareView(activityItems: [self.washroom.webURL], callback: {
+                            self.showShareSheet = false
+                        })
+                    }
             }
         )
     }
