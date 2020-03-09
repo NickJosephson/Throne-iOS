@@ -22,9 +22,9 @@ struct CompactAmenitiesView: View {
         .font(.caption)
         .foregroundColor(.secondary)
         .accessibility(
-            label: Text(amenities.reduce("") { currentResult, amenity in
-                return currentResult + "\(amenity.description) "
-            })
+            label: Text(
+                amenities.map{ $0.description }.joined(separator: " ")
+            )
         )
     }
 }

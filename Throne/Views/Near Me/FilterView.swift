@@ -44,6 +44,9 @@ struct FilterView: View {
                 }, label: { Text("Apply") })
             )
         }
+            .onAppear {
+                self.amenities = self.nearMe.filterAmenities
+            }
     }
 }
 
