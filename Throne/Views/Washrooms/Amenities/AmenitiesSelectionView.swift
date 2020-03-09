@@ -21,10 +21,10 @@ struct AmenitiesSelectionView: View {
                 }
             }, label: {
                 HStack {
-                    Text("\(amenity.description)")
+                    Text(amenity.description)
                     Spacer()
                     HStack {
-                        Text("\(amenity.emoji ?? "")")
+                        Text(amenity.emoji ?? "")
                         if self.amenities.contains(amenity) {
                             Image(systemName: "checkmark.circle.fill")
                         } else {
@@ -33,11 +33,12 @@ struct AmenitiesSelectionView: View {
                     }
                         .accessibility(hidden: true)
                 }
+                    .foregroundColor(.primary)
             })
-            .accessibility(addTraits: self.amenities.contains(amenity) ? .isSelected : [])
+                .accessibility(addTraits: self.amenities.contains(amenity) ? .isSelected : [])
         }
-
     }
+    
 }
 
 struct AmenitiesSelectionView_Previews: PreviewProvider {

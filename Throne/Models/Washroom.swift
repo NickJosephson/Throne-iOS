@@ -14,7 +14,7 @@ final class Washroom: Codable, ObservableObject {
     var buildingTitle: String
     var additionalTitle: String
     var location: Location
-    var distance: Double?
+    var distance: Double? // m
     var gender: Gender
     var floor: Int
     var stallsCount: Int
