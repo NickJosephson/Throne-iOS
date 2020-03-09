@@ -32,6 +32,7 @@
 		E12211D523FB4E18006C99D2 /* ThroneEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12211D423FB4E18006C99D2 /* ThroneEndpoint.swift */; };
 		E12634E22415F2B900E7DECC /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12634E12415F2B900E7DECC /* FilterView.swift */; };
 		E12634E42415F2D800E7DECC /* FilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12634E32415F2D800E7DECC /* FilterButton.swift */; };
+		E12634E6241624BA00E7DECC /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12634E5241624BA00E7DECC /* Filter.swift */; };
 		E146A6DE2400A1F400F73A0B /* AmenitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E146A6DD2400A1F400F73A0B /* AmenitiesView.swift */; };
 		E146A6E02400A21E00F73A0B /* ReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E146A6DF2400A21E00F73A0B /* ReviewsView.swift */; };
 		E1580F2D23F768E20087DE0B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1580F2C23F768E10087DE0B /* LoginView.swift */; };
@@ -109,6 +110,7 @@
 		E12211D423FB4E18006C99D2 /* ThroneEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThroneEndpoint.swift; sourceTree = "<group>"; };
 		E12634E12415F2B900E7DECC /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		E12634E32415F2D800E7DECC /* FilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButton.swift; sourceTree = "<group>"; };
+		E12634E5241624BA00E7DECC /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		E146A6DD2400A1F400F73A0B /* AmenitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenitiesView.swift; sourceTree = "<group>"; };
 		E146A6DF2400A21E00F73A0B /* ReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsView.swift; sourceTree = "<group>"; };
 		E1580F2C23F768E10087DE0B /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 				E1E0738523E561BB00D4AE5E /* NearMe.swift */,
 				E11C9BEA23F1DBB60045663B /* Building.swift */,
 				E1E0738723E561DD00D4AE5E /* Washroom.swift */,
+				E12634E5241624BA00E7DECC /* Filter.swift */,
 				E11C9BE823F1DB3A0045663B /* Location.swift */,
 				E19AA94F240CD10C00B2DB28 /* Gender.swift */,
 				E19AA94D240CD0D400B2DB28 /* Amenity.swift */,
@@ -554,6 +557,7 @@
 				E11449042408D5D000DD4F04 /* CreateWashroomButton.swift in Sources */,
 				E1580F2D23F768E20087DE0B /* LoginView.swift in Sources */,
 				E176AEF823E3A62D00EF8D15 /* WashroomDetailView.swift in Sources */,
+				E12634E6241624BA00E7DECC /* Filter.swift in Sources */,
 				E176AEC223E38B2A00EF8D15 /* SceneDelegate.swift in Sources */,
 				E11449002408D40B00DD4F04 /* AmenitiesSelectionView.swift in Sources */,
 				E11448FE2408D35E00DD4F04 /* FavoriteButton.swift in Sources */,

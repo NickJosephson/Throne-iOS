@@ -15,7 +15,7 @@ struct FilterButton: View {
     var body: some View {
         Button(action: { self.showFilterView = true }, label: {
             HStack {
-                if nearMe.filterAmenities.isEmpty {
+                if self.nearMe.filter == Filter() {
                     Image(systemName: "line.horizontal.3.decrease.circle")
                 } else {
                     Image(systemName: "line.horizontal.3.decrease.circle.fill")

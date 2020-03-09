@@ -13,7 +13,7 @@ final class Building: Codable, ObservableObject {
     var id: Int
     var title: String
     var location: Location
-    var distance: Double?
+    var distance: Double? // m
     var createdAt: Date
     var overallRating: Double
     var bestRatings: Ratings
