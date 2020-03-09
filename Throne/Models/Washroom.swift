@@ -7,112 +7,207 @@
 //
 
 import Foundation
+import Combine
 
-struct Washroom: Codable {
-    let id: Int
-    let title: String
-    let location: Location
-    let gender: Gender
-    let floor: Int
-    let buildingID: Int
-    let createdAt: Date
-    let reviewsCount: Int?
-    let overallRating: Double
-    let averageRatings: Ratings
-    let amenities: [Amenity]
+final class Washroom: Codable, ObservableObject {
+    var id: Int
+    var buildingTitle: String
+    var additionalTitle: String
+    var location: Location
+    var distance: Double? // m
+    var gender: Gender
+    var floor: Int
+    var stallsCount: Int
+    var urinalsCount: Int
+    var buildingID: Int
+    var createdAt: Date
+    var reviewsCount: Int?
+    var overallRating: Double
+    var averageRatings: Ratings
+    var amenities: [Amenity]
+    var isFavorite: Bool
+    
+    @Published var reviews: [Review] = []
+    @Published var favoritingChangeInProgress = false
+
+    var requestReviewsUpdate = PassthroughSubject<Void, Never>()
+    private var reviewsSubscription: AnyCancellable!
+    private var detailsSubscription: AnyCancellable!
+
+    init(id: Int, buildingTitle: String, additionalTitle: String, location: Location, distance: Double?, gender: Gender, floor: Int, stallsCount: Int, urinalsCount: Int, buildingID: Int, createdAt: Date, reviewsCount: Int?, overallRating: Double, averageRatings: Ratings, amenities: [Amenity], isFavorite: Bool) {
+        self.id = id
+        self.buildingTitle = buildingTitle
+        self.additionalTitle = additionalTitle
+        self.location = location
+        self.distance = distance
+        self.gender = gender
+        self.floor = floor
+        self.stallsCount = stallsCount
+        self.urinalsCount = urinalsCount
+        self.buildingID = buildingID
+        self.createdAt = createdAt
+        self.reviewsCount = reviewsCount
+        self.overallRating = overallRating
+        self.averageRatings = averageRatings
+        self.amenities = amenities
+        self.isFavorite = isFavorite
+    }
+    
+    convenience init() {
+        self.init(
+            id: 0,
+            buildingTitle: "",
+            additionalTitle: "",
+            location: Location(latitude: 0, longitude: 0),
+            distance: 0,
+            gender: .all,
+            floor: 1,
+            stallsCount: 1,
+            urinalsCount: 0,
+            buildingID: 0,
+            createdAt: Date(),
+            reviewsCount: 0,
+            overallRating: 0,
+            averageRatings: Ratings(privacy: 0, toiletPaperQuality: 0, smell: 0, cleanliness: 0),
+            amenities: [],
+            isFavorite: false
+        )
+    }
+
+    func setupReviewsSubscription() {
+        if reviewsSubscription != nil {
+            return
+        }
+        
+        let shouldUpdateReviewsPublisher = requestReviewsUpdate
+            .throttle(for: .seconds(5), scheduler: RunLoop.current, latest: false)
+            .eraseToAnyPublisher()
+        
+        reviewsSubscription = shouldUpdateReviewsPublisher
+            .flatMap { _ in
+                return Future { promise in
+                    ThroneEndpoint.fetchReviews(for: self) { reviews in
+                        promise(.success(reviews))
+                    }
+                }
+            }
+            .receive(on: RunLoop.main)
+            .assign(to: \.reviews, on: self)
+        
+        detailsSubscription = shouldUpdateReviewsPublisher
+        .flatMap { _ in
+            return Future { promise in
+                ThroneEndpoint.fetchWashroom(matching: self.id) { washroom in
+                    promise(.success(washroom))
+                }
+            }
+        }
+        .receive(on: RunLoop.main)
+        .sink { updatedWashroom in
+            self.objectWillChange.send()
+            self.reviewsCount = updatedWashroom.reviewsCount
+            self.overallRating = updatedWashroom.overallRating
+            self.averageRatings = updatedWashroom.averageRatings
+            self.isFavorite = updatedWashroom.isFavorite
+            self.favoritingChangeInProgress = false
+        }
+        
+        requestReviewsUpdate.send()
+    }
+    
+    func updateDetailsFrom(id: Int) {
+        ThroneEndpoint.fetchWashroom(matching: id) { newWashroom in
+            DispatchQueue.main.async {
+                self.objectWillChange.send()
+                self.id = newWashroom.id
+                self.buildingTitle = newWashroom.buildingTitle
+                self.additionalTitle = newWashroom.additionalTitle
+                self.location = newWashroom.location
+                self.distance = newWashroom.distance
+                self.gender = newWashroom.gender
+                self.floor = newWashroom.floor
+                self.stallsCount = newWashroom.stallsCount
+                self.urinalsCount = newWashroom.urinalsCount
+                self.buildingID = newWashroom.buildingID
+                self.createdAt = newWashroom.createdAt
+                self.reviewsCount = newWashroom.reviewsCount
+                self.overallRating = newWashroom.overallRating
+                self.averageRatings = newWashroom.averageRatings
+                self.amenities = newWashroom.amenities
+                self.isFavorite = newWashroom.isFavorite
+                
+                self.requestReviewsUpdate.send()
+            }
+        }
+    }
+    
+    func postReview(review: Review) {
+        ThroneEndpoint.post(review: review, for: self) { _ in
+            self.setupReviewsSubscription()
+            self.requestReviewsUpdate.send()
+            NearMe.shared.requestReviewsUpdate.send()
+        }
+    }
+    
+    func toggleIsFavorite() {
+        favoritingChangeInProgress = true
+        
+        if isFavorite {
+            ThroneEndpoint.deleteFavorite(washroom: self) {
+                self.setupReviewsSubscription()
+                self.requestReviewsUpdate.send()
+                NearMe.shared.requestFavoritesUpdate.send()
+            }
+        } else {
+            ThroneEndpoint.postFavorite(washroom: self) { _ in
+                self.setupReviewsSubscription()
+                self.requestReviewsUpdate.send()
+                NearMe.shared.requestFavoritesUpdate.send()
+            }
+        }
+    }
+    
+    var webURL: URL {
+        get {
+            var url = AppConfiguration.webAddress
+            url.appendPathComponent("/washrooms/\(self.id)")
+            return url
+        }
+    }
+    
+    var distanceDescription: String {
+        get {
+            if let distance = self.distance {
+                if distance < 500.0 {
+                    let value = String(format: "%.1f", distance)
+                    return "\(value) m"
+                } else {
+                    let value = String(format: "%.1f", distance / 1000.0)
+                    return "\(value) km"
+                }
+            } else {
+                return "?m"
+            }
+        }
+    }
     
     private enum CodingKeys: String, CodingKey {
         case id
-        case title
+        case buildingTitle = "building_title"
+        case additionalTitle = "comment"
         case location
+        case distance
         case gender
         case floor
+        case urinalsCount = "urinal_count"
+        case stallsCount = "stall_count"
         case buildingID = "building_id"
         case createdAt = "created_at"
-        case reviewsCount = "reviews_count"
+        case reviewsCount = "review_count"
         case overallRating = "overall_rating"
         case averageRatings = "average_ratings"
         case amenities
-    }
-    
-    enum Gender: String, Codable {
-        case all
-        case women
-        case men
-        
-        var description: String {
-            get {
-                switch self {
-                case .women: return "Women"
-                case .men: return "Men"
-                case .all: return "All"
-                }
-            }
-        }
-        
-        var emoji: String {
-            get {
-                switch self {
-                case .women: return "🚺"
-                case .men: return "🚹"
-                case .all: return "🚻"
-                }
-            }
-        }
-    }
-        
-    struct Ratings: Codable {
-        let privacy: Double
-        let toiletPaperQuality: Double
-        let smell: Double
-        let cleanliness: Double
-        
-        private enum CodingKeys: String, CodingKey {
-            case privacy
-            case toiletPaperQuality = "toilet_paper_quality"
-            case smell
-            case cleanliness
-        }
-    }
-    
-    enum Amenity: String, Codable {
-        case contraception = "Contraception"
-        case lotion = "Lotion"
-        case automaticPaperTowel = "Automatic Paper Towel"
-        case automaticDryer = "Automatic Dryer"
-        case automaticSink = "Automatic Sink"
-        case automaticToilet = "Automatic Toilet"
-        case airDryer = "Air Dryer"
-        case shower = "Shower"
-        case soap = "Soap"
-        case attendant = "Bathroom Attendant"
-        case babyChangeStation = "Baby Changing Station"
-        case urinal = "Urinal"
-        case paperTowel = "Paper Towel"
-        case wheelchairAccessible = "Wheelchair Accessible"
-        case paperSeatCover = "Paper Seat Covers"
-        case hygieneProducts = "Hygiene Products"
-        case needleDisposal = "Needle Disposal"
-        case perfume = "Perfume/Cologne"
-        
-        var emoji: String? {
-            get {
-                switch self {
-                case .shower: return "🚿"
-                case .lotion: return "🧴"
-                case .babyChangeStation: return "👶"
-                case .attendant: return "🛎"
-                case .soap: return "🧼"
-                case .airDryer: return "💨"
-                case .automaticToilet: return "⚡️🚽"
-                case .automaticSink: return "⚡️🚰"
-                case .automaticDryer: return "⚡️💨"
-                case .wheelchairAccessible: return "🦽"
-                case .contraception: return "🚫👶"
-                default: return nil
-                }
-            }
-        }
+        case isFavorite = "is_favorite"
     }
     
 }

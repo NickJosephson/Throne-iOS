@@ -12,7 +12,6 @@ import CoreLocation
 struct Location: Codable {
     let latitude: Double
     let longitude: Double
-    let radius: Int = 1000 // Km
 
     init(latitude: Double, longitude: Double) {
         self.latitude = latitude
@@ -22,6 +21,11 @@ struct Location: Codable {
     init(_ coordinate: CLLocationCoordinate2D) {
         self.latitude = coordinate.latitude
         self.longitude = coordinate.longitude
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        case latitude
+        case longitude
     }
 }
 
