@@ -19,9 +19,9 @@ struct FavoriteButton: View {
             label: {
                 HStack {
                     if self.washroom.isFavorite {
-                        Image(systemName: "bookmark.fill")
+                        Image(systemName: "heart.fill")
                     } else {
-                        Image(systemName: "bookmark")
+                        Image(systemName: "heart")
                     }
                     Text("Favourite")
                 }

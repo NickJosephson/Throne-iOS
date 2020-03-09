@@ -14,7 +14,7 @@ struct ReviewButton: View {
 
     var body: some View {
         Button(action: { self.showCreateReview = true }, label: {
-            HStack {
+            HStack() {
                 Image(systemName: "square.and.pencil")
                 Text("Review")
             }

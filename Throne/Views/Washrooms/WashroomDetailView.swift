@@ -77,6 +77,18 @@ struct WashroomDetailView: View {
                         .cornerRadius(10)
                 }.accessibility(label: Text("Location on map"))
             }
+            
+            Section {
+                Button(action: {
+                    guard let url = URL(string: "https://umanitoba.ca/campus/physical_plant/adminss/request/request.php") else { return }
+                    UIApplication.shared.open(url)
+                }, label: {
+                    HStack {
+                        Image(systemName: "exclamationmark.bubble")
+                        Text("Report Maintenance Issue")
+                    }
+                })
+            }
         }
         .listStyle(GroupedListStyle())
         .navigationBarTitle("", displayMode: .inline)
@@ -84,6 +96,20 @@ struct WashroomDetailView: View {
             HStack(spacing: 20) {
                 FavoriteButton(washroom: self.washroom)
                 ReviewButton(washroom: self.washroom)
+                Button(
+                    action: {
+                        var url = AppConfiguration.webAddress
+                        url.appendPathComponent("/washrooms/\(self.washroom.id)")
+                        let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+                        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+                        let rootVC = sceneDelegate.window?.rootViewController
+                        rootVC?.present(activityVC, animated: true, completion: nil)
+                    },
+                    label: {
+                        Image(systemName: "square.and.arrow.up")
+                            .accessibility(label: Text("Share Washroom"))
+                    }
+                )
             }
         )
     }
