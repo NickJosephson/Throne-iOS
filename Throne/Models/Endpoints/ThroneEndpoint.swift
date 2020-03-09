@@ -12,7 +12,7 @@ import Foundation
 class ThroneEndpoint {
     private static let host = AppConfiguration.apiAddress
     
-    class func fetchWashrooms(near location: Location?, maxResults: Int = 100, completionHandler: @escaping ([Washroom]) -> Void) {
+    class func fetchWashrooms(near location: Location?, filteredBy amenities: [Amenity] = [], maxResults: Int = 100, completionHandler: @escaping ([Washroom]) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/washrooms/"
         urlComponents.queryItems = [
@@ -24,6 +24,12 @@ class ThroneEndpoint {
                 URLQueryItem(name: "longitude", value: "\(location!.longitude)"),
                 URLQueryItem(name: "radius", value: "\(location!.radius)")
             ])
+        }
+        if !amenities.isEmpty {
+            let amenitiesDescription = amenities.map{ $0.rawValue }.joined(separator: ",")
+            urlComponents.queryItems!.append(contentsOf:
+                [URLQueryItem(name: "amenities", value: amenitiesDescription)]
+            )
         }
 
         NSLog("Fetching washrooms near \(String(describing: location)).")
@@ -46,7 +52,7 @@ class ThroneEndpoint {
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
 
-    class func fetchBuildings(near location: Location?, maxResults: Int = 10000, completionHandler: @escaping ([Building]) -> Void) {
+    class func fetchBuildings(near location: Location?, filteredBy amenities: [Amenity] = [], maxResults: Int = 10000, completionHandler: @escaping ([Building]) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/buildings/"
         urlComponents.queryItems = [
@@ -58,6 +64,12 @@ class ThroneEndpoint {
                 URLQueryItem(name: "longitude", value: "\(location!.longitude)"),
                 URLQueryItem(name: "radius", value: "\(location!.radius)")
             ])
+        }
+        if !amenities.isEmpty {
+            let amenitiesDescription = amenities.map{ $0.rawValue }.joined(separator: ",")
+            urlComponents.queryItems!.append(contentsOf:
+                [URLQueryItem(name: "amenities", value: amenitiesDescription)]
+            )
         }
 
         NSLog("Fetching buildings near \(String(describing: location)).")

@@ -52,6 +52,7 @@ struct NearMeListView: View {
             }
         }
         .navigationBarTitle(Text("Near Me"))
+        .navigationBarItems(leading: FilterButton(nearMe: self.nearMe))
     }
 }
 

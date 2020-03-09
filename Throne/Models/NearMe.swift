@@ -25,6 +25,12 @@ final class NearMe: ObservableObject {
     @Published var favorites: [Washroom] = []
     @Published var reviews: [Review] = []
 
+    @Published var filterAmenities: [Amenity] = [] {
+        didSet {
+            self.requestDataUpdate.send()
+        }
+    }
+    
     init() {
         setupSubscriptions()
     }
@@ -50,7 +56,7 @@ final class NearMe: ObservableObject {
         washroomsSubscription = shouldUpdatePublisher
             .flatMap { _ in
                 return Future { promise in
-                    ThroneEndpoint.fetchWashrooms(near: LocationManager.shared.currentLocation) { washrooms in
+                    ThroneEndpoint.fetchWashrooms(near: LocationManager.shared.currentLocation, filteredBy: self.filterAmenities) { washrooms in
                         promise(.success(washrooms))
                     }
                 }
@@ -61,7 +67,7 @@ final class NearMe: ObservableObject {
         buildingsSubscription = shouldUpdatePublisher
             .flatMap { _ in
                 return Future { promise in
-                    ThroneEndpoint.fetchBuildings(near: LocationManager.shared.currentLocation) { buildings in
+                    ThroneEndpoint.fetchBuildings(near: LocationManager.shared.currentLocation, filteredBy: self.filterAmenities) { buildings in
                         promise(.success(buildings))
                     }
                 }

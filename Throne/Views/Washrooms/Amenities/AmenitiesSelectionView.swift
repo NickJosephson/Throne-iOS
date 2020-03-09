@@ -34,10 +34,10 @@ struct AmenitiesSelectionView: View {
                         .accessibility(hidden: true)
                 }
             })
-            .accessibility(addTraits: self.amenities.contains(amenity) ? .isSelected : [])
+                .accessibility(addTraits: self.amenities.contains(amenity) ? .isSelected : [])
         }
-
     }
+    
 }
 
 struct AmenitiesSelectionView_Previews: PreviewProvider {

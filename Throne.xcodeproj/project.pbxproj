@@ -30,6 +30,8 @@
 		E11C9BED23F1DD850045663B /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C9BEC23F1DD850045663B /* Review.swift */; };
 		E11C9BEF23F1DF6D0045663B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C9BEE23F1DF6D0045663B /* User.swift */; };
 		E12211D523FB4E18006C99D2 /* ThroneEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12211D423FB4E18006C99D2 /* ThroneEndpoint.swift */; };
+		E12634E22415F2B900E7DECC /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12634E12415F2B900E7DECC /* FilterView.swift */; };
+		E12634E42415F2D800E7DECC /* FilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12634E32415F2D800E7DECC /* FilterButton.swift */; };
 		E146A6DE2400A1F400F73A0B /* AmenitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E146A6DD2400A1F400F73A0B /* AmenitiesView.swift */; };
 		E146A6E02400A21E00F73A0B /* ReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E146A6DF2400A21E00F73A0B /* ReviewsView.swift */; };
 		E1580F2D23F768E20087DE0B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1580F2C23F768E10087DE0B /* LoginView.swift */; };
@@ -105,6 +107,8 @@
 		E11C9BEC23F1DD850045663B /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		E11C9BEE23F1DF6D0045663B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E12211D423FB4E18006C99D2 /* ThroneEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThroneEndpoint.swift; sourceTree = "<group>"; };
+		E12634E12415F2B900E7DECC /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
+		E12634E32415F2D800E7DECC /* FilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButton.swift; sourceTree = "<group>"; };
 		E146A6DD2400A1F400F73A0B /* AmenitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenitiesView.swift; sourceTree = "<group>"; };
 		E146A6DF2400A21E00F73A0B /* ReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsView.swift; sourceTree = "<group>"; };
 		E1580F2C23F768E10087DE0B /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -186,6 +190,8 @@
 				E176AEFB23E3AA3500EF8D15 /* NearMeView.swift */,
 				E11448E82408A3C900DD4F04 /* NearMeListView.swift */,
 				E11448E6240899FD00DD4F04 /* EnableLocationButton.swift */,
+				E12634E12415F2B900E7DECC /* FilterView.swift */,
+				E12634E32415F2D800E7DECC /* FilterButton.swift */,
 			);
 			path = "Near Me";
 			sourceTree = "<group>";
@@ -523,6 +529,7 @@
 				E11448EF2408A4DF00DD4F04 /* MainTabView.swift in Sources */,
 				E116F691240A699300680E92 /* MapViewController.swift in Sources */,
 				E176AEC023E38B2A00EF8D15 /* AppDelegate.swift in Sources */,
+				E12634E42415F2D800E7DECC /* FilterButton.swift in Sources */,
 				E11448E92408A3C900DD4F04 /* NearMeListView.swift in Sources */,
 				E1CFDE6823FA4FBF007423FD /* AuthenticationEndpoint.swift in Sources */,
 				E11448EB2408A46E00DD4F04 /* WashroomRowView.swift in Sources */,
@@ -542,6 +549,7 @@
 				E1768D4E23FDEE2B00A9F098 /* AppConfiguration.swift in Sources */,
 				E11449062408D7A300DD4F04 /* EditableRatingView.swift in Sources */,
 				E16BA1DC24078AD6002F9EED /* BuildingDetailView.swift in Sources */,
+				E12634E22415F2B900E7DECC /* FilterView.swift in Sources */,
 				E11448ED2408A4AA00DD4F04 /* BuildingRowView.swift in Sources */,
 				E11449042408D5D000DD4F04 /* CreateWashroomButton.swift in Sources */,
 				E1580F2D23F768E20087DE0B /* LoginView.swift in Sources */,
