@@ -109,15 +109,15 @@ final class Building: Codable, ObservableObject {
     var distanceDescription: String {
         get {
             if let distance = self.distance {
-                if distance < 500.0 {
-                    let value = String(format: "%.1f", distance)
+                if distance < 1000.0 {
+                    let value = String(format: "%.0f", distance)
                     return "\(value) m"
                 } else {
                     let value = String(format: "%.1f", distance / 1000.0)
                     return "\(value) km"
                 }
             } else {
-                return "?m"
+                return "? m"
             }
         }
     }
