@@ -46,7 +46,7 @@ struct ProfileListView: View {
                     .foregroundColor(.secondary)
                 }
                 
-                ForEach(nearMe.reviews.sorted { $0.createdAt > $1.createdAt }, id: \.id) { review in
+                ForEach(nearMe.reviews.sorted { $0.createdAt > $1.createdAt }, id: \.self) { review in
                     NavigationLink(destination: WashroomDetailView(id: review.washroomID)) {
                         ReviewRowView(review: review)
                     }

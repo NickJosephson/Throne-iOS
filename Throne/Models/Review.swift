@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Review: Codable {
+struct Review: Codable, Hashable {
     let id: Int
     let washroomID: Int
     let user: User!
@@ -34,6 +34,17 @@ struct Review: Codable {
         df.timeStyle = .none
         return df.string(from: self.createdAt)
     }
+    
+    static func == (lhs: Review, rhs: Review) -> Bool {
+        return lhs.id == rhs.id && lhs.washroomID == rhs.washroomID
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(washroomID)
+        hasher.combine(createdAt)
+    }
+    
 }
 
 extension Review {
