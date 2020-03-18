@@ -19,13 +19,13 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
     private var loginSubscription: AnyCancellable!
     
     @Published var currentLocation: Location?
-
+    
     override init() {
         super.init()
-
+        
         // start tracking location
         locationManager.delegate = self
-        locationManager.startMonitoringSignificantLocationChanges()
+        locationManager.startUpdatingLocation()
         if let location = locationManager.location {
             currentLocation = Location(location.coordinate)
         }
@@ -40,11 +40,13 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
     
     /// Handle a location update.
     func locationManager(_ manager: CLLocationManager,  didUpdateLocations locations: [CLLocation]) {
-        NSLog("User location updated.")
-        let lastLocation = locations.last!
+        let newLocation = Location(locations.last!.coordinate)
         
         DispatchQueue.main.async {
-            self.currentLocation = Location(lastLocation.coordinate)
+            if newLocation != self.currentLocation {
+                NSLog("User location updated: \(newLocation)")
+                self.currentLocation = newLocation
+            }
         }
     }
     
