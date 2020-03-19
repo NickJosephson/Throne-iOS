@@ -23,7 +23,13 @@ struct BuildingRowView: View {
                     .layoutPriority(1)
                     .fixedSize(horizontal: false, vertical: true)
                 Spacer()
-                Text(building.distanceDescription)
+                VStack(alignment: .trailing) {
+                    Text(building.distanceDescription)
+                    if building.washroomsCount != nil {
+                        Text("\(building.washroomsCount!) \(building.washroomsCount! == 1 ? "Room" : "Rooms")")
+                    }
+                }
+                    .multilineTextAlignment(.trailing)
                     .foregroundColor(.secondary)
                     .fixedSize(horizontal: true, vertical: true)
             }

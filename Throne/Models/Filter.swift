@@ -10,8 +10,9 @@ import Foundation
 
 struct Filter: Equatable, Codable {
     var amenities: [Amenity] = []
-    var radius: Double = 50.0 // km
-        
+    var radius: Double = 50.0 // kilometers
+    var showEmptyBuildings = false
+    
     var radiusDescription: String {
         get {
             if radius < 1.0 {

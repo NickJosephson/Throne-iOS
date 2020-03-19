@@ -34,7 +34,7 @@ struct NearMeListView: View {
                     .navigationBarTitle(Text("Near Me"))
                 }
                 
-                ForEach(nearMe.washrooms, id: \.id) { washroom in
+                ForEach(nearMe.washrooms, id: \.self) { washroom in
                     WashroomRowView(washroom: washroom)
                 }
                 .navigationBarTitle(Text("Near Me"))
@@ -45,7 +45,9 @@ struct NearMeListView: View {
                     .navigationBarTitle(Text("Near Me"))
                 }
                 
-                ForEach(nearMe.buildings, id: \.title) { building in
+                ForEach(nearMe.buildings.filter {
+                    self.nearMe.filter.showEmptyBuildings || ($0.washroomsCount ?? 1) > 0
+                }, id: \.self) { building in
                     BuildingRowView(building: building)
                 }
                 .navigationBarTitle(Text("Near Me"))

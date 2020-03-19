@@ -9,12 +9,12 @@
 import Foundation
 import Combine
 
-final class Washroom: Codable, ObservableObject {
+final class Washroom: Codable, ObservableObject, Hashable {
     var id: Int
     var buildingTitle: String
     var additionalTitle: String
     var location: Location
-    var distance: Double? // m
+    var distance: Double? // meters
     var gender: Gender
     var floor: Int
     var stallsCount: Int
@@ -189,6 +189,15 @@ final class Washroom: Codable, ObservableObject {
                 return "? m"
             }
         }
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(buildingID)
+    }
+    
+    static func == (lhs: Washroom, rhs: Washroom) -> Bool {
+        return lhs.id == rhs.id && lhs.buildingID == rhs.buildingID
     }
     
     private enum CodingKeys: String, CodingKey {

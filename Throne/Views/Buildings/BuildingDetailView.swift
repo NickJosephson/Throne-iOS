@@ -19,13 +19,16 @@ struct BuildingDetailView: View {
     
     var body: some View {
         List {
+            Section(header: Text("").accessibility(hidden: true)) {
+                RatingView(rating: self.building.overallRating, label: "Building Rating")
+            }
             Section(header: Text("Washrooms Inside")) {
                 if building.washrooms.count == 0 {
                     Text("No \(settings.preferredTerm.capitalized) Inside")
                     .foregroundColor(.secondary)
                 }
                 
-                ForEach(building.washrooms, id: \.id) { washroom in
+                ForEach(building.washrooms, id: \.self) { washroom in
                     WashroomRowView(washroom: washroom, showBuilding: false)
                 }
             }
