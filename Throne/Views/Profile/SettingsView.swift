@@ -18,6 +18,11 @@ struct SettingsView: View {
                     Text(name).tag(name)
                 }
             }
+            
+            Section {
+                AddToSiriButton()
+            }
+            
             Section {
                 Button(action: { LoginManager.shared.logout() }) {
                     Text("Log Out")
