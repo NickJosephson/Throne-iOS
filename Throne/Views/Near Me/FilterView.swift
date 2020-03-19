@@ -47,6 +47,10 @@ struct FilterView: View {
                     .accessibilityElement(children: .combine)
                 }
                 
+                Section() {
+                    Toggle(isOn: self.$newFilter.showEmptyBuildings, label: { Text("Show Empty Buildings") })
+                }
+                
                 Section {
                     Button(
                         action: { self.newFilter = Filter() },

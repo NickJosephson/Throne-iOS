@@ -32,7 +32,7 @@ struct ProfileListView: View {
                     .foregroundColor(.secondary)
                 }
                 
-                ForEach(nearMe.favorites, id: \.id) { washroom in
+                ForEach(nearMe.favorites, id: \.self) { washroom in
                     WashroomRowView(washroom: washroom)
                 }
                 .onDelete { offsets in

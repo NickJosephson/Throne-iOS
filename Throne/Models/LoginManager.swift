@@ -47,7 +47,7 @@ final class LoginManager: ObservableObject {
         // create publisher for indicating when to perform current user update
         let shouldUpdatePublisher = self.loginCompleted
             .merge(with: self.refreshCompleted, self.requestUserFetch)
-          .eraseToAnyPublisher()
+            .eraseToAnyPublisher()
 
         currentUserSubscription = shouldUpdatePublisher
             .flatMap { _ in
@@ -62,8 +62,8 @@ final class LoginManager: ObservableObject {
     }
     
     func logout() {
-        if self.isLoggedIn {
-            DispatchQueue.main.async {
+        DispatchQueue.main.async {
+            if self.isLoggedIn {
                 self.isLoggedIn = false
                 self.settings.idToken = nil
                 self.settings.accessToken = nil
@@ -84,8 +84,8 @@ final class LoginManager: ObservableObject {
                     self.settings.refreshToken = tokens.refreshToken
                                         
                     self.isLoggedIn = true
-                    self.loginCompleted.send()
                     NSLog("Login completed.")
+                    self.loginCompleted.send()
                 } else {
                     NSLog("Login error: Failed to fetch access token.")
                 }

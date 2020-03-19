@@ -9,11 +9,12 @@
 import Foundation
 import Combine
 
-final class Building: Codable, ObservableObject {
+final class Building: Codable, ObservableObject, Hashable {
     var id: Int
     var title: String
     var location: Location
-    var distance: Double? // m
+    var distance: Double? // meters
+    var washroomsCount: Int?
     var createdAt: Date
     var overallRating: Double
     var bestRatings: Ratings
@@ -38,11 +39,12 @@ final class Building: Codable, ObservableObject {
     private var detailsSubscription: AnyCancellable!
     private var washroomsIndividualSubscriptions: [AnyCancellable] = []
     
-    init(id: Int, title: String, location: Location, distance: Double, createdAt: Date, overallRating: Double, bestRatings: Ratings) {
+    init(id: Int, title: String, location: Location, distance: Double, washroomsCount: Int?, createdAt: Date, overallRating: Double, bestRatings: Ratings) {
         self.id = id
         self.title = title
         self.location = location
         self.distance = distance
+        self.washroomsCount = washroomsCount
         self.createdAt = createdAt
         self.overallRating = overallRating
         self.bestRatings = bestRatings
@@ -54,6 +56,7 @@ final class Building: Codable, ObservableObject {
             title: "",
             location: Location(latitude: 0, longitude: 0),
             distance: 0,
+            washroomsCount: 0,
             createdAt: Date(),
             overallRating: 0,
             bestRatings: Ratings(privacy: 0, toiletPaperQuality: 0, smell: 0, cleanliness: 0)
@@ -140,11 +143,20 @@ final class Building: Codable, ObservableObject {
         }
     }
     
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    static func == (lhs: Building, rhs: Building) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     private enum CodingKeys: String, CodingKey {
         case id
         case title
         case location
         case distance
+        case washroomsCount = "washroom_count"
         case createdAt = "created_at"
         case overallRating = "overall_rating"
         case bestRatings = "best_ratings"
