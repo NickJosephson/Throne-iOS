@@ -53,6 +53,8 @@
 		E176AEFA23E3A88E00EF8D15 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEF923E3A88E00EF8D15 /* ProfileView.swift */; };
 		E176AEFC23E3AA3500EF8D15 /* NearMeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEFB23E3AA3500EF8D15 /* NearMeView.swift */; };
 		E17C31EC24237E9600683083 /* UserBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17C31EB24237E9600683083 /* UserBadgeView.swift */; };
+		E17C320724238D8D00683083 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E17C320624238D8D00683083 /* Intents.intentdefinition */; };
+		E17C32092423931700683083 /* AddToSiriButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17C32082423931700683083 /* AddToSiriButton.swift */; };
 		E19AA94E240CD0D400B2DB28 /* Amenity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19AA94D240CD0D400B2DB28 /* Amenity.swift */; };
 		E19AA950240CD10C00B2DB28 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19AA94F240CD10C00B2DB28 /* Gender.swift */; };
 		E19AA952240CD14500B2DB28 /* Ratings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19AA951240CD14500B2DB28 /* Ratings.swift */; };
@@ -158,6 +160,8 @@
 		E176AEF923E3A88E00EF8D15 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		E176AEFB23E3AA3500EF8D15 /* NearMeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearMeView.swift; sourceTree = "<group>"; };
 		E17C31EB24237E9600683083 /* UserBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBadgeView.swift; sourceTree = "<group>"; };
+		E17C320624238D8D00683083 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
+		E17C32082423931700683083 /* AddToSiriButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToSiriButton.swift; sourceTree = "<group>"; };
 		E19AA94D240CD0D400B2DB28 /* Amenity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amenity.swift; sourceTree = "<group>"; };
 		E19AA94F240CD10C00B2DB28 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		E19AA951240CD14500B2DB28 /* Ratings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ratings.swift; sourceTree = "<group>"; };
@@ -277,6 +281,7 @@
 				E1DCC7312413912A0094A099 /* ProfileListView.swift */,
 				E17C31EB24237E9600683083 /* UserBadgeView.swift */,
 				E176AEF523E39CFD00EF8D15 /* SettingsView.swift */,
+				E17C32082423931700683083 /* AddToSiriButton.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -333,6 +338,7 @@
 				E176AEF223E3987900EF8D15 /* Views */,
 				E176AEC823E38B2B00EF8D15 /* Assets.xcassets */,
 				E176AECD23E38B2B00EF8D15 /* LaunchScreen.storyboard */,
+				E17C320624238D8D00683083 /* Intents.intentdefinition */,
 				E176AED023E38B2B00EF8D15 /* Info.plist */,
 				E1E0737A23E5452B00D4AE5E /* Throne.entitlements */,
 				E176AECA23E38B2B00EF8D15 /* Preview Content */,
@@ -560,6 +566,7 @@
 				E11C9BE923F1DB3A0045663B /* Location.swift in Sources */,
 				E19AA950240CD10C00B2DB28 /* Gender.swift in Sources */,
 				E1F4FE122407928D00A4096F /* CreateWashroomView.swift in Sources */,
+				E17C320724238D8D00683083 /* Intents.intentdefinition in Sources */,
 				E11C9BED23F1DD850045663B /* Review.swift in Sources */,
 				E11448EF2408A4DF00DD4F04 /* MainTabView.swift in Sources */,
 				E116F691240A699300680E92 /* MapViewController.swift in Sources */,
@@ -600,6 +607,7 @@
 				E1DCC7322413912A0094A099 /* ProfileListView.swift in Sources */,
 				E1F4FE14240796A100A4096F /* RatingView.swift in Sources */,
 				E116F687240A493E00680E92 /* MapDetailView.swift in Sources */,
+				E17C32092423931700683083 /* AddToSiriButton.swift in Sources */,
 				E11448FC2408D33E00DD4F04 /* CreateReviewButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
