@@ -22,7 +22,7 @@ struct BuildingDetailView: View {
             Section(header: Text("").accessibility(hidden: true)) {
                 RatingView(rating: self.building.overallRating, label: "Building Rating")
             }
-            Section(header: Text("Washrooms Inside")) {
+            Section(header: Text("\(settings.preferredTerm.capitalized)s Inside")) {
                 if building.washrooms.count == 0 {
                     Text("No \(settings.preferredTerm.capitalized) Inside")
                     .foregroundColor(.secondary)

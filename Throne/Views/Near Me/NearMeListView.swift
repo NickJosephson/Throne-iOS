@@ -22,7 +22,7 @@ struct NearMeListView: View {
         List {
             Picker(selection: $currentListType, label: Text("List Type")) {
                 Text("Buildings").tag(NearMeListType.buildings)
-                Text("All Washrooms").tag(NearMeListType.washrooms)
+                Text("All \(settings.preferredTerm.capitalized)s").tag(NearMeListType.washrooms)
             }
             .pickerStyle(SegmentedPickerStyle())
             .navigationBarTitle(Text("Near Me"))

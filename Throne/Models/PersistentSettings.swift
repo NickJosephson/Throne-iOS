@@ -80,11 +80,9 @@ var preferredTermOptions = [
     "bathroom",
     "toilet",
     "restroom",
-    "lavatory",
     "powder room",
     "comfort station",
     "water closet",
-    "privy",
     "loo",
     "can"
 ]

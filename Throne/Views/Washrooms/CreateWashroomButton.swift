@@ -11,12 +11,13 @@ import SwiftUI
 struct CreateWashroomButton: View {
     @ObservedObject var building: Building
     @State private var showCreateWashroom = false
-
+    @ObservedObject var settings = PersistentSettings.shared
+    
     var body: some View {
         Button(action: { self.showCreateWashroom = true }, label: {
             HStack {
                 Image(systemName: "plus")
-                Text("Add Washroom")
+                Text("Add \(settings.preferredTerm.capitalized)")
             }
         })
             .popover(isPresented: $showCreateWashroom, content: { CreateWashroomView(show: self.$showCreateWashroom, building: self.building) } )
