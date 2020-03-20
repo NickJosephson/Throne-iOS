@@ -9,6 +9,7 @@
 import XCTest
 @testable import Throne
 
+/// Example test setup.
 class ThroneTests: XCTestCase {
 
     override func setUp() {

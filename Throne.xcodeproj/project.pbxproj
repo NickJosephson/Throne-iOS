@@ -63,22 +63,6 @@
 		E1DCC7322413912A0094A099 /* ProfileListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DCC7312413912A0094A099 /* ProfileListView.swift */; };
 		E1DCC73424139A8C0094A099 /* ReviewRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DCC73324139A8C0094A099 /* ReviewRowView.swift */; };
 		E1DD2095241930F4002A71ED /* WashroomTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DD2094241930F4002A71ED /* WashroomTest.swift */; };
-		E1DD209624193123002A71ED /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1768D4D23FDEE2B00A9F098 /* AppConfiguration.swift */; };
-		E1DD209724193123002A71ED /* NearMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738523E561BB00D4AE5E /* NearMe.swift */; };
-		E1DD209824193123002A71ED /* Building.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C9BEA23F1DBB60045663B /* Building.swift */; };
-		E1DD209924193123002A71ED /* Washroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738723E561DD00D4AE5E /* Washroom.swift */; };
-		E1DD209A24193123002A71ED /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12634E5241624BA00E7DECC /* Filter.swift */; };
-		E1DD209B24193123002A71ED /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C9BE823F1DB3A0045663B /* Location.swift */; };
-		E1DD209C24193123002A71ED /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19AA94F240CD10C00B2DB28 /* Gender.swift */; };
-		E1DD209D24193123002A71ED /* Amenity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19AA94D240CD0D400B2DB28 /* Amenity.swift */; };
-		E1DD209E24193123002A71ED /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C9BEC23F1DD850045663B /* Review.swift */; };
-		E1DD209F24193123002A71ED /* Ratings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19AA951240CD14500B2DB28 /* Ratings.swift */; };
-		E1DD20A024193123002A71ED /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C9BEE23F1DF6D0045663B /* User.swift */; };
-		E1DD20A124193123002A71ED /* PersistentSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDA0B723E404A6007ADA73 /* PersistentSettings.swift */; };
-		E1DD20A224193123002A71ED /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738323E5612400D4AE5E /* LoginManager.swift */; };
-		E1DD20A324193123002A71ED /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11449072409C03A00DD4F04 /* LocationManager.swift */; };
-		E1DD20A424193123002A71ED /* AuthenticationEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CFDE6723FA4FBF007423FD /* AuthenticationEndpoint.swift */; };
-		E1DD20A524193123002A71ED /* ThroneEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12211D423FB4E18006C99D2 /* ThroneEndpoint.swift */; };
 		E1DD20A724193580002A71ED /* BuildingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DD20A624193580002A71ED /* BuildingTest.swift */; };
 		E1DD20A9241937B7002A71ED /* FilterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DD20A8241937B7002A71ED /* FilterTest.swift */; };
 		E1E0738223E54E3A00D4AE5E /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738123E54E3A00D4AE5E /* WelcomeView.swift */; };
@@ -358,10 +342,10 @@
 			isa = PBXGroup;
 			children = (
 				E176AED923E38B2C00EF8D15 /* ThroneTests.swift */,
-				E176AEDB23E38B2C00EF8D15 /* Info.plist */,
 				E1DD2094241930F4002A71ED /* WashroomTest.swift */,
 				E1DD20A624193580002A71ED /* BuildingTest.swift */,
 				E1DD20A8241937B7002A71ED /* FilterTest.swift */,
+				E176AEDB23E38B2C00EF8D15 /* Info.plist */,
 			);
 			path = ThroneTests;
 			sourceTree = "<group>";
@@ -616,23 +600,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1DD209624193123002A71ED /* AppConfiguration.swift in Sources */,
 				E1DD20A724193580002A71ED /* BuildingTest.swift in Sources */,
-				E1DD209724193123002A71ED /* NearMe.swift in Sources */,
-				E1DD209824193123002A71ED /* Building.swift in Sources */,
-				E1DD209924193123002A71ED /* Washroom.swift in Sources */,
-				E1DD209A24193123002A71ED /* Filter.swift in Sources */,
-				E1DD209B24193123002A71ED /* Location.swift in Sources */,
-				E1DD209C24193123002A71ED /* Gender.swift in Sources */,
-				E1DD209D24193123002A71ED /* Amenity.swift in Sources */,
-				E1DD209E24193123002A71ED /* Review.swift in Sources */,
-				E1DD209F24193123002A71ED /* Ratings.swift in Sources */,
-				E1DD20A024193123002A71ED /* User.swift in Sources */,
-				E1DD20A124193123002A71ED /* PersistentSettings.swift in Sources */,
-				E1DD20A224193123002A71ED /* LoginManager.swift in Sources */,
-				E1DD20A324193123002A71ED /* LocationManager.swift in Sources */,
-				E1DD20A424193123002A71ED /* AuthenticationEndpoint.swift in Sources */,
-				E1DD20A524193123002A71ED /* ThroneEndpoint.swift in Sources */,
 				E1DD20A9241937B7002A71ED /* FilterTest.swift in Sources */,
 				E176AEDA23E38B2C00EF8D15 /* ThroneTests.swift in Sources */,
 				E1DD2095241930F4002A71ED /* WashroomTest.swift in Sources */,
