@@ -28,7 +28,7 @@ class NearMeUITest: XCTestCase {
 
     func testFilterButton() {
         let app = XCUIApplication()
-        XCTAssert(app.buttons["Filter"].exists)
+        XCTAssert(app.buttons["Filter"].waitForExistence(timeout: 10.0))
     }
     
     func testFilter() {
