@@ -37,11 +37,11 @@ class NearMeUITest: XCTestCase {
         
         // test functionality of amenity selector
         let tablesQuery = app.tables
-        tablesQuery/*@START_MENU_TOKEN@*/.buttons["Amenities\n0 Selected"]/*[[".cells.buttons[\"Amenities\\n0 Selected\"]",".buttons[\"Amenities\\n0 Selected\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        tablesQuery.buttons["Amenities\n0 Selected"].tap()
         tablesQuery/*@START_MENU_TOKEN@*/.buttons["Air Dryer"]/*[[".cells.buttons[\"Air Dryer\"]",".buttons[\"Air Dryer\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         tablesQuery/*@START_MENU_TOKEN@*/.buttons["Paper Towel"]/*[[".cells.buttons[\"Paper Towel\"]",".buttons[\"Paper Towel\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         tablesQuery/*@START_MENU_TOKEN@*/.buttons["Automatic Dryer"]/*[[".cells.buttons[\"Automatic Dryer\"]",".buttons[\"Automatic Dryer\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-        app.navigationBars["_TtGC7SwiftUIP13$7fff2c68216028DestinationHosting"].buttons["Filter"].tap()
+        app.navigationBars["Amenities"].buttons["Filter"].tap()
 
         // test that radius slider is present
         XCTAssert(tablesQuery.staticTexts["Radius"].exists)
