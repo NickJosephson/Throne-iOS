@@ -24,6 +24,7 @@ class ThroneEndpointStub: ThroneEndpoint {
                 newWashroom.id = currentWashroomID
                 newWashroom.buildingID = buildingID
                 newWashroom.floor = washroomFloor
+                newWashroom.buildingTitle = newBuilding.title
                 washrooms.append(newWashroom)
                 newBuilding.washrooms.append(newWashroom)
                 currentWashroomID += 1

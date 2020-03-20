@@ -26,11 +26,35 @@ class NearMeUITest: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testFilterButton() {
         let app = XCUIApplication()
         XCTAssert(app.buttons["Filter"].exists)
+    }
+    
+    func testFilter() {
+        let app = XCUIApplication()
+        app.navigationBars["Near Me"].buttons["Filter"].tap()
+        
+        // test functionality of amenity selector
+        let tablesQuery = app.tables
+        tablesQuery/*@START_MENU_TOKEN@*/.buttons["Amenities\n0 Selected"]/*[[".cells.buttons[\"Amenities\\n0 Selected\"]",".buttons[\"Amenities\\n0 Selected\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        tablesQuery/*@START_MENU_TOKEN@*/.buttons["Air Dryer"]/*[[".cells.buttons[\"Air Dryer\"]",".buttons[\"Air Dryer\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        tablesQuery/*@START_MENU_TOKEN@*/.buttons["Paper Towel"]/*[[".cells.buttons[\"Paper Towel\"]",".buttons[\"Paper Towel\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        tablesQuery/*@START_MENU_TOKEN@*/.buttons["Automatic Dryer"]/*[[".cells.buttons[\"Automatic Dryer\"]",".buttons[\"Automatic Dryer\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app.navigationBars["_TtGC7SwiftUIP13$7fff2c68216028DestinationHosting"].buttons["Filter"].tap()
+
+        // test that radius slider is present
+        XCTAssert(tablesQuery.staticTexts["Radius"].exists)
+        
+        // test pressing showEmptyBuildings and reseting its state with Restore Defaults button
+        let showEmptyBuildingsShowEmptyBuildingsSwitch = tablesQuery.switches["Show Empty Buildings\nShow Empty Buildings"]
+        XCTAssert(showEmptyBuildingsShowEmptyBuildingsSwitch.value as! String == "0")
+        showEmptyBuildingsShowEmptyBuildingsSwitch.tap()
+        XCTAssert(showEmptyBuildingsShowEmptyBuildingsSwitch.value as! String == "1")
+        tablesQuery.buttons["Restore Defaults"].tap()
+        XCTAssert(showEmptyBuildingsShowEmptyBuildingsSwitch.value as! String == "0")
+        
+        app.navigationBars["Filter"].buttons["Apply"].tap()
     }
 
 }
