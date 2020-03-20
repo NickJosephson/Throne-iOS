@@ -10,6 +10,7 @@ import Foundation
 
 /// Provides interaction with the AWS Cognito OAuth2 authentication interface for Throne
 class AuthenticationEndpoint {
+    // Shared instance to use across application
     #if STUBBED
         static let shared = AuthenticationEndpointStub()
     #else

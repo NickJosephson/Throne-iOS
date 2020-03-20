@@ -13,7 +13,7 @@ import CoreLocation
 
 /// Manage the state of user location.
 final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
-    static var shared = LocationManager() // Shared instance to use across application
+    static let shared = LocationManager() // Shared instance to use across application
     
     private let locationManager = CLLocationManager()
     private var loginSubscription: AnyCancellable!
@@ -31,12 +31,14 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
             currentLocation = Location(location.coordinate)
         }
         
-        // request location permission after login
-        loginSubscription = LoginManager.shared.$isLoggedIn
-            .filter { $0 }
-            .sink { _ in
-                self.locationManager.requestWhenInUseAuthorization()
-            }
+        #if !STUBBED
+            // request location permission after login
+            loginSubscription = LoginManager.shared.$isLoggedIn
+                .filter { $0 }
+                .sink { _ in
+                    self.locationManager.requestWhenInUseAuthorization()
+                }
+        #endif
     }
     
     /// Handle a location update.

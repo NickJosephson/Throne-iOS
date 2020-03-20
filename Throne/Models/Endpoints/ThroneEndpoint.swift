@@ -10,6 +10,7 @@ import Foundation
 
 /// Provides interaction with the API interface for Throne
 class ThroneEndpoint {
+    // Shared instance to use across application
     #if STUBBED
         static let shared = ThroneEndpointStub()
     #else
