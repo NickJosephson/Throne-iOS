@@ -35,7 +35,11 @@ final class LoginManager: ObservableObject {
     
     init() {
         // Restore login state
-        isLoggedIn = settings.isLoggedIn
+        #if STUBBED
+            isLoggedIn = true
+        #else
+            isLoggedIn = settings.isLoggedIn
+        #endif
         
         // refresh token when a refresh is requested
         refreshSubscription = requestRefresh
@@ -52,7 +56,7 @@ final class LoginManager: ObservableObject {
         currentUserSubscription = shouldUpdatePublisher
             .flatMap { _ in
                 return Future { promise in
-                    ThroneEndpoint.fetchCurrentUser { user in
+                    ThroneEndpoint.shared.fetchCurrentUser { user in
                         promise(.success(user))
                     }
                 }
@@ -76,7 +80,7 @@ final class LoginManager: ObservableObject {
     }
     
     func attemptLogin(with code: String) {
-        AuthenticationEndpoint.fetchTokens(authorizedWith: code) { tokens in
+        AuthenticationEndpoint.shared.fetchTokens(authorizedWith: code) { tokens in
             DispatchQueue.main.async {
                 if let tokens = tokens {
                     self.settings.idToken = tokens.idToken
@@ -100,7 +104,7 @@ final class LoginManager: ObservableObject {
     func refreshLogin() {
         NSLog("Starting login refresh.")
         if let refreshToken = settings.refreshToken {
-            AuthenticationEndpoint.refreshTokens(authorizedWith: refreshToken) { tokens in
+            AuthenticationEndpoint.shared.refreshTokens(authorizedWith: refreshToken) { tokens in
                 DispatchQueue.main.async {
                     if let tokens = tokens {
                         self.settings.idToken = tokens.idToken

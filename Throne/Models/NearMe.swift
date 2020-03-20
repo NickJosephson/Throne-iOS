@@ -60,7 +60,7 @@ final class NearMe: ObservableObject {
         washroomsSubscription = shouldUpdatePublisher
             .flatMap { _ in
                 return Future { promise in
-                    ThroneEndpoint.fetchWashrooms(near: LocationManager.shared.currentLocation, filteredBy: self.filter) { washrooms in
+                    ThroneEndpoint.shared.fetchWashrooms(near: LocationManager.shared.currentLocation, filteredBy: self.filter) { washrooms in
                         promise(.success(washrooms))
                     }
                 }
@@ -71,7 +71,7 @@ final class NearMe: ObservableObject {
         buildingsSubscription = shouldUpdatePublisher
             .flatMap { _ in
                 return Future { promise in
-                    ThroneEndpoint.fetchBuildings(near: LocationManager.shared.currentLocation, filteredBy: self.filter) { buildings in
+                    ThroneEndpoint.shared.fetchBuildings(near: LocationManager.shared.currentLocation, filteredBy: self.filter) { buildings in
                         promise(.success(buildings))
                     }
                 }
@@ -84,7 +84,7 @@ final class NearMe: ObservableObject {
             .throttle(for: .seconds(1), scheduler: RunLoop.current, latest: false)
             .flatMap { _ in
                 return Future { promise in
-                    ThroneEndpoint.fetchFavorites { favoriteWashrooms in
+                    ThroneEndpoint.shared.fetchFavorites { favoriteWashrooms in
                         promise(.success(favoriteWashrooms))
                     }
                 }
@@ -97,7 +97,7 @@ final class NearMe: ObservableObject {
             .throttle(for: .seconds(1), scheduler: RunLoop.current, latest: false)
             .flatMap { _ in
                 return Future { promise in
-                    ThroneEndpoint.fetchReviews { reviews in
+                    ThroneEndpoint.shared.fetchReviews { reviews in
                         promise(.success(reviews))
                     }
                 }

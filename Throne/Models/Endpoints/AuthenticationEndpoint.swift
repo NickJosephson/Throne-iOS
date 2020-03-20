@@ -10,10 +10,16 @@ import Foundation
 
 /// Provides interaction with the AWS Cognito OAuth2 authentication interface for Throne
 class AuthenticationEndpoint {
-    private static let host = AppConfiguration.authenticationLoginAddress
-    private static let clientID = AppConfiguration.authenticationClientID
-    private static let scope = AppConfiguration.authenticationScope
-    private static let redirect = AppConfiguration.authenticationLoginRedirect
+    #if STUBBED
+        static let shared = AuthenticationEndpointStub()
+    #else
+        static let shared = AuthenticationEndpointStub()
+    #endif
+    
+    private let host = AppConfiguration.authenticationLoginAddress
+    private let clientID = AppConfiguration.authenticationClientID
+    private let scope = AppConfiguration.authenticationScope
+    private let redirect = AppConfiguration.authenticationLoginRedirect
     
     /// Represents tokens returned by AWS Cognito.
     struct TokensResponse: Codable {
@@ -33,7 +39,7 @@ class AuthenticationEndpoint {
     }
     
     /// URL of the AWS Cognito hosted login webpage
-    class var loginAddress: URL {
+    var loginAddress: URL {
         get {
             var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
             urlComponents.path = "/login"
@@ -48,7 +54,7 @@ class AuthenticationEndpoint {
     }
     
     /// URL of the AWS Cognito hosted signup webpage
-    class var signupAddress: URL {
+    var signupAddress: URL {
         get {
             var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
             urlComponents.path = "/signup"
@@ -69,7 +75,7 @@ class AuthenticationEndpoint {
     /// - Parameters:
     ///   - code: The AWS authorization code returned from a user login.
     ///   - completionHandler: Handle the TokensResponse when fetching is finished.
-    class func fetchTokens(authorizedWith code: String, completionHandler: @escaping (TokensResponse?) -> Void) {
+    func fetchTokens(authorizedWith code: String, completionHandler: @escaping (TokensResponse?) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/oauth2/token"
         urlComponents.queryItems = [
@@ -102,7 +108,7 @@ class AuthenticationEndpoint {
     /// - Parameters:
     ///   - refreshToken: AWS Cognito refresh token from original fetchTokens() call.
     ///   - completionHandler: Handle the TokensResponse when fetching is finished.
-    class func refreshTokens(authorizedWith refreshToken: String, completionHandler: @escaping (TokensResponse?) -> Void) {
+    func refreshTokens(authorizedWith refreshToken: String, completionHandler: @escaping (TokensResponse?) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/oauth2/token"
         urlComponents.queryItems = [
@@ -134,7 +140,7 @@ class AuthenticationEndpoint {
     /// - Parameters:
     ///   - url: URL to send GET request to.
     ///   - completionHandler: Function to handle Data once received.
-    private class func fetch(url: URL, completionHandler: @escaping (Data?) -> Void) {
+    private func fetch(url: URL, completionHandler: @escaping (Data?) -> Void) {
         let request = URLRequest(url: url)
         performRequest(with: request, completionHandler: completionHandler)
     }
@@ -143,7 +149,7 @@ class AuthenticationEndpoint {
     /// - Parameters:
     ///   - request: URLRequest to perform.
     ///   - completionHandler: Function to handle Data once received.
-    private class func performRequest(with request: URLRequest, completionHandler: @escaping (Data?) -> Void) {
+    private func performRequest(with request: URLRequest, completionHandler: @escaping (Data?) -> Void) {
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 NSLog("Authentication Endpoint URL Session Error: \(error)")

@@ -87,7 +87,7 @@ final class Washroom: Codable, ObservableObject, Hashable {
         reviewsSubscription = shouldUpdateReviewsPublisher
             .flatMap { _ in
                 return Future { promise in
-                    ThroneEndpoint.fetchReviews(for: self) { reviews in
+                    ThroneEndpoint.shared.fetchReviews(for: self) { reviews in
                         promise(.success(reviews))
                     }
                 }
@@ -98,7 +98,7 @@ final class Washroom: Codable, ObservableObject, Hashable {
         detailsSubscription = shouldUpdateReviewsPublisher
         .flatMap { _ in
             return Future { promise in
-                ThroneEndpoint.fetchWashroom(matching: self.id) { washroom in
+                ThroneEndpoint.shared.fetchWashroom(matching: self.id) { washroom in
                     promise(.success(washroom))
                 }
             }
@@ -119,7 +119,7 @@ final class Washroom: Codable, ObservableObject, Hashable {
     /// Update the details of this washroom from the Throne endpoint.
     /// - Parameter id: ID of the washroom to fetch details for.
     func updateDetailsFrom(id: Int) {
-        ThroneEndpoint.fetchWashroom(matching: id) { newWashroom in
+        ThroneEndpoint.shared.fetchWashroom(matching: id) { newWashroom in
             DispatchQueue.main.async {
                 self.objectWillChange.send()
                 self.id = newWashroom.id
@@ -147,7 +147,7 @@ final class Washroom: Codable, ObservableObject, Hashable {
     /// Add a new review to this washroom.
     /// - Parameter review: The new review to add.
     func postReview(review: Review) {
-        ThroneEndpoint.post(review: review, for: self) { _ in
+        ThroneEndpoint.shared.post(review: review, for: self) { _ in
             self.setupReviewsSubscription()
             self.requestReviewsUpdate.send()
             NearMe.shared.requestReviewsUpdate.send()
@@ -159,13 +159,13 @@ final class Washroom: Codable, ObservableObject, Hashable {
         favoritingChangeInProgress = true
         
         if isFavorite {
-            ThroneEndpoint.deleteFavorite(washroom: self) {
+            ThroneEndpoint.shared.deleteFavorite(washroom: self) {
                 self.setupReviewsSubscription()
                 self.requestReviewsUpdate.send()
                 NearMe.shared.requestFavoritesUpdate.send()
             }
         } else {
-            ThroneEndpoint.postFavorite(washroom: self) { _ in
+            ThroneEndpoint.shared.postFavorite(washroom: self) { _ in
                 self.setupReviewsSubscription()
                 self.requestReviewsUpdate.send()
                 NearMe.shared.requestFavoritesUpdate.send()
