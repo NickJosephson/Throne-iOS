@@ -13,7 +13,7 @@ class AuthenticationEndpoint {
     #if STUBBED
         static let shared = AuthenticationEndpointStub()
     #else
-        static let shared = AuthenticationEndpointStub()
+        static let shared = AuthenticationEndpoint()
     #endif
     
     private let host = AppConfiguration.authenticationLoginAddress
