@@ -10,9 +10,9 @@ import SwiftUI
 
 struct CreateWashroomButton: View {
     @ObservedObject var building: Building
+    @ObservedObject private var settings = PersistentSettings.shared
     @State private var showCreateWashroom = false
-    @ObservedObject var settings = PersistentSettings.shared
-    
+
     var body: some View {
         Button(action: { self.showCreateWashroom = true }, label: {
             HStack {

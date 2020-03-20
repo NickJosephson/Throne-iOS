@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @ObservedObject var settings = PersistentSettings.shared
-    
+    @ObservedObject private var settings = PersistentSettings.shared
+
     var body: some View {
         Form {
             Picker(selection: $settings.preferredTerm, label: Text("Preferred Terminology")) {

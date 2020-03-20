@@ -11,7 +11,7 @@ import Foundation
 struct Review: Codable, Hashable {
     let id: Int
     let washroomID: Int
-    let user: User!
+    let user: User?
     let createdAt: Date
     let upvoteCount: Int?
     let ratings: Ratings
@@ -60,4 +60,15 @@ extension Review {
         )
     }
     
+    init() {
+        self.init(
+            id: 0,
+            washroomID: 0,
+            user: nil,
+            createdAt: Date(),
+            upvoteCount: 0,
+            ratings: Ratings(privacy: 0, toiletPaperQuality: 0, smell: 0, cleanliness: 0),
+            comment: ""
+        )
+    }
 }

@@ -9,26 +9,32 @@
 import SwiftUI
 
 struct FilterButton: View {
-    @ObservedObject var nearMe: NearMe
+    @ObservedObject private var nearMe = NearMe.shared
     @State private var showFilterView = false
 
     var body: some View {
-        Button(action: { self.showFilterView = true }, label: {
-            HStack {
-                if self.nearMe.filter == Filter() {
-                    Image(systemName: "line.horizontal.3.decrease.circle")
-                } else {
-                    Image(systemName: "line.horizontal.3.decrease.circle.fill")
+        Button(
+            action: { self.showFilterView = true },
+            label: {
+                HStack {
+                    if self.nearMe.filter == Filter() {
+                        Image(systemName: "line.horizontal.3.decrease.circle")
+                    } else {
+                        Image(systemName: "line.horizontal.3.decrease.circle.fill")
+                    }
+                    Text("Filter")
                 }
-                Text("Filter")
             }
-        })
-            .popover(isPresented: $showFilterView, content: { FilterView(show: self.$showFilterView, nearMe: self.nearMe) } )
+        )
+        .popover(
+            isPresented: $showFilterView,
+            content: { FilterView(show: self.$showFilterView) }
+        )
     }
 }
 
 struct FilterButton_Previews: PreviewProvider {
     static var previews: some View {
-        FilterButton(nearMe: NearMe.shared)
+        FilterButton()
     }
 }

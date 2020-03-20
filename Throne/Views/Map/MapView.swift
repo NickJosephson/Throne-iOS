@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct MapView: View {
-    @ObservedObject var nearMe: NearMe
+    @ObservedObject private var nearMe = NearMe.shared
     
     var body: some View {
         MapUIView(buildings: nearMe.buildings)
@@ -19,6 +19,6 @@ struct MapView: View {
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView(nearMe: NearMe.shared)
+        MapView()
     }
 }

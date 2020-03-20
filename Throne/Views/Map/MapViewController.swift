@@ -137,7 +137,9 @@ extension MapViewController: MKMapViewDelegate {
         if let annotation = view.annotation as? BuildingAnnotation {
             NSLog("Tapped annotation accessory view")
 
-            let buildingDetailController = UIHostingController(rootView: BuildingDetailView(building: annotation.building))
+            let buildingDetailView = BuildingDetailView(building: annotation.building)
+            
+            let buildingDetailController = UIHostingController(rootView: buildingDetailView)
             self.buildingDetailNavigationController = UINavigationController(rootViewController: buildingDetailController)
             self.buildingDetailNavigationController.navigationBar.prefersLargeTitles = true
             self.buildingDetailNavigationController.modalPresentationStyle = .popover

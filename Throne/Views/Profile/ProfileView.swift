@@ -9,12 +9,12 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @ObservedObject var nearMe: NearMe
+    @ObservedObject private var nearMe = NearMe.shared
     @State private var currentListType = ProfileListView.ProfileListType.favorites
     
     var body: some View {
         NavigationView {
-            ProfileListView(nearMe: self.nearMe, currentListType: self.$currentListType)
+            ProfileListView(currentListType: self.$currentListType)
                 .navigationBarTitle("", displayMode: .inline)
                 .navigationBarItems(
                     leading: HStack {
@@ -44,6 +44,6 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(nearMe: NearMe.shared)
+        ProfileView()
     }
 }

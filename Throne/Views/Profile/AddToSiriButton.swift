@@ -65,9 +65,3 @@ class AddShortcutViewController: UIViewController, INUIAddVoiceShortcutButtonDel
     }
     
 }
-
-struct AddToSiriButton_Previews: PreviewProvider {
-    static var previews: some View {
-        AddToSiriButton()
-    }
-}

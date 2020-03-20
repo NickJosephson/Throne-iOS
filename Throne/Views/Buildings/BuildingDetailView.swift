@@ -10,8 +10,8 @@ import SwiftUI
 
 struct BuildingDetailView: View {
     @ObservedObject var building: Building
-    @ObservedObject var settings = PersistentSettings.shared
-    
+    @ObservedObject private var settings = PersistentSettings.shared
+
     init(building: Building) {
         self.building = building
         building.setupWashroomsSubscription()

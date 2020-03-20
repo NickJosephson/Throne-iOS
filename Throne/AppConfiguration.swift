@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Provide application wide constants customized for the current build scheme.
 class AppConfiguration {
     static let authenticationLoginAddress = URL(string: "https://login.findmythrone.com")!
     static let authenticationLoginRedirect = "throne://"

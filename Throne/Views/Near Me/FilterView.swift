@@ -10,14 +10,17 @@ import SwiftUI
 
 struct FilterView: View {
     @Binding var show: Bool
-    @ObservedObject var nearMe: NearMe
+    @ObservedObject private var nearMe = NearMe.shared
     @State private var newFilter = Filter()
     
     var body: some View {
         NavigationView {
             Form {
+                // Amenities Selection
                 NavigationLink(
-                    destination: Form(content: { AmenitiesSelectionView(amenities: self.$newFilter.amenities) }),
+                    destination: Form {
+                        AmenitiesSelectionView(amenities: self.$newFilter.amenities)
+                    },
                     label: {
                         HStack {
                             Text("Amenities")
@@ -29,6 +32,7 @@ struct FilterView: View {
                     }
                 )
                 
+                // Radius Selection
                 Section {
                     VStack {
                         HStack {
@@ -47,10 +51,15 @@ struct FilterView: View {
                     .accessibilityElement(children: .combine)
                 }
                 
-                Section() {
-                    Toggle(isOn: self.$newFilter.showEmptyBuildings, label: { Text("Show Empty Buildings") })
+                // Show Empty Buildings Toggle
+                Section {
+                    Toggle(
+                        isOn: self.$newFilter.showEmptyBuildings,
+                        label: { Text("Show Empty Buildings") }
+                    )
                 }
                 
+                // Restore Defaults Button
                 Section {
                     Button(
                         action: { self.newFilter = Filter() },
@@ -61,10 +70,13 @@ struct FilterView: View {
             .navigationBarTitle("Filter", displayMode: .inline)
             .navigationBarItems(
                 leading: Button(action: { self.show = false }, label: { Text("Cancel") }),
-                trailing: Button(action: {
-                    self.nearMe.filter = self.newFilter
-                    self.show = false
-                }, label: { Text("Apply") })
+                trailing: Button(
+                    action: {
+                        self.nearMe.filter = self.newFilter
+                        self.show = false
+                    },
+                    label: { Text("Apply") }
+                )
             )
         }
         .onAppear {
@@ -73,9 +85,8 @@ struct FilterView: View {
     }
 }
 
-
 struct FilterView_Previews: PreviewProvider {
     static var previews: some View {
-        FilterView(show: .constant(true), nearMe: NearMe.shared)
+        FilterView(show: .constant(true))
     }
 }

@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct ProfileListView: View {
-    @ObservedObject var nearMe: NearMe
     @Binding var currentListType: ProfileListType
+    @ObservedObject private var nearMe = NearMe.shared
     @ObservedObject private var settings = PersistentSettings.shared
 
     enum ProfileListType {
@@ -62,6 +62,6 @@ struct ProfileListView: View {
 
 struct ProfileListView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileListView(nearMe: NearMe.shared, currentListType: .constant(.favorites))
+        ProfileListView(currentListType: .constant(.favorites))
     }
 }
