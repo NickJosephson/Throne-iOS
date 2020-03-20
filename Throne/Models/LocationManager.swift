@@ -23,6 +23,14 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
     override init() {
         super.init()
         
+        #if STUBBED
+            currentLocation = Location(latitude: 49.8080954, longitude: -97.1375209)
+        #else
+            setupLocationManager()
+        #endif
+    }
+    
+    func setupLocationManager() {
         // start tracking location
         locationManager.delegate = self
         locationManager.distanceFilter = 20.0 // meters
@@ -31,14 +39,12 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
             currentLocation = Location(location.coordinate)
         }
         
-        #if !STUBBED
-            // request location permission after login
-            loginSubscription = LoginManager.shared.$isLoggedIn
-                .filter { $0 }
-                .sink { _ in
-                    self.locationManager.requestWhenInUseAuthorization()
-                }
-        #endif
+        // request location permission after login
+        loginSubscription = LoginManager.shared.$isLoggedIn
+            .filter { $0 }
+            .sink { _ in
+                self.locationManager.requestWhenInUseAuthorization()
+            }
     }
     
     /// Handle a location update.
