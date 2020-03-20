@@ -14,7 +14,7 @@ struct SettingsView: View {
     var body: some View {
         Form {
             Picker(selection: $settings.preferredTerm, label: Text("Preferred Terminology")) {
-                ForEach(preferredTermOptions.sorted(), id: \.self) { name in
+                ForEach(settings.preferredTermOptions.sorted(), id: \.self) { name in
                     Text(name).tag(name)
                 }
             }

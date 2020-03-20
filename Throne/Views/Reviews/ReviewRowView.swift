@@ -18,7 +18,7 @@ struct ReviewRowView: View {
                     Image(systemName: "person.circle").accessibility(hidden: true)
                     Text("\(review.user?.username ?? "")")
                     Spacer()
-                    Text("\(review.getRelativeDateDescription())")
+                    Text("\(review.relativeDateDescription)")
                 }
                     .font(.headline)
                     .foregroundColor(.secondary)

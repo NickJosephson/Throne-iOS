@@ -9,6 +9,7 @@
 import Foundation
 import Combine
 
+/// Model a building and keep an up to date list of the washrooms inside.
 final class Building: Codable, ObservableObject, Hashable {
     var id: Int
     var title: String
@@ -102,6 +103,8 @@ final class Building: Codable, ObservableObject, Hashable {
         self.requestWashroomsUpdate.send()
     }
     
+    /// Add a new washroom to this building.
+    /// - Parameter washroom: The new washroom.
     func postWashroom(washroom: Washroom) {
         ThroneEndpoint.post(washroom: washroom, for: self) { _ in
             self.setupWashroomsSubscription()
@@ -109,6 +112,7 @@ final class Building: Codable, ObservableObject, Hashable {
         }
     }
     
+    /// A human readable description of the distance to this building.
     var distanceDescription: String {
         get {
             if let distance = self.distance {
@@ -125,6 +129,9 @@ final class Building: Codable, ObservableObject, Hashable {
         }
     }
 
+    /// String of stars representing the overall rating for this building.
+    ///
+    /// Example: 3 -> "★★★☆☆"
     var stars: String {
         get {
             if self.overallRating <= 0 {

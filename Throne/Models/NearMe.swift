@@ -9,6 +9,9 @@
 import Foundation
 import Combine
 
+/// Provide the main data model of Throne.
+///
+/// Keep lists of washrooms, buildings, reviews, and favorites up to date.
 final class NearMe: ObservableObject {
     static var shared = NearMe() // Shared instance to use across application
 
@@ -27,6 +30,7 @@ final class NearMe: ObservableObject {
 
     @Published var filter = Filter() {
         didSet {
+            // keep washrooms and buildings up to date based on the current filter
             self.requestDataUpdate.send()
         }
     }

@@ -9,6 +9,7 @@
 import Foundation
 import Combine
 
+/// Model a washroom and keep an up to date list of its reviews.
 final class Washroom: Codable, ObservableObject, Hashable {
     var id: Int
     var buildingTitle: String
@@ -115,6 +116,8 @@ final class Washroom: Codable, ObservableObject, Hashable {
         requestReviewsUpdate.send()
     }
     
+    /// Update the details of this washroom from the Throne endpoint.
+    /// - Parameter id: ID of the washroom to fetch details for.
     func updateDetailsFrom(id: Int) {
         ThroneEndpoint.fetchWashroom(matching: id) { newWashroom in
             DispatchQueue.main.async {
@@ -141,6 +144,8 @@ final class Washroom: Codable, ObservableObject, Hashable {
         }
     }
     
+    /// Add a new review to this washroom.
+    /// - Parameter review: The new review to add.
     func postReview(review: Review) {
         ThroneEndpoint.post(review: review, for: self) { _ in
             self.setupReviewsSubscription()
@@ -149,6 +154,7 @@ final class Washroom: Codable, ObservableObject, Hashable {
         }
     }
     
+    /// Favorite or Unfavorite this washroom.
     func toggleIsFavorite() {
         favoritingChangeInProgress = true
         
@@ -167,6 +173,7 @@ final class Washroom: Codable, ObservableObject, Hashable {
         }
     }
     
+    /// A URL to the website for this washroom.
     var webURL: URL {
         get {
             var url = AppConfiguration.webAddress
@@ -175,6 +182,7 @@ final class Washroom: Codable, ObservableObject, Hashable {
         }
     }
     
+    /// A human readable description of the distance to this washroom.
     var distanceDescription: String {
         get {
             if let distance = self.distance {

@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Represent the presents of a specific item in a washroom.
 enum Amenity: String, Codable, CaseIterable {
     case airDryer = "air_dryer"
     case paperTowel = "paper_towel"

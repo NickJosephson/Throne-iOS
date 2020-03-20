@@ -8,11 +8,13 @@
 
 import Foundation
 
+/// Represent filtering options that can be applied to Washroom or Building lists.
 struct Filter: Equatable, Codable {
     var amenities: [Amenity] = []
     var radius: Double = 50.0 // kilometers
     var showEmptyBuildings = false
     
+    /// A human readable description of the radius.
     var radiusDescription: String {
         get {
             if radius < 1.0 {

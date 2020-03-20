@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Represent a review on a washroom.
 struct Review: Codable, Hashable {
     let id: Int
     let washroomID: Int
@@ -27,7 +28,8 @@ struct Review: Codable, Hashable {
         case comment
     }
     
-    func getRelativeDateDescription() -> String {
+    /// A human readable description of the date a review was created relative to the current date.
+    var relativeDateDescription: String {
         let df = DateFormatter()
         df.doesRelativeDateFormatting = true
         df.dateStyle = .medium
