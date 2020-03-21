@@ -13,19 +13,28 @@ import CoreLocation
 
 /// Manage the state of user location.
 final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
-    static var shared = LocationManager() // Shared instance to use across application
+    static let shared = LocationManager() // Shared instance to use across application
     
     private let locationManager = CLLocationManager()
     private var loginSubscription: AnyCancellable!
     
     @Published var currentLocation: Location?
-
+    
     override init() {
         super.init()
-
+        
+        #if STUBBED
+            currentLocation = Location(latitude: 49.8080954, longitude: -97.1375209)
+        #else
+            setupLocationManager()
+        #endif
+    }
+    
+    func setupLocationManager() {
         // start tracking location
         locationManager.delegate = self
-        locationManager.startMonitoringSignificantLocationChanges()
+        locationManager.distanceFilter = 20.0 // meters
+        locationManager.startUpdatingLocation()
         if let location = locationManager.location {
             currentLocation = Location(location.coordinate)
         }
@@ -40,11 +49,13 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
     
     /// Handle a location update.
     func locationManager(_ manager: CLLocationManager,  didUpdateLocations locations: [CLLocation]) {
-        NSLog("User location updated.")
-        let lastLocation = locations.last!
+        let newLocation = Location(locations.last!.coordinate)
         
         DispatchQueue.main.async {
-            self.currentLocation = Location(lastLocation.coordinate)
+            if newLocation != self.currentLocation {
+                NSLog("User location updated: \(newLocation)")
+                self.currentLocation = newLocation
+            }
         }
     }
     

@@ -13,6 +13,8 @@ import Combine
 final class PersistentSettings: ObservableObject {
     static var shared = PersistentSettings() // Shared instance to use across application
     
+    private var notificationSubscription: AnyCancellable?
+
     private let isLoggedInKey = "is-logged-in"
     var isLoggedIn: Bool {
         get {
@@ -22,17 +24,7 @@ final class PersistentSettings: ObservableObject {
             UserDefaults.standard.set(newValue, forKey: isLoggedInKey)
         }
     }
-    
-    private let preferredTermKey = "preferred-term"
-    var preferredTerm: String {
-        get {
-            return UserDefaults.standard.string(forKey: preferredTermKey) ?? "washroom"
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: preferredTermKey)
-        }
-    }
-    
+        
     private let idTokenKey = "id-token"
     var idToken: String? {
         get {
@@ -63,28 +55,34 @@ final class PersistentSettings: ObservableObject {
         }
     }
     
-    private var notificationSubscription: AnyCancellable?
-
+    private let preferredTermKey = "preferred-term"
+    var preferredTerm: String {
+        get {
+            return UserDefaults.standard.string(forKey: preferredTermKey) ?? "washroom"
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: preferredTermKey)
+        }
+    }
+    let preferredTermOptions = [
+        "john",
+        "crapper",
+        "latrine",
+        "washroom",
+        "bathroom",
+        "toilet",
+        "restroom",
+        "powder room",
+        "comfort station",
+        "water closet",
+        "loo",
+        "can"
+    ]
+    
     init() {
         notificationSubscription = NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification).sink { _ in
             self.objectWillChange.send()
         }
     }
+    
 }
-
-var preferredTermOptions = [
-    "john",
-    "crapper",
-    "latrine",
-    "washroom",
-    "bathroom",
-    "toilet",
-    "restroom",
-    "lavatory",
-    "powder room",
-    "comfort station",
-    "water closet",
-    "privy",
-    "loo",
-    "can"
-]

@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Represent the specified gender of a washroom.
 enum Gender: String, Codable, CaseIterable {
     case all
     case women

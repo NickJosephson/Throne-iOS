@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Represent a user of Throne.
 struct User: Codable {
     let id: Int
     let createdAt: Date?

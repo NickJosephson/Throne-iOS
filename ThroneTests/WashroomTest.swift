@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import Throne
 
 class WashroomTest: XCTestCase {
 

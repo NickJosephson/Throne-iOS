@@ -16,9 +16,9 @@ struct ReviewRowView: View {
             VStack(alignment: .leading) {
                 HStack {
                     Image(systemName: "person.circle").accessibility(hidden: true)
-                    Text("\(review.user.username)")
+                    Text("\(review.user?.username ?? "")")
                     Spacer()
-                    Text("\(review.getRelativeDateDescription())")
+                    Text("\(review.relativeDateDescription)")
                 }
                     .font(.headline)
                     .foregroundColor(.secondary)
@@ -44,6 +44,6 @@ struct ReviewRowView: View {
 
 struct ReviewRowView_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewRowView(review: Review(ratings: Ratings(privacy: 0, toiletPaperQuality: 0, smell: 0, cleanliness: 0), comment: ""))
+        ReviewRowView(review: Review())
     }
 }

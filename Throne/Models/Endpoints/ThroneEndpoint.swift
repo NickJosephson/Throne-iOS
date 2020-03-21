@@ -10,9 +10,16 @@ import Foundation
 
 /// Provides interaction with the API interface for Throne
 class ThroneEndpoint {
-    private static let host = AppConfiguration.apiAddress
+    // Shared instance to use across application
+    #if STUBBED
+        static let shared = ThroneEndpointStub()
+    #else
+        static let shared = ThroneEndpoint()
+    #endif
     
-    class func fetchWashrooms(near location: Location?, filteredBy filter: Filter? = nil, maxResults: Int = 100, completionHandler: @escaping ([Washroom]) -> Void) {
+    private let host = AppConfiguration.apiAddress
+    
+    func fetchWashrooms(near location: Location?, filteredBy filter: Filter? = nil, maxResults: Int = 1000, completionHandler: @escaping ([Washroom]) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/washrooms/"
         urlComponents.queryItems = [
@@ -36,7 +43,7 @@ class ThroneEndpoint {
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
-    class func fetchWashrooms(in building: Building, completionHandler: @escaping ([Washroom]) -> Void) {
+    func fetchWashrooms(in building: Building, completionHandler: @escaping ([Washroom]) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/buildings/\(building.id)/washrooms/"
 
@@ -44,7 +51,7 @@ class ThroneEndpoint {
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
         
-    class func fetchWashroom(matching id: Int, completionHandler: @escaping (Washroom) -> Void) {
+    func fetchWashroom(matching id: Int, completionHandler: @escaping (Washroom) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/washrooms/\(id)/"
 
@@ -52,7 +59,7 @@ class ThroneEndpoint {
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
 
-    class func fetchBuildings(near location: Location?, filteredBy filter: Filter? = nil, maxResults: Int = 10000, completionHandler: @escaping ([Building]) -> Void) {
+    func fetchBuildings(near location: Location?, filteredBy filter: Filter? = nil, maxResults: Int = 1000, completionHandler: @escaping ([Building]) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/buildings/"
         urlComponents.queryItems = [
@@ -76,7 +83,7 @@ class ThroneEndpoint {
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
-    class func fetchBuilding(matching id: Int, completionHandler: @escaping (Building) -> Void) {
+    func fetchBuilding(matching id: Int, completionHandler: @escaping (Building) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/buildings/\(id)/"
 
@@ -84,7 +91,7 @@ class ThroneEndpoint {
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
-    class func fetchReviews(for washroom: Washroom, completionHandler: @escaping ([Review]) -> Void) {
+    func fetchReviews(for washroom: Washroom, completionHandler: @escaping ([Review]) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/washrooms/\(washroom.id)/reviews/"
 
@@ -92,7 +99,7 @@ class ThroneEndpoint {
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
-    class func fetchReviews(madeBy user: User, completionHandler: @escaping ([Review]) -> Void) {
+    func fetchReviews(madeBy user: User, completionHandler: @escaping ([Review]) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/users/\(user.id)/reviews/"
 
@@ -100,7 +107,7 @@ class ThroneEndpoint {
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
-    class func fetchReviews(completionHandler: @escaping ([Review]) -> Void) {
+    func fetchReviews(completionHandler: @escaping ([Review]) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/users/reviews/"
 
@@ -108,7 +115,7 @@ class ThroneEndpoint {
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
-    class func fetchReview(matching id: Int, completionHandler: @escaping (Review) -> Void) {
+    func fetchReview(matching id: Int, completionHandler: @escaping (Review) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/reviews/\(id)/"
 
@@ -116,7 +123,7 @@ class ThroneEndpoint {
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
-    class func fetchUser(matching id: Int, completionHandler: @escaping (User) -> Void) {
+    func fetchUser(matching id: Int, completionHandler: @escaping (User) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/users/\(id)/"
 
@@ -124,7 +131,7 @@ class ThroneEndpoint {
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
-    class func fetchCurrentUser(completionHandler: @escaping (User) -> Void) {
+    func fetchCurrentUser(completionHandler: @escaping (User) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/users/"
 
@@ -132,7 +139,7 @@ class ThroneEndpoint {
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
     
-    class func post(review: Review, for washroom: Washroom, completionHandler: @escaping (Review) -> Void) {
+    func post(review: Review, for washroom: Washroom, completionHandler: @escaping (Review) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/washrooms/\(washroom.id)/reviews/"
 
@@ -140,7 +147,7 @@ class ThroneEndpoint {
         encodeAndPost(url: urlComponents.url!, item: review, completionHandler: completionHandler)
     }
     
-    class func post(washroom: Washroom, for building: Building, completionHandler: @escaping (Washroom) -> Void) {
+    func post(washroom: Washroom, for building: Building, completionHandler: @escaping (Washroom) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/washrooms/"
 
@@ -148,7 +155,7 @@ class ThroneEndpoint {
         encodeAndPost(url: urlComponents.url!, item: washroom, completionHandler: completionHandler)
     }
     
-    class func postFavorite(washroom: Washroom, completionHandler: @escaping ([Washroom]) -> Void) {
+    func postFavorite(washroom: Washroom, completionHandler: @escaping ([Washroom]) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/users/favorites"
         
@@ -156,7 +163,7 @@ class ThroneEndpoint {
         encodeAndPost(url: urlComponents.url!, item: washroom, completionHandler: completionHandler)
     }
     
-    class func deleteFavorite(washroom: Washroom, completionHandler: @escaping () -> Void) {
+    func deleteFavorite(washroom: Washroom, completionHandler: @escaping () -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/users/favorites"
         
@@ -164,7 +171,7 @@ class ThroneEndpoint {
         encodeAndPost(url: urlComponents.url!, item: washroom, method: "DELETE", completionHandler: completionHandler)
     }
 
-    class func fetchFavorites(completionHandler: @escaping ([Washroom]) -> Void) {
+    func fetchFavorites(completionHandler: @escaping ([Washroom]) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/users/favorites/"
 
@@ -172,7 +179,7 @@ class ThroneEndpoint {
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
 
-    private class func fetchAndDecode<T: Decodable>(url: URL, completionHandler: @escaping (T) -> Void) {
+    private func fetchAndDecode<T: Decodable>(url: URL, completionHandler: @escaping (T) -> Void) {
         fetch(url: url) { data in
             do {
                 let decoder = JSONDecoder()
@@ -196,7 +203,7 @@ class ThroneEndpoint {
         }
     }
     
-    private class func encodeAndPost<Body: Encodable>(url: URL, item: Body, method: String = "POST", completionHandler: @escaping () -> Void) {
+    private func encodeAndPost<Body: Encodable>(url: URL, item: Body, method: String = "POST", completionHandler: @escaping () -> Void) {
         let data: Data
 
         do {
@@ -214,7 +221,7 @@ class ThroneEndpoint {
         }
     }
     
-    private class func encodeAndPost<Body: Encodable, Response: Decodable>(url: URL, item: Body, method: String = "POST", completionHandler: @escaping (Response) -> Void) {
+    private func encodeAndPost<Body: Encodable, Response: Decodable>(url: URL, item: Body, method: String = "POST", completionHandler: @escaping (Response) -> Void) {
         let data: Data
         
         do {
@@ -256,7 +263,7 @@ class ThroneEndpoint {
     /// - Parameters:
     ///   - url: URL to send GET request to.
     ///   - completionHandler: Function to handle Data once received.
-    private class func post(url: URL, data: Data, method: String = "POST", completionHandler: @escaping (Data) -> Void) {
+    private func post(url: URL, data: Data, method: String = "POST", completionHandler: @escaping (Data) -> Void) {
         if !LoginManager.shared.isLoggedIn {
             NSLog("Throne Endpoint Post Cancelled: Not logged in.")
             return
@@ -280,7 +287,7 @@ class ThroneEndpoint {
     /// - Parameters:
     ///   - url: URL to send GET request to.
     ///   - completionHandler: Function to handle Data once received.
-    private class func fetch(url: URL, completionHandler: @escaping (Data) -> Void) {
+    private func fetch(url: URL, completionHandler: @escaping (Data) -> Void) {
         if !LoginManager.shared.isLoggedIn {
             NSLog("Throne Endpoint Fetch Cancelled: Not logged in.")
             return
@@ -299,7 +306,7 @@ class ThroneEndpoint {
     /// - Parameters:
     ///   - request: URLRequest to perform.
     ///   - completionHandler: Function to handle Data once received.
-    private class func performRequest(with request: URLRequest, completionHandler: @escaping (Data) -> Void) {
+    private func performRequest(with request: URLRequest, completionHandler: @escaping (Data) -> Void) {
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 NSLog("Throne Endpoint URL Session Error: \(error)")

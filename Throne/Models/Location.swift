@@ -9,7 +9,8 @@
 import Foundation
 import CoreLocation
 
-struct Location: Codable {
+/// A position in the world.
+struct Location: Codable, Hashable {
     let latitude: Double
     let longitude: Double
 

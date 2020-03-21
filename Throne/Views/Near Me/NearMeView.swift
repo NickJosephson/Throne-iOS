@@ -9,19 +9,19 @@
 import SwiftUI
 
 struct NearMeView: View {
-    @ObservedObject var settings = PersistentSettings.shared
-    @ObservedObject var locationManager = LocationManager.shared
-    @ObservedObject var nearMe: NearMe
-    @State var currentListType = NearMeListView.NearMeListType.buildings
+    @ObservedObject private var nearMe = NearMe.shared
+    @ObservedObject private var settings = PersistentSettings.shared
+    @ObservedObject private var locationManager = LocationManager.shared
+    @State private var currentListType = NearMeListView.NearMeListType.buildings
     
     var body: some View {
         NavigationView {
             if locationManager.currentLocation == nil {
                 EnableLocationButton()
-                .navigationBarTitle(Text("Near Me"))
+                    .navigationBarTitle(Text("Near Me"))
             } else {
-                NearMeListView(nearMe: nearMe, currentListType: $currentListType)
-                .navigationBarTitle(Text("Near Me"))
+                NearMeListView(currentListType: $currentListType)
+                    .navigationBarTitle(Text("Near Me"))
             }
             
             if currentListType == .buildings {
@@ -38,6 +38,6 @@ struct NearMeView: View {
 
 struct NearMeView_Previews: PreviewProvider {
     static var previews: some View {
-        NearMeView(nearMe: NearMe.shared)
+        NearMeView()
     }
 }

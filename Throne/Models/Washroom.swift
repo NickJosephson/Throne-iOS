@@ -9,12 +9,13 @@
 import Foundation
 import Combine
 
-final class Washroom: Codable, ObservableObject {
+/// Model a washroom and keep an up to date list of its reviews.
+final class Washroom: Codable, ObservableObject, Hashable {
     var id: Int
     var buildingTitle: String
     var additionalTitle: String
     var location: Location
-    var distance: Double? // m
+    var distance: Double? // meters
     var gender: Gender
     var floor: Int
     var stallsCount: Int
@@ -86,7 +87,7 @@ final class Washroom: Codable, ObservableObject {
         reviewsSubscription = shouldUpdateReviewsPublisher
             .flatMap { _ in
                 return Future { promise in
-                    ThroneEndpoint.fetchReviews(for: self) { reviews in
+                    ThroneEndpoint.shared.fetchReviews(for: self) { reviews in
                         promise(.success(reviews))
                     }
                 }
@@ -97,7 +98,7 @@ final class Washroom: Codable, ObservableObject {
         detailsSubscription = shouldUpdateReviewsPublisher
         .flatMap { _ in
             return Future { promise in
-                ThroneEndpoint.fetchWashroom(matching: self.id) { washroom in
+                ThroneEndpoint.shared.fetchWashroom(matching: self.id) { washroom in
                     promise(.success(washroom))
                 }
             }
@@ -115,8 +116,10 @@ final class Washroom: Codable, ObservableObject {
         requestReviewsUpdate.send()
     }
     
+    /// Update the details of this washroom from the Throne endpoint.
+    /// - Parameter id: ID of the washroom to fetch details for.
     func updateDetailsFrom(id: Int) {
-        ThroneEndpoint.fetchWashroom(matching: id) { newWashroom in
+        ThroneEndpoint.shared.fetchWashroom(matching: id) { newWashroom in
             DispatchQueue.main.async {
                 self.objectWillChange.send()
                 self.id = newWashroom.id
@@ -141,25 +144,28 @@ final class Washroom: Codable, ObservableObject {
         }
     }
     
+    /// Add a new review to this washroom.
+    /// - Parameter review: The new review to add.
     func postReview(review: Review) {
-        ThroneEndpoint.post(review: review, for: self) { _ in
+        ThroneEndpoint.shared.post(review: review, for: self) { _ in
             self.setupReviewsSubscription()
             self.requestReviewsUpdate.send()
             NearMe.shared.requestReviewsUpdate.send()
         }
     }
     
+    /// Favorite or Unfavorite this washroom.
     func toggleIsFavorite() {
         favoritingChangeInProgress = true
         
         if isFavorite {
-            ThroneEndpoint.deleteFavorite(washroom: self) {
+            ThroneEndpoint.shared.deleteFavorite(washroom: self) {
                 self.setupReviewsSubscription()
                 self.requestReviewsUpdate.send()
                 NearMe.shared.requestFavoritesUpdate.send()
             }
         } else {
-            ThroneEndpoint.postFavorite(washroom: self) { _ in
+            ThroneEndpoint.shared.postFavorite(washroom: self) { _ in
                 self.setupReviewsSubscription()
                 self.requestReviewsUpdate.send()
                 NearMe.shared.requestFavoritesUpdate.send()
@@ -167,6 +173,7 @@ final class Washroom: Codable, ObservableObject {
         }
     }
     
+    /// A URL to the website for this washroom.
     var webURL: URL {
         get {
             var url = AppConfiguration.webAddress
@@ -175,6 +182,7 @@ final class Washroom: Codable, ObservableObject {
         }
     }
     
+    /// A human readable description of the distance to this washroom.
     var distanceDescription: String {
         get {
             if let distance = self.distance {
@@ -189,6 +197,15 @@ final class Washroom: Codable, ObservableObject {
                 return "? m"
             }
         }
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(buildingID)
+    }
+    
+    static func == (lhs: Washroom, rhs: Washroom) -> Bool {
+        return lhs.id == rhs.id && lhs.buildingID == rhs.buildingID
     }
     
     private enum CodingKeys: String, CodingKey {

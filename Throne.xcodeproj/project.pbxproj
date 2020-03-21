@@ -34,6 +34,11 @@
 		E12634E42415F2D800E7DECC /* FilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12634E32415F2D800E7DECC /* FilterButton.swift */; };
 		E12634E6241624BA00E7DECC /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12634E5241624BA00E7DECC /* Filter.swift */; };
 		E13E68942416FD31000E8C1D /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13E68932416FD31000E8C1D /* ShareView.swift */; };
+		E141A4322425433C00E07F6E /* NearMeUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E141A4312425433C00E07F6E /* NearMeUITest.swift */; };
+		E141A4362425943900E07F6E /* BuildingDetailUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E141A4352425943900E07F6E /* BuildingDetailUITest.swift */; };
+		E141A43824259DD000E07F6E /* WashroomDetailUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E141A43724259DD000E07F6E /* WashroomDetailUITest.swift */; };
+		E141A43A2425F66100E07F6E /* ProfileUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E141A4392425F66100E07F6E /* ProfileUITest.swift */; };
+		E141A43C2425FA0600E07F6E /* SettingsUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E141A43B2425FA0600E07F6E /* SettingsUITest.swift */; };
 		E146A6DE2400A1F400F73A0B /* AmenitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E146A6DD2400A1F400F73A0B /* AmenitiesView.swift */; };
 		E146A6E02400A21E00F73A0B /* ReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E146A6DF2400A21E00F73A0B /* ReviewsView.swift */; };
 		E1580F2D23F768E20087DE0B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1580F2C23F768E10087DE0B /* LoginView.swift */; };
@@ -45,13 +50,16 @@
 		E176AEC923E38B2B00EF8D15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E176AEC823E38B2B00EF8D15 /* Assets.xcassets */; };
 		E176AECC23E38B2B00EF8D15 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E176AECB23E38B2B00EF8D15 /* Preview Assets.xcassets */; };
 		E176AECF23E38B2B00EF8D15 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E176AECD23E38B2B00EF8D15 /* LaunchScreen.storyboard */; };
-		E176AEDA23E38B2C00EF8D15 /* ThroneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AED923E38B2C00EF8D15 /* ThroneTests.swift */; };
-		E176AEE523E38B2C00EF8D15 /* ThroneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEE423E38B2C00EF8D15 /* ThroneUITests.swift */; };
 		E176AEF423E39CC900EF8D15 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEF323E39CC900EF8D15 /* MapView.swift */; };
 		E176AEF623E39CFD00EF8D15 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEF523E39CFD00EF8D15 /* SettingsView.swift */; };
 		E176AEF823E3A62D00EF8D15 /* WashroomDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEF723E3A62D00EF8D15 /* WashroomDetailView.swift */; };
 		E176AEFA23E3A88E00EF8D15 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEF923E3A88E00EF8D15 /* ProfileView.swift */; };
 		E176AEFC23E3AA3500EF8D15 /* NearMeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEFB23E3AA3500EF8D15 /* NearMeView.swift */; };
+		E17C31EC24237E9600683083 /* UserBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17C31EB24237E9600683083 /* UserBadgeView.swift */; };
+		E17C320724238D8D00683083 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E17C320624238D8D00683083 /* Intents.intentdefinition */; };
+		E17C32092423931700683083 /* AddToSiriButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17C32082423931700683083 /* AddToSiriButton.swift */; };
+		E17C320B2424C3E500683083 /* ThroneEndpointStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17C320A2424C3E500683083 /* ThroneEndpointStub.swift */; };
+		E17C320D2424CBC300683083 /* AuthenticationEndpointStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17C320C2424CBC300683083 /* AuthenticationEndpointStub.swift */; };
 		E19AA94E240CD0D400B2DB28 /* Amenity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19AA94D240CD0D400B2DB28 /* Amenity.swift */; };
 		E19AA950240CD10C00B2DB28 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19AA94F240CD10C00B2DB28 /* Gender.swift */; };
 		E19AA952240CD14500B2DB28 /* Ratings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19AA951240CD14500B2DB28 /* Ratings.swift */; };
@@ -60,22 +68,6 @@
 		E1DCC7322413912A0094A099 /* ProfileListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DCC7312413912A0094A099 /* ProfileListView.swift */; };
 		E1DCC73424139A8C0094A099 /* ReviewRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DCC73324139A8C0094A099 /* ReviewRowView.swift */; };
 		E1DD2095241930F4002A71ED /* WashroomTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DD2094241930F4002A71ED /* WashroomTest.swift */; };
-		E1DD209624193123002A71ED /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1768D4D23FDEE2B00A9F098 /* AppConfiguration.swift */; };
-		E1DD209724193123002A71ED /* NearMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738523E561BB00D4AE5E /* NearMe.swift */; };
-		E1DD209824193123002A71ED /* Building.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C9BEA23F1DBB60045663B /* Building.swift */; };
-		E1DD209924193123002A71ED /* Washroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738723E561DD00D4AE5E /* Washroom.swift */; };
-		E1DD209A24193123002A71ED /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12634E5241624BA00E7DECC /* Filter.swift */; };
-		E1DD209B24193123002A71ED /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C9BE823F1DB3A0045663B /* Location.swift */; };
-		E1DD209C24193123002A71ED /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19AA94F240CD10C00B2DB28 /* Gender.swift */; };
-		E1DD209D24193123002A71ED /* Amenity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19AA94D240CD0D400B2DB28 /* Amenity.swift */; };
-		E1DD209E24193123002A71ED /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C9BEC23F1DD850045663B /* Review.swift */; };
-		E1DD209F24193123002A71ED /* Ratings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19AA951240CD14500B2DB28 /* Ratings.swift */; };
-		E1DD20A024193123002A71ED /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C9BEE23F1DF6D0045663B /* User.swift */; };
-		E1DD20A124193123002A71ED /* PersistentSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDA0B723E404A6007ADA73 /* PersistentSettings.swift */; };
-		E1DD20A224193123002A71ED /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738323E5612400D4AE5E /* LoginManager.swift */; };
-		E1DD20A324193123002A71ED /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11449072409C03A00DD4F04 /* LocationManager.swift */; };
-		E1DD20A424193123002A71ED /* AuthenticationEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CFDE6723FA4FBF007423FD /* AuthenticationEndpoint.swift */; };
-		E1DD20A524193123002A71ED /* ThroneEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12211D423FB4E18006C99D2 /* ThroneEndpoint.swift */; };
 		E1DD20A724193580002A71ED /* BuildingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DD20A624193580002A71ED /* BuildingTest.swift */; };
 		E1DD20A9241937B7002A71ED /* FilterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DD20A8241937B7002A71ED /* FilterTest.swift */; };
 		E1E0738223E54E3A00D4AE5E /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0738123E54E3A00D4AE5E /* WelcomeView.swift */; };
@@ -132,6 +124,11 @@
 		E12634E32415F2D800E7DECC /* FilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButton.swift; sourceTree = "<group>"; };
 		E12634E5241624BA00E7DECC /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		E13E68932416FD31000E8C1D /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
+		E141A4312425433C00E07F6E /* NearMeUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearMeUITest.swift; sourceTree = "<group>"; };
+		E141A4352425943900E07F6E /* BuildingDetailUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingDetailUITest.swift; sourceTree = "<group>"; };
+		E141A43724259DD000E07F6E /* WashroomDetailUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashroomDetailUITest.swift; sourceTree = "<group>"; };
+		E141A4392425F66100E07F6E /* ProfileUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUITest.swift; sourceTree = "<group>"; };
+		E141A43B2425FA0600E07F6E /* SettingsUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUITest.swift; sourceTree = "<group>"; };
 		E146A6DD2400A1F400F73A0B /* AmenitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenitiesView.swift; sourceTree = "<group>"; };
 		E146A6DF2400A21E00F73A0B /* ReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsView.swift; sourceTree = "<group>"; };
 		E1580F2C23F768E10087DE0B /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -146,16 +143,19 @@
 		E176AECE23E38B2B00EF8D15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E176AED023E38B2B00EF8D15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E176AED523E38B2C00EF8D15 /* ThroneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThroneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E176AED923E38B2C00EF8D15 /* ThroneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThroneTests.swift; sourceTree = "<group>"; };
 		E176AEDB23E38B2C00EF8D15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E176AEE023E38B2C00EF8D15 /* ThroneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThroneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E176AEE423E38B2C00EF8D15 /* ThroneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThroneUITests.swift; sourceTree = "<group>"; };
 		E176AEE623E38B2C00EF8D15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E176AEF323E39CC900EF8D15 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E176AEF523E39CFD00EF8D15 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E176AEF723E3A62D00EF8D15 /* WashroomDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashroomDetailView.swift; sourceTree = "<group>"; };
 		E176AEF923E3A88E00EF8D15 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		E176AEFB23E3AA3500EF8D15 /* NearMeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearMeView.swift; sourceTree = "<group>"; };
+		E17C31EB24237E9600683083 /* UserBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBadgeView.swift; sourceTree = "<group>"; };
+		E17C320624238D8D00683083 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
+		E17C32082423931700683083 /* AddToSiriButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToSiriButton.swift; sourceTree = "<group>"; };
+		E17C320A2424C3E500683083 /* ThroneEndpointStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThroneEndpointStub.swift; sourceTree = "<group>"; };
+		E17C320C2424CBC300683083 /* AuthenticationEndpointStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationEndpointStub.swift; sourceTree = "<group>"; };
 		E19AA94D240CD0D400B2DB28 /* Amenity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amenity.swift; sourceTree = "<group>"; };
 		E19AA94F240CD10C00B2DB28 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		E19AA951240CD14500B2DB28 /* Ratings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ratings.swift; sourceTree = "<group>"; };
@@ -273,7 +273,9 @@
 			children = (
 				E176AEF923E3A88E00EF8D15 /* ProfileView.swift */,
 				E1DCC7312413912A0094A099 /* ProfileListView.swift */,
+				E17C31EB24237E9600683083 /* UserBadgeView.swift */,
 				E176AEF523E39CFD00EF8D15 /* SettingsView.swift */,
+				E17C32082423931700683083 /* AddToSiriButton.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -295,7 +297,9 @@
 			isa = PBXGroup;
 			children = (
 				E1CFDE6723FA4FBF007423FD /* AuthenticationEndpoint.swift */,
+				E17C320C2424CBC300683083 /* AuthenticationEndpointStub.swift */,
 				E12211D423FB4E18006C99D2 /* ThroneEndpoint.swift */,
+				E17C320A2424C3E500683083 /* ThroneEndpointStub.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -330,6 +334,7 @@
 				E176AEF223E3987900EF8D15 /* Views */,
 				E176AEC823E38B2B00EF8D15 /* Assets.xcassets */,
 				E176AECD23E38B2B00EF8D15 /* LaunchScreen.storyboard */,
+				E17C320624238D8D00683083 /* Intents.intentdefinition */,
 				E176AED023E38B2B00EF8D15 /* Info.plist */,
 				E1E0737A23E5452B00D4AE5E /* Throne.entitlements */,
 				E176AECA23E38B2B00EF8D15 /* Preview Content */,
@@ -348,11 +353,10 @@
 		E176AED823E38B2C00EF8D15 /* ThroneTests */ = {
 			isa = PBXGroup;
 			children = (
-				E176AED923E38B2C00EF8D15 /* ThroneTests.swift */,
-				E176AEDB23E38B2C00EF8D15 /* Info.plist */,
 				E1DD2094241930F4002A71ED /* WashroomTest.swift */,
 				E1DD20A624193580002A71ED /* BuildingTest.swift */,
 				E1DD20A8241937B7002A71ED /* FilterTest.swift */,
+				E176AEDB23E38B2C00EF8D15 /* Info.plist */,
 			);
 			path = ThroneTests;
 			sourceTree = "<group>";
@@ -360,8 +364,12 @@
 		E176AEE323E38B2C00EF8D15 /* ThroneUITests */ = {
 			isa = PBXGroup;
 			children = (
-				E176AEE423E38B2C00EF8D15 /* ThroneUITests.swift */,
 				E176AEE623E38B2C00EF8D15 /* Info.plist */,
+				E141A4312425433C00E07F6E /* NearMeUITest.swift */,
+				E141A4352425943900E07F6E /* BuildingDetailUITest.swift */,
+				E141A43724259DD000E07F6E /* WashroomDetailUITest.swift */,
+				E141A4392425F66100E07F6E /* ProfileUITest.swift */,
+				E141A43B2425FA0600E07F6E /* SettingsUITest.swift */,
 			);
 			path = ThroneUITests;
 			sourceTree = "<group>";
@@ -551,11 +559,13 @@
 				E1CDA0B823E404A6007ADA73 /* PersistentSettings.swift in Sources */,
 				E12211D523FB4E18006C99D2 /* ThroneEndpoint.swift in Sources */,
 				E11449022408D49000DD4F04 /* GenderSelectionView.swift in Sources */,
+				E17C31EC24237E9600683083 /* UserBadgeView.swift in Sources */,
 				E116F695240A7F3800680E92 /* BuildingAnnotation.swift in Sources */,
 				E1E0738623E561BB00D4AE5E /* NearMe.swift in Sources */,
 				E11C9BE923F1DB3A0045663B /* Location.swift in Sources */,
 				E19AA950240CD10C00B2DB28 /* Gender.swift in Sources */,
 				E1F4FE122407928D00A4096F /* CreateWashroomView.swift in Sources */,
+				E17C320724238D8D00683083 /* Intents.intentdefinition in Sources */,
 				E11C9BED23F1DD850045663B /* Review.swift in Sources */,
 				E11448EF2408A4DF00DD4F04 /* MainTabView.swift in Sources */,
 				E116F691240A699300680E92 /* MapViewController.swift in Sources */,
@@ -579,6 +589,7 @@
 				E1E0738223E54E3A00D4AE5E /* WelcomeView.swift in Sources */,
 				E11449082409C03A00DD4F04 /* LocationManager.swift in Sources */,
 				E1768D4E23FDEE2B00A9F098 /* AppConfiguration.swift in Sources */,
+				E17C320B2424C3E500683083 /* ThroneEndpointStub.swift in Sources */,
 				E11449062408D7A300DD4F04 /* EditableRatingView.swift in Sources */,
 				E16BA1DC24078AD6002F9EED /* BuildingDetailView.swift in Sources */,
 				E12634E22415F2B900E7DECC /* FilterView.swift in Sources */,
@@ -586,6 +597,7 @@
 				E11449042408D5D000DD4F04 /* CreateWashroomButton.swift in Sources */,
 				E1580F2D23F768E20087DE0B /* LoginView.swift in Sources */,
 				E176AEF823E3A62D00EF8D15 /* WashroomDetailView.swift in Sources */,
+				E17C320D2424CBC300683083 /* AuthenticationEndpointStub.swift in Sources */,
 				E12634E6241624BA00E7DECC /* Filter.swift in Sources */,
 				E176AEC223E38B2A00EF8D15 /* SceneDelegate.swift in Sources */,
 				E11449002408D40B00DD4F04 /* AmenitiesSelectionView.swift in Sources */,
@@ -596,6 +608,7 @@
 				E1DCC7322413912A0094A099 /* ProfileListView.swift in Sources */,
 				E1F4FE14240796A100A4096F /* RatingView.swift in Sources */,
 				E116F687240A493E00680E92 /* MapDetailView.swift in Sources */,
+				E17C32092423931700683083 /* AddToSiriButton.swift in Sources */,
 				E11448FC2408D33E00DD4F04 /* CreateReviewButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -604,25 +617,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1DD209624193123002A71ED /* AppConfiguration.swift in Sources */,
 				E1DD20A724193580002A71ED /* BuildingTest.swift in Sources */,
-				E1DD209724193123002A71ED /* NearMe.swift in Sources */,
-				E1DD209824193123002A71ED /* Building.swift in Sources */,
-				E1DD209924193123002A71ED /* Washroom.swift in Sources */,
-				E1DD209A24193123002A71ED /* Filter.swift in Sources */,
-				E1DD209B24193123002A71ED /* Location.swift in Sources */,
-				E1DD209C24193123002A71ED /* Gender.swift in Sources */,
-				E1DD209D24193123002A71ED /* Amenity.swift in Sources */,
-				E1DD209E24193123002A71ED /* Review.swift in Sources */,
-				E1DD209F24193123002A71ED /* Ratings.swift in Sources */,
-				E1DD20A024193123002A71ED /* User.swift in Sources */,
-				E1DD20A124193123002A71ED /* PersistentSettings.swift in Sources */,
-				E1DD20A224193123002A71ED /* LoginManager.swift in Sources */,
-				E1DD20A324193123002A71ED /* LocationManager.swift in Sources */,
-				E1DD20A424193123002A71ED /* AuthenticationEndpoint.swift in Sources */,
-				E1DD20A524193123002A71ED /* ThroneEndpoint.swift in Sources */,
 				E1DD20A9241937B7002A71ED /* FilterTest.swift in Sources */,
-				E176AEDA23E38B2C00EF8D15 /* ThroneTests.swift in Sources */,
 				E1DD2095241930F4002A71ED /* WashroomTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -631,7 +627,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E176AEE523E38B2C00EF8D15 /* ThroneUITests.swift in Sources */,
+				E141A43C2425FA0600E07F6E /* SettingsUITest.swift in Sources */,
+				E141A4362425943900E07F6E /* BuildingDetailUITest.swift in Sources */,
+				E141A43A2425F66100E07F6E /* ProfileUITest.swift in Sources */,
+				E141A43824259DD000E07F6E /* WashroomDetailUITest.swift in Sources */,
+				E141A4322425433C00E07F6E /* NearMeUITest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -662,6 +662,136 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		E141A42D2425408200E07F6E /* Stubbed */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG STUBBED";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Stubbed;
+		};
+		E141A42E2425408200E07F6E /* Stubbed */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Throne/Throne.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Throne/Preview Content\"";
+				DEVELOPMENT_TEAM = DNH2Q695HA;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Throne/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.findmythrone.Throne;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Stubbed;
+		};
+		E141A42F2425408200E07F6E /* Stubbed */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DNH2Q695HA;
+				INFOPLIST_FILE = ThroneTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.findmythrone.ThroneTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Throne.app/Throne";
+			};
+			name = Stubbed;
+		};
+		E141A4302425408200E07F6E /* Stubbed */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DNH2Q695HA;
+				INFOPLIST_FILE = ThroneUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.findmythrone.ThroneUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Throne;
+			};
+			name = Stubbed;
+		};
 		E1768D4923FDEB5F00A9F098 /* Local */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -772,6 +902,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DNH2Q695HA;
 				INFOPLIST_FILE = ThroneUITests/Info.plist;
@@ -782,6 +914,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.findmythrone.ThroneUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Throne;
@@ -996,6 +1130,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DNH2Q695HA;
 				INFOPLIST_FILE = ThroneUITests/Info.plist;
@@ -1006,6 +1142,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.findmythrone.ThroneUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Throne;
@@ -1016,6 +1154,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DNH2Q695HA;
 				INFOPLIST_FILE = ThroneUITests/Info.plist;
@@ -1026,6 +1166,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.findmythrone.ThroneUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Throne;
@@ -1040,6 +1182,7 @@
 			buildConfigurations = (
 				E176AEE723E38B2C00EF8D15 /* Debug */,
 				E1768D4923FDEB5F00A9F098 /* Local */,
+				E141A42D2425408200E07F6E /* Stubbed */,
 				E176AEE823E38B2C00EF8D15 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1050,6 +1193,7 @@
 			buildConfigurations = (
 				E176AEEA23E38B2C00EF8D15 /* Debug */,
 				E1768D4A23FDEB5F00A9F098 /* Local */,
+				E141A42E2425408200E07F6E /* Stubbed */,
 				E176AEEB23E38B2C00EF8D15 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1060,6 +1204,7 @@
 			buildConfigurations = (
 				E176AEED23E38B2C00EF8D15 /* Debug */,
 				E1768D4B23FDEB5F00A9F098 /* Local */,
+				E141A42F2425408200E07F6E /* Stubbed */,
 				E176AEEE23E38B2C00EF8D15 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1070,6 +1215,7 @@
 			buildConfigurations = (
 				E176AEF023E38B2C00EF8D15 /* Debug */,
 				E1768D4C23FDEB5F00A9F098 /* Local */,
+				E141A4302425408200E07F6E /* Stubbed */,
 				E176AEF123E38B2C00EF8D15 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;

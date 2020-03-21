@@ -10,11 +10,10 @@ import SwiftUI
 
 struct MainTabView: View {
     @State private var currentTab = 0
-    @ObservedObject var model = NearMe.shared
-
+    
     var body: some View {
         TabView(selection: $currentTab) {
-            NearMeView(nearMe: model)
+            NearMeView()
                 .tabItem {
                     VStack {
                         Image(systemName: "mappin.and.ellipse")
@@ -22,7 +21,7 @@ struct MainTabView: View {
                     }
                 }
                 .tag(0)
-            MapView(nearMe: model)
+            MapView()
                 .tabItem {
                     VStack {
                         Image(systemName: "map")
@@ -30,7 +29,7 @@ struct MainTabView: View {
                     }
                 }
                 .tag(1)
-            ProfileView(nearMe: model)
+            ProfileView()
                 .tabItem {
                     VStack {
                         Image(systemName: "person.circle")

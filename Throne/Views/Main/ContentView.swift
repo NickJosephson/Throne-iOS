@@ -17,9 +17,10 @@ struct ContentView: View {
         MainTabView()
             .disabled(!loginManager.isLoggedIn)
             .opacity(!loginManager.isLoggedIn ? 0.5 : 1.0)
-            .sheet(isPresented: $loginObserver.showWelcomeScreen) {
-                WelcomeView()
-            }
+            .sheet(
+                isPresented: $loginObserver.showWelcomeScreen,
+                content: { WelcomeView() }
+            )
     }
 }
 
@@ -30,8 +31,8 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 final class LoginObserver: ObservableObject {
-    var loginManager = LoginManager.shared
-    var loginStateSubscription: AnyCancellable!
+    private var loginManager = LoginManager.shared
+    private var loginStateSubscription: AnyCancellable!
     
     /// Always reflects the opposite of isLoggedIn, even if set other wise.
     ///
@@ -49,8 +50,7 @@ final class LoginObserver: ObservableObject {
         
         loginStateSubscription = loginManager.$isLoggedIn
             .receive(on: RunLoop.main)
-            .sink() { isLoggedIn in
-                self.showWelcomeScreen = !isLoggedIn
-            }
+            .map { !$0 }
+            .assign(to: \.showWelcomeScreen, on: self)
     }
 }

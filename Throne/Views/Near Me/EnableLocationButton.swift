@@ -13,7 +13,8 @@ struct EnableLocationButton: View {
         Button(
             action: {
                 // Open system preferences to Throne settings
-                UIApplication.shared.open(URL(string:UIApplication.openSettingsURLString)!)
+                let settingsURL = URL(string: UIApplication.openSettingsURLString)!
+                UIApplication.shared.open(settingsURL)
             },
             label: {
                 Text("Enable Location")

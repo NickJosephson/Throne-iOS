@@ -35,7 +35,11 @@ final class LoginManager: ObservableObject {
     
     init() {
         // Restore login state
-        isLoggedIn = settings.isLoggedIn
+        #if STUBBED
+            isLoggedIn = true
+        #else
+            isLoggedIn = settings.isLoggedIn
+        #endif
         
         // refresh token when a refresh is requested
         refreshSubscription = requestRefresh
@@ -47,12 +51,12 @@ final class LoginManager: ObservableObject {
         // create publisher for indicating when to perform current user update
         let shouldUpdatePublisher = self.loginCompleted
             .merge(with: self.refreshCompleted, self.requestUserFetch)
-          .eraseToAnyPublisher()
+            .eraseToAnyPublisher()
 
         currentUserSubscription = shouldUpdatePublisher
             .flatMap { _ in
                 return Future { promise in
-                    ThroneEndpoint.fetchCurrentUser { user in
+                    ThroneEndpoint.shared.fetchCurrentUser { user in
                         promise(.success(user))
                     }
                 }
@@ -62,8 +66,8 @@ final class LoginManager: ObservableObject {
     }
     
     func logout() {
-        if self.isLoggedIn {
-            DispatchQueue.main.async {
+        DispatchQueue.main.async {
+            if self.isLoggedIn {
                 self.isLoggedIn = false
                 self.settings.idToken = nil
                 self.settings.accessToken = nil
@@ -76,7 +80,7 @@ final class LoginManager: ObservableObject {
     }
     
     func attemptLogin(with code: String) {
-        AuthenticationEndpoint.fetchTokens(authorizedWith: code) { tokens in
+        AuthenticationEndpoint.shared.fetchTokens(authorizedWith: code) { tokens in
             DispatchQueue.main.async {
                 if let tokens = tokens {
                     self.settings.idToken = tokens.idToken
@@ -84,8 +88,8 @@ final class LoginManager: ObservableObject {
                     self.settings.refreshToken = tokens.refreshToken
                                         
                     self.isLoggedIn = true
-                    self.loginCompleted.send()
                     NSLog("Login completed.")
+                    self.loginCompleted.send()
                 } else {
                     NSLog("Login error: Failed to fetch access token.")
                 }
@@ -100,7 +104,7 @@ final class LoginManager: ObservableObject {
     func refreshLogin() {
         NSLog("Starting login refresh.")
         if let refreshToken = settings.refreshToken {
-            AuthenticationEndpoint.refreshTokens(authorizedWith: refreshToken) { tokens in
+            AuthenticationEndpoint.shared.refreshTokens(authorizedWith: refreshToken) { tokens in
                 DispatchQueue.main.async {
                     if let tokens = tokens {
                         self.settings.idToken = tokens.idToken

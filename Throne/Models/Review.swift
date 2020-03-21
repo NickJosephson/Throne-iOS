@@ -8,10 +8,11 @@
 
 import Foundation
 
+/// Represent a review on a washroom.
 struct Review: Codable, Hashable {
-    let id: Int
+    var id: Int
     let washroomID: Int
-    let user: User!
+    let user: User?
     let createdAt: Date
     let upvoteCount: Int?
     let ratings: Ratings
@@ -27,7 +28,8 @@ struct Review: Codable, Hashable {
         case comment
     }
     
-    func getRelativeDateDescription() -> String {
+    /// A human readable description of the date a review was created relative to the current date.
+    var relativeDateDescription: String {
         let df = DateFormatter()
         df.doesRelativeDateFormatting = true
         df.dateStyle = .medium
@@ -60,4 +62,15 @@ extension Review {
         )
     }
     
+    init() {
+        self.init(
+            id: 0,
+            washroomID: 0,
+            user: nil,
+            createdAt: Date(),
+            upvoteCount: 0,
+            ratings: Ratings(privacy: 0, toiletPaperQuality: 0, smell: 0, cleanliness: 0),
+            comment: ""
+        )
+    }
 }

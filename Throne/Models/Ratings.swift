@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Represent the ratings across various categories for a washroom or building.
 struct Ratings: Codable {
     var privacy = 0.0
     var toiletPaperQuality = 0.0
