@@ -23,3 +23,10 @@ Android | [Throne-Android](https://github.com/NickJosephson/Throne-Android) | [A
 ## Documentation
 
 * [Setup](docs/SETUP.md)
+* [Testing](docs/TESTING.md)
+
+## Screenshots
+
+------------ | ------------- | ------------
+![Screenshot](docs/screenshots/screenshot1.png) | ![Screenshot](docs/screenshots/screenshot1.png) | ![Screenshot](docs/screenshots/screenshot1.png)
+![Screenshot](docs/screenshots/screenshot1.png) | ![Screenshot](docs/screenshots/screenshot1.png) | ![Screenshot](docs/screenshots/screenshot1.png)
