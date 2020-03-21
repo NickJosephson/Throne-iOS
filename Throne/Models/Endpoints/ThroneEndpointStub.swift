@@ -47,7 +47,6 @@ class ThroneEndpointStub: ThroneEndpoint {
     
     var favorites: [Washroom] = []
     var reviews: [Review] = []
-    var reviewsForUser: [Review] = []
     var currentUser = User(id: 0, createdAt: Date(), username: "Username", profilePicture: "", preferences: nil)
     
     override func fetchWashrooms(near location: Location?, filteredBy filter: Filter? = nil, maxResults: Int = 1000, completionHandler: @escaping ([Washroom]) -> Void) {
@@ -75,7 +74,7 @@ class ThroneEndpointStub: ThroneEndpoint {
     }
 
     override func fetchReviews(madeBy user: User, completionHandler: @escaping ([Review]) -> Void) {
-        completionHandler(reviewsForUser)
+        completionHandler(reviews)
     }
 
     override func fetchReviews(completionHandler: @escaping ([Review]) -> Void) {
@@ -95,6 +94,9 @@ class ThroneEndpointStub: ThroneEndpoint {
     }
 
     override func post(review: Review, for washroom: Washroom, completionHandler: @escaping (Review) -> Void) {
+        var newReview = review
+        newReview.id = (reviews.last?.id ?? -1) + 1
+
         washroom.reviews.append(review)
         washroom.reviewsCount = (washroom.reviewsCount ?? 0) + 1
         reviews.append(review)
@@ -103,6 +105,7 @@ class ThroneEndpointStub: ThroneEndpoint {
 
     override func post(washroom: Washroom, for building: Building, completionHandler: @escaping (Washroom) -> Void) {
         building.washrooms.append(washroom)
+        washroom.id = (washrooms.last?.id ?? -1) + 1
         washrooms.append(washroom)
         completionHandler(washroom)
     }

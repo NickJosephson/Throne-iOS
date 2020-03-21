@@ -25,10 +25,34 @@ class NearMeUITest: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
+    
+    func testWashrooms() {
+        let tablesQuery = XCUIApplication().tables
+        
+        // test washroom present in list
+        tablesQuery.buttons["All Washrooms"].tap()
+        XCTAssert(tablesQuery.buttons["Building 0\nInclusive Floor 0 \n0 m"].exists)
 
-    func testFilterButton() {
-        let app = XCUIApplication()
-        XCTAssert(app.buttons["Filter"].exists)
+        // test washroom present in list after switching to and from buildings
+        tablesQuery.buttons["Buildings"].tap()
+        tablesQuery.buttons["All Washrooms"].tap()
+        XCTAssert(tablesQuery.buttons["Building 0\nInclusive Floor 0 \n0 m"].exists)
+
+        tablesQuery.buttons["Building 0\nInclusive Floor 0 \n0 m"].tap()
+    }
+    
+    func testBuildings() {
+        let tablesQuery = XCUIApplication().tables
+        
+        // test building present in list
+        XCTAssert(tablesQuery.buttons["Building 0\n0 m\n5 Rooms"].exists)
+        
+        // test building present in list after switching to and from all washrooms
+        tablesQuery.buttons["All Washrooms"].tap()
+        tablesQuery.buttons["Buildings"].tap()
+        XCTAssert(tablesQuery.buttons["Building 0\n0 m\n5 Rooms"].exists)
+        
+        tablesQuery.buttons["Building 0\n0 m\n5 Rooms"].tap()
     }
     
     func testFilter() {
@@ -38,9 +62,9 @@ class NearMeUITest: XCTestCase {
         // test functionality of amenity selector
         let tablesQuery = app.tables
         tablesQuery.buttons["Amenities\n0 Selected"].tap()
-        tablesQuery/*@START_MENU_TOKEN@*/.buttons["Air Dryer"]/*[[".cells.buttons[\"Air Dryer\"]",".buttons[\"Air Dryer\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-        tablesQuery/*@START_MENU_TOKEN@*/.buttons["Paper Towel"]/*[[".cells.buttons[\"Paper Towel\"]",".buttons[\"Paper Towel\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-        tablesQuery/*@START_MENU_TOKEN@*/.buttons["Automatic Dryer"]/*[[".cells.buttons[\"Automatic Dryer\"]",".buttons[\"Automatic Dryer\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        tablesQuery.buttons["Air Dryer"].tap()
+        tablesQuery.buttons["Paper Towel"].tap()
+        tablesQuery.buttons["Automatic Dryer"].tap()
         app.navigationBars["Amenities"].buttons["Filter"].tap()
 
         // test that radius slider is present
