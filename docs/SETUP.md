@@ -9,6 +9,7 @@
     Throne - Develop | A debug build that uses the development API endpoint.
     Throne - Local | A debug build that uses a localhost API endpoint. Use this for testing in conjunction with a local build of the Throne backend.
     Throne - Production | A release build that uses the production API endpoint. **Use this when on the master branch.**
+    Throne - Stubbed | A debug build that uses a stubbed API endpoint.
 
 4. Select your desired device or simulator on the top left.
 

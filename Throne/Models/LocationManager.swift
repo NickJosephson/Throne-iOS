@@ -13,7 +13,7 @@ import CoreLocation
 
 /// Manage the state of user location.
 final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
-    static var shared = LocationManager() // Shared instance to use across application
+    static let shared = LocationManager() // Shared instance to use across application
     
     private let locationManager = CLLocationManager()
     private var loginSubscription: AnyCancellable!
@@ -23,6 +23,14 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
     override init() {
         super.init()
         
+        #if STUBBED
+            currentLocation = Location(latitude: 49.8080954, longitude: -97.1375209)
+        #else
+            setupLocationManager()
+        #endif
+    }
+    
+    func setupLocationManager() {
         // start tracking location
         locationManager.delegate = self
         locationManager.distanceFilter = 20.0 // meters

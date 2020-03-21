@@ -23,3 +23,15 @@ Android | [Throne-Android](https://github.com/NickJosephson/Throne-Android) | [A
 ## Documentation
 
 * [Setup](docs/SETUP.md)
+* [Testing](docs/TESTING.md)
+* [Coding Standards](docs/CODING_STANDARDS.md)
+
+## Screenshots
+
+Near Me | Washroom Details | Reviews
+------------ | ------------- | ------------
+![Screenshot](docs/screenshots/screenshot1.png) | ![Screenshot](docs/screenshots/screenshot2.png) | ![Screenshot](docs/screenshots/screenshot3.png)
+
+Map | Login | Profile
+------------ | ------------- | ------------
+![Screenshot](docs/screenshots/screenshot4.png) | ![Screenshot](docs/screenshots/screenshot5.png) | ![Screenshot](docs/screenshots/screenshot6.png)

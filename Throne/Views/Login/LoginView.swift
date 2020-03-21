@@ -37,12 +37,12 @@ class LoginViewController: UIViewController, ASWebAuthenticationPresentationCont
     
     /// Present a webpage to login to Throne
     func startLogin() {
-        startSession(at: AuthenticationEndpoint.loginAddress)
+        startSession(at: AuthenticationEndpoint.shared.loginAddress)
     }
     
     /// Present a webpage to signup to Throne
     func startSignup() {
-        startSession(at: AuthenticationEndpoint.signupAddress)
+        startSession(at: AuthenticationEndpoint.shared.signupAddress)
     }
 
     /// Start a ASWebAuthenticationSession at the specified URL to login to Throne

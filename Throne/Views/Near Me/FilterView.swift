@@ -20,7 +20,7 @@ struct FilterView: View {
                 NavigationLink(
                     destination: Form {
                         AmenitiesSelectionView(amenities: self.$newFilter.amenities)
-                    },
+                    }.navigationBarTitle("Amenities"),
                     label: {
                         HStack {
                             Text("Amenities")

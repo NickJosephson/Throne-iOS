@@ -10,7 +10,7 @@ import Foundation
 
 /// Represent a review on a washroom.
 struct Review: Codable, Hashable {
-    let id: Int
+    var id: Int
     let washroomID: Int
     let user: User?
     let createdAt: Date

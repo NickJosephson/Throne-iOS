@@ -76,7 +76,7 @@ final class Building: Codable, ObservableObject, Hashable {
         washroomsSubscription = shouldUpdateWashroomsPublisher
             .flatMap { _ in
                 return Future { promise in
-                    ThroneEndpoint.fetchWashrooms(in: self) { washrooms in
+                    ThroneEndpoint.shared.fetchWashrooms(in: self) { washrooms in
                         promise(.success(washrooms))
                     }
                 }
@@ -88,7 +88,7 @@ final class Building: Codable, ObservableObject, Hashable {
             .merge(with: shouldUpdateWashroomsPublisher)
             .flatMap { _ in
                 return Future { promise in
-                    ThroneEndpoint.fetchBuilding(matching: self.id) { building in
+                    ThroneEndpoint.shared.fetchBuilding(matching: self.id) { building in
                         promise(.success(building))
                     }
                 }
@@ -106,7 +106,7 @@ final class Building: Codable, ObservableObject, Hashable {
     /// Add a new washroom to this building.
     /// - Parameter washroom: The new washroom.
     func postWashroom(washroom: Washroom) {
-        ThroneEndpoint.post(washroom: washroom, for: self) { _ in
+        ThroneEndpoint.shared.post(washroom: washroom, for: self) { _ in
             self.setupWashroomsSubscription()
             self.requestWashroomsUpdate.send()
         }
