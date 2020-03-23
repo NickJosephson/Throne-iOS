@@ -33,7 +33,7 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
     func setupLocationManager() {
         // start tracking location
         locationManager.delegate = self
-        locationManager.distanceFilter = 0.020 // kilometers
+        locationManager.distanceFilter = 20.0 // meters
         locationManager.startUpdatingLocation()
         if let location = locationManager.location {
             currentLocation = Location(location.coordinate)
