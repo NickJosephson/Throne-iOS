@@ -116,7 +116,6 @@ final class Building: Codable, ObservableObject, Hashable {
     var distanceDescription: String {
         get {
             if let distance = self.distance {
-                NSLog(String(format: "%f", distance))
                 if distance < 1.0 {
                     let value = String(format: "%.0f", distance * 1000.0)
                     return "\(value) m"
