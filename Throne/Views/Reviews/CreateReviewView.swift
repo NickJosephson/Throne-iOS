@@ -52,6 +52,7 @@ struct CreateReviewView: View {
             )
 
         }
+        .frame(minWidth: 350, minHeight: 450)
     }
 }
 

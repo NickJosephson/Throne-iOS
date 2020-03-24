@@ -109,7 +109,7 @@ struct WashroomDetailView: View {
                     .popover(isPresented: $showShareSheet) {
                         ShareView(activityItems: [self.washroom.webURL], callback: {
                             self.showShareSheet = false
-                        })
+                        }).frame(minWidth: 350, minHeight: 600)
                     }
             }
         )
