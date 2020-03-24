@@ -74,23 +74,23 @@ class BuildingTest: XCTestCase {
         
         building.distance = 0.1
         distanceDescription = building.distanceDescription
-        XCTAssertEqual(distanceDescription, "0 m")
+        XCTAssertEqual(distanceDescription, "100 m")
         
         building.distance = 100
         distanceDescription = building.distanceDescription
-        XCTAssertEqual(distanceDescription, "100 m")
+        XCTAssertEqual(distanceDescription, "100.0 km")
         
-        building.distance = 100.9999
+        building.distance = 0.1009999
         distanceDescription = building.distanceDescription
         XCTAssertEqual(distanceDescription, "101 m")
         
-        building.distance = 1100
+        building.distance = 1.100
         distanceDescription = building.distanceDescription
         XCTAssertEqual(distanceDescription, "1.1 km")
         
-        building.distance = 10000.999999
+        building.distance = 10.999999
         distanceDescription = building.distanceDescription
-        XCTAssertEqual(distanceDescription, "10.0 km")
+        XCTAssertEqual(distanceDescription, "11.0 km")
         
         building.distance = nil
         distanceDescription = building.distanceDescription
