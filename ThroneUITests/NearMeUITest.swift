@@ -71,7 +71,7 @@ class NearMeUITest: XCTestCase {
         XCTAssert(tablesQuery.staticTexts["Radius"].exists)
         
         // test pressing showEmptyBuildings and reseting its state with Restore Defaults button
-        let showEmptyBuildingsShowEmptyBuildingsSwitch = tablesQuery.switches["Show Empty Buildings\nShow Empty Buildings"]
+        let showEmptyBuildingsShowEmptyBuildingsSwitch = tablesQuery.switches["Show Empty Buildings"]
         XCTAssert(showEmptyBuildingsShowEmptyBuildingsSwitch.value as! String == "0")
         showEmptyBuildingsShowEmptyBuildingsSwitch.tap()
         XCTAssert(showEmptyBuildingsShowEmptyBuildingsSwitch.value as! String == "1")

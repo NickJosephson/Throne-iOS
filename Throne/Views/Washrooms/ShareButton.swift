@@ -29,7 +29,7 @@ struct ShareButton: View {
                     self.showShareSheet = false
                 }
             )
-            .frame(minWidth: 350, minHeight: 600)
+            .frame(idealWidth: 350, idealHeight: 600)
         }
     }
 }

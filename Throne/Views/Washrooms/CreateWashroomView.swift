@@ -70,7 +70,7 @@ struct CreateWashroomView: View {
                 }, label: { Text("Add") })
             )
         }
-        .frame(minWidth: 350, minHeight: 600)
+        .frame(idealWidth: 350, idealHeight: 600)
     }
 }
 
