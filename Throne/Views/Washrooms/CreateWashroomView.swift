@@ -11,6 +11,7 @@ import SwiftUI
 struct CreateWashroomView: View {
     @Binding var show: Bool
     @ObservedObject var building: Building
+    @ObservedObject private var settings = PersistentSettings.shared
     @State private var floor = 1
     @State private var stallsCount = 1
     @State private var urinalsCount = 0
@@ -51,7 +52,7 @@ struct CreateWashroomView: View {
                     AmenitiesSelectionView(amenities: self.$amenities)
                 }
             }
-            .navigationBarTitle("New Washroom", displayMode: .inline)
+            .navigationBarTitle("New \(settings.preferredTerm.capitalized)", displayMode: .inline)
             .navigationBarItems(
                 leading: Button(action: { self.show = false }, label: { Text("Cancel") }),
                 trailing: Button(action: {
@@ -69,6 +70,7 @@ struct CreateWashroomView: View {
                 }, label: { Text("Add") })
             )
         }
+        .frame(idealWidth: 350, idealHeight: 600)
     }
 }
 

@@ -45,23 +45,23 @@ class WashroomTest: XCTestCase {
         
         washroom.distance = 0.1
         distanceDescription = washroom.distanceDescription
-        XCTAssertEqual(distanceDescription, "0 m")
+        XCTAssertEqual(distanceDescription, "100 m")
         
         washroom.distance = 100
         distanceDescription = washroom.distanceDescription
-        XCTAssertEqual(distanceDescription, "100 m")
+        XCTAssertEqual(distanceDescription, "100.0 km")
         
-        washroom.distance = 100.9999
+        washroom.distance = 0.1009999
         distanceDescription = washroom.distanceDescription
         XCTAssertEqual(distanceDescription, "101 m")
         
-        washroom.distance = 1100
+        washroom.distance = 1.100
         distanceDescription = washroom.distanceDescription
         XCTAssertEqual(distanceDescription, "1.1 km")
         
-        washroom.distance = 10000.999999
+        washroom.distance = 10.999999
         distanceDescription = washroom.distanceDescription
-        XCTAssertEqual(distanceDescription, "10.0 km")
+        XCTAssertEqual(distanceDescription, "11.0 km")
         
         washroom.distance = nil
         distanceDescription = washroom.distanceDescription

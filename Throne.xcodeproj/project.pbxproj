@@ -42,6 +42,7 @@
 		E146A6DE2400A1F400F73A0B /* AmenitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E146A6DD2400A1F400F73A0B /* AmenitiesView.swift */; };
 		E146A6E02400A21E00F73A0B /* ReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E146A6DF2400A21E00F73A0B /* ReviewsView.swift */; };
 		E1580F2D23F768E20087DE0B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1580F2C23F768E10087DE0B /* LoginView.swift */; };
+		E15D9774242AB0180091330C /* ShareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15D9773242AB0180091330C /* ShareButton.swift */; };
 		E16BA1DC24078AD6002F9EED /* BuildingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BA1DB24078AD6002F9EED /* BuildingDetailView.swift */; };
 		E1768D4E23FDEE2B00A9F098 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1768D4D23FDEE2B00A9F098 /* AppConfiguration.swift */; };
 		E176AEC023E38B2A00EF8D15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176AEBF23E38B2A00EF8D15 /* AppDelegate.swift */; };
@@ -132,6 +133,7 @@
 		E146A6DD2400A1F400F73A0B /* AmenitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmenitiesView.swift; sourceTree = "<group>"; };
 		E146A6DF2400A21E00F73A0B /* ReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsView.swift; sourceTree = "<group>"; };
 		E1580F2C23F768E10087DE0B /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		E15D9773242AB0180091330C /* ShareButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareButton.swift; sourceTree = "<group>"; };
 		E16BA1DB24078AD6002F9EED /* BuildingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingDetailView.swift; sourceTree = "<group>"; };
 		E1768D4D23FDEE2B00A9F098 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		E176AEBC23E38B2A00EF8D15 /* Throne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Throne.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -232,6 +234,7 @@
 				E11448FD2408D35E00DD4F04 /* FavoriteButton.swift */,
 				E11449012408D49000DD4F04 /* GenderSelectionView.swift */,
 				E13E68932416FD31000E8C1D /* ShareView.swift */,
+				E15D9773242AB0180091330C /* ShareButton.swift */,
 				E1BCB3C9240FA122006C8B83 /* Amenities */,
 			);
 			path = Washrooms;
@@ -590,6 +593,7 @@
 				E11449082409C03A00DD4F04 /* LocationManager.swift in Sources */,
 				E1768D4E23FDEE2B00A9F098 /* AppConfiguration.swift in Sources */,
 				E17C320B2424C3E500683083 /* ThroneEndpointStub.swift in Sources */,
+				E15D9774242AB0180091330C /* ShareButton.swift in Sources */,
 				E11449062408D7A300DD4F04 /* EditableRatingView.swift in Sources */,
 				E16BA1DC24078AD6002F9EED /* BuildingDetailView.swift in Sources */,
 				E12634E22415F2B900E7DECC /* FilterView.swift in Sources */,
@@ -741,6 +745,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.findmythrone.Throne;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -871,6 +876,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.findmythrone.Throne;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1054,6 +1060,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.findmythrone.Throne;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1077,6 +1084,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.findmythrone.Throne;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

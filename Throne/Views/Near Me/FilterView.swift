@@ -79,6 +79,7 @@ struct FilterView: View {
                 )
             )
         }
+        .frame(idealWidth: 350, idealHeight: 500)
         .onAppear {
             self.newFilter = self.nearMe.filter
         }

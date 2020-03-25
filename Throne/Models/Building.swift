@@ -14,7 +14,7 @@ final class Building: Codable, ObservableObject, Hashable {
     var id: Int
     var title: String
     var location: Location
-    var distance: Double? // meters
+    var distance: Double? // kilometers
     var washroomsCount: Int?
     var createdAt: Date
     var overallRating: Double
@@ -116,11 +116,11 @@ final class Building: Codable, ObservableObject, Hashable {
     var distanceDescription: String {
         get {
             if let distance = self.distance {
-                if distance < 1000.0 {
-                    let value = String(format: "%.0f", distance)
+                if distance < 1.0 {
+                    let value = String(format: "%.0f", distance * 1000.0)
                     return "\(value) m"
                 } else {
-                    let value = String(format: "%.1f", distance / 1000.0)
+                    let value = String(format: "%.1f", distance)
                     return "\(value) km"
                 }
             } else {

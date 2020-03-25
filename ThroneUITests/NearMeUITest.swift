@@ -70,14 +70,7 @@ class NearMeUITest: XCTestCase {
         // test that radius slider is present
         XCTAssert(tablesQuery.staticTexts["Radius"].exists)
         
-        // test pressing showEmptyBuildings and reseting its state with Restore Defaults button
-        let showEmptyBuildingsShowEmptyBuildingsSwitch = tablesQuery.switches["Show Empty Buildings\nShow Empty Buildings"]
-        XCTAssert(showEmptyBuildingsShowEmptyBuildingsSwitch.value as! String == "0")
-        showEmptyBuildingsShowEmptyBuildingsSwitch.tap()
-        XCTAssert(showEmptyBuildingsShowEmptyBuildingsSwitch.value as! String == "1")
         tablesQuery.buttons["Restore Defaults"].tap()
-        XCTAssert(showEmptyBuildingsShowEmptyBuildingsSwitch.value as! String == "0")
-        
         app.navigationBars["Filter"].buttons["Apply"].tap()
     }
 
