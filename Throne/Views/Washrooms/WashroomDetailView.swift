@@ -10,7 +10,6 @@ import SwiftUI
 
 struct WashroomDetailView: View {
     @ObservedObject var washroom: Washroom
-    @State private var showShareSheet = false
     
     var body: some View {
         List {
@@ -97,20 +96,9 @@ struct WashroomDetailView: View {
             HStack(spacing: 20) {
                 FavoriteButton(washroom: self.washroom)
                 ReviewButton(washroom: self.washroom)
-                Button(
-                    action: {
-                        self.showShareSheet = true
-                    },
-                    label: {
-                        Image(systemName: "square.and.arrow.up")
-                            .accessibility(label: Text("Share Washroom"))
-                    }
-                )
-                    .popover(isPresented: $showShareSheet) {
-                        ShareView(activityItems: [self.washroom.webURL], callback: {
-                            self.showShareSheet = false
-                        }).frame(minWidth: 350, minHeight: 600)
-                    }
+                #if !targetEnvironment(macCatalyst)
+                    ShareButton(washroom: self.washroom)
+                #endif
             }
         )
     }

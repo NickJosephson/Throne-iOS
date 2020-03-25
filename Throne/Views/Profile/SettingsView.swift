@@ -19,9 +19,11 @@ struct SettingsView: View {
                 }
             }
             
-            Section {
-                AddToSiriButton()
-            }
+            #if !targetEnvironment(macCatalyst)
+                Section {
+                    AddToSiriButton()
+                }
+            #endif
             
             Section {
                 Button(action: { LoginManager.shared.logout() }) {
