@@ -31,29 +31,37 @@ struct ProfileListView: View {
             }
 
             if currentListType == ProfileListType.favorites {
-                if nearMe.favorites.count == 0 {
+                if nearMe.favorites?.count == 0 {
                     Text("No \(settings.preferredTerm.capitalized) Favourited")
                         .foregroundColor(.secondary)
                 }
                 
-                ForEach(nearMe.favorites, id: \.self) { washroom in
-                    WashroomRowView(washroom: washroom)
-                }
-                .onDelete { offsets in
-                    for offset in offsets {
-                        self.nearMe.favorites[offset].toggleIsFavorite()
+                if nearMe.favorites != nil {
+                    ForEach(nearMe.favorites!, id: \.self) { washroom in
+                        WashroomRowView(washroom: washroom)
                     }
+                    .onDelete { offsets in
+                        for offset in offsets {
+                            self.nearMe.favorites?[offset].toggleIsFavorite()
+                        }
+                    }
+                } else {
+                    SpinnerRowView()
                 }
             } else if currentListType == ProfileListType.reviews {
-                if nearMe.reviews.count == 0 {
+                if nearMe.reviews?.count == 0 {
                     Text("No Reviews")
                         .foregroundColor(.secondary)
                 }
                 
-                ForEach(nearMe.reviews.sorted { $0.createdAt > $1.createdAt }, id: \.self) { review in
-                    NavigationLink(destination: WashroomDetailView(id: review.washroomID)) {
-                        ReviewRowView(review: review)
+                if nearMe.reviews != nil {
+                    ForEach(nearMe.reviews!.sorted { $0.createdAt > $1.createdAt }, id: \.self) { review in
+                        NavigationLink(destination: WashroomDetailView(id: review.washroomID)) {
+                            ReviewRowView(review: review)
+                        }
                     }
+                } else {
+                    SpinnerRowView()
                 }
             }
         }

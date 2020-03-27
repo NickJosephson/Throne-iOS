@@ -29,22 +29,30 @@ struct NearMeListView: View {
             .pickerStyle(SegmentedPickerStyle())
             
             if currentListType == NearMeListType.washrooms {
-                if nearMe.washrooms.count == 0 {
+                if nearMe.washrooms?.count == 0 {
                     Text("No \(settings.preferredTerm.capitalized) Near You")
                         .foregroundColor(.secondary)
                 }
                 
-                ForEach(nearMe.washrooms, id: \.self) { washroom in
-                    WashroomRowView(washroom: washroom)
+                if nearMe.washrooms != nil {
+                    ForEach(nearMe.washrooms!, id: \.self) { washroom in
+                        WashroomRowView(washroom: washroom)
+                    }
+                } else {
+                    SpinnerRowView()
                 }
             } else {
-                if nearMe.buildings.count == 0 {
+                if nearMe.buildings?.count == 0 {
                     Text("No Buildings Near You")
                         .foregroundColor(.secondary)
                 }
                 
-                ForEach(filter(buildings: nearMe.buildings, by: nearMe.filter), id: \.self) { building in
-                    BuildingRowView(building: building)
+                if nearMe.buildings != nil {
+                    ForEach(filter(buildings: nearMe.buildings!, by: nearMe.filter), id: \.self) { building in
+                        BuildingRowView(building: building)
+                    }
+                } else {
+                    SpinnerRowView()
                 }
             }
         }

@@ -23,10 +23,10 @@ final class NearMe: ObservableObject {
     private var favoritesSubscription: AnyCancellable!
     private var reviewsSubscription: AnyCancellable!
 
-    @Published var washrooms: [Washroom] = []
-    @Published var buildings: [Building] = []
-    @Published var favorites: [Washroom] = []
-    @Published var reviews: [Review] = []
+    @Published var washrooms: [Washroom]?
+    @Published var buildings: [Building]?
+    @Published var favorites: [Washroom]?
+    @Published var reviews: [Review]?
 
     @Published var filter = Filter() {
         didSet {
@@ -85,7 +85,7 @@ final class NearMe: ObservableObject {
             .flatMap { _ in
                 return Future { promise in
                     ThroneEndpoint.shared.fetchFavorites { favoriteWashrooms in
-                        promise(.success(favoriteWashrooms))
+                        promise(.success(favoriteWashrooms as [Washroom]?))
                     }
                 }
             }
@@ -98,7 +98,7 @@ final class NearMe: ObservableObject {
             .flatMap { _ in
                 return Future { promise in
                     ThroneEndpoint.shared.fetchReviews { reviews in
-                        promise(.success(reviews))
+                        promise(.success(reviews as [Review]?))
                     }
                 }
             }

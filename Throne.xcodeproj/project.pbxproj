@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E10A5E6E242D8329000EEFF8 /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A5E6D242D8329000EEFF8 /* SpinnerView.swift */; };
+		E10A5E70242D8471000EEFF8 /* SpinnerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A5E6F242D8471000EEFF8 /* SpinnerRowView.swift */; };
 		E11448E7240899FD00DD4F04 /* EnableLocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11448E6240899FD00DD4F04 /* EnableLocationButton.swift */; };
 		E11448E92408A3C900DD4F04 /* NearMeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11448E82408A3C900DD4F04 /* NearMeListView.swift */; };
 		E11448EB2408A46E00DD4F04 /* WashroomRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11448EA2408A46E00DD4F04 /* WashroomRowView.swift */; };
@@ -98,6 +100,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E10A5E6D242D8329000EEFF8 /* SpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
+		E10A5E6F242D8471000EEFF8 /* SpinnerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerRowView.swift; sourceTree = "<group>"; };
 		E11448E6240899FD00DD4F04 /* EnableLocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableLocationButton.swift; sourceTree = "<group>"; };
 		E11448E82408A3C900DD4F04 /* NearMeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearMeListView.swift; sourceTree = "<group>"; };
 		E11448EA2408A46E00DD4F04 /* WashroomRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashroomRowView.swift; sourceTree = "<group>"; };
@@ -220,6 +224,8 @@
 				E11448E6240899FD00DD4F04 /* EnableLocationButton.swift */,
 				E12634E12415F2B900E7DECC /* FilterView.swift */,
 				E12634E32415F2D800E7DECC /* FilterButton.swift */,
+				E10A5E6D242D8329000EEFF8 /* SpinnerView.swift */,
+				E10A5E6F242D8471000EEFF8 /* SpinnerRowView.swift */,
 			);
 			path = "Near Me";
 			sourceTree = "<group>";
@@ -589,6 +595,7 @@
 				E176AEFC23E3AA3500EF8D15 /* NearMeView.swift in Sources */,
 				E176AEC723E38B2A00EF8D15 /* ContentView.swift in Sources */,
 				E116F68B240A49AB00680E92 /* MapUIView.swift in Sources */,
+				E10A5E70242D8471000EEFF8 /* SpinnerRowView.swift in Sources */,
 				E1E0738223E54E3A00D4AE5E /* WelcomeView.swift in Sources */,
 				E11449082409C03A00DD4F04 /* LocationManager.swift in Sources */,
 				E1768D4E23FDEE2B00A9F098 /* AppConfiguration.swift in Sources */,
@@ -609,6 +616,7 @@
 				E1E0738823E561DD00D4AE5E /* Washroom.swift in Sources */,
 				E11C9BEF23F1DF6D0045663B /* User.swift in Sources */,
 				E146A6DE2400A1F400F73A0B /* AmenitiesView.swift in Sources */,
+				E10A5E6E242D8329000EEFF8 /* SpinnerView.swift in Sources */,
 				E1DCC7322413912A0094A099 /* ProfileListView.swift in Sources */,
 				E1F4FE14240796A100A4096F /* RatingView.swift in Sources */,
 				E116F687240A493E00680E92 /* MapDetailView.swift in Sources */,

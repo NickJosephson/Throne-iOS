@@ -11,26 +11,31 @@ import SwiftUI
 struct FilterView: View {
     @Binding var show: Bool
     @ObservedObject private var nearMe = NearMe.shared
+    @ObservedObject private var settings = PersistentSettings.shared
     @State private var newFilter = Filter()
     
     var body: some View {
         NavigationView {
             Form {
                 // Amenities Selection
-                NavigationLink(
-                    destination: Form {
-                        AmenitiesSelectionView(amenities: self.$newFilter.amenities)
-                    }.navigationBarTitle("Amenities"),
-                    label: {
-                        HStack {
-                            Text("Amenities")
-                                .fixedSize()
-                            Spacer()
-                            Text("\(self.newFilter.amenities.count) Selected")
-                                .foregroundColor(.secondary)
+                Section(
+                    footer: Text("Only applies to all \(settings.preferredTerm)s list.").foregroundColor(.secondary)
+                ) {
+                    NavigationLink(
+                        destination: Form {
+                            AmenitiesSelectionView(amenities: self.$newFilter.amenities)
+                        }.navigationBarTitle("Amenities"),
+                        label: {
+                            HStack {
+                                Text("Amenities")
+                                    .fixedSize()
+                                Spacer()
+                                Text("\(self.newFilter.amenities.count) Selected")
+                                    .foregroundColor(.secondary)
+                            }
                         }
-                    }
-                )
+                    )
+                }
                 
                 // Radius Selection
                 Section {
