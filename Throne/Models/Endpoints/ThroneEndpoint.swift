@@ -19,7 +19,7 @@ class ThroneEndpoint {
     
     private let host = AppConfiguration.apiAddress
     
-    func fetchWashrooms(near location: Location?, filteredBy filter: Filter? = nil, maxResults: Int = 1000, completionHandler: @escaping ([Washroom]) -> Void) {
+    func fetchWashrooms(near location: Location?, filteredBy filter: Filter? = nil, maxResults: Int = 50, completionHandler: @escaping ([Washroom]) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/washrooms/"
         urlComponents.queryItems = [
@@ -59,7 +59,7 @@ class ThroneEndpoint {
         fetchAndDecode(url: urlComponents.url!, completionHandler: completionHandler)
     }
 
-    func fetchBuildings(near location: Location?, filteredBy filter: Filter? = nil, maxResults: Int = 1000, completionHandler: @escaping ([Building]) -> Void) {
+    func fetchBuildings(near location: Location?, filteredBy filter: Filter? = nil, maxResults: Int = 100, completionHandler: @escaping ([Building]) -> Void) {
         var urlComponents = URLComponents(url: host, resolvingAgainstBaseURL: true)!
         urlComponents.path = "/buildings/"
         urlComponents.queryItems = [
