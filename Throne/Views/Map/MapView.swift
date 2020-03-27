@@ -12,7 +12,7 @@ struct MapView: View {
     @ObservedObject private var nearMe = NearMe.shared
     
     var body: some View {
-        MapUIView(buildings: nearMe.buildings)
+        MapUIView(buildings: nearMe.buildings ?? [])
             .edgesIgnoringSafeArea(.all)
     }
 }
