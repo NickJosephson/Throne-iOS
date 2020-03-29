@@ -65,6 +65,7 @@ final class PersistentSettings: ObservableObject {
         }
     }
     let preferredTermOptions = [
+        "throne",
         "john",
         "crapper",
         "latrine",
