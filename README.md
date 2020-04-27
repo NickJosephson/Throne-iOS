@@ -37,5 +37,4 @@ Map | Login | Profile
 ![Screenshot](docs/screenshots/screenshot4.png) | ![Screenshot](docs/screenshots/screenshot5.png) | ![Screenshot](docs/screenshots/screenshot6.png)
 
 ![Screenshot](docs/screenshots/screenshot7.png)
-
 ![Screenshot](docs/screenshots/screenshot8.png)
